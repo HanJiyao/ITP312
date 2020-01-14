@@ -7,24 +7,29 @@
 //
 
 import UIKit
+import Firebase
 
 class ChatViewController: UIViewController {
 
+    @IBOutlet weak var nameTextField: UITextField!
+    @IBOutlet weak var emailTextField: UITextField!
+    @IBOutlet weak var passwordTextField: UITextField!
+    @IBOutlet weak var errorTextField: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        var ref: DatabaseReference!
+        ref = Database.database().reference()
+        
+        errorTextField.text = ""
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    @IBAction func handleRegister(_ sender: Any) {
+        let email = emailTextField.text!
+        let password = passwordTextField.text!
+        Auth.auth().createUser(withEmail: email, password: password) { authResult, error in
+            if error != nil {
+                self.errorTextField.text = error?.localizedDescription
+            }
+        }
     }
-    */
-
 }
