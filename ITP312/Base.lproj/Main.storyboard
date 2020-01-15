@@ -23,7 +23,7 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <items>
                                     <navigationItem title="Title" id="0dI-32-jiq">
-                                        <barButtonItem key="rightBarButtonItem" title="Login" id="fhT-N0-PFC">
+                                        <barButtonItem key="rightBarButtonItem" title="Chat" id="fhT-N0-PFC">
                                             <connections>
                                                 <segue destination="pMX-E7-Jf9" kind="show" id="vx1-Ee-V6y"/>
                                             </connections>
@@ -39,13 +39,13 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
         </scene>
-        <!--Login-->
+        <!--Chat-->
         <scene sceneID="Qhc-5y-hES">
             <objects>
-                <viewControllerPlaceholder storyboardName="ChatStoryboard" referencedIdentifier="Login" id="pMX-E7-Jf9" sceneMemberID="viewController"/>
+                <viewControllerPlaceholder storyboardName="ChatStoryboard" referencedIdentifier="Chat" id="pMX-E7-Jf9" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5SJ-cb-fYn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="525" y="44"/>
+            <point key="canvasLocation" x="541" y="19"/>
         </scene>
     </scenes>
 </document>
