@@ -14,10 +14,15 @@ class UserListViewController: UIViewController, UITableViewDataSource, UITableVi
     @IBOutlet weak var tableView: UITableView!
     
     var users:[User] = []
+    let cellID = "userCell"
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+            
+        tableView.register(UserCell.self, forCellReuseIdentifier: cellID)
+        self.tableView.rowHeight = 75.0
+        self.tableView.delegate = self
+
         fetchUser()
         
     }
@@ -28,7 +33,12 @@ class UserListViewController: UIViewController, UITableViewDataSource, UITableVi
         ref.child("users").observeSingleEvent(of: .value, with: { (snapshot) in
             if let dictionary = snapshot.value as? [String: AnyObject] {
                 for i in dictionary {
-                    self.users.append(User(name: i.value["name"]!! as! String,email: i.value["email"]!! as! String))
+                    self.users.append(User(
+                        id: i.key,
+                        name: i.value["name"]!! as! String,
+                        email: i.value["email"]!! as! String,
+                        profileURL: i.value["profileURL"]!! as! String
+                    ))
                 }
                 self.tableView.reloadData()
             }
@@ -47,12 +57,23 @@ class UserListViewController: UIViewController, UITableViewDataSource, UITableVi
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "userCell", for: indexPath)
-        cell.textLabel?.text = self.users[indexPath.row].name
-        cell.detailTextLabel?.text = self.users[indexPath.row].email
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellID, for: indexPath) as! UserCell
+        let user = self.users[indexPath.row]
+        cell.textLabel?.text = user.name
+        cell.detailTextLabel?.text = user.email
+        if let profileImageUrl = user.profileURL {
+            cell.profileImage.loadImageCache(urlString: profileImageUrl)
+        }
         return cell
     }
-
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let user = self.users[indexPath.row]
+        let chatLogViewController = self.storyboard?.instantiateViewController(withIdentifier: "ChatLog") as! ChatLogViewController
+        chatLogViewController.user = user
+        present(chatLogViewController, animated: true, completion: nil)
+    }
+    
     @IBAction func cancelPressed(_ sender: Any) {
         dismiss(animated: true, completion: nil)
     }

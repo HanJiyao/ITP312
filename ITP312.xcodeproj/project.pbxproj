@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		51174C5223CEF22300B9DF4A /* UserListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51174C5123CEF22300B9DF4A /* UserListViewController.swift */; };
 		5125825623CEB2A2006C694C /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5125825523CEB2A2006C694C /* MainViewController.swift */; };
-		5125825A23CEBF01006C694C /* UserTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5125825923CEBF01006C694C /* UserTableViewController.swift */; };
 		5125825C23CEC0C6006C694C /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5125825B23CEC0C6006C694C /* User.swift */; };
 		5156A05C23CDA39A008328C5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5156A05B23CDA39A008328C5 /* AppDelegate.swift */; };
 		5156A05E23CDA39A008328C5 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5156A05D23CDA39A008328C5 /* ViewController.swift */; };
@@ -20,13 +19,16 @@
 		5156A07223CDA45D008328C5 /* ChatStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5156A07123CDA45D008328C5 /* ChatStoryboard.storyboard */; };
 		5156A07423CDAC30008328C5 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5156A07323CDAC30008328C5 /* GoogleService-Info.plist */; };
 		70AC62B627809D8F22395BB7 /* Pods_ITP312.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A38D9AD9C7E44A1B66BD63E9 /* Pods_ITP312.framework */; };
+		7788232623D0F61C0036304C /* ChatLogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7788232523D0F61B0036304C /* ChatLogViewController.swift */; };
+		7788232923D1138C0036304C /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7788232823D1138C0036304C /* Message.swift */; };
+		7788232B23D123840036304C /* UserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7788232A23D123840036304C /* UserCell.swift */; };
+		77A88CAA23D08536003C5C2C /* ImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77A88CA923D08536003C5C2C /* ImageExtension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		3A253E62685D8CCC1E3767C1 /* Pods-ITP312.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ITP312.debug.xcconfig"; path = "Target Support Files/Pods-ITP312/Pods-ITP312.debug.xcconfig"; sourceTree = "<group>"; };
 		51174C5123CEF22300B9DF4A /* UserListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserListViewController.swift; sourceTree = "<group>"; };
 		5125825523CEB2A2006C694C /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
-		5125825923CEBF01006C694C /* UserTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTableViewController.swift; sourceTree = "<group>"; };
 		5125825B23CEC0C6006C694C /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		5156A05823CDA39A008328C5 /* ITP312.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ITP312.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5156A05B23CDA39A008328C5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -39,6 +41,10 @@
 		5156A07123CDA45D008328C5 /* ChatStoryboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ChatStoryboard.storyboard; sourceTree = "<group>"; };
 		5156A07323CDAC30008328C5 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		7733A5DDFB82ABEA7DCE0DE4 /* Pods-ITP312.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ITP312.release.xcconfig"; path = "Target Support Files/Pods-ITP312/Pods-ITP312.release.xcconfig"; sourceTree = "<group>"; };
+		7788232523D0F61B0036304C /* ChatLogViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatLogViewController.swift; sourceTree = "<group>"; };
+		7788232823D1138C0036304C /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
+		7788232A23D123840036304C /* UserCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCell.swift; sourceTree = "<group>"; };
+		77A88CA923D08536003C5C2C /* ImageExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageExtension.swift; sourceTree = "<group>"; };
 		A38D9AD9C7E44A1B66BD63E9 /* Pods_ITP312.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ITP312.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -90,12 +96,14 @@
 		5156A06D23CDA421008328C5 /* Chat */ = {
 			isa = PBXGroup;
 			children = (
+				7788232723D113600036304C /* Model */,
 				5156A06F23CDA449008328C5 /* LoginViewController.swift */,
+				77A88CA923D08536003C5C2C /* ImageExtension.swift */,
 				51174C5123CEF22300B9DF4A /* UserListViewController.swift */,
 				5125825523CEB2A2006C694C /* MainViewController.swift */,
 				5156A07123CDA45D008328C5 /* ChatStoryboard.storyboard */,
-				5125825923CEBF01006C694C /* UserTableViewController.swift */,
-				5125825B23CEC0C6006C694C /* User.swift */,
+				7788232523D0F61B0036304C /* ChatLogViewController.swift */,
+				7788232A23D123840036304C /* UserCell.swift */,
 			);
 			path = Chat;
 			sourceTree = "<group>";
@@ -107,6 +115,15 @@
 				7733A5DDFB82ABEA7DCE0DE4 /* Pods-ITP312.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		7788232723D113600036304C /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				5125825B23CEC0C6006C694C /* User.swift */,
+				7788232823D1138C0036304C /* Message.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		86C85DB6B52C33BF3B2AFF27 /* Frameworks */ = {
@@ -151,6 +168,7 @@
 				TargetAttributes = {
 					5156A05723CDA39A008328C5 = {
 						CreatedOnToolsVersion = 10.3;
+						LastSwiftMigration = 1130;
 					};
 				};
 			};
@@ -237,10 +255,13 @@
 				51174C5223CEF22300B9DF4A /* UserListViewController.swift in Sources */,
 				5156A05E23CDA39A008328C5 /* ViewController.swift in Sources */,
 				5156A07023CDA449008328C5 /* LoginViewController.swift in Sources */,
+				7788232923D1138C0036304C /* Message.swift in Sources */,
 				5125825C23CEC0C6006C694C /* User.swift in Sources */,
 				5156A05C23CDA39A008328C5 /* AppDelegate.swift in Sources */,
-				5125825A23CEBF01006C694C /* UserTableViewController.swift in Sources */,
 				5125825623CEB2A2006C694C /* MainViewController.swift in Sources */,
+				77A88CAA23D08536003C5C2C /* ImageExtension.swift in Sources */,
+				7788232B23D123840036304C /* UserCell.swift in Sources */,
+				7788232623D0F61C0036304C /* ChatLogViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -397,8 +418,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.nyp.ITP312;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -417,8 +438,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.nyp.ITP312;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

@@ -66,22 +66,25 @@ class LoginViewController: UIViewController, UIImagePickerControllerDelegate, UI
                 guard let uid = authResult?.user.uid else {
                     return
                 }
-                
-                let storageRef = Storage.storage().reference()
-                if let uploadData = UIImage.pngData(self.profileImageView.image!) {
-                    storageRef.putData(uploadData, metadata: nil, completion: (metadata, error), in
-                    )
-                }
-                
-                let values = ["name":name, "email":email]
-                ref.child("users").child(uid).updateChildValues(values) {
-                    (error:Error?, ref:DatabaseReference) in
-                    if let error = error {
-                        print("Data could not be saved: \(error).")
-                    } else {
-                        print("Data saved successfully!")
-                        self.dismiss(animated: true, completion: nil)
+                let data = self.profileImageView.image!.jpegData(compressionQuality: 0.3)
+                let storageRef = Storage.storage().reference().child("profile").child("\(NSUUID().uuidString).png")
+                storageRef.putData(data!, metadata: nil) { (metadata, error) in
+                  storageRef.downloadURL { (url, error) in
+                    guard let downloadURL = url else {
+                      print(error!)
+                      return
                     }
+                    let values = ["name":name, "email":email, "profileURL":downloadURL.absoluteString]
+                    ref.child("users").child(uid).updateChildValues(values) {
+                        (error:Error?, ref:DatabaseReference) in
+                        if let error = error {
+                            print("Data could not be saved: \(error).")
+                        } else {
+                            print("Data saved successfully!")
+                            self.presentingViewController?.presentingViewController?.dismiss(animated: true, completion: {})
+                        }
+                    }
+                  }
                 }
             }
         } else {
@@ -90,8 +93,7 @@ class LoginViewController: UIViewController, UIImagePickerControllerDelegate, UI
                 if err != nil {
                     self.errorTextField.text = err?.localizedDescription
                 } else {
-                    self.dismiss(animated: true, completion: nil)
-                }
+                    self.presentingViewController?.presentingViewController?.dismiss(animated: true, completion: {})                }
             })
         }
     }
@@ -104,7 +106,7 @@ class LoginViewController: UIViewController, UIImagePickerControllerDelegate, UI
             nameTextField.isHidden = true
         }
         loginRegisterButton.setTitle(state, for: UIControl.State.normal)
-        
     }
+    
     
 }

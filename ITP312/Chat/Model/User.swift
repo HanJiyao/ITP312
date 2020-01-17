@@ -10,12 +10,16 @@ import UIKit
 
 class User: NSObject {
     
+    var id: String?
     var name: String?
     var email: String?
+    var profileURL: String?
     
-    init(name: String, email: String) {
+    init(id:String, name: String, email: String, profileURL: String) {
+        self.id = id
         self.name = name
         self.email = email
+        self.profileURL = profileURL
     }
     
 }
