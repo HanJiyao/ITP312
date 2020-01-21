@@ -41,8 +41,8 @@ class ChatLogViewController: UIViewController
     
     @IBAction func handleSend(_ sender: Any) {
         let ref = Database.database().reference()
-        let toID = user!.id
-        let fromID = Auth.auth().currentUser?.uid
+        let toID = Auth.auth().currentUser?.uid
+        let fromID = user!.id
         let timestamp: NSNumber = NSNumber(value: Date().timeIntervalSince1970)
         let values = [
             "text": messageTextField.text!,
@@ -50,38 +50,12 @@ class ChatLogViewController: UIViewController
             "fromID":fromID!,
             "timestamp":timestamp
             ] as [String : Any]
-        guard let key = ref.child("messages").childByAutoId().key else { return }
-        let childUpdates = ["/messages/\(key)": values,
-                            "/user-messages/\(fromID!)/": ["\(key)":0],
-                            "/user-messages/\(toID!)/": ["\(key)":0]
-            ] as [String : Any]
-        ref.updateChildValues(childUpdates)
-//        childRef.updateChildValues(values) {
-//            (error, ref) in
-//            if error != nil {
-//                print(error!)
-//                return
-//            }
-//            let userMessageRef = Database.database().reference().child("user-messages")
-//            let messageID = childRef.key
-//            userMessageRef.child(fromID!).updateChildValues([messageID: 1]) {
-//                (error:Error?, ref:DatabaseReference) in
-//                if let error = error {
-//                  print("Data could not be saved: \(error).")
-//                } else {
-//                  print("Data saved successfully in user ref")
-//                }
-//            }
-//
-//            userMessageRef.child(toID!).updateChildValues([messageID: 1]){
-//                (error:Error?, ref:DatabaseReference) in
-//                if let error = error {
-//                  print("Data could not be saved: \(error).")
-//                } else {
-//                  print("Data saved successfully in recipient ref")
-//                }
-//            }
-//        }
+        guard let key = ref.childByAutoId().key else { return }
+        
+        ref.child("messages").updateChildValues(["\(key)":values])
+        ref.child("/user-messages/\(fromID!)/").updateChildValues(["\(key)":0])
+        ref.child("/user-messages/\(toID!)/").updateChildValues(["\(key)":0])
+        
         
     }
     @IBAction func handleBack(_ sender: Any) {

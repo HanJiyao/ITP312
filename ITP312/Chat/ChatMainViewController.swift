@@ -58,27 +58,39 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     func observeMessage() {
-        let ref = Database.database().reference().child("messages")
-        ref.observe(.childAdded)
-                     { (snapshot, key) in
-        if let dictionary = snapshot.value as? [String: AnyObject] {
-            let message = Message(
-                fromID: dictionary["fromID"]! as! String,
-                toID: dictionary["toID"]! as! String,
-                timestamp: dictionary["timestamp"]! as! NSNumber,
-                text: dictionary["text"]! as! String
-            )
-            
-            if let toID = message.toID {
-                self.messageDictionary[toID] = message
-                self.messages = Array(self.messageDictionary.values)
-                self.messages.sort(by: {(message1: Message, message2: Message) -> Bool in
-                    message1.timestamp!.intValue > message2.timestamp!.intValue
-                })
-            }
-            self.tableView.reloadData()
-            }
+        
+        guard let uid = Auth.auth().currentUser?.uid else {
+            return
         }
+        
+        let uidRef = Database.database().reference().child("user-messages").child(uid)
+        
+        uidRef.observe(.childAdded, with: {(snapshot) in
+            print(snapshot.key)
+            let messageID = snapshot.key
+            let messageRef = Database.database().reference().child("messages").child(messageID)
+
+            messageRef.observe(.value, with: { (snapshot) in
+                if let dictionary = snapshot.value as? [String: AnyObject] {
+                    let message = Message(
+                        fromID: dictionary["fromID"]! as! String,
+                        toID: dictionary["toID"]! as! String,
+                        timestamp: dictionary["timestamp"]! as! NSNumber,
+                        text: dictionary["text"]! as! String
+                    )
+                    
+                    if let toID = message.toID {
+                        self.messageDictionary[toID] = message
+                        self.messages = Array(self.messageDictionary.values)
+                        self.messages.sort(by: {(message1: Message, message2: Message) -> Bool in
+                            message1.timestamp!.intValue > message2.timestamp!.intValue
+                        })
+                    }
+                    self.tableView.reloadData()
+                }
+            })
+        })
+        
     }
     
     
