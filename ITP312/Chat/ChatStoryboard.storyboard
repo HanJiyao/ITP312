@@ -82,6 +82,7 @@
         <!--User List View Controller-->
         <scene sceneID="ckM-fu-dNG">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="o7x-VN-rls" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController storyboardIdentifier="NewMessage" id="RLQ-5T-whi" customClass="UserListViewController" customModule="ITP312" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Lpk-Ul-Bxi">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
@@ -151,9 +152,8 @@
                         <outlet property="tableView" destination="77j-HN-7Uh" id="7Vl-2h-6Sd"/>
                     </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="o7x-VN-rls" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-762.39999999999998" y="600.44977511244383"/>
+            <point key="canvasLocation" x="-762" y="600"/>
         </scene>
         <!--Chat Log View Controller-->
         <scene sceneID="TlB-my-YpD">
@@ -247,6 +247,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="apd-dH-bKh"/>
                     </view>
+                    <navigationItem key="navigationItem" id="YTz-8R-1hO"/>
                     <connections>
                         <outlet property="messageTextField" destination="jbs-br-H6D" id="RJO-vo-k5m"/>
                         <outlet property="navigation" destination="Eo0-Hx-hxz" id="IqI-8a-Kf0"/>
@@ -255,7 +256,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lcN-zG-7JE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="29.600000000000001" y="600.44977511244383"/>
+            <point key="canvasLocation" x="30" y="600"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="CLm-4e-Yxq">

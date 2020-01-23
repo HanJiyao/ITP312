@@ -41,8 +41,8 @@ class ChatLogViewController: UIViewController
     
     @IBAction func handleSend(_ sender: Any) {
         let ref = Database.database().reference()
-        let toID = Auth.auth().currentUser?.uid
-        let fromID = user!.id
+        let toID = user!.id
+        let fromID = Auth.auth().currentUser?.uid
         let timestamp: NSNumber = NSNumber(value: Date().timeIntervalSince1970)
         let values = [
             "text": messageTextField.text!,

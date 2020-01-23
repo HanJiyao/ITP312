@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class Message: NSObject {
 
@@ -20,6 +21,12 @@ class Message: NSObject {
         self.toID = toID
         self.timestamp = timestamp
         self.text = text
+    }
+    
+    func chatPartnerID() -> String? {
+        return fromID == Auth.auth().currentUser?.uid ? toID : fromID
+        // if the message send from current user, set display of message from toID
+        // else the message is received by user, display who the message sent fromID
     }
     
 }

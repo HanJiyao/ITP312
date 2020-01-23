@@ -49,6 +49,8 @@ class LoginViewController: UIViewController, UIImagePickerControllerDelegate, UI
         }
     }
     
+    var messagesController: MainViewController?
+    
     @IBAction func handleRegister(_ sender: Any) {
         let ref: DatabaseReference!
         ref = Database.database().reference()
@@ -81,7 +83,7 @@ class LoginViewController: UIViewController, UIImagePickerControllerDelegate, UI
                             print("Data could not be saved: \(error).")
                         } else {
                             print("Data saved successfully!")
-                            self.presentingViewController?.presentingViewController?.dismiss(animated: true, completion: {})
+                            self.dismiss(animated: true, completion: nil)
                         }
                     }
                   }
@@ -93,7 +95,10 @@ class LoginViewController: UIViewController, UIImagePickerControllerDelegate, UI
                 if err != nil {
                     self.errorTextField.text = err?.localizedDescription
                 } else {
-                    self.presentingViewController?.presentingViewController?.dismiss(animated: true, completion: {})                }
+                    self.messagesController?.setCurrentUser()
+                    print("hey")
+                    self.dismiss(animated: true)
+                }
             })
         }
     }

@@ -29,6 +29,16 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
         newMessageImage.isUserInteractionEnabled = true
         newMessageImage.addGestureRecognizer(tapGestureRecognizer)
         
+        self.tableView.rowHeight = 80.0
+        tableView.register(UserCell.self, forCellReuseIdentifier: cellID)
+        
+        setCurrentUser()
+        
+        observeMessage()
+    }
+    
+    func setCurrentUser() {
+        print("set up user")
         let button = UIButton(type: .custom)
         button.frame = CGRect(x: 0, y: 0, width: 100, height: 30)
         button.setTitleColor(.black, for: .normal)
@@ -51,8 +61,9 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
             print(error.localizedDescription)
         }
         
-        self.tableView.rowHeight = 80.0
-        tableView.register(UserCell.self, forCellReuseIdentifier: cellID)
+        messages.removeAll()
+        messageDictionary.removeAll()
+        self.tableView.reloadData()
         
         observeMessage()
     }
@@ -112,6 +123,26 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
         return cell
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let message = messages[indexPath.row]
+        guard let chatPartnerID = message.chatPartnerID() else {
+            return
+        }
+        let ref = Database.database().reference().child("/users/\(chatPartnerID)/")
+        ref.observe(.value, with: { (snapshot) in
+            guard let dictionary = snapshot.value as? [String: AnyObject] else {
+                return
+            }
+            let user = User(
+                id: chatPartnerID,
+                name: dictionary["name"]! as! String,
+                email: dictionary["email"]! as! String,
+                profileURL: dictionary["profileURL"]! as! String
+            )
+            self.showChatControllerForUser(user)
+        })
+    }
+    
     @objc func clickOnButton() {
         let chatLogViewController = self.storyboard?.instantiateViewController(withIdentifier: "ChatLog") as! ChatLogViewController
         present(chatLogViewController, animated: true, completion: nil)
@@ -119,8 +150,16 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
 
     @objc func imageTapped(tapGestureRecognizer: UITapGestureRecognizer)
     {
-        let userListViewController = self.storyboard?.instantiateViewController(withIdentifier: "NewMessage") as! UserListViewController
-        present(userListViewController, animated: true, completion: nil)
+        let newMessageController = self.storyboard?.instantiateViewController(withIdentifier: "NewMessage") as! UserListViewController
+        newMessageController.messagesController = self
+        present(newMessageController, animated: true, completion: nil)
+    }
+    
+    func showChatControllerForUser(_ user: User) {
+        let chatLogViewController = self.storyboard?.instantiateViewController(withIdentifier: "ChatLog") as! ChatLogViewController
+        chatLogViewController.user = user
+        print("Chat to \(user)")
+        present(chatLogViewController, animated: true)
     }
     
     func logout() {
@@ -130,6 +169,7 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
             print(logoutErr)
         }
         let LoginViewController =  self.storyboard?.instantiateViewController(withIdentifier: "Login") as! LoginViewController
+        LoginViewController.messagesController = self
         present(LoginViewController, animated: true, completion: nil)
     }
     

@@ -19,7 +19,7 @@ class UserListViewController: UIViewController, UITableViewDataSource, UITableVi
     override func viewDidLoad() {
         super.viewDidLoad()
             
-        tableView.register(UserCell.self, forCellReuseIdentifier: cellID)
+        self.tableView.register(UserCell.self, forCellReuseIdentifier: cellID)
         self.tableView.rowHeight = 75.0
         self.tableView.delegate = self
 
@@ -33,12 +33,14 @@ class UserListViewController: UIViewController, UITableViewDataSource, UITableVi
         ref.child("users").observeSingleEvent(of: .value, with: { (snapshot) in
             if let dictionary = snapshot.value as? [String: AnyObject] {
                 for i in dictionary {
-                    self.users.append(User(
-                        id: i.key,
-                        name: i.value["name"]!! as! String,
-                        email: i.value["email"]!! as! String,
-                        profileURL: i.value["profileURL"]!! as! String
-                    ))
+                    if i.key != Auth.auth().currentUser?.uid {
+                        self.users.append(User(
+                            id: i.key,
+                            name: i.value["name"]!! as! String,
+                            email: i.value["email"]!! as! String,
+                            profileURL: i.value["profileURL"]!! as! String
+                        ))
+                    }
                 }
                 self.tableView.reloadData()
             }
@@ -67,11 +69,14 @@ class UserListViewController: UIViewController, UITableViewDataSource, UITableVi
         return cell
     }
     
+    var messagesController: MainViewController?
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let user = self.users[indexPath.row]
-        let chatLogViewController = self.storyboard?.instantiateViewController(withIdentifier: "ChatLog") as! ChatLogViewController
-        chatLogViewController.user = user
-        present(chatLogViewController, animated: true, completion: nil)
+        dismiss(animated: true){
+            print("Dismiss completed")
+            let user = self.users[indexPath.row]
+            self.messagesController?.showChatControllerForUser(user)
+        }
     }
     
     @IBAction func cancelPressed(_ sender: Any) {
