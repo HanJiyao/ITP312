@@ -10,7 +10,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Main View Controller-->
+        <!--Chat-->
         <scene sceneID="DpQ-A4-S5X">
             <objects>
                 <viewController storyboardIdentifier="Chat" id="eYM-Ca-lLu" customClass="MainViewController" customModule="ITP312" customModuleProvider="target" sceneMemberID="viewController">
@@ -27,11 +27,16 @@
                                                 <action selector="handleLogout:" destination="eYM-Ca-lLu" id="BpH-7I-mtl"/>
                                             </connections>
                                         </barButtonItem>
+                                        <barButtonItem key="rightBarButtonItem" systemItem="compose" id="B97-17-bVR">
+                                            <connections>
+                                                <action selector="compose:" destination="eYM-Ca-lLu" id="57a-ye-pBR"/>
+                                            </connections>
+                                        </barButtonItem>
                                     </navigationItem>
                                 </items>
                             </navigationBar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="TnO-r6-ARe">
-                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="554"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="MessageCell" id="npA-ED-iio">
@@ -47,31 +52,23 @@
                                     <outlet property="dataSource" destination="eYM-Ca-lLu" id="Mt6-cH-661"/>
                                 </connections>
                             </tableView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="new-message" translatesAutoresizingMaskIntoConstraints="NO" id="PQU-3u-W6n">
-                                <rect key="frame" x="335" y="28" width="30" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="6LS-ga-r0C"/>
-                                    <constraint firstAttribute="width" constant="30" id="tq5-da-2Sk"/>
-                                </constraints>
-                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="Tbq-np-hVg" firstAttribute="bottom" secondItem="TnO-r6-ARe" secondAttribute="bottom" id="1C5-E1-tmW"/>
                             <constraint firstItem="iu8-ku-jOR" firstAttribute="top" secondItem="Tbq-np-hVg" secondAttribute="top" id="E7n-Jc-uDo"/>
-                            <constraint firstItem="PQU-3u-W6n" firstAttribute="top" secondItem="Tbq-np-hVg" secondAttribute="top" constant="8" id="KBu-r0-GUt"/>
                             <constraint firstItem="TnO-r6-ARe" firstAttribute="trailing" secondItem="iu8-ku-jOR" secondAttribute="trailing" id="MtP-td-LZW"/>
                             <constraint firstItem="TnO-r6-ARe" firstAttribute="top" secondItem="iu8-ku-jOR" secondAttribute="bottom" symbolic="YES" id="Uh0-V5-WdC"/>
                             <constraint firstItem="TnO-r6-ARe" firstAttribute="leading" secondItem="Tbq-np-hVg" secondAttribute="leading" id="aXN-HY-2j2"/>
-                            <constraint firstItem="Tbq-np-hVg" firstAttribute="trailing" secondItem="PQU-3u-W6n" secondAttribute="trailing" constant="10" id="exB-Qr-dPR"/>
                             <constraint firstItem="iu8-ku-jOR" firstAttribute="leading" secondItem="Tbq-np-hVg" secondAttribute="leading" id="yTl-Y7-Tj9"/>
                             <constraint firstItem="iu8-ku-jOR" firstAttribute="trailing" secondItem="Tbq-np-hVg" secondAttribute="trailing" id="zpl-p8-L6r"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Tbq-np-hVg"/>
                     </view>
+                    <tabBarItem key="tabBarItem" title="Chat" image="chat-icon" id="lrl-SH-yh9"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="navigation" destination="Uvo-4h-rLE" id="ief-fC-5kZ"/>
-                        <outlet property="newMessageImage" destination="PQU-3u-W6n" id="y48-yV-a3X"/>
                         <outlet property="tableView" destination="TnO-r6-ARe" id="cKN-7b-Wzs"/>
                     </connections>
                 </viewController>
@@ -125,7 +122,7 @@
                                 <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                                 <items>
                                     <navigationItem title="Contact" id="E0D-rn-jqK">
-                                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="Ty5-qe-OTe">
+                                        <barButtonItem key="leftBarButtonItem" title="❮" id="Ty5-qe-OTe">
                                             <connections>
                                                 <action selector="cancelPressed:" destination="RLQ-5T-whi" id="Fbp-A3-QbE"/>
                                             </connections>
@@ -180,7 +177,7 @@
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="80Z-p0-G7z">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="1"/>
-                                        <color key="backgroundColor" red="0.77647058820000003" green="0.77647058820000003" blue="0.7843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="1" id="bh3-h3-NJZ"/>
                                         </constraints>
@@ -195,8 +192,21 @@
                                                     <constraint firstAttribute="width" constant="10" id="GOM-oL-yLe"/>
                                                 </constraints>
                                             </view>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.20000000000000001" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="image-icon" translatesAutoresizingMaskIntoConstraints="NO" id="xSI-3I-Vy6">
+                                                <rect key="frame" x="10" y="0.0" width="30" height="50"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="30" id="cKm-aM-r54"/>
+                                                </constraints>
+                                            </imageView>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zWg-b8-Xyi">
+                                                <rect key="frame" x="40" y="0.0" width="10" height="50"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="10" id="T5Y-hW-JyM"/>
+                                                </constraints>
+                                            </view>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter Message..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jbs-br-H6D">
-                                                <rect key="frame" x="10" y="0.0" width="315" height="50"/>
+                                                <rect key="frame" x="50" y="0.0" width="275" height="50"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="50" id="4qr-vc-noY"/>
                                                 </constraints>
@@ -212,7 +222,8 @@
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="50" id="h13-X2-I3Z"/>
                                                 </constraints>
-                                                <state key="normal" title="Send"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                                <state key="normal" title="▶"/>
                                                 <connections>
                                                     <action selector="handleSend:" destination="Cdn-T9-l1F" eventType="touchUpInside" id="ZDP-kw-9Zu"/>
                                                 </connections>
@@ -221,8 +232,8 @@
                                     </stackView>
                                 </subviews>
                             </stackView>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="bTd-PC-mBg">
-                                <rect key="frame" x="0.0" y="69" width="375" height="539"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="interactive" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="bTd-PC-mBg">
+                                <rect key="frame" x="0.0" y="64" width="375" height="544"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="sectionIndexColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="sectionIndexBackgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -247,7 +258,7 @@
                             <constraint firstItem="bTd-PC-mBg" firstAttribute="leading" secondItem="JJT-XY-HHF" secondAttribute="leading" id="Dei-uk-L8s"/>
                             <constraint firstItem="bTd-PC-mBg" firstAttribute="leading" secondItem="apd-dH-bKh" secondAttribute="leading" id="EpS-YB-Tps"/>
                             <constraint firstItem="apd-dH-bKh" firstAttribute="bottom" secondItem="6uf-jL-jDP" secondAttribute="bottom" id="OeX-Ge-b1y"/>
-                            <constraint firstItem="bTd-PC-mBg" firstAttribute="top" secondItem="JJT-XY-HHF" secondAttribute="bottom" constant="5" id="QoU-YR-Elf"/>
+                            <constraint firstItem="bTd-PC-mBg" firstAttribute="top" secondItem="JJT-XY-HHF" secondAttribute="bottom" id="QoU-YR-Elf"/>
                             <constraint firstItem="bTd-PC-mBg" firstAttribute="trailing" secondItem="JJT-XY-HHF" secondAttribute="trailing" id="TyK-xx-8w7"/>
                             <constraint firstAttribute="trailing" secondItem="6uf-jL-jDP" secondAttribute="trailing" id="VZf-BN-hcv"/>
                             <constraint firstItem="6uf-jL-jDP" firstAttribute="top" secondItem="bTd-PC-mBg" secondAttribute="bottom" constant="8" symbolic="YES" id="Vdc-lK-BUq"/>
@@ -259,6 +270,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="YTz-8R-1hO"/>
                     <connections>
+                        <outlet property="bottomBar" destination="6uf-jL-jDP" id="r30-Od-wTS"/>
                         <outlet property="messageTextField" destination="jbs-br-H6D" id="RJO-vo-k5m"/>
                         <outlet property="navigation" destination="Eo0-Hx-hxz" id="IqI-8a-Kf0"/>
                         <outlet property="tableView" destination="bTd-PC-mBg" id="Pdb-tJ-sGb"/>
@@ -401,6 +413,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="OXB-JR-QlD"/>
                     </view>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="emailTextField" destination="GPk-db-BBX" id="khs-fn-46T"/>
                         <outlet property="errorTextField" destination="tN8-tB-qOW" id="m6v-jj-XWw"/>
@@ -413,11 +426,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8MO-Im-UQD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="31" y="-179"/>
+            <point key="canvasLocation" x="29.600000000000001" y="-179.46026986506749"/>
         </scene>
     </scenes>
     <resources>
-        <image name="new-message" width="200" height="200"/>
+        <image name="chat-icon" width="25" height="23"/>
+        <image name="image-icon" width="200" height="200"/>
         <image name="profile" width="1024" height="1024"/>
     </resources>
 </document>

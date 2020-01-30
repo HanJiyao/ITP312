@@ -69,7 +69,7 @@ class LoginViewController: UIViewController, UIImagePickerControllerDelegate, UI
                     return
                 }
                 let data = self.profileImageView.image!.jpegData(compressionQuality: 0.3)
-                let storageRef = Storage.storage().reference().child("profile").child("\(NSUUID().uuidString).png")
+                let storageRef = Storage.storage().reference().child("profile").child("\(uid).png")
                 storageRef.putData(data!, metadata: nil) { (metadata, error) in
                   storageRef.downloadURL { (url, error) in
                     guard let downloadURL = url else {
@@ -83,6 +83,7 @@ class LoginViewController: UIViewController, UIImagePickerControllerDelegate, UI
                             print("Data could not be saved: \(error).")
                         } else {
                             print("Data saved successfully!")
+                            self.messagesController?.setCurrentUser()
                             self.dismiss(animated: true, completion: nil)
                         }
                     }
@@ -111,6 +112,5 @@ class LoginViewController: UIViewController, UIImagePickerControllerDelegate, UI
         }
         loginRegisterButton.setTitle(state, for: UIControl.State.normal)
     }
-    
     
 }

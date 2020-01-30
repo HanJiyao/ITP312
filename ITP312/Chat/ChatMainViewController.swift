@@ -12,7 +12,6 @@ import Firebase
 class MainViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     @IBOutlet weak var navigation: UINavigationItem!
-    @IBOutlet weak var newMessageImage: UIImageView!
     @IBOutlet weak var tableView: UITableView!
     
     var messages: [Message] = []
@@ -25,9 +24,6 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
         super.viewDidLoad()
         
         self.tableView.delegate = self
-        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(imageTapped(tapGestureRecognizer:)))
-        newMessageImage.isUserInteractionEnabled = true
-        newMessageImage.addGestureRecognizer(tapGestureRecognizer)
         
         self.tableView.rowHeight = 80.0
         tableView.register(UserCell.self, forCellReuseIdentifier: cellID)
@@ -68,6 +64,8 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
         observeMessage()
     }
     
+    var timer: Timer?
+    
     func observeMessage() {
         
         guard let uid = Auth.auth().currentUser?.uid else {
@@ -77,30 +75,52 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
         let uidRef = Database.database().reference().child("user-messages").child(uid)
         
         uidRef.observe(.childAdded, with: {(snapshot) in
-            let messageID = snapshot.key
-            let messageRef = Database.database().reference().child("messages").child(messageID)
-
-            messageRef.observe(.value, with: { (snapshot) in
-                if let dictionary = snapshot.value as? [String: AnyObject] {
-                    let message = Message(
-                        fromID: dictionary["fromID"]! as! String,
-                        toID: dictionary["toID"]! as! String,
-                        timestamp: dictionary["timestamp"]! as! NSNumber,
-                        text: dictionary["text"]! as! String
-                    )
-                    
-                    if let chatPartnerID = message.chatPartnerID() {
-                        self.messageDictionary[chatPartnerID] = message
-                        self.messages = Array(self.messageDictionary.values)
-                        self.messages.sort(by: {(message1: Message, message2: Message) -> Bool in
-                            message1.timestamp!.intValue > message2.timestamp!.intValue
-                        })
-                    }
-                    self.tableView.reloadData()
-                }
+            
+            let userID = snapshot.key
+            
+            Database.database().reference().child("user-messages").child(uid).child(userID).observe(.childAdded, with: { (snapshot) in
+                let messageID = snapshot.key
+                self.fetchMessageWithID(messageID: messageID)
             })
         })
         
+    }
+    
+    private func fetchMessageWithID(messageID: String) {
+        let messageRef = Database.database().reference().child("messages").child(messageID)
+        messageRef.observe(.value, with: { (snapshot) in
+            if let dictionary = snapshot.value as? [String: AnyObject] {
+                let message = Message(
+                    fromID: dictionary["fromID"]! as! String,
+                    toID: dictionary["toID"]! as! String,
+                    timestamp: dictionary["timestamp"]! as! NSNumber,
+                    text: dictionary["text"]! as! String
+                )
+                
+                if let chatPartnerID = message.chatPartnerID() {
+                    self.messageDictionary[chatPartnerID] = message
+                }
+                self.attemptReload()
+            }
+        })
+    }
+    
+    private func attemptReload() {
+        
+        // some delay to wait loaded and triger reload only once
+        // if the observer still change within 0.1 seconds the timer will invalidate and will not reload
+        // untill there is no change reload the entire data table
+        
+        self.timer?.invalidate()
+        self.timer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(self.handleReload), userInfo: nil, repeats: false)
+    }
+    
+    @objc func handleReload() {
+        self.messages = Array(self.messageDictionary.values)
+        self.messages.sort(by: {(message1: Message, message2: Message) -> Bool in
+            message1.timestamp!.intValue > message2.timestamp!.intValue
+        })
+        self.tableView.reloadData()
     }
     
     
@@ -146,9 +166,8 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
         let chatLogViewController = self.storyboard?.instantiateViewController(withIdentifier: "ChatLog") as! ChatLogViewController
         present(chatLogViewController, animated: true, completion: nil)
     }
-
-    @objc func imageTapped(tapGestureRecognizer: UITapGestureRecognizer)
-    {
+    
+    @IBAction func compose(_ sender: Any) {
         let newMessageController = self.storyboard?.instantiateViewController(withIdentifier: "NewMessage") as! UserListViewController
         newMessageController.messagesController = self
         present(newMessageController, animated: true, completion: nil)

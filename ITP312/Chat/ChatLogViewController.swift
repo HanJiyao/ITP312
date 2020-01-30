@@ -14,10 +14,13 @@ class ChatLogViewController: UIViewController, UITableViewDataSource, UITableVie
     @IBOutlet weak var messageTextField: UITextField!
     @IBOutlet weak var navigation: UINavigationItem!
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var bottomBar: UIStackView!
     
     var user: User?
     var messages: [Message] = []
     let cellID = "ChatLogCell"
+    
+    var bottomBarBottomAnchor: NSLayoutConstraint?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,16 +30,59 @@ class ChatLogViewController: UIViewController, UITableViewDataSource, UITableVie
         }
         self.tableView.delegate = self
         tableView.register(ChatLogCell.self, forCellReuseIdentifier: cellID)
+        
+        setUpKeyboardObservers()
+        
+        bottomBarBottomAnchor =  bottomBar.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+        bottomBarBottomAnchor?.isActive = true
+        
+        tableView.keyboardDismissMode = .interactive
+        
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        NotificationCenter.default.removeObserver(self)
+    }
+    
+    func setUpKeyboardObservers() {
+        NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboardShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboardHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    
+    @objc func handleKeyboardShow(notification: NSNotification){
+        // get keyboard height
+        if let keyboardFrame: NSValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
+            let keyboardRectangle = keyboardFrame.cgRectValue
+            let keyboardHeight = keyboardRectangle.height
+            bottomBarBottomAnchor?.constant = -keyboardHeight
+        }
+        if let keyboardDuration: Double = notification.userInfo?[UIResponder.keyboardAnimationDurationUserInfoKey] as? Double {
+            UIView.animate(withDuration: keyboardDuration) {
+                self.view.layoutIfNeeded()
+            }
+        }
+    }
+    
+    @objc func handleKeyboardHide(notification: NSNotification){
+        bottomBarBottomAnchor?.constant = 0
+        if let keyboardDuration: Double = notification.userInfo?[UIResponder.keyboardAnimationDurationUserInfoKey] as? Double {
+            UIView.animate(withDuration: keyboardDuration) {
+                self.view.layoutIfNeeded()
+            }
+        }
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1
     }
     
+    // add space between cell
     func numberOfSections(in tableView: UITableView) -> Int {
         return messages.count
     }
     
+    // change section header color white
     func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
         (view as! UITableViewHeaderFooterView).contentView.backgroundColor = UIColor.white
         (view as! UITableViewHeaderFooterView).textLabel?.textColor = UIColor.white
@@ -46,9 +92,34 @@ class ChatLogViewController: UIViewController, UITableViewDataSource, UITableVie
         let cell = tableView.dequeueReusableCell(withIdentifier: cellID, for: indexPath) as! ChatLogCell
         let message = messages[indexPath.section]
         cell.textView.text = message.text
+        
+        setUpCell(cell: cell, message: message)
+        
         cell.bubbleWidthAnchor?.constant = estimateFrameText(text: message.text!).width + 25
         return cell
         
+    }
+    
+    private func setUpCell(cell: ChatLogCell, message: Message) {
+        
+        if let profileImageURL = self.user?.profileURL {
+            cell.profileImage.loadImageCache(urlString: profileImageURL)
+        }
+        
+        if message.fromID == Auth.auth().currentUser?.uid {
+            // the message from the user
+            cell.bubbleView.backgroundColor = ChatLogCell.blueColor
+            cell.textView.textColor = UIColor.white
+            cell.profileImage.isHidden = true
+            cell.bubbleViewRightAnchor?.isActive = true
+            cell.bubbleViewLeftAnchor?.isActive = false
+        } else {
+            cell.bubbleView.backgroundColor = UIColor.init(red: 245/255, green: 245/255, blue: 245/255, alpha: 1)
+            cell.textView.textColor = UIColor.black
+            cell.profileImage.isHidden = false
+            cell.bubbleViewRightAnchor?.isActive = false
+            cell.bubbleViewLeftAnchor?.isActive = true
+        }
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -73,10 +144,13 @@ class ChatLogViewController: UIViewController, UITableViewDataSource, UITableVie
     }
     
     func observeMessages() {
-        guard let uid = Auth.auth().currentUser?.uid else {
+        
+        // need to append both the logged in user id and the partner id which passed from the user
+        
+        guard let uid = Auth.auth().currentUser?.uid, let toID = user?.id else {
             return
         }
-        let userMessageRef = Database.database().reference().child("user-messages").child(uid)
+        let userMessageRef = Database.database().reference().child("user-messages").child(uid).child(toID)
         userMessageRef.observe(.childAdded) { (snapshot) in
             let messageID = snapshot.key
             let messageRef = Database.database().reference().child("messages").child(messageID)
@@ -94,10 +168,8 @@ class ChatLogViewController: UIViewController, UITableViewDataSource, UITableVie
                 // check if the chatPartner of the selected user is the user passed from the parent
                 // only display the message partnerID with the handled user
                 
-                if message.chatPartnerID() == self.user?.id {
-                    self.messages.append(message)
-                    self.tableView.reloadData()
-                }
+                self.messages.append(message)
+                self.tableView.reloadData()
             })
         }
     }
@@ -116,9 +188,12 @@ class ChatLogViewController: UIViewController, UITableViewDataSource, UITableVie
                 ] as [String : Any]
             guard let key = ref.childByAutoId().key else { return }
             
+            // the structure of the user-message is to store the message relationship
+            // that the message id is stored under both sender and receiver that can easily filtered and retrive later
+            
             ref.child("messages").updateChildValues(["\(key)":values])
-            ref.child("/user-messages/\(fromID!)/").updateChildValues(["\(key)":0])
-            ref.child("/user-messages/\(toID!)/").updateChildValues(["\(key)":0])
+            ref.child("/user-messages/\(fromID!)/\(toID!)/").updateChildValues(["\(key)":0])
+            ref.child("/user-messages/\(toID!)/\(fromID!)/").updateChildValues(["\(key)":0])
             
             self.messageTextField.text = nil
         }
@@ -137,6 +212,7 @@ class ChatLogViewController: UIViewController, UITableViewDataSource, UITableVie
     }
     
     @IBAction func handleBack(_ sender: Any) {
+        self.messageTextField.text = nil
         dismiss(animated: true, completion: nil)
     }
 }
