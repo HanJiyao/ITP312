@@ -96,7 +96,6 @@ class LoginViewController: UIViewController, UIImagePickerControllerDelegate, UI
                     self.errorTextField.text = err?.localizedDescription
                 } else {
                     self.messagesController?.setCurrentUser()
-                    print("hey")
                     self.dismiss(animated: true)
                 }
             })

@@ -77,7 +77,6 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
         let uidRef = Database.database().reference().child("user-messages").child(uid)
         
         uidRef.observe(.childAdded, with: {(snapshot) in
-            print(snapshot.key)
             let messageID = snapshot.key
             let messageRef = Database.database().reference().child("messages").child(messageID)
 
@@ -90,8 +89,8 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
                         text: dictionary["text"]! as! String
                     )
                     
-                    if let toID = message.toID {
-                        self.messageDictionary[toID] = message
+                    if let chatPartnerID = message.chatPartnerID() {
+                        self.messageDictionary[chatPartnerID] = message
                         self.messages = Array(self.messageDictionary.values)
                         self.messages.sort(by: {(message1: Message, message2: Message) -> Bool in
                             message1.timestamp!.intValue > message2.timestamp!.intValue
