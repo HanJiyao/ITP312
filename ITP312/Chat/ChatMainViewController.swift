@@ -9,9 +9,8 @@
 import UIKit
 import Firebase
 
-class MainViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class ChatMainViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
-    @IBOutlet weak var navigation: UINavigationItem!
     @IBOutlet weak var tableView: UITableView!
     
     var messages: [Message] = []
@@ -35,23 +34,16 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     func setCurrentUser() {
         print("set up user")
-        let button = UIButton(type: .custom)
-        button.frame = CGRect(x: 0, y: 0, width: 100, height: 30)
-        button.setTitleColor(.black, for: .normal)
-        button.addTarget(self, action: #selector(clickOnButton), for: .touchUpInside)
-        self.navigation.titleView = button
         var ref: DatabaseReference!
         ref = Database.database().reference()
         guard let uid = Auth.auth().currentUser?.uid else {
             print("login fail")
-            logout()
             return
         }
         ref.child("users").child(uid).observeSingleEvent(of: .value, with: { (snapshot) in
             if let dictionary = snapshot.value as? [String: AnyObject] {
-                if self.navigation != nil {
-                    button.setTitle(dictionary["name"]! as? String, for: .normal)
-                }
+                self.navigationItem.title = dictionary["name"]! as? String
+                self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
             }
         }) { (error) in
             print(error.localizedDescription)
@@ -162,38 +154,17 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
         })
     }
     
-    @objc func clickOnButton() {
-        let chatLogViewController = self.storyboard?.instantiateViewController(withIdentifier: "ChatLog") as! ChatLogViewController
-        present(chatLogViewController, animated: true, completion: nil)
-    }
-    
     @IBAction func compose(_ sender: Any) {
         let newMessageController = self.storyboard?.instantiateViewController(withIdentifier: "NewMessage") as! UserListViewController
         newMessageController.messagesController = self
         present(newMessageController, animated: true, completion: nil)
     }
-    
+
     func showChatControllerForUser(_ user: User) {
         let chatLogViewController = self.storyboard?.instantiateViewController(withIdentifier: "ChatLog") as! ChatLogViewController
         chatLogViewController.user = user
         print("Chat to \(user)")
-        present(chatLogViewController, animated: true)
-    }
-    
-    func logout() {
-        do {
-            try Auth.auth().signOut()
-        } catch let logoutErr {
-            print(logoutErr)
-        }
-        let LoginViewController =  self.storyboard?.instantiateViewController(withIdentifier: "Login") as! LoginViewController
-        LoginViewController.messagesController = self
-        present(LoginViewController, animated: true, completion: nil)
-    }
-    
-
-    @IBAction func handleLogout(_ sender: Any) {
-        logout()
+        self.navigationController?.pushViewController(chatLogViewController, animated: true)
     }
     
 }

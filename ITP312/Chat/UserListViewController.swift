@@ -69,7 +69,7 @@ class UserListViewController: UIViewController, UITableViewDataSource, UITableVi
         return cell
     }
     
-    var messagesController: MainViewController?
+    var messagesController: ChatMainViewController?
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         dismiss(animated: true){

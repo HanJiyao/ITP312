@@ -12,7 +12,6 @@ import Firebase
 class ChatLogViewController: UIViewController, UITableViewDataSource, UITableViewDelegate
 {
     @IBOutlet weak var messageTextField: UITextField!
-    @IBOutlet weak var navigation: UINavigationItem!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var bottomBar: UIStackView!
     
@@ -25,7 +24,8 @@ class ChatLogViewController: UIViewController, UITableViewDataSource, UITableVie
     override func viewDidLoad() {
         super.viewDidLoad()
         if user != nil {
-            self.navigation.title = user!.name
+            self.navigationItem.title = user!.name
+            navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
             observeMessages()
         }
         self.tableView.delegate = self
@@ -209,10 +209,5 @@ class ChatLogViewController: UIViewController, UITableViewDataSource, UITableVie
 
     @IBAction func hey(_ sender: Any) {
         sendMessage()
-    }
-    
-    @IBAction func handleBack(_ sender: Any) {
-        self.messageTextField.text = nil
-        dismiss(animated: true, completion: nil)
     }
 }

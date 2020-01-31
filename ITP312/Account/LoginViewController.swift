@@ -49,7 +49,7 @@ class LoginViewController: UIViewController, UIImagePickerControllerDelegate, UI
         }
     }
     
-    var messagesController: MainViewController?
+    var messagesController: ChatMainViewController?
     
     @IBAction func handleRegister(_ sender: Any) {
         let ref: DatabaseReference!

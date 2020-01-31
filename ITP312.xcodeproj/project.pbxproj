@@ -11,6 +11,9 @@
 		511BB21023E01C0500E2A1BE /* ChatLogCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 511BB20F23E01C0500E2A1BE /* ChatLogCell.swift */; };
 		5125825623CEB2A2006C694C /* ChatMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5125825523CEB2A2006C694C /* ChatMainViewController.swift */; };
 		5125825C23CEC0C6006C694C /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5125825B23CEC0C6006C694C /* User.swift */; };
+		512985E923E3D5040053D3D9 /* AccountStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 512985E823E3D5040053D3D9 /* AccountStoryboard.storyboard */; };
+		512985EB23E3D7390053D3D9 /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 512985EA23E3D7390053D3D9 /* AccountViewController.swift */; };
+		512985EF23E3E32D0053D3D9 /* GalleryStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 512985EE23E3E32D0053D3D9 /* GalleryStoryboard.storyboard */; };
 		5156A05C23CDA39A008328C5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5156A05B23CDA39A008328C5 /* AppDelegate.swift */; };
 		5156A05E23CDA39A008328C5 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5156A05D23CDA39A008328C5 /* ViewController.swift */; };
 		5156A06123CDA39A008328C5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5156A05F23CDA39A008328C5 /* Main.storyboard */; };
@@ -32,6 +35,9 @@
 		511BB20F23E01C0500E2A1BE /* ChatLogCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatLogCell.swift; sourceTree = "<group>"; };
 		5125825523CEB2A2006C694C /* ChatMainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatMainViewController.swift; sourceTree = "<group>"; };
 		5125825B23CEC0C6006C694C /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		512985E823E3D5040053D3D9 /* AccountStoryboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AccountStoryboard.storyboard; sourceTree = "<group>"; };
+		512985EA23E3D7390053D3D9 /* AccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountViewController.swift; sourceTree = "<group>"; };
+		512985EE23E3E32D0053D3D9 /* GalleryStoryboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = GalleryStoryboard.storyboard; sourceTree = "<group>"; };
 		5156A05823CDA39A008328C5 /* ITP312.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ITP312.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5156A05B23CDA39A008328C5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5156A05D23CDA39A008328C5 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -71,6 +77,31 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		512985E723E3C24A0053D3D9 /* Account */ = {
+			isa = PBXGroup;
+			children = (
+				512985E823E3D5040053D3D9 /* AccountStoryboard.storyboard */,
+				5156A06F23CDA449008328C5 /* LoginViewController.swift */,
+				512985EA23E3D7390053D3D9 /* AccountViewController.swift */,
+			);
+			path = Account;
+			sourceTree = "<group>";
+		};
+		512985EC23E3DC7C0053D3D9 /* Gallery */ = {
+			isa = PBXGroup;
+			children = (
+				512985EE23E3E32D0053D3D9 /* GalleryStoryboard.storyboard */,
+			);
+			path = Gallery;
+			sourceTree = "<group>";
+		};
+		512985ED23E3DC980053D3D9 /* Schedule */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Schedule;
+			sourceTree = "<group>";
+		};
 		5156A04F23CDA39A008328C5 = {
 			isa = PBXGroup;
 			children = (
@@ -92,6 +123,9 @@
 		5156A05A23CDA39A008328C5 /* ITP312 */ = {
 			isa = PBXGroup;
 			children = (
+				512985ED23E3DC980053D3D9 /* Schedule */,
+				512985EC23E3DC7C0053D3D9 /* Gallery */,
+				512985E723E3C24A0053D3D9 /* Account */,
 				5156A06D23CDA421008328C5 /* Chat */,
 				5156A05B23CDA39A008328C5 /* AppDelegate.swift */,
 				5156A05D23CDA39A008328C5 /* ViewController.swift */,
@@ -109,7 +143,6 @@
 			children = (
 				511BB21123E01FF500E2A1BE /* View */,
 				7788232723D113600036304C /* Model */,
-				5156A06F23CDA449008328C5 /* LoginViewController.swift */,
 				77A88CA923D08536003C5C2C /* ImageExtension.swift */,
 				51174C5123CEF22300B9DF4A /* UserListViewController.swift */,
 				5125825523CEB2A2006C694C /* ChatMainViewController.swift */,
@@ -209,7 +242,9 @@
 				5156A06623CDA39B008328C5 /* LaunchScreen.storyboard in Resources */,
 				5156A07223CDA45D008328C5 /* ChatStoryboard.storyboard in Resources */,
 				5156A07423CDAC30008328C5 /* GoogleService-Info.plist in Resources */,
+				512985E923E3D5040053D3D9 /* AccountStoryboard.storyboard in Resources */,
 				5156A06323CDA39B008328C5 /* Assets.xcassets in Resources */,
+				512985EF23E3E32D0053D3D9 /* GalleryStoryboard.storyboard in Resources */,
 				5156A06123CDA39A008328C5 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -265,6 +300,7 @@
 			files = (
 				51174C5223CEF22300B9DF4A /* UserListViewController.swift in Sources */,
 				5156A05E23CDA39A008328C5 /* ViewController.swift in Sources */,
+				512985EB23E3D7390053D3D9 /* AccountViewController.swift in Sources */,
 				5156A07023CDA449008328C5 /* LoginViewController.swift in Sources */,
 				7788232923D1138C0036304C /* Message.swift in Sources */,
 				5125825C23CEC0C6006C694C /* User.swift in Sources */,
