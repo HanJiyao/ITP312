@@ -18,7 +18,7 @@ class UserCell: UITableViewCell {
             if let seconds = message?.timestamp?.doubleValue {
                 let timeDate = NSDate(timeIntervalSince1970: seconds)
                 let dateFormatter = DateFormatter()
-                dateFormatter.dateFormat = "hh:mm:ss a"
+                dateFormatter.dateFormat = "hh:mm a"
                 timeLabel.text = dateFormatter.string(from: timeDate as Date)
             }
         }

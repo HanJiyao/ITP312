@@ -37,7 +37,7 @@ class ChatLogViewController: UIViewController, UITableViewDataSource, UITableVie
         bottomBarBottomAnchor?.isActive = true
         
         tableView.keyboardDismissMode = .interactive
-        
+        tabBarController?.tabBar.isHidden = true
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -204,10 +204,6 @@ class ChatLogViewController: UIViewController, UITableViewDataSource, UITableVie
     }
 
     @IBAction func handleEnter(_ sender: Any) {
-        sendMessage()
-    }
-
-    @IBAction func hey(_ sender: Any) {
         sendMessage()
     }
 }

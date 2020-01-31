@@ -11,36 +11,31 @@ import Firebase
 
 class ChatMainViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
-    @IBOutlet weak var tableView: UITableView!
-    
     var messages: [Message] = []
-    
     var messageDictionary = [String: Message]()
-    
     let cellID = "MessageCell"
+    
+    @IBOutlet weak var messageTableView: UITableView!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        self.tableView.delegate = self
-        
-        self.tableView.rowHeight = 80.0
-        tableView.register(UserCell.self, forCellReuseIdentifier: cellID)
-        
+        messageTableView.delegate = self
+        messageTableView.rowHeight = 80.0
+        messageTableView.register(UserCell.self, forCellReuseIdentifier: cellID)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        tabBarController?.tabBar.isHidden = false
         setCurrentUser()
-        
-        observeMessage()
     }
     
     func setCurrentUser() {
-        print("set up user")
-        var ref: DatabaseReference!
-        ref = Database.database().reference()
         guard let uid = Auth.auth().currentUser?.uid else {
-            print("login fail")
+            print("login check fail")
             return
         }
-        ref.child("users").child(uid).observeSingleEvent(of: .value, with: { (snapshot) in
+        Database.database().reference().child("users").child(uid).observeSingleEvent(of: .value, with: { (snapshot) in
             if let dictionary = snapshot.value as? [String: AnyObject] {
                 self.navigationItem.title = dictionary["name"]! as? String
                 self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
@@ -51,7 +46,7 @@ class ChatMainViewController: UIViewController, UITableViewDataSource, UITableVi
         
         messages.removeAll()
         messageDictionary.removeAll()
-        self.tableView.reloadData()
+        messageTableView.reloadData()
         
         observeMessage()
     }
@@ -112,7 +107,7 @@ class ChatMainViewController: UIViewController, UITableViewDataSource, UITableVi
         self.messages.sort(by: {(message1: Message, message2: Message) -> Bool in
             message1.timestamp!.intValue > message2.timestamp!.intValue
         })
-        self.tableView.reloadData()
+        messageTableView.reloadData()
     }
     
     
@@ -127,7 +122,6 @@ class ChatMainViewController: UIViewController, UITableViewDataSource, UITableVi
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellID, for: indexPath) as! UserCell
         let message = messages[indexPath.row]
-        cell.textLabel?.text = message.text
         
         cell.message = message
         
