@@ -25,8 +25,8 @@ class LoginViewController: UIViewController, UIImagePickerControllerDelegate, UI
         if errorTextField != nil {
             errorTextField.text! = ""
         }
-        profileImageView.isUserInteractionEnabled = true
-        profileImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleProfileImage)))
+        loginRegisterButton.layer.cornerRadius = 25
+        
     }
     
     @objc func handleProfileImage (){
@@ -49,9 +49,9 @@ class LoginViewController: UIViewController, UIImagePickerControllerDelegate, UI
         }
     }
     
-    var messagesController: ChatMainViewController?
+    // var messagesController: ChatMainViewController?
     
-    @IBAction func handleRegister(_ sender: Any) {
+    private func handleLoginRegister(){
         let ref: DatabaseReference!
         ref = Database.database().reference()
         
@@ -71,23 +71,23 @@ class LoginViewController: UIViewController, UIImagePickerControllerDelegate, UI
                 let data = self.profileImageView.image!.jpegData(compressionQuality: 0.3)
                 let storageRef = Storage.storage().reference().child("profile").child("\(uid).png")
                 storageRef.putData(data!, metadata: nil) { (metadata, error) in
-                  storageRef.downloadURL { (url, error) in
-                    guard let downloadURL = url else {
-                      print(error!)
-                      return
-                    }
-                    let values = ["name":name, "email":email, "profileURL":downloadURL.absoluteString]
-                    ref.child("users").child(uid).updateChildValues(values) {
-                        (error:Error?, ref:DatabaseReference) in
-                        if let error = error {
-                            print("Data could not be saved: \(error).")
-                        } else {
-                            print("Data saved successfully!")
-                            self.messagesController?.setCurrentUser()
-                            self.dismiss(animated: true, completion: nil)
+                    storageRef.downloadURL { (url, error) in
+                        guard let downloadURL = url else {
+                            print(error!)
+                            return
+                        }
+                        let values = ["name":name, "email":email, "profileURL":downloadURL.absoluteString]
+                        ref.child("users").child(uid).updateChildValues(values) {
+                            (error:Error?, ref:DatabaseReference) in
+                            if let error = error {
+                                print("Data could not be saved: \(error).")
+                            } else {
+                                print("Data saved successfully!")
+                                // self.messagesController?.setCurrentUser()
+                                self.dismiss(animated: true, completion: nil)
+                            }
                         }
                     }
-                  }
                 }
             }
         } else {
@@ -96,21 +96,39 @@ class LoginViewController: UIViewController, UIImagePickerControllerDelegate, UI
                 if err != nil {
                     self.errorTextField.text = err?.localizedDescription
                 } else {
-                    self.messagesController?.setCurrentUser()
+                    // self.messagesController?.setCurrentUser()
                     self.dismiss(animated: true)
                 }
             })
         }
     }
     
+    @IBAction func handleRegister(_ sender: Any) {
+        handleLoginRegister()
+    }
+    
     @IBAction func segementChanged(_ sender: Any) {
         let state = loginRegisterSegment.titleForSegment(at: loginRegisterSegment.selectedSegmentIndex)
         if loginRegisterSegment.selectedSegmentIndex == 0 {
             nameTextField.isHidden = false
+            profileImageView.isUserInteractionEnabled = true
+            profileImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleProfileImage)))
         } else {
             nameTextField.isHidden = true
+            profileImageView.isUserInteractionEnabled = false
+            profileImageView.removeGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleProfileImage)))
         }
         loginRegisterButton.setTitle(state, for: UIControl.State.normal)
+    }
+    
+    @IBAction func handleEnter(_ sender: Any) {
+        handleLoginRegister()
+    }
+    
+    @IBAction func handleLoginImage(_ sender: Any) {
+        if loginRegisterSegment.selectedSegmentIndex == 0 {
+            
+        }
     }
     
 }
