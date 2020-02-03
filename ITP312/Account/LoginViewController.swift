@@ -26,7 +26,16 @@ class LoginViewController: UIViewController, UIImagePickerControllerDelegate, UI
             errorTextField.text! = ""
         }
         loginRegisterButton.layer.cornerRadius = 25
+        addBottomBorderWithColor()
+    }
+    
+    func addBottomBorderWithColor() {
+        let border = CALayer()
+        border.backgroundColor = UIColor.black.cgColor
+        border.frame = CGRect(x: 0, y: nameTextField.frame.height - 1, width: nameTextField.frame.width, height: 1)
+        nameTextField.layer.addSublayer(border)
         
+        self.view.layer.masksToBounds = true
     }
     
     @objc func handleProfileImage (){
