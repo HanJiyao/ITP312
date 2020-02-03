@@ -7,6 +7,7 @@
 !default.mode1v3
 *.mode2v3
 !default.mode2v3
+*.perspectivev3
 !default.perspectivev3
 xcuserdata
 profile
