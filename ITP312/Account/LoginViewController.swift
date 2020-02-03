@@ -25,17 +25,16 @@ class LoginViewController: UIViewController, UIImagePickerControllerDelegate, UI
         if errorTextField != nil {
             errorTextField.text! = ""
         }
-        loginRegisterButton.layer.cornerRadius = 25
-        addBottomBorderWithColor()
-    }
-    
-    func addBottomBorderWithColor() {
-        let border = CALayer()
-        border.backgroundColor = UIColor.black.cgColor
-        border.frame = CGRect(x: 0, y: nameTextField.frame.height - 1, width: nameTextField.frame.width, height: 1)
-        nameTextField.layer.addSublayer(border)
         
-        self.view.layer.masksToBounds = true
+        loginRegisterButton.layer.cornerRadius = 18
+//        loginRegisterSegment.layer.borderColor = UIColor.init(red: 0, green: 0 , blue: 0, alpha: 0.2).cgColor
+//        loginRegisterSegment.layer.borderWidth = 1
+//        loginRegisterSegment.layer.cornerRadius = 15
+//        loginRegisterSegment.layer.masksToBounds = true
+
+        nameTextField.setBottomBorder()
+        emailTextField.setBottomBorder()
+        passwordTextField.setBottomBorder()
     }
     
     @objc func handleProfileImage (){
@@ -139,5 +138,17 @@ class LoginViewController: UIViewController, UIImagePickerControllerDelegate, UI
             
         }
     }
-    
+}
+
+extension UITextField {
+    func setBottomBorder() {
+        self.borderStyle = UITextField.BorderStyle.none
+        let border = CALayer()
+        let width = CGFloat(1.0)
+        border.borderColor = UIColor.init(red: 0, green: 0 , blue: 0, alpha: 0.2).cgColor
+        border.frame = CGRect(x: 0, y: self.frame.size.height - width, width:  self.frame.size.width, height: self.frame.size.height)
+        border.borderWidth = width
+        self.layer.addSublayer(border)
+        self.layer.masksToBounds = true
+    }
 }
