@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="p77-cm-Sln">
-    <device id="retina6_1" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="p77-cm-Sln">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -23,11 +21,30 @@
                         <segue destination="WEm-RY-KT9" kind="relationship" relationship="viewControllers" id="Wl7-aO-9oo"/>
                         <segue destination="4JD-Ez-zYX" kind="relationship" relationship="viewControllers" id="6gW-dt-PO8"/>
                         <segue destination="vLj-iK-Dpc" kind="relationship" relationship="viewControllers" id="GoZ-Ef-D5i"/>
+                        <segue destination="He2-I9-58i" kind="relationship" relationship="viewControllers" id="8Ks-oz-aWC"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="q0Z-hB-0L7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-2475" y="-564"/>
+        </scene>
+        <!--Item-->
+        <scene sceneID="lMj-Jm-kMv">
+            <objects>
+                <navigationController id="He2-I9-58i" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="dQk-74-m9y"/>
+                    <navigationItem key="navigationItem" id="iGf-Yv-TtV"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="aKN-oa-zHf">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="UjB-Rb-vj6" kind="relationship" relationship="rootViewController" id="hCl-Bz-MqR"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4ke-Hw-wBy" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-662" y="226"/>
         </scene>
         <!--Item-->
         <scene sceneID="7Oj-OT-lx1">
@@ -258,6 +275,16 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Bq9-zo-S7b" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1493" y="619"/>
+        </scene>
+        <!--PlansID-->
+        <scene sceneID="TGg-Dp-gBe">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Plans" referencedIdentifier="PlansID" id="UjB-Rb-vj6" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="kBk-d9-bgz"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0cb-AV-gJd" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-662" y="634"/>
         </scene>
     </scenes>
     <resources>

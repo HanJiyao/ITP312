@@ -27,6 +27,13 @@
 		7788232923D1138C0036304C /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7788232823D1138C0036304C /* Message.swift */; };
 		7788232B23D123840036304C /* UserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7788232A23D123840036304C /* UserCell.swift */; };
 		77A88CAA23D08536003C5C2C /* ImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77A88CA923D08536003C5C2C /* ImageExtension.swift */; };
+		FBEF088B23E80CA800636B47 /* Plans.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FBEF088A23E80CA800636B47 /* Plans.storyboard */; };
+		FBEF089323E80D1800636B47 /* CreatePlanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBEF088C23E80D1500636B47 /* CreatePlanViewController.swift */; };
+		FBEF089523E80D1800636B47 /* Plan.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBEF088E23E80D1600636B47 /* Plan.swift */; };
+		FBEF089623E80D1800636B47 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBEF088F23E80D1700636B47 /* TableViewController.swift */; };
+		FBEF089723E80D1800636B47 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBEF089023E80D1700636B47 /* MapViewController.swift */; };
+		FBEF089823E80D1800636B47 /* PlanCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBEF089123E80D1800636B47 /* PlanCell.swift */; };
+		FBEF089923E80D1800636B47 /* PlanInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBEF089223E80D1800636B47 /* PlanInfoViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -54,6 +61,13 @@
 		7788232A23D123840036304C /* UserCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCell.swift; sourceTree = "<group>"; };
 		77A88CA923D08536003C5C2C /* ImageExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageExtension.swift; sourceTree = "<group>"; };
 		A38D9AD9C7E44A1B66BD63E9 /* Pods_ITP312.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ITP312.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		FBEF088A23E80CA800636B47 /* Plans.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Plans.storyboard; sourceTree = "<group>"; };
+		FBEF088C23E80D1500636B47 /* CreatePlanViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreatePlanViewController.swift; sourceTree = "<group>"; };
+		FBEF088E23E80D1600636B47 /* Plan.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Plan.swift; sourceTree = "<group>"; };
+		FBEF088F23E80D1700636B47 /* TableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
+		FBEF089023E80D1700636B47 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		FBEF089123E80D1800636B47 /* PlanCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlanCell.swift; sourceTree = "<group>"; };
+		FBEF089223E80D1800636B47 /* PlanInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlanInfoViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,6 +112,13 @@
 		512985ED23E3DC980053D3D9 /* Schedule */ = {
 			isa = PBXGroup;
 			children = (
+				FBEF088C23E80D1500636B47 /* CreatePlanViewController.swift */,
+				FBEF089023E80D1700636B47 /* MapViewController.swift */,
+				FBEF088E23E80D1600636B47 /* Plan.swift */,
+				FBEF089123E80D1800636B47 /* PlanCell.swift */,
+				FBEF089223E80D1800636B47 /* PlanInfoViewController.swift */,
+				FBEF088F23E80D1700636B47 /* TableViewController.swift */,
+				FBEF088A23E80CA800636B47 /* Plans.storyboard */,
 			);
 			path = Schedule;
 			sourceTree = "<group>";
@@ -242,6 +263,7 @@
 				5156A06623CDA39B008328C5 /* LaunchScreen.storyboard in Resources */,
 				5156A07223CDA45D008328C5 /* ChatStoryboard.storyboard in Resources */,
 				5156A07423CDAC30008328C5 /* GoogleService-Info.plist in Resources */,
+				FBEF088B23E80CA800636B47 /* Plans.storyboard in Resources */,
 				512985E923E3D5040053D3D9 /* AccountStoryboard.storyboard in Resources */,
 				5156A06323CDA39B008328C5 /* Assets.xcassets in Resources */,
 				512985EF23E3E32D0053D3D9 /* GalleryStoryboard.storyboard in Resources */,
@@ -298,18 +320,24 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FBEF089923E80D1800636B47 /* PlanInfoViewController.swift in Sources */,
+				FBEF089823E80D1800636B47 /* PlanCell.swift in Sources */,
 				51174C5223CEF22300B9DF4A /* UserListViewController.swift in Sources */,
 				5156A05E23CDA39A008328C5 /* ViewController.swift in Sources */,
 				512985EB23E3D7390053D3D9 /* AccountViewController.swift in Sources */,
 				5156A07023CDA449008328C5 /* LoginViewController.swift in Sources */,
 				7788232923D1138C0036304C /* Message.swift in Sources */,
 				5125825C23CEC0C6006C694C /* User.swift in Sources */,
+				FBEF089323E80D1800636B47 /* CreatePlanViewController.swift in Sources */,
 				5156A05C23CDA39A008328C5 /* AppDelegate.swift in Sources */,
 				5125825623CEB2A2006C694C /* ChatMainViewController.swift in Sources */,
 				511BB21023E01C0500E2A1BE /* ChatLogCell.swift in Sources */,
+				FBEF089623E80D1800636B47 /* TableViewController.swift in Sources */,
 				77A88CAA23D08536003C5C2C /* ImageExtension.swift in Sources */,
 				7788232B23D123840036304C /* UserCell.swift in Sources */,
 				7788232623D0F61C0036304C /* ChatLogViewController.swift in Sources */,
+				FBEF089523E80D1800636B47 /* Plan.swift in Sources */,
+				FBEF089723E80D1800636B47 /* MapViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
