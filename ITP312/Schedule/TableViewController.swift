@@ -34,8 +34,10 @@ class TableViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     func readPlanData(){
+        self.planList = []
+        
         // Do any additional setup after loading the view.
-        var username = Auth.auth().currentUser?.uid
+        let username = Auth.auth().currentUser?.uid
         
         // Create database reference
         let ref = Database.database().reference()
@@ -48,19 +50,20 @@ class TableViewController: UIViewController, UITableViewDelegate, UITableViewDat
                 let thisUser = restDict!["user"] as? String
                 // Store values into list if it belongs to current user
                 if (thisUser == username) {
-                    var thisPlanName = restDict!["planName"] as? String
-                    var thisCountry = restDict!["country"] as? String
-                    var fromDate = restDict!["fromDate"] as? String
-                    var toDate = restDict!["toDate"] as? String
-                    var thisPlan = Plan(planName: thisPlanName, country: thisCountry!, user: thisUser!, fromDate: fromDate!, toDate: toDate!)
-                    print("each plan " ,thisPlan.planName)
+                    let thisPlanName = restDict!["planName"] as? String
+                    let thisCountry = restDict!["country"] as? String
+                    let fromDate = restDict!["fromDate"] as? String
+                    let toDate = restDict!["toDate"] as? String
+                    let thisPlan = Plan(planName: thisPlanName, country: thisCountry!, user: thisUser!, fromDate: fromDate!, toDate: toDate!)
+                    print("each plan " ,thisPlan.planName!)
                     self.planList.append(thisPlan)
                     
                 }
             }
             print("complete plan list of this user = " ,self.planList)
+            
             for plan in self.planList {
-                print("Planlistnew = " ,plan.planName)
+                print("Planlistnew = " ,plan.planName!)
             }
             self.TableView.reloadData()
             
