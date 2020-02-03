@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>494583165986-op51qapmgnbsak21j0oi3f33mg2pjlio.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.494583165986-op51qapmgnbsak21j0oi3f33mg2pjlio</string>
+	<key>API_KEY</key>
+	<string>AIzaSyA6UF20hojCzI3B4XtAdW5q1g4mQaBpQEI</string>
+	<key>GCM_SENDER_ID</key>
+	<string>494583165986</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.nyp.ITP312</string>
+	<key>PROJECT_ID</key>
+	<string>iitp312-nyp-sit</string>
+	<key>STORAGE_BUCKET</key>
+	<string>iitp312-nyp-sit.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:494583165986:ios:1d26f956d22af38c1f067b</string>
+	<key>DATABASE_URL</key>
+	<string>https://iitp312-nyp-sit.firebaseio.com</string>
+</dict>
+</plist>
