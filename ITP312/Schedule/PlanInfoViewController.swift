@@ -27,7 +27,7 @@ class PlanInfoViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        print(planName)
+        print(planName!)
         
         // get countries
         for code in NSLocale.isoCountryCodes {
