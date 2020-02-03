@@ -40,7 +40,8 @@ class CreatePlanViewController: UIViewController {
         } else {
             planName = "none"
         }
-        ref.child(username! + "/" + planName!).setValue(planName!)
+        
+        // ref.child(username! + "/" + planName!).setValue(planName!)
         
         let plan = Plan(planName: planName, country: "USA", user: username!, fromDate: "1/1/2020", toDate: "1/3/2020")
         print("plan class = " ,plan)
