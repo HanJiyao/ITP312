@@ -26,6 +26,14 @@ class TableViewController: UIViewController, UITableViewDelegate, UITableViewDat
         TableView.delegate = self
         TableView.dataSource = self
 
+        // readPlanData()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        readPlanData()
+    }
+    
+    func readPlanData(){
         // Do any additional setup after loading the view.
         var username = Auth.auth().currentUser?.uid
         
