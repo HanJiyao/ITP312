@@ -35,13 +35,24 @@ class GalleryUploadPhotoFrameViewController: UIViewController, UIImagePickerCont
         let ref: DatabaseReference!
         ref = Database.database().reference()
         
-        if !pictureSelected {
-            print("nil image")
-            let alert = UIAlertController(title: "Notice", message: "Please select an image", preferredStyle: UIAlertController.Style.alert)
-            alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        if (descriptionLabel.text == "" || priceLabel.text == "") {
+            var alertMsg = "Please fill all necessary details"
+            if !pictureSelected {
+                alertMsg = "Please select an image"
+            }
+            let alert = UIAlertController(title: "Hold on!", message: alertMsg, preferredStyle: UIAlertController.Style.alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .destructive, handler: nil))
             self.present(alert, animated: true)
             return
         }
+        
+//        if !pictureSelected {
+//            print("nil image")
+//            let alert = UIAlertController(title: "Notice", message: "Please select an image", preferredStyle: UIAlertController.Style.alert)
+//            alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+//            self.present(alert, animated: true)
+//            return
+//        }
         let imageJPEG = imageView.image?.jpegData(compressionQuality: 0.3)
 //        let uid = Auth.auth().currentUser?.uid
 
