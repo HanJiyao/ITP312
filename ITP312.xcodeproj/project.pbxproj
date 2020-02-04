@@ -32,6 +32,9 @@
 		7788232923D1138C0036304C /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7788232823D1138C0036304C /* Message.swift */; };
 		7788232B23D123840036304C /* UserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7788232A23D123840036304C /* UserCell.swift */; };
 		77A88CAA23D08536003C5C2C /* ImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77A88CA923D08536003C5C2C /* ImageExtension.swift */; };
+		D50C37AF23E81E3300DD3A04 /* GalleryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D50C37AB23E81E3000DD3A04 /* GalleryViewController.swift */; };
+		D50C37B023E81E3300DD3A04 /* SwiftUIOnePhoto.swift in Sources */ = {isa = PBXBuildFile; fileRef = D50C37AC23E81E3100DD3A04 /* SwiftUIOnePhoto.swift */; };
+		D50C37B123E81E3300DD3A04 /* SwiftUIGallery.swift in Sources */ = {isa = PBXBuildFile; fileRef = D50C37AD23E81E3200DD3A04 /* SwiftUIGallery.swift */; };
 		D5D38D8023E9618B0070ED85 /* GalleryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D38D7D23E961890070ED85 /* GalleryModel.swift */; };
 		D5D38D8123E9618B0070ED85 /* GalleryStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D5D38D7E23E9618A0070ED85 /* GalleryStoryboard.storyboard */; };
 		D5D38D8223E9618B0070ED85 /* GalleryCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D38D7F23E9618B0070ED85 /* GalleryCollectionViewController.swift */; };
@@ -44,10 +47,6 @@
 		FB4D4AA423E935A3007B67B2 /* CalendarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB4D4AA323E935A3007B67B2 /* CalendarController.swift */; };
 		FB4D4AA623E93628007B67B2 /* DIYCalendarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB4D4AA523E93628007B67B2 /* DIYCalendarCell.swift */; };
 		FB4D4AA823E94DE6007B67B2 /* PlanCellDataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB4D4AA723E94DE6007B67B2 /* PlanCellDataController.swift */; };
-		D50C37AF23E81E3300DD3A04 /* GalleryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D50C37AB23E81E3000DD3A04 /* GalleryViewController.swift */; };
-		D50C37B023E81E3300DD3A04 /* SwiftUIOnePhoto.swift in Sources */ = {isa = PBXBuildFile; fileRef = D50C37AC23E81E3100DD3A04 /* SwiftUIOnePhoto.swift */; };
-		D50C37B123E81E3300DD3A04 /* SwiftUIGallery.swift in Sources */ = {isa = PBXBuildFile; fileRef = D50C37AD23E81E3200DD3A04 /* SwiftUIGallery.swift */; };
-		D50C37B223E81E3300DD3A04 /* GalleryStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D50C37AE23E81E3300DD3A04 /* GalleryStoryboard.storyboard */; };
 		FBEF088B23E80CA800636B47 /* Plans.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FBEF088A23E80CA800636B47 /* Plans.storyboard */; };
 		FBEF089323E80D1800636B47 /* CreatePlanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBEF088C23E80D1500636B47 /* CreatePlanViewController.swift */; };
 		FBEF089523E80D1800636B47 /* Plan.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBEF088E23E80D1600636B47 /* Plan.swift */; };
@@ -88,6 +87,9 @@
 		7788232A23D123840036304C /* UserCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCell.swift; sourceTree = "<group>"; };
 		77A88CA923D08536003C5C2C /* ImageExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageExtension.swift; sourceTree = "<group>"; };
 		A38D9AD9C7E44A1B66BD63E9 /* Pods_ITP312.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ITP312.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D50C37AB23E81E3000DD3A04 /* GalleryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GalleryViewController.swift; sourceTree = "<group>"; };
+		D50C37AC23E81E3100DD3A04 /* SwiftUIOnePhoto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftUIOnePhoto.swift; sourceTree = "<group>"; };
+		D50C37AD23E81E3200DD3A04 /* SwiftUIGallery.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftUIGallery.swift; sourceTree = "<group>"; };
 		D5D38D7D23E961890070ED85 /* GalleryModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GalleryModel.swift; sourceTree = "<group>"; };
 		D5D38D7E23E9618A0070ED85 /* GalleryStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = GalleryStoryboard.storyboard; sourceTree = "<group>"; };
 		D5D38D7F23E9618B0070ED85 /* GalleryCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GalleryCollectionViewController.swift; sourceTree = "<group>"; };
@@ -100,10 +102,6 @@
 		FB4D4AA323E935A3007B67B2 /* CalendarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarController.swift; sourceTree = "<group>"; };
 		FB4D4AA523E93628007B67B2 /* DIYCalendarCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DIYCalendarCell.swift; sourceTree = "<group>"; };
 		FB4D4AA723E94DE6007B67B2 /* PlanCellDataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanCellDataController.swift; sourceTree = "<group>"; };
-		D50C37AB23E81E3000DD3A04 /* GalleryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GalleryViewController.swift; sourceTree = "<group>"; };
-		D50C37AC23E81E3100DD3A04 /* SwiftUIOnePhoto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftUIOnePhoto.swift; sourceTree = "<group>"; };
-		D50C37AD23E81E3200DD3A04 /* SwiftUIGallery.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftUIGallery.swift; sourceTree = "<group>"; };
-		D50C37AE23E81E3300DD3A04 /* GalleryStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = GalleryStoryboard.storyboard; sourceTree = "<group>"; };
 		FBEF088A23E80CA800636B47 /* Plans.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Plans.storyboard; sourceTree = "<group>"; };
 		FBEF088C23E80D1500636B47 /* CreatePlanViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreatePlanViewController.swift; sourceTree = "<group>"; };
 		FBEF088E23E80D1600636B47 /* Plan.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Plan.swift; sourceTree = "<group>"; };
@@ -164,7 +162,6 @@
 				D5D38D7F23E9618B0070ED85 /* GalleryCollectionViewController.swift */,
 				D5D38D7D23E961890070ED85 /* GalleryModel.swift */,
 				D5D38D7E23E9618A0070ED85 /* GalleryStoryboard.storyboard */,
-				D50C37AE23E81E3300DD3A04 /* GalleryStoryboard.storyboard */,
 				D50C37AB23E81E3000DD3A04 /* GalleryViewController.swift */,
 				D50C37AD23E81E3200DD3A04 /* SwiftUIGallery.swift */,
 				D50C37AC23E81E3100DD3A04 /* SwiftUIOnePhoto.swift */,
@@ -366,7 +363,6 @@
 				5156A07223CDA45D008328C5 /* ChatStoryboard.storyboard in Resources */,
 				5156A07423CDAC30008328C5 /* GoogleService-Info.plist in Resources */,
 				FBEF088B23E80CA800636B47 /* Plans.storyboard in Resources */,
-				D50C37B223E81E3300DD3A04 /* GalleryStoryboard.storyboard in Resources */,
 				512985E923E3D5040053D3D9 /* AccountStoryboard.storyboard in Resources */,
 				511A196F23E82409008B7E63 /* GuideStoryboard.storyboard in Resources */,
 				5156A06323CDA39B008328C5 /* Assets.xcassets in Resources */,
@@ -432,7 +428,7 @@
 				FB4D4A9E23E8A71D007B67B2 /* SearchItem.swift in Sources */,
 				FB4D4AA423E935A3007B67B2 /* CalendarController.swift in Sources */,
 				D50C37B123E81E3300DD3A04 /* SwiftUIGallery.swift in Sources */,
-				5156A05E23CDA39A008328C5 /* ViewController.swift in Sources */,
+				5156A05E23CDA39A008328C5 /* RootController.swift in Sources */,
 				512985EB23E3D7390053D3D9 /* AccountViewController.swift in Sources */,
 				D50C37AF23E81E3300DD3A04 /* GalleryViewController.swift in Sources */,
 				5156A07023CDA449008328C5 /* LoginViewController.swift in Sources */,
@@ -613,7 +609,6 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = NSATM797YY;
 				INFOPLIST_FILE = ITP312/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -635,7 +630,6 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = NSATM797YY;
 				INFOPLIST_FILE = ITP312/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
