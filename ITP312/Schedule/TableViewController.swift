@@ -42,6 +42,8 @@ class TableViewController: UIViewController, UITableViewDelegate, UITableViewDat
     @objc func buttonAction(sender: UIButton!) {
         print("Button clicked")
         performSegue(withIdentifier: "TableViewToCreatePlan", sender: nil)
+        
+        
     }
     
     
@@ -79,22 +81,37 @@ class TableViewController: UIViewController, UITableViewDelegate, UITableViewDat
                 print("Planlistnew = " ,plan.planName!)
             }
             self.TableView.reloadData()
+            
             let label = UILabel(frame: CGRect(x: 80, y: 250, width: 200, height: 20))
             label.textAlignment = .left
             label.text = "You have no current plans!"
             label.sizeToFit()
-            
+            label.tag = 200
             
             let button = UIButton(frame: CGRect(x: 80, y: 400, width: 220, height: 40))
             button.backgroundColor = .blue
             button.setTitle("Create Plan Now", for: .normal)
             button.addTarget(self, action: #selector(self.buttonAction), for: .touchUpInside)
-            self.view.addSubview(button)
-            self.view.addSubview(label)
-            if (self.planList != []){
-                button.isHidden = true
-                label.isHidden = true
+            button.tag = 100
+            
+            
+            print(self.planList.count)
+            if (self.planList.count == 0) {
+                self.view.addSubview(button)
+                self.view.addSubview(label)
+                button.isHidden = false
+                label.isHidden = false
+            } else {
+                if let btn = self.view.viewWithTag(100) {
+                    btn.removeFromSuperview()
+                }
+                if let lbl = self.view.viewWithTag(200) {
+                    lbl.removeFromSuperview()
+                }
+         
             }
+            
+
             
         }
     }
