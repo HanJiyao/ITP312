@@ -22,40 +22,10 @@ class CreatePlanViewController: UIViewController {
     }
     
     @IBAction func btnPress(_ sender: Any) {
-        
-        // Create class object for plan
-       
-        
-        // set username (to be dynamically retrieved)
-        let username = Auth.auth().currentUser?.uid
-        
-        // set database reference
-        let ref = Database.database().reference()
-        
-        
-        // get text
-        var planName: String?
-        if let text = planNameText.text {
-            planName = text
-        } else {
-            planName = "none"
-        }
-        
-        // ref.child(username! + "/" + planName!).setValue(planName!)
-        
-        let plan = Plan(planName: planName, country: "USA", user: username!, fromDate: "1/1/2020", toDate: "1/3/2020")
-        print("plan class = " ,plan)
-        let planInfoDict = ["planName" : plan.planName,
-            "country" : plan.country,
-            "user" : plan.user,
-            "fromDate": plan.fromDate,
-            "toDate": plan.toDate]
-        print(planInfoDict)
-        ref.child("travelPlans").childByAutoId().setValue(planInfoDict)
-    
      
     }
 
+    // Pass planName data to next controller for further processing
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.destination is PlanInfoViewController {
             let vc = segue.destination as? PlanInfoViewController

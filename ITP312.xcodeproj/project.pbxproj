@@ -28,6 +28,10 @@
 		7788232923D1138C0036304C /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7788232823D1138C0036304C /* Message.swift */; };
 		7788232B23D123840036304C /* UserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7788232A23D123840036304C /* UserCell.swift */; };
 		77A88CAA23D08536003C5C2C /* ImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77A88CA923D08536003C5C2C /* ImageExtension.swift */; };
+		FB4D4A9C23E89459007B67B2 /* SearchText.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB4D4A9B23E89459007B67B2 /* SearchText.swift */; };
+		FB4D4A9E23E8A71D007B67B2 /* SearchItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB4D4A9D23E8A71D007B67B2 /* SearchItem.swift */; };
+		FB4D4AA023E8AE6B007B67B2 /* SearchTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB4D4A9F23E8AE6B007B67B2 /* SearchTextField.swift */; };
+		FB4D4AA223E9016E007B67B2 /* SetDateForPlanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB4D4AA123E9016E007B67B2 /* SetDateForPlanViewController.swift */; };
 		FBEF088B23E80CA800636B47 /* Plans.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FBEF088A23E80CA800636B47 /* Plans.storyboard */; };
 		FBEF089323E80D1800636B47 /* CreatePlanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBEF088C23E80D1500636B47 /* CreatePlanViewController.swift */; };
 		FBEF089523E80D1800636B47 /* Plan.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBEF088E23E80D1600636B47 /* Plan.swift */; };
@@ -64,6 +68,10 @@
 		7788232A23D123840036304C /* UserCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCell.swift; sourceTree = "<group>"; };
 		77A88CA923D08536003C5C2C /* ImageExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageExtension.swift; sourceTree = "<group>"; };
 		A38D9AD9C7E44A1B66BD63E9 /* Pods_ITP312.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ITP312.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		FB4D4A9B23E89459007B67B2 /* SearchText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchText.swift; sourceTree = "<group>"; };
+		FB4D4A9D23E8A71D007B67B2 /* SearchItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchItem.swift; sourceTree = "<group>"; };
+		FB4D4A9F23E8AE6B007B67B2 /* SearchTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTextField.swift; sourceTree = "<group>"; };
+		FB4D4AA123E9016E007B67B2 /* SetDateForPlanViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetDateForPlanViewController.swift; sourceTree = "<group>"; };
 		FBEF088A23E80CA800636B47 /* Plans.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Plans.storyboard; sourceTree = "<group>"; };
 		FBEF088C23E80D1500636B47 /* CreatePlanViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreatePlanViewController.swift; sourceTree = "<group>"; };
 		FBEF088E23E80D1600636B47 /* Plan.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Plan.swift; sourceTree = "<group>"; };
@@ -122,6 +130,7 @@
 		512985ED23E3DC980053D3D9 /* Schedule */ = {
 			isa = PBXGroup;
 			children = (
+				FB4D4A9F23E8AE6B007B67B2 /* SearchTextField.swift */,
 				FBEF088C23E80D1500636B47 /* CreatePlanViewController.swift */,
 				FBEF089023E80D1700636B47 /* MapViewController.swift */,
 				FBEF088E23E80D1600636B47 /* Plan.swift */,
@@ -129,6 +138,9 @@
 				FBEF089223E80D1800636B47 /* PlanInfoViewController.swift */,
 				FBEF088F23E80D1700636B47 /* TableViewController.swift */,
 				FBEF088A23E80CA800636B47 /* Plans.storyboard */,
+				FB4D4A9B23E89459007B67B2 /* SearchText.swift */,
+				FB4D4A9D23E8A71D007B67B2 /* SearchItem.swift */,
+				FB4D4AA123E9016E007B67B2 /* SetDateForPlanViewController.swift */,
 			);
 			path = Schedule;
 			sourceTree = "<group>";
@@ -343,15 +355,20 @@
 				FBEF089823E80D1800636B47 /* PlanCell.swift in Sources */,
 				51174C5223CEF22300B9DF4A /* UserListViewController.swift in Sources */,
 				5156A05E23CDA39A008328C5 /* RootController.swift in Sources */,
+				5156A05E23CDA39A008328C5 /* ViewController.swift in Sources */,
+				FB4D4A9E23E8A71D007B67B2 /* SearchItem.swift in Sources */,
 				512985EB23E3D7390053D3D9 /* AccountViewController.swift in Sources */,
 				5156A07023CDA449008328C5 /* LoginViewController.swift in Sources */,
 				7788232923D1138C0036304C /* Message.swift in Sources */,
 				5125825C23CEC0C6006C694C /* User.swift in Sources */,
 				FBEF089323E80D1800636B47 /* CreatePlanViewController.swift in Sources */,
 				5156A05C23CDA39A008328C5 /* AppDelegate.swift in Sources */,
+				FB4D4AA023E8AE6B007B67B2 /* SearchTextField.swift in Sources */,
+				FB4D4A9C23E89459007B67B2 /* SearchText.swift in Sources */,
 				5125825623CEB2A2006C694C /* ChatMainViewController.swift in Sources */,
 				511BB21023E01C0500E2A1BE /* ChatLogCell.swift in Sources */,
 				FBEF089623E80D1800636B47 /* TableViewController.swift in Sources */,
+				FB4D4AA223E9016E007B67B2 /* SetDateForPlanViewController.swift in Sources */,
 				77A88CAA23D08536003C5C2C /* ImageExtension.swift in Sources */,
 				7788232B23D123840036304C /* UserCell.swift in Sources */,
 				7788232623D0F61C0036304C /* ChatLogViewController.swift in Sources */,

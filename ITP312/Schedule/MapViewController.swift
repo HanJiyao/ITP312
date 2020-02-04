@@ -9,23 +9,83 @@
 import UIKit
 import MapKit
 
-class MapViewController: UIViewController, UISearchBarDelegate  {
+class MapViewController: UIViewController {
 
     @IBOutlet weak var MVController: MKMapView!
-    @IBOutlet weak var searchBar: UISearchBar!
+    @IBOutlet weak var searchTextField: SearchTextField!
+    
+    var planName: String?
+    var countryName: String?
     override func viewDidLoad() {
         super.viewDidLoad()
-        searchBar.delegate = self
+    
+    
 
         // Do any additional setup after loading the view.
     }
+
     
-    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        print("Text changed")
+    @IBAction func searchTextField(_ sender: SearchTextField) {
+    }
+    
+    @IBAction func searchTextFieldEndEditing(_ sender: Any) {
+        
+        // Get selected country string
+        let countrySelected = searchTextField.text
+        countryName = countrySelected
+        print(planName)
+        print(countrySelected!)
+    
+        UIApplication.shared.beginIgnoringInteractionEvents()
+        
+        // Loading
+        let activityIndicator = UIActivityIndicatorView()
+        activityIndicator.style = UIActivityIndicatorView.Style.gray
+        activityIndicator.center = self.view.center
+        activityIndicator.hidesWhenStopped = true
+        activityIndicator.startAnimating()
+        
+        self.view.addSubview(activityIndicator)
+        
+        // Create Search Request to query country string
+        let searchRequest = MKLocalSearch.Request()
+        searchRequest.naturalLanguageQuery = countrySelected
+        let activeSearch = MKLocalSearch(request: searchRequest)
+        activeSearch.start { (response, error) in
+            
+            activityIndicator.stopAnimating()
+            UIApplication.shared.endIgnoringInteractionEvents()
+            
+            if response == nil {
+                print("ERROR")
+            } else {
+                
+                // Get coordinates of centroid for search result
+                let latitude = response?.boundingRegion.center.latitude
+                let longitude = response?.boundingRegion.center.longitude
+                
+                // Zooming onto coordinate
+                let coordinate: CLLocationCoordinate2D = CLLocationCoordinate2DMake(latitude!, longitude!)
+                let span = MKCoordinateSpan(latitudeDelta: 0.5, longitudeDelta: 0.5)
+                let region = MKCoordinateRegion(center: coordinate, span: span)
+                self.MVController.setRegion(region, animated: true)
+                
+                
+            }
+            
+        }
         
     }
     
-
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if (segue.identifier == "dataBackToPlanInfo") {
+            let planInfoVC = segue.destination as! PlanInfoViewController
+            planInfoVC.planName = planName
+            planInfoVC.countryName = countryName
+        }
+    }
+    
+    
     /*
     // MARK: - Navigation
 
