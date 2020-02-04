@@ -8,31 +8,44 @@
 
 import UIKit
 import Firebase
+import FSCalendar
 
 class SetDateForPlanViewController: UIViewController {
     
-    @IBOutlet weak var fromDateText: UITextField!
-    @IBOutlet weak var toDateField: UITextField!
     @IBOutlet weak var presentImgView: UIImageView!
     @IBOutlet weak var fromPlaceLabel: UILabel!
     @IBOutlet weak var toPlaceLabel: UILabel!
     @IBOutlet weak var dateSummaryLabel: UILabel!
+    @IBOutlet weak var datePlaceholder: UITextField!
     
     var planName: String?
     var countryName: String?
     var fromDate: String?
     var toDate: String?
+    var selectedDates: [String] = []
+   
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view
         // Set styles of relevant textfields
-        presentImgView.image = UIImage(named: "newyork")
+       
+        datePlaceholder.borderStyle = .none
+        datePlaceholder.layer.backgroundColor = UIColor.white.cgColor
+
+        datePlaceholder.layer.masksToBounds = false
+        datePlaceholder.layer.shadowColor = UIColor.gray.cgColor
+        datePlaceholder.layer.shadowOffset = CGSize(width: 0.0, height: 1.0)
+        datePlaceholder.layer.shadowOpacity = 1.0
+        datePlaceholder.layer.shadowRadius = 0.0
+            
+        presentImgView.image = UIImage(named: "United States")
+            
         fromPlaceLabel.text = "Singapore"
         toPlaceLabel.text = countryName
-        fromPlaceLabel.font = UIFont.boldSystemFont(ofSize: 12.0)
-        toPlaceLabel.font = UIFont.boldSystemFont(ofSize: 12.0)
+        fromPlaceLabel.font = UIFont.boldSystemFont(ofSize: 22.0)
+        toPlaceLabel.font = UIFont.boldSystemFont(ofSize: 22.0)
         fromPlaceLabel.textColor = UIColor.white
         toPlaceLabel.textColor = UIColor.white
         fromPlaceLabel.sizeToFit()
@@ -40,20 +53,35 @@ class SetDateForPlanViewController: UIViewController {
         self.view.sendSubviewToBack(presentImgView)
         
         
-    }
-    @IBAction func fromDateComplete(_ sender: Any) {
-        dateSummaryLabel.text = fromDateText.text
-        fromDate = fromDateText.text
-    }
-    @IBAction func toDateComplete(_ sender: Any) {
-        let currText = dateSummaryLabel.text!
-        let newText = currText + " to " + toDateField.text!
-        toDate = toDateField.text
-        dateSummaryLabel.text = newText
-        dateSummaryLabel.sizeToFit()
-        dateSummaryLabel.textColor = UIColor.white
+        if planName != nil {
+            print("Plan name" ,planName!)
+        } else {
+            print("plan name is nil")
+        }
+        if !selectedDates.isEmpty {
+            print(selectedDates)
+        }
+        
         
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        if !selectedDates.isEmpty {
+            var travelDate = selectedDates[0] + " to " + selectedDates[1]
+            dateSummaryLabel.text = travelDate
+            dateSummaryLabel.sizeToFit()
+            dateSummaryLabel.numberOfLines = 2
+            dateSummaryLabel.layoutIfNeeded()
+            dateSummaryLabel.font = UIFont.boldSystemFont(ofSize: 16.0)
+            dateSummaryLabel.textColor = .white
+        }
+    }
+   
+    
+    @IBAction func fromDateCalBtn(_ sender: Any) {
+        
+    }
+    
     
     @IBAction func createPlanBtnPress(_ sender: Any) {
         
@@ -68,8 +96,13 @@ class SetDateForPlanViewController: UIViewController {
         
         let thisPlanName = planName
         let thisCountryName = countryName
-        let thisFromDate = fromDate
-        let thisToDate = toDate
+        var thisFromDate: String?
+        var thisToDate: String?
+        if !selectedDates.isEmpty {
+            thisFromDate = selectedDates[0]
+            thisToDate = selectedDates[1]
+        }
+    
         
         // ref.child(username! + "/" + planName!).setValue(planName!)
         
@@ -82,6 +115,15 @@ class SetDateForPlanViewController: UIViewController {
             "toDate": plan.toDate]
         print(planInfoDict)
         ref.child("travelPlans").childByAutoId().setValue(planInfoDict)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if (segue.identifier == "showCalendar") {
+            let displayPV = segue.destination as! CalendarController
+            displayPV.planName = planName
+            displayPV.countryName = countryName
+            displayPV.selectedDates = selectedDates
+        }
     }
     
     /*

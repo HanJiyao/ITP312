@@ -11,5 +11,6 @@ target 'ITP312' do
   pod 'Firebase/Database'
   pod 'Firebase/Auth'
   pod 'Firebase/Storage'
+  pod 'FSCalendar'
 
 end

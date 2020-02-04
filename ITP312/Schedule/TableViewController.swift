@@ -17,6 +17,9 @@ class TableViewController: UIViewController, UITableViewDelegate, UITableViewDat
     @IBOutlet weak var TableView: UITableView!
     var databaseHandle:DatabaseHandle?
     
+    var storePlanName: String?
+    var storeCountryName: String?
+    
     // Create array for plans
     var planList = [Plan]()
     
@@ -27,11 +30,21 @@ class TableViewController: UIViewController, UITableViewDelegate, UITableViewDat
         TableView.dataSource = self
 
         // readPlanData()
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
         readPlanData()
+        
+        
     }
+    
+    @objc func buttonAction(sender: UIButton!) {
+        print("Button clicked")
+        performSegue(withIdentifier: "TableViewToCreatePlan", sender: nil)
+    }
+    
+    
     
     func readPlanData(){
         self.planList = []
@@ -66,6 +79,22 @@ class TableViewController: UIViewController, UITableViewDelegate, UITableViewDat
                 print("Planlistnew = " ,plan.planName!)
             }
             self.TableView.reloadData()
+            let label = UILabel(frame: CGRect(x: 80, y: 250, width: 200, height: 20))
+            label.textAlignment = .left
+            label.text = "You have no current plans!"
+            label.sizeToFit()
+            
+            
+            let button = UIButton(frame: CGRect(x: 80, y: 400, width: 220, height: 40))
+            button.backgroundColor = .blue
+            button.setTitle("Create Plan Now", for: .normal)
+            button.addTarget(self, action: #selector(self.buttonAction), for: .touchUpInside)
+            self.view.addSubview(button)
+            self.view.addSubview(label)
+            if (self.planList != []){
+                button.isHidden = true
+                label.isHidden = true
+            }
             
         }
     }
@@ -89,7 +118,11 @@ class TableViewController: UIViewController, UITableViewDelegate, UITableViewDat
         cell.planNameLabel.sizeToFit()
         cell.destinationNameLabel.sizeToFit()
         cell.dateLabel.sizeToFit()
-        cell.backgroundView = UIImageView(image: UIImage(named: "newyork"))
+        var image : UIImageView? = UIImageView(image: UIImage(named: p.country))
+        if (image == nil) {
+            image = UIImageView(image: UIImage(named: "United States"))
+        }
+        cell.backgroundView = image
         
         return cell
     }
@@ -100,6 +133,28 @@ class TableViewController: UIViewController, UITableViewDelegate, UITableViewDat
             tableView.deleteRows(at: [indexPath], with: .automatic)
         }
     }
+
+    
+    // Handle click on row
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        storePlanName = self.planList[indexPath.row].planName
+        storeCountryName = self.planList[indexPath.row].country
+        self.performSegue(withIdentifier: "TableToCellData", sender: self)
+        
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if (segue.identifier == "TableToCellData") {
+            let tableToCellVC = segue.destination as! PlanCellDataController
+            tableToCellVC.selectedPlanName = storePlanName
+            tableToCellVC.selectedCountry = storeCountryName
+        }
+    }
+    
+    
+    
+    
+}
     
 
     
@@ -114,4 +169,4 @@ class TableViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     */
 
-}
+

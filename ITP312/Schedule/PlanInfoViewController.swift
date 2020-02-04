@@ -57,7 +57,11 @@ class PlanInfoViewController: UIViewController {
             locationSubLabel.text = "selected"
             locationSubLabel.font = UIFont.italicSystemFont(ofSize: 12.0)
             locationSubLabel.textColor = UIColor.gray
-            locationImg.image = UIImage(named: "newyork")
+            var image = UIImage(named: countryName!)
+            if (image == nil) {
+                image = UIImage(named: "United States")
+            }
+            locationImg.image = image
             
         } else {
             print("country not set yet")
