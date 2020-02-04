@@ -124,7 +124,7 @@
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bZb-Gg-DBJ">
                                 <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                                 <items>
-                                    <navigationItem title="Friends" id="E0D-rn-jqK">
+                                    <navigationItem title="My Guides Contact" id="E0D-rn-jqK">
                                         <barButtonItem key="leftBarButtonItem" title="❮" id="Ty5-qe-OTe">
                                             <connections>
                                                 <action selector="cancelPressed:" destination="RLQ-5T-whi" id="Fbp-A3-QbE"/>

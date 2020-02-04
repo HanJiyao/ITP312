@@ -11,8 +11,46 @@ import Firebase
 
 class AccountViewController: UIViewController {
 
+    @IBOutlet weak var greetingLable: UILabel!
+    @IBOutlet weak var userLabel: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
+        let date = NSDate()
+        let calendar = NSCalendar.current
+        let currentHour = calendar.component(.hour, from: date as Date)
+        let hourInt = Int(currentHour.description)!
+        
+        if hourInt >= 6 && hourInt <= 12 {
+            greetingLable.text = "Good Morning,"
+        }
+        else if hourInt >= 12 && hourInt <= 16 {
+            greetingLable.text = "Good Afternoon,"
+        }
+        else if hourInt >= 16 && hourInt <= 22 {
+            greetingLable.text = "Good Evening,"
+        }
+        else if hourInt >= 22 && hourInt <= 24 {
+            greetingLable.text = "Good Night,"
+        }
+        else if hourInt >= 0 && hourInt <= 6 {
+            greetingLable.text = "Good Night,"
+        }
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        
+        guard let uid = Auth.auth().currentUser?.uid else {
+            print("login check fail")
+            return
+        }
+        Database.database().reference().child("users").child(uid).observeSingleEvent(of: .value, with: { (snapshot) in
+            if let dictionary = snapshot.value as? [String: AnyObject] {
+                let username = dictionary["name"]! as? String
+                self.userLabel.text = username
+            }
+        }) { (error) in
+            print(error.localizedDescription)
+        }
     }
 
     

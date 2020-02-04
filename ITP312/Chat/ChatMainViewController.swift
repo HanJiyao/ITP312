@@ -54,23 +54,10 @@ class ChatMainViewController: UIViewController, UITableViewDataSource, UITableVi
     }
     
     func setCurrentUser() {
-        guard let uid = Auth.auth().currentUser?.uid else {
-            print("login check fail")
-            return
-        }
-        Database.database().reference().child("users").child(uid).observeSingleEvent(of: .value, with: { (snapshot) in
-            if let dictionary = snapshot.value as? [String: AnyObject] {
-                self.navigationItem.title = dictionary["name"]! as? String
-                self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
-            }
-        }) { (error) in
-            print(error.localizedDescription)
-        }
-        
+        //refresh the data base on new login/registeer
         messages.removeAll()
         messageDictionary.removeAll()
         messageTableView.reloadData()
-        
         observeMessage()
     }
     

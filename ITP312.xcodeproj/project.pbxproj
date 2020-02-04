@@ -15,6 +15,11 @@
 		512985E923E3D5040053D3D9 /* AccountStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 512985E823E3D5040053D3D9 /* AccountStoryboard.storyboard */; };
 		512985EB23E3D7390053D3D9 /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 512985EA23E3D7390053D3D9 /* AccountViewController.swift */; };
 		512985EF23E3E32D0053D3D9 /* GalleryStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 512985EE23E3E32D0053D3D9 /* GalleryStoryboard.storyboard */; };
+		512AE6F823E91DF300F0832C /* GuideMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 512AE6F723E91DF300F0832C /* GuideMainViewController.swift */; };
+		512AE6FA23E9204D00F0832C /* GuideEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 512AE6F923E9204D00F0832C /* GuideEditViewController.swift */; };
+		512AE6FC23E9211900F0832C /* GuideDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 512AE6FB23E9211900F0832C /* GuideDetailViewController.swift */; };
+		512AE70023E9343300F0832C /* Guide.swift in Sources */ = {isa = PBXBuildFile; fileRef = 512AE6FF23E9343300F0832C /* Guide.swift */; };
+		512AE70323E93CDC00F0832C /* GuideCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 512AE70223E93CDC00F0832C /* GuideCell.swift */; };
 		5156A05C23CDA39A008328C5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5156A05B23CDA39A008328C5 /* AppDelegate.swift */; };
 		5156A05E23CDA39A008328C5 /* RootController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5156A05D23CDA39A008328C5 /* RootController.swift */; };
 		5156A06123CDA39A008328C5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5156A05F23CDA39A008328C5 /* Main.storyboard */; };
@@ -52,6 +57,11 @@
 		512985EA23E3D7390053D3D9 /* AccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountViewController.swift; sourceTree = "<group>"; };
 		512985EE23E3E32D0053D3D9 /* GalleryStoryboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = GalleryStoryboard.storyboard; sourceTree = "<group>"; };
 		512AE6F623E90EBD00F0832C /* ITP312.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ITP312.entitlements; sourceTree = "<group>"; };
+		512AE6F723E91DF300F0832C /* GuideMainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideMainViewController.swift; sourceTree = "<group>"; };
+		512AE6F923E9204D00F0832C /* GuideEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideEditViewController.swift; sourceTree = "<group>"; };
+		512AE6FB23E9211900F0832C /* GuideDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideDetailViewController.swift; sourceTree = "<group>"; };
+		512AE6FF23E9343300F0832C /* Guide.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Guide.swift; sourceTree = "<group>"; };
+		512AE70223E93CDC00F0832C /* GuideCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideCell.swift; sourceTree = "<group>"; };
 		5156A05823CDA39A008328C5 /* ITP312.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ITP312.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5156A05B23CDA39A008328C5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5156A05D23CDA39A008328C5 /* RootController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootController.swift; sourceTree = "<group>"; };
@@ -96,7 +106,12 @@
 		511A196D23E822B5008B7E63 /* Guide */ = {
 			isa = PBXGroup;
 			children = (
+				512AE70123E93CCA00F0832C /* View */,
+				512AE6FE23E933ED00F0832C /* Model */,
 				511A196E23E82409008B7E63 /* GuideStoryboard.storyboard */,
+				512AE6FB23E9211900F0832C /* GuideDetailViewController.swift */,
+				512AE6F923E9204D00F0832C /* GuideEditViewController.swift */,
+				512AE6F723E91DF300F0832C /* GuideMainViewController.swift */,
 			);
 			path = Guide;
 			sourceTree = "<group>";
@@ -145,6 +160,30 @@
 			path = Schedule;
 			sourceTree = "<group>";
 		};
+		512AE6FD23E932BC00F0832C /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				77A88CA923D08536003C5C2C /* ImageExtension.swift */,
+			);
+			path = Helper;
+			sourceTree = "<group>";
+		};
+		512AE6FE23E933ED00F0832C /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				512AE6FF23E9343300F0832C /* Guide.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		512AE70123E93CCA00F0832C /* View */ = {
+			isa = PBXGroup;
+			children = (
+				512AE70223E93CDC00F0832C /* GuideCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		5156A04F23CDA39A008328C5 = {
 			isa = PBXGroup;
 			children = (
@@ -167,6 +206,7 @@
 			isa = PBXGroup;
 			children = (
 				512AE6F623E90EBD00F0832C /* ITP312.entitlements */,
+				512AE6FD23E932BC00F0832C /* Helper */,
 				511A196D23E822B5008B7E63 /* Guide */,
 				512985ED23E3DC980053D3D9 /* Schedule */,
 				512985EC23E3DC7C0053D3D9 /* Gallery */,
@@ -189,7 +229,6 @@
 			children = (
 				511BB21123E01FF500E2A1BE /* View */,
 				7788232723D113600036304C /* Model */,
-				77A88CA923D08536003C5C2C /* ImageExtension.swift */,
 				51174C5123CEF22300B9DF4A /* UserListViewController.swift */,
 				5125825523CEB2A2006C694C /* ChatMainViewController.swift */,
 				5156A07123CDA45D008328C5 /* ChatStoryboard.storyboard */,
@@ -355,7 +394,7 @@
 				FBEF089823E80D1800636B47 /* PlanCell.swift in Sources */,
 				51174C5223CEF22300B9DF4A /* UserListViewController.swift in Sources */,
 				5156A05E23CDA39A008328C5 /* RootController.swift in Sources */,
-				5156A05E23CDA39A008328C5 /* ViewController.swift in Sources */,
+				5156A05E23CDA39A008328C5 /* RootController.swift in Sources */,
 				FB4D4A9E23E8A71D007B67B2 /* SearchItem.swift in Sources */,
 				512985EB23E3D7390053D3D9 /* AccountViewController.swift in Sources */,
 				5156A07023CDA449008328C5 /* LoginViewController.swift in Sources */,
@@ -367,13 +406,18 @@
 				FB4D4A9C23E89459007B67B2 /* SearchText.swift in Sources */,
 				5125825623CEB2A2006C694C /* ChatMainViewController.swift in Sources */,
 				511BB21023E01C0500E2A1BE /* ChatLogCell.swift in Sources */,
+				512AE70323E93CDC00F0832C /* GuideCell.swift in Sources */,
 				FBEF089623E80D1800636B47 /* TableViewController.swift in Sources */,
 				FB4D4AA223E9016E007B67B2 /* SetDateForPlanViewController.swift in Sources */,
 				77A88CAA23D08536003C5C2C /* ImageExtension.swift in Sources */,
 				7788232B23D123840036304C /* UserCell.swift in Sources */,
 				7788232623D0F61C0036304C /* ChatLogViewController.swift in Sources */,
 				FBEF089523E80D1800636B47 /* Plan.swift in Sources */,
+				512AE6F823E91DF300F0832C /* GuideMainViewController.swift in Sources */,
 				FBEF089723E80D1800636B47 /* MapViewController.swift in Sources */,
+				512AE70023E9343300F0832C /* Guide.swift in Sources */,
+				512AE6FA23E9204D00F0832C /* GuideEditViewController.swift in Sources */,
+				512AE6FC23E9211900F0832C /* GuideDetailViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
