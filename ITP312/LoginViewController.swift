@@ -27,14 +27,40 @@ class LoginViewController: UIViewController, UIImagePickerControllerDelegate, UI
         }
         
         loginRegisterButton.layer.cornerRadius = 18
-//        loginRegisterSegment.layer.borderColor = UIColor.init(red: 0, green: 0 , blue: 0, alpha: 0.2).cgColor
-//        loginRegisterSegment.layer.borderWidth = 1
-//        loginRegisterSegment.layer.cornerRadius = 15
-//        loginRegisterSegment.layer.masksToBounds = true
-
+        
         nameTextField.setBottomBorder()
         emailTextField.setBottomBorder()
         passwordTextField.setBottomBorder()
+        profileImageView.layer.cornerRadius = 75
+        profileImageView.isUserInteractionEnabled = true
+        profileImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleProfileImage)))
+        setUpKeyboardObservers()
+    }
+    override func viewDidDisappear(_ animated: Bool) {
+        NotificationCenter.default.removeObserver(self)
+    }
+    
+    func setUpKeyboardObservers() {
+        NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboardShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboardHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    
+    @objc func handleKeyboardShow(notification: NSNotification){
+        profileImageView.isHidden = true
+        if let keyboardDuration: Double = notification.userInfo?[UIResponder.keyboardAnimationDurationUserInfoKey] as? Double {
+            UIView.animate(withDuration: keyboardDuration) {
+                self.view.layoutIfNeeded()
+            }
+        }
+    }
+    
+    @objc func handleKeyboardHide(notification: NSNotification){
+        profileImageView.isHidden = false
+        if let keyboardDuration: Double = notification.userInfo?[UIResponder.keyboardAnimationDurationUserInfoKey] as? Double {
+            UIView.animate(withDuration: keyboardDuration) {
+                self.view.layoutIfNeeded()
+            }
+        }
     }
     
     @objc func handleProfileImage (){
@@ -55,6 +81,7 @@ class LoginViewController: UIViewController, UIImagePickerControllerDelegate, UI
             self.profileImageView.image = selectedImage!
             picker.dismiss(animated: true, completion: nil)
         }
+        setUpKeyboardObservers()
     }
     
     // var messagesController: ChatMainViewController?
@@ -133,9 +160,25 @@ class LoginViewController: UIViewController, UIImagePickerControllerDelegate, UI
         handleLoginRegister()
     }
     
+    
     @IBAction func handleLoginImage(_ sender: Any) {
-        if loginRegisterSegment.selectedSegmentIndex == 0 {
-            
+        if loginRegisterSegment.selectedSegmentIndex == 1 {
+            let userEmail = emailTextField.text!
+            print("hello \(userEmail)")
+            var ref: DatabaseReference!
+            ref = Database.database().reference()
+            ref.child("users").observeSingleEvent(of: .value, with: { (snapshot) in
+                if let dictionary = snapshot.value as? [String: AnyObject] {
+                    for i in dictionary {
+                        if i.value["email"]!! as! String == userEmail {
+                            let profileURL = i.value["profileURL"]!! as! String
+                            self.profileImageView.loadImageCache(urlString: profileURL)
+                        }
+                    }
+                }
+            }) { (error) in
+                print(error.localizedDescription)
+            }
         }
     }
 }

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		51174C5223CEF22300B9DF4A /* UserListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51174C5123CEF22300B9DF4A /* UserListViewController.swift */; };
+		511A196F23E82409008B7E63 /* GuideStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 511A196E23E82409008B7E63 /* GuideStoryboard.storyboard */; };
 		511BB21023E01C0500E2A1BE /* ChatLogCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 511BB20F23E01C0500E2A1BE /* ChatLogCell.swift */; };
 		5125825623CEB2A2006C694C /* ChatMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5125825523CEB2A2006C694C /* ChatMainViewController.swift */; };
 		5125825C23CEC0C6006C694C /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5125825B23CEC0C6006C694C /* User.swift */; };
@@ -15,7 +16,7 @@
 		512985EB23E3D7390053D3D9 /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 512985EA23E3D7390053D3D9 /* AccountViewController.swift */; };
 		512985EF23E3E32D0053D3D9 /* GalleryStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 512985EE23E3E32D0053D3D9 /* GalleryStoryboard.storyboard */; };
 		5156A05C23CDA39A008328C5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5156A05B23CDA39A008328C5 /* AppDelegate.swift */; };
-		5156A05E23CDA39A008328C5 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5156A05D23CDA39A008328C5 /* ViewController.swift */; };
+		5156A05E23CDA39A008328C5 /* RootController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5156A05D23CDA39A008328C5 /* RootController.swift */; };
 		5156A06123CDA39A008328C5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5156A05F23CDA39A008328C5 /* Main.storyboard */; };
 		5156A06323CDA39B008328C5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5156A06223CDA39B008328C5 /* Assets.xcassets */; };
 		5156A06623CDA39B008328C5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5156A06423CDA39B008328C5 /* LaunchScreen.storyboard */; };
@@ -39,15 +40,17 @@
 /* Begin PBXFileReference section */
 		3A253E62685D8CCC1E3767C1 /* Pods-ITP312.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ITP312.debug.xcconfig"; path = "Target Support Files/Pods-ITP312/Pods-ITP312.debug.xcconfig"; sourceTree = "<group>"; };
 		51174C5123CEF22300B9DF4A /* UserListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserListViewController.swift; sourceTree = "<group>"; };
+		511A196E23E82409008B7E63 /* GuideStoryboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = GuideStoryboard.storyboard; sourceTree = "<group>"; };
 		511BB20F23E01C0500E2A1BE /* ChatLogCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatLogCell.swift; sourceTree = "<group>"; };
 		5125825523CEB2A2006C694C /* ChatMainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatMainViewController.swift; sourceTree = "<group>"; };
 		5125825B23CEC0C6006C694C /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		512985E823E3D5040053D3D9 /* AccountStoryboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AccountStoryboard.storyboard; sourceTree = "<group>"; };
 		512985EA23E3D7390053D3D9 /* AccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountViewController.swift; sourceTree = "<group>"; };
 		512985EE23E3E32D0053D3D9 /* GalleryStoryboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = GalleryStoryboard.storyboard; sourceTree = "<group>"; };
+		512AE6F623E90EBD00F0832C /* ITP312.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ITP312.entitlements; sourceTree = "<group>"; };
 		5156A05823CDA39A008328C5 /* ITP312.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ITP312.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5156A05B23CDA39A008328C5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		5156A05D23CDA39A008328C5 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		5156A05D23CDA39A008328C5 /* RootController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootController.swift; sourceTree = "<group>"; };
 		5156A06023CDA39A008328C5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		5156A06223CDA39B008328C5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5156A06523CDA39B008328C5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -82,6 +85,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		511A196D23E822B5008B7E63 /* Guide */ = {
+			isa = PBXGroup;
+			children = (
+				511A196E23E82409008B7E63 /* GuideStoryboard.storyboard */,
+			);
+			path = Guide;
+			sourceTree = "<group>";
+		};
 		511BB21123E01FF500E2A1BE /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -95,7 +106,6 @@
 			isa = PBXGroup;
 			children = (
 				512985E823E3D5040053D3D9 /* AccountStoryboard.storyboard */,
-				5156A06F23CDA449008328C5 /* LoginViewController.swift */,
 				512985EA23E3D7390053D3D9 /* AccountViewController.swift */,
 			);
 			path = Account;
@@ -144,12 +154,15 @@
 		5156A05A23CDA39A008328C5 /* ITP312 */ = {
 			isa = PBXGroup;
 			children = (
+				512AE6F623E90EBD00F0832C /* ITP312.entitlements */,
+				511A196D23E822B5008B7E63 /* Guide */,
 				512985ED23E3DC980053D3D9 /* Schedule */,
 				512985EC23E3DC7C0053D3D9 /* Gallery */,
 				512985E723E3C24A0053D3D9 /* Account */,
 				5156A06D23CDA421008328C5 /* Chat */,
 				5156A05B23CDA39A008328C5 /* AppDelegate.swift */,
-				5156A05D23CDA39A008328C5 /* ViewController.swift */,
+				5156A06F23CDA449008328C5 /* LoginViewController.swift */,
+				5156A05D23CDA39A008328C5 /* RootController.swift */,
 				5156A05F23CDA39A008328C5 /* Main.storyboard */,
 				5156A06223CDA39B008328C5 /* Assets.xcassets */,
 				5156A06423CDA39B008328C5 /* LaunchScreen.storyboard */,
@@ -234,6 +247,11 @@
 					5156A05723CDA39A008328C5 = {
 						CreatedOnToolsVersion = 10.3;
 						LastSwiftMigration = 1130;
+						SystemCapabilities = {
+							com.apple.Keychain = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -265,6 +283,7 @@
 				5156A07423CDAC30008328C5 /* GoogleService-Info.plist in Resources */,
 				FBEF088B23E80CA800636B47 /* Plans.storyboard in Resources */,
 				512985E923E3D5040053D3D9 /* AccountStoryboard.storyboard in Resources */,
+				511A196F23E82409008B7E63 /* GuideStoryboard.storyboard in Resources */,
 				5156A06323CDA39B008328C5 /* Assets.xcassets in Resources */,
 				512985EF23E3E32D0053D3D9 /* GalleryStoryboard.storyboard in Resources */,
 				5156A06123CDA39A008328C5 /* Main.storyboard in Resources */,
@@ -323,7 +342,7 @@
 				FBEF089923E80D1800636B47 /* PlanInfoViewController.swift in Sources */,
 				FBEF089823E80D1800636B47 /* PlanCell.swift in Sources */,
 				51174C5223CEF22300B9DF4A /* UserListViewController.swift in Sources */,
-				5156A05E23CDA39A008328C5 /* ViewController.swift in Sources */,
+				5156A05E23CDA39A008328C5 /* RootController.swift in Sources */,
 				512985EB23E3D7390053D3D9 /* AccountViewController.swift in Sources */,
 				5156A07023CDA449008328C5 /* LoginViewController.swift in Sources */,
 				7788232923D1138C0036304C /* Message.swift in Sources */,
@@ -484,6 +503,7 @@
 			baseConfigurationReference = 3A253E62685D8CCC1E3767C1 /* Pods-ITP312.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = ITP312/ITP312.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = NSATM797YY;
 				INFOPLIST_FILE = ITP312/Info.plist;
@@ -504,6 +524,7 @@
 			baseConfigurationReference = 7733A5DDFB82ABEA7DCE0DE4 /* Pods-ITP312.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = ITP312/ITP312.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = NSATM797YY;
 				INFOPLIST_FILE = ITP312/Info.plist;

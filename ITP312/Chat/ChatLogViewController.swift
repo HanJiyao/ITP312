@@ -9,11 +9,12 @@
 import UIKit
 import Firebase
 
-class ChatLogViewController: UIViewController, UITableViewDataSource, UITableViewDelegate
+class ChatLogViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate
 {
     @IBOutlet weak var messageTextField: UITextField!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var bottomBar: UIStackView!
+    @IBOutlet weak var sendImageViewButton: UIImageView!
     
     var user: User?
     var messages: [Message] = []
@@ -38,11 +39,68 @@ class ChatLogViewController: UIViewController, UITableViewDataSource, UITableVie
         
         tableView.keyboardDismissMode = .interactive
         tabBarController?.tabBar.isHidden = true
+        
+        sendImageViewButton.isUserInteractionEnabled = true
+        sendImageViewButton.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleSendImageTap)))
     }
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         NotificationCenter.default.removeObserver(self)
+    }
+    
+    @objc func handleSendImageTap () {
+        let imagePickerController = UIImagePickerController()
+        imagePickerController.allowsEditing = true
+        imagePickerController.delegate = self
+        present(imagePickerController, animated: true, completion: nil)
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        var selectedImageFromPicker: UIImage?
+        if let editedImage = info[.editedImage] as? UIImage {
+            selectedImageFromPicker = editedImage
+            picker.dismiss(animated: true, completion: nil)
+        } else if let originalImage = info[.originalImage] as? UIImage {
+            selectedImageFromPicker = originalImage
+            picker.dismiss(animated: true, completion: nil)
+        }
+        if let selectedImage = selectedImageFromPicker {
+            uploadToFirebaseStorage(image: selectedImage)
+        }
+    }
+    
+    private func uploadToFirebaseStorage(image: UIImage){
+        let imageName = NSUUID().uuidString
+        let data = image.jpegData(compressionQuality: 0.3)
+        let storageRef = Storage.storage().reference().child("message").child(imageName)
+        storageRef.putData(data!, metadata: nil) { (metadata, error) in
+            storageRef.downloadURL { (url, error) in
+                if let imageURL = url?.absoluteString {
+                    let ref = Database.database().reference()
+                    let toID = self.user!.id
+                    let fromID = Auth.auth().currentUser?.uid
+                    let timestamp: NSNumber = NSNumber(value: Date().timeIntervalSince1970)
+                    let values = [
+                        "toID":toID!,
+                        "fromID":fromID!,
+                        "timestamp":timestamp,
+                        "imageURL": imageURL,
+                        "imageHeight": image.size.height,
+                        "imageWidth": image.size.width
+                        ] as [String : Any]
+                    guard let key = ref.childByAutoId().key else { return }
+                    
+                    ref.child("messages").updateChildValues(["\(key)":values])
+                    ref.child("/user-messages/\(fromID!)/\(toID!)/").updateChildValues(["\(key)":0])
+                    ref.child("/user-messages/\(toID!)/\(fromID!)/").updateChildValues(["\(key)":0])
+                }
+            }
+        }
+    }
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        dismiss(animated: true, completion: nil)
     }
     
     func setUpKeyboardObservers() {
@@ -62,6 +120,8 @@ class ChatLogViewController: UIViewController, UITableViewDataSource, UITableVie
                 self.view.layoutIfNeeded()
             }
         }
+        let indexPath = IndexPath(item: 0, section: self.messages.count - 1)
+        self.tableView.scrollToRow(at: indexPath, at: .top, animated: true)
     }
     
     @objc func handleKeyboardHide(notification: NSNotification){
@@ -94,8 +154,12 @@ class ChatLogViewController: UIViewController, UITableViewDataSource, UITableVie
         cell.textView.text = message.text
         
         setUpCell(cell: cell, message: message)
-        
-        cell.bubbleWidthAnchor?.constant = estimateFrameText(text: message.text!).width + 25
+        if message.text != nil {
+            cell.bubbleWidthAnchor?.constant = estimateFrameText(text: message.text!).width + 25
+        } else if message.imageURL != nil {
+            // in here mean image message
+            cell.bubbleWidthAnchor?.constant = 200
+        }
         return cell
         
     }
@@ -105,33 +169,56 @@ class ChatLogViewController: UIViewController, UITableViewDataSource, UITableVie
         if let profileImageURL = self.user?.profileURL {
             cell.profileImage.loadImageCache(urlString: profileImageURL)
         }
-        
-        if message.fromID == Auth.auth().currentUser?.uid {
-            // the message from the user
-            cell.bubbleView.backgroundColor = ChatLogCell.blueColor
-            cell.textView.textColor = UIColor.white
-            cell.profileImage.isHidden = true
-            cell.bubbleViewRightAnchor?.isActive = true
-            cell.bubbleViewLeftAnchor?.isActive = false
+        if message.text != nil {
+            if message.fromID == Auth.auth().currentUser?.uid {
+                // the message from the user
+                cell.bubbleView.image = nil
+                cell.bubbleView.backgroundColor = ChatLogCell.blueColor
+                cell.textView.textColor = UIColor.white
+                cell.profileImage.isHidden = true
+                cell.bubbleViewRightAnchor?.isActive = true
+                cell.bubbleViewLeftAnchor?.isActive = false
+            } else {
+                cell.bubbleView.image = nil
+                cell.bubbleView.backgroundColor = UIColor.init(red: 245/255, green: 245/255, blue: 245/255, alpha: 1)
+                cell.textView.textColor = UIColor.black
+                cell.profileImage.isHidden = false
+                cell.bubbleViewRightAnchor?.isActive = false
+                cell.bubbleViewLeftAnchor?.isActive = true
+            }
+        } else if message.imageURL != nil {
+            cell.bubbleView.loadImageCache(urlString: message.imageURL!)
+            // cell.messageImageView.isHidden = false
+            cell.bubbleView.backgroundColor = UIColor.clear
+            if message.fromID == Auth.auth().currentUser?.uid {
+                cell.profileImage.isHidden = true
+                cell.bubbleViewRightAnchor?.isActive = true
+                cell.bubbleViewLeftAnchor?.isActive = false
+            } else {
+                cell.profileImage.isHidden = false
+                cell.bubbleViewRightAnchor?.isActive = false
+                cell.bubbleViewLeftAnchor?.isActive = true
+            }
         } else {
-            cell.bubbleView.backgroundColor = UIColor.init(red: 245/255, green: 245/255, blue: 245/255, alpha: 1)
-            cell.textView.textColor = UIColor.black
-            cell.profileImage.isHidden = false
-            cell.bubbleViewRightAnchor?.isActive = false
-            cell.bubbleViewLeftAnchor?.isActive = true
+            // cell.messageImageView.isHidden = true
         }
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 20
+        return 10
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         var height:CGFloat = 80
         
         //get estimated height dynamically
-        if let text = messages[indexPath.section].text {
+        let message = messages[indexPath.section]
+        if let text = message.text {
             height = estimateFrameText(text: text).height + 25
+        } else if let imageWidth = message.imageWidth?.floatValue, let imageHeight = message.imageHeight?.floatValue {
+            // h1 / w1 = h2 / w2 where two recangle is proportional relationed
+            // solve for h1 = h2 / w2 * w1
+            height = CGFloat(imageHeight / imageWidth * 200)
         }
         
         return height
@@ -159,10 +246,7 @@ class ChatLogViewController: UIViewController, UITableViewDataSource, UITableVie
                     return
                 }
                 let message = Message(
-                    fromID: dictionary["fromID"]! as! String,
-                    toID: dictionary["toID"]! as! String,
-                    timestamp: dictionary["timestamp"]! as! NSNumber,
-                    text: dictionary["text"]! as! String
+                    dictionary: dictionary
                 )
                 
                 // check if the chatPartner of the selected user is the user passed from the parent
@@ -170,6 +254,10 @@ class ChatLogViewController: UIViewController, UITableViewDataSource, UITableVie
                 
                 self.messages.append(message)
                 self.tableView.reloadData()
+                
+                //scroll to the last index
+                let indexPath = IndexPath(item: 0, section: self.messages.count - 1)
+                self.tableView.scrollToRow(at: indexPath, at: .top, animated: true)
             })
         }
     }

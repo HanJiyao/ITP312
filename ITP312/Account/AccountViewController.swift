@@ -22,8 +22,6 @@ class AccountViewController: UIViewController {
         } catch let logoutErr {
             print(logoutErr)
         }
-        let LoginViewController =  self.storyboard?.instantiateViewController(withIdentifier: "Login") as! LoginViewController
-        present(LoginViewController, animated: true, completion: nil)
     }
     
     

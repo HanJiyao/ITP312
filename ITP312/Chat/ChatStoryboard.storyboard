@@ -261,6 +261,7 @@
                     <connections>
                         <outlet property="bottomBar" destination="6uf-jL-jDP" id="r30-Od-wTS"/>
                         <outlet property="messageTextField" destination="jbs-br-H6D" id="RJO-vo-k5m"/>
+                        <outlet property="sendImageViewButton" destination="xSI-3I-Vy6" id="b0c-sp-A2J"/>
                         <outlet property="tableView" destination="bTd-PC-mBg" id="Pdb-tJ-sGb"/>
                     </connections>
                 </viewController>

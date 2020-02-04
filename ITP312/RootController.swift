@@ -9,7 +9,7 @@
 import UIKit
 import Firebase
 
-class ViewController: UIViewController {
+class RootViewController: UITabBarController {
 
     var handle: AuthStateDidChangeListenerHandle?
     
@@ -19,7 +19,14 @@ class ViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         handle = Auth.auth().addStateDidChangeListener { (auth, user) in
-            
+            let uid = auth.currentUser?.uid
+            if uid != nil {
+                print("Logged in as \(uid!)")
+            } else {
+                print("User not login")
+                let loginViewController = self.storyboard?.instantiateViewController(withIdentifier: "Login") as! LoginViewController
+                self.present(loginViewController, animated: true, completion: nil)
+            }
         }
     }
 

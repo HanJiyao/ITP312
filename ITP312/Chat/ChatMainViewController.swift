@@ -23,8 +23,31 @@ class ChatMainViewController: UIViewController, UITableViewDataSource, UITableVi
         messageTableView.delegate = self
         messageTableView.rowHeight = 80.0
         messageTableView.register(UserCell.self, forCellReuseIdentifier: cellID)
+        messageTableView.allowsMultipleSelectionDuringEditing = true
     }
     
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        guard let uid = Auth.auth().currentUser?.uid else {
+            return
+        }
+        let message = self.messages[indexPath.row]
+        if let chatPartnerID = message.chatPartnerID() {
+            Database.database().reference().child("user-messages/\(uid)/\(chatPartnerID)/").removeValue { (err, ref) in
+                if err != nil {
+                    print("fail to delete message:", err!)
+                }
+                //delete message with chatPartnerID
+                self.messageDictionary.removeValue(forKey: chatPartnerID)
+                self.attemptReload()
+//
+//                self.messages.remove(at: indexPath.row)
+//                self.messageTableView.deleteRows(at: [indexPath], with: .automatic)
+            }
+        }
+    }
     override func viewWillAppear(_ animated: Bool) {
         tabBarController?.tabBar.isHidden = false
         setCurrentUser()
@@ -71,6 +94,11 @@ class ChatMainViewController: UIViewController, UITableViewDataSource, UITableVi
             })
         })
         
+        uidRef.observe(.childRemoved) { (snapshot) in
+            self.messageDictionary.removeValue(forKey: snapshot.key)
+            self.attemptReload()
+        }
+        
     }
     
     private func fetchMessageWithID(messageID: String) {
@@ -78,10 +106,7 @@ class ChatMainViewController: UIViewController, UITableViewDataSource, UITableVi
         messageRef.observe(.value, with: { (snapshot) in
             if let dictionary = snapshot.value as? [String: AnyObject] {
                 let message = Message(
-                    fromID: dictionary["fromID"]! as! String,
-                    toID: dictionary["toID"]! as! String,
-                    timestamp: dictionary["timestamp"]! as! NSNumber,
-                    text: dictionary["text"]! as! String
+                    dictionary: dictionary
                 )
                 
                 if let chatPartnerID = message.chatPartnerID() {
