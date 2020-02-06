@@ -111,7 +111,7 @@ class ChatMainViewController: UIViewController, UITableViewDataSource, UITableVi
         // untill there is no change reload the entire data table
         
         self.timer?.invalidate()
-        self.timer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(self.handleReload), userInfo: nil, repeats: false)
+        self.timer = Timer.scheduledTimer(timeInterval: 0.2, target: self, selector: #selector(self.handleReload), userInfo: nil, repeats: false)
     }
     
     @objc func handleReload() {

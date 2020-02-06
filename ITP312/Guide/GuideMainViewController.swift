@@ -9,12 +9,12 @@
 import UIKit
 import Firebase
 
+
 class GuideMainViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
     let cellID = "GuideCell"
     
     @IBOutlet weak var guideTableView: UITableView!
-    @IBOutlet weak var viewButton: UIBarButtonItem!
     @IBOutlet weak var createButton: UIBarButtonItem!
     
     var guides:[Guide] = []
@@ -24,7 +24,7 @@ class GuideMainViewController: UIViewController, UITableViewDataSource, UITableV
         super.viewDidLoad()
         guideTableView.register(GuideCell.self, forCellReuseIdentifier: cellID)
         guideTableView.delegate = self
-        guideTableView.rowHeight = 75
+        guideTableView.rowHeight = 90
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -38,23 +38,37 @@ class GuideMainViewController: UIViewController, UITableViewDataSource, UITableV
             if let dictionary = snapshot.value as? [String:AnyObject] {
                 for i in dictionary {
                     let guide = Guide(dictionary: i.value as! [String : AnyObject])
-                    self.guides.append(guide)
                     if guide.guideID == Auth.auth().currentUser?.uid {
                         self.guideRole = true
+                    } else {
+                        self.guides.append(guide)
                     }
+                    self.toggleRole(isGuide: self.guideRole)
                 }
-                
-                if self.guideRole {
-                    self.viewButton.isEnabled = true
-                    self.createButton.isEnabled = false
-                } else {
-                    self.viewButton.isEnabled = false
-                    self.createButton.isEnabled = true
-                }
-                
-                self.guideTableView.reloadData()
+                self.attemptReload()
             }
         }
+    }
+    
+    func toggleRole (isGuide: Bool) {
+        if isGuide {
+            createButton.title = "My Guide Profile"
+        } else {
+            createButton.title = "Become New Guide!"
+        }
+    }
+    
+    var timer:Timer?
+    private func attemptReload() {
+        self.timer?.invalidate()
+        self.timer = Timer.scheduledTimer(timeInterval: 0.2, target: self, selector: #selector(self.handleReload), userInfo: nil, repeats: false)
+    }
+    
+    @objc func handleReload() {
+        self.guides.sort(by: {(guide1: Guide, guide2: Guide) -> Bool in
+            guide1.date! > guide2.date!
+        })
+        guideTableView.reloadData()
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -64,7 +78,9 @@ class GuideMainViewController: UIViewController, UITableViewDataSource, UITableV
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellID, for: indexPath) as! GuideCell
         let guide = guides[indexPath.row]
-        cell.guide = guide
+        if guide.guideID != Auth.auth().currentUser?.uid{
+            cell.guide = guide
+        }
         return cell
     }
     
@@ -92,5 +108,5 @@ class GuideMainViewController: UIViewController, UITableViewDataSource, UITableV
         GuideDetailViewController.guide = guide
         self.navigationController?.pushViewController(GuideDetailViewController, animated: true)
     }
-
+    
 }

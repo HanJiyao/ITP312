@@ -84,7 +84,7 @@ extension SearchText: UITableViewDelegate, UITableViewDataSource {
             superview?.bringSubviewToFront(tableView)
             var tableHeight: CGFloat = 0
             tableHeight = tableView.contentSize.height
-            
+            print(tableHeight)
         }
     }
     
@@ -98,7 +98,7 @@ extension SearchText: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "CustomSearchCell", for: indexPath) as UITableViewCell
-        var attributedString = NSMutableAttributedString(string: resultsList[indexPath.row])
+        let attributedString = NSMutableAttributedString(string: resultsList[indexPath.row])
         cell.textLabel?.attributedText = attributedString
         return cell
     }

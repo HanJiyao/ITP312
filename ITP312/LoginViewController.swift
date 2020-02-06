@@ -18,6 +18,8 @@ class LoginViewController: UIViewController, UIImagePickerControllerDelegate, UI
     @IBOutlet weak var errorTextField: UILabel!
     @IBOutlet weak var loginRegisterButton: UIButton!
     @IBOutlet weak var profileImageView: UIImageView!
+    var profileImageViewHeightAnchor: NSLayoutConstraint?
+    var profileImageViewWidthAnchor: NSLayoutConstraint?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,10 +33,21 @@ class LoginViewController: UIViewController, UIImagePickerControllerDelegate, UI
         nameTextField.setBottomBorder()
         emailTextField.setBottomBorder()
         passwordTextField.setBottomBorder()
-        profileImageView.layer.cornerRadius = 75
-        profileImageView.isUserInteractionEnabled = true
-        profileImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleProfileImage)))
+        
         setUpKeyboardObservers()
+        
+        loginRegisterSegment.selectedSegmentIndex = 1
+        nameTextField.isHidden = true
+        
+        profileImageView.image = UIImage.init(named: "no-image")
+        profileImageView.isUserInteractionEnabled = false
+        profileImageView.removeGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleProfileImage)))
+        profileImageViewHeightAnchor = profileImageView.heightAnchor.constraint(equalToConstant: 150)
+        profileImageViewHeightAnchor!.isActive = true
+        profileImageViewWidthAnchor = profileImageView.widthAnchor.constraint(equalToConstant: 150)
+        profileImageViewWidthAnchor!.isActive = true
+        profileImageView.layer.masksToBounds = true
+        profileImageView.layer.cornerRadius = 75
     }
     override func viewDidDisappear(_ animated: Bool) {
         NotificationCenter.default.removeObserver(self)
@@ -46,7 +59,9 @@ class LoginViewController: UIViewController, UIImagePickerControllerDelegate, UI
     }
     
     @objc func handleKeyboardShow(notification: NSNotification){
-        profileImageView.isHidden = true
+        profileImageViewHeightAnchor?.constant = 50
+        profileImageViewWidthAnchor?.constant = 50
+        profileImageView.layer.cornerRadius = 25
         if let keyboardDuration: Double = notification.userInfo?[UIResponder.keyboardAnimationDurationUserInfoKey] as? Double {
             UIView.animate(withDuration: keyboardDuration) {
                 self.view.layoutIfNeeded()
@@ -55,7 +70,9 @@ class LoginViewController: UIViewController, UIImagePickerControllerDelegate, UI
     }
     
     @objc func handleKeyboardHide(notification: NSNotification){
-        profileImageView.isHidden = false
+        profileImageViewHeightAnchor?.constant = 150
+        profileImageViewWidthAnchor?.constant = 150
+        profileImageView.layer.cornerRadius = 75
         if let keyboardDuration: Double = notification.userInfo?[UIResponder.keyboardAnimationDurationUserInfoKey] as? Double {
             UIView.animate(withDuration: keyboardDuration) {
                 self.view.layoutIfNeeded()
@@ -99,7 +116,6 @@ class LoginViewController: UIViewController, UIImagePickerControllerDelegate, UI
                 if error != nil {
                     self.errorTextField.text = error?.localizedDescription
                 }
-                
                 guard let uid = authResult?.user.uid else {
                     return
                 }
@@ -146,10 +162,12 @@ class LoginViewController: UIViewController, UIImagePickerControllerDelegate, UI
         let state = loginRegisterSegment.titleForSegment(at: loginRegisterSegment.selectedSegmentIndex)
         if loginRegisterSegment.selectedSegmentIndex == 0 {
             nameTextField.isHidden = false
+            profileImageView.image = UIImage.init(named: "profile")
             profileImageView.isUserInteractionEnabled = true
             profileImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleProfileImage)))
         } else {
             nameTextField.isHidden = true
+            profileImageView.image = UIImage.init(named: "no-image")
             profileImageView.isUserInteractionEnabled = false
             profileImageView.removeGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleProfileImage)))
         }

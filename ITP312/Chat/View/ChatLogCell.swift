@@ -34,22 +34,22 @@ class ChatLogCell: UITableViewCell {
     
     let profileImage: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = UIImage(named: "profile")
+        imageView.image = UIImage(named: "no-image")
         imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.layer.cornerRadius = 16
+        imageView.layer.cornerRadius = 18
         imageView.clipsToBounds = true
         imageView.contentMode = .scaleAspectFill
         return imageView
     }()
     
-    let messageImageView: UIImageView = {
-        let imageView = UIImageView()
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.layer.cornerRadius = 16
-        imageView.clipsToBounds = true
-        imageView.contentMode = UIView.ContentMode.scaleAspectFit
-        return imageView
-    }()
+//    let messageImageView: UIImageView = {
+//        let imageView = UIImageView()
+//        imageView.translatesAutoresizingMaskIntoConstraints = false
+//        imageView.layer.cornerRadius = 16
+//        imageView.clipsToBounds = true
+//        imageView.contentMode = UIView.ContentMode.scaleAspectFit
+//        return imageView
+//    }()
     
     var bubbleWidthAnchor: NSLayoutConstraint?
     var bubbleViewLeftAnchor: NSLayoutConstraint?
@@ -62,7 +62,7 @@ class ChatLogCell: UITableViewCell {
         addSubview(textView)
         addSubview(profileImage)
         
-        bubbleView.addSubview(messageImageView)
+        // bubbleView.addSubview(messageImageView)
 
         bubbleViewRightAnchor = bubbleView.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -8)
         bubbleViewLeftAnchor = bubbleView.leftAnchor.constraint(equalTo: profileImage.rightAnchor, constant: 8)
@@ -73,8 +73,8 @@ class ChatLogCell: UITableViewCell {
         bubbleViewLeftAnchor?.isActive = true
         bubbleWidthAnchor?.isActive = true
         bubbleView.heightAnchor.constraint(equalTo: self.heightAnchor).isActive = true
-        messageImageView.layer.borderColor = UIColor.init(red: 0, green: 0 , blue: 0, alpha: 1).cgColor
-        messageImageView.layer.borderWidth = 2
+//        messageImageView.layer.borderColor = UIColor.init(red: 0, green: 0 , blue: 0, alpha: 1).cgColor
+//        messageImageView.layer.borderWidth = 2
         
         
         textView.leftAnchor.constraint(equalTo: bubbleView.leftAnchor, constant: 8).isActive = true
@@ -83,14 +83,14 @@ class ChatLogCell: UITableViewCell {
         textView.heightAnchor.constraint(equalTo: self.heightAnchor).isActive = true
         
         profileImage.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 8).isActive = true
-        profileImage.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: 0).isActive = true
-        profileImage.widthAnchor.constraint(equalToConstant: 32).isActive = true
-        profileImage.heightAnchor.constraint(equalToConstant: 32).isActive = true
+        profileImage.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -5).isActive = true
+        profileImage.widthAnchor.constraint(equalToConstant: 36).isActive = true
+        profileImage.heightAnchor.constraint(equalToConstant: 36).isActive = true
         
-        messageImageView.leftAnchor.constraint(equalTo: bubbleView.leftAnchor)
-        messageImageView.rightAnchor.constraint(equalTo: bubbleView.rightAnchor)
-        messageImageView.heightAnchor.constraint(equalTo: bubbleView.heightAnchor)
-        messageImageView.widthAnchor.constraint(equalTo: bubbleView.widthAnchor)
+//        messageImageView.leftAnchor.constraint(equalTo: bubbleView.leftAnchor)
+//        messageImageView.rightAnchor.constraint(equalTo: bubbleView.rightAnchor)
+//        messageImageView.heightAnchor.constraint(equalTo: bubbleView.heightAnchor)
+//        messageImageView.widthAnchor.constraint(equalTo: bubbleView.widthAnchor)
         
     }
     

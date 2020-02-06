@@ -40,13 +40,13 @@ class GalleryCollectionViewController: UIViewController, UICollectionViewDelegat
 //        cell.nameLabel.text = onePhotoFrame.name
 //        cell.imageView = UIImageView(image: UIImage(named: onePhotoFrame.imageURL!))
 //        dump(onePhotoFrame)
-        print(onePhotoFrame.name)
+        print(onePhotoFrame.name!)
         
         Storage.storage().reference(forURL: onePhotoFrame.imageURL!).getData(maxSize: 2000000) { (data, error) in
             //https://stackoverflow.com/questions/54029490/firebase-storage-to-uiimageview
-            print("data", data)
+            // print("data", data)
             guard let imageData = data, error == nil else {
-                print("error", error)
+                print("error", error!)
                 return
             }
             print("image data", imageData)
@@ -84,7 +84,7 @@ class GalleryCollectionViewController: UIViewController, UICollectionViewDelegat
                 //                print(snapDict)
                 let snapDict = rest.value as? [String: Any]
                 
-                print("name", snapDict!["name"] as? String)
+                print("name", snapDict!["name"] as! String)
                 let oneGallery = GalleryModel(id: rest.key, name: snapDict!["name"] as! String, price: snapDict!["price"] as! String, imageURL: snapDict!["imageURL"] as! String)
                 self.galleryList.append(oneGallery)
                 //                for child in snapDict{

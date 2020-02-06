@@ -33,14 +33,14 @@ class MapViewController: UIViewController {
         // Get selected country string
         let countrySelected = searchTextField.text
         countryName = countrySelected
-        print(planName)
+        print(planName!)
         print(countrySelected!)
     
-        UIApplication.shared.beginIgnoringInteractionEvents()
+        // UIApplication.shared.beginIgnoringInteractionEvents()
         
         // Loading
         let activityIndicator = UIActivityIndicatorView()
-        activityIndicator.style = UIActivityIndicatorView.Style.gray
+        activityIndicator.style = UIActivityIndicatorView.Style.medium
         activityIndicator.center = self.view.center
         activityIndicator.hidesWhenStopped = true
         activityIndicator.startAnimating()
@@ -54,7 +54,7 @@ class MapViewController: UIViewController {
         activeSearch.start { (response, error) in
             
             activityIndicator.stopAnimating()
-            UIApplication.shared.endIgnoringInteractionEvents()
+            // UIApplication.shared.endIgnoringInteractionEvents()
             
             if response == nil {
                 print("ERROR")

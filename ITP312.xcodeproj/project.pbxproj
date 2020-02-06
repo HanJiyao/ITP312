@@ -424,11 +424,9 @@
 				FBEF089823E80D1800636B47 /* PlanCell.swift in Sources */,
 				51174C5223CEF22300B9DF4A /* UserListViewController.swift in Sources */,
 				5156A05E23CDA39A008328C5 /* RootController.swift in Sources */,
-				5156A05E23CDA39A008328C5 /* RootController.swift in Sources */,
 				FB4D4A9E23E8A71D007B67B2 /* SearchItem.swift in Sources */,
 				FB4D4AA423E935A3007B67B2 /* CalendarController.swift in Sources */,
 				D50C37B123E81E3300DD3A04 /* SwiftUIGallery.swift in Sources */,
-				5156A05E23CDA39A008328C5 /* RootController.swift in Sources */,
 				512985EB23E3D7390053D3D9 /* AccountViewController.swift in Sources */,
 				D50C37AF23E81E3300DD3A04 /* GalleryViewController.swift in Sources */,
 				5156A07023CDA449008328C5 /* LoginViewController.swift in Sources */,
@@ -616,7 +614,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.nyp.ITP312;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -637,7 +635,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.nyp.ITP312;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;

@@ -30,19 +30,20 @@ class GuideCell: UITableViewCell {
         }
         self.timeLabel.text = guide?.date
         self.detailTextLabel?.text = guide?.service
+        self.descLabel.text = guide?.desc
     }
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        textLabel?.frame = CGRect.init(x: 100, y: textLabel!.frame.origin.y - 2, width: textLabel!.frame.width, height: textLabel!.frame.height)
-        detailTextLabel?.frame = CGRect.init(x: 100, y: detailTextLabel!.frame.origin.y + 3, width: detailTextLabel!.frame.width, height: detailTextLabel!.frame.height)
+        textLabel?.frame = CGRect.init(x: 120, y: textLabel!.frame.origin.y - 9, width: textLabel!.frame.width, height: textLabel!.frame.height)
+        detailTextLabel?.frame = CGRect.init(x: 120, y: detailTextLabel!.frame.origin.y - 7, width: detailTextLabel!.frame.width, height: detailTextLabel!.frame.height)
     }
     
     let profileImage:UIImageView = {
         let imageView = UIImageView()
-        imageView.image = UIImage(named: "profile")
+        imageView.image = UIImage(named: "no-image")
         imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.layer.cornerRadius = 30
+        imageView.layer.cornerRadius = 10
         imageView.layer.masksToBounds = true
         return imageView
     }()
@@ -55,17 +56,31 @@ class GuideCell: UITableViewCell {
         return label
     }()
     
+    let descLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = UIFont.systemFont(ofSize: 12)
+        label.textColor = UIColor.darkGray
+        return label
+    }()
+    
     
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: .subtitle, reuseIdentifier: reuseIdentifier)
         addSubview(profileImage)
+        addSubview(descLabel)
         addSubview(timeLabel)
         
         profileImage.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 20).isActive = true
         profileImage.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
-        profileImage.widthAnchor.constraint(equalToConstant: 60).isActive = true
-        profileImage.heightAnchor.constraint(equalToConstant: 60).isActive = true
+        profileImage.widthAnchor.constraint(equalToConstant: 75).isActive = true
+        profileImage.heightAnchor.constraint(equalToConstant: 75).isActive = true
+        
+        descLabel.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 120).isActive = true
+        descLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 61).isActive = true
+        descLabel.widthAnchor.constraint(equalToConstant: 150).isActive = true
+        
         timeLabel.rightAnchor.constraint(equalTo: self.rightAnchor).isActive = true
         timeLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 20).isActive = true
         timeLabel.widthAnchor.constraint(equalToConstant: 100).isActive = true

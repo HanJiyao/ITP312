@@ -99,6 +99,8 @@ PODS:
   - nanopb/decode (0.3.9011)
   - nanopb/encode (0.3.9011)
   - PromisesObjC (1.2.8)
+  - RSSelectionMenu (6.1.0)
+  - ShadowView (1.4.3)
 
 DEPENDENCIES:
   - Firebase
@@ -107,6 +109,8 @@ DEPENDENCIES:
   - Firebase/Database
   - Firebase/Storage
   - FSCalendar
+  - RSSelectionMenu
+  - ShadowView
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
@@ -130,6 +134,8 @@ SPEC REPOS:
     - leveldb-library
     - nanopb
     - PromisesObjC
+    - RSSelectionMenu
+    - ShadowView
 
 SPEC CHECKSUMS:
   Firebase: 497158b816d0a86fc31babbd05546fcd7e6083ff
@@ -152,7 +158,9 @@ SPEC CHECKSUMS:
   leveldb-library: 55d93ee664b4007aac644a782d11da33fba316f7
   nanopb: 18003b5e52dab79db540fe93fe9579f399bd1ccd
   PromisesObjC: c119f3cd559f50b7ae681fa59dc1acd19173b7e6
+  RSSelectionMenu: dac4fa365e4bbd95c0eccd0b6ff51a623a22a1c6
+  ShadowView: d2d92fd2706b3f6a182be2147149db0b1cf7700d
 
-PODFILE CHECKSUM: 265374d180e28c5b9dc6e62b3175efc6de6ddb37
+PODFILE CHECKSUM: aef6f081154ccbb33a434f964244502fb3e26dcb
 
 COCOAPODS: 1.7.5

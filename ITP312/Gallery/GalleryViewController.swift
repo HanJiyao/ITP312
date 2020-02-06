@@ -37,7 +37,7 @@ class GalleryViewController: UIViewController {
         
         galleryLabel.text = "Not logged in"
         
-        print("email", Auth.auth().currentUser?.email)
+        print("email", (Auth.auth().currentUser?.email)!!)
         
         if let currentUser = Auth.auth().currentUser {
             print("current user id", currentUser.uid)
@@ -49,7 +49,7 @@ class GalleryViewController: UIViewController {
                     return
                 }
                 print("print user object " + "\(dictionary as AnyObject)")
-                print(dictionary["name"])
+                print(dictionary["name"]!)
 //                                dump(dictionary)
                 //                let user = User(
                 //                    id: chatPartnerID,

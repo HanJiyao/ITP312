@@ -67,7 +67,7 @@ class SetDateForPlanViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         if !selectedDates.isEmpty {
-            var travelDate = selectedDates[0] + " to " + selectedDates[1]
+            let travelDate = selectedDates[0] + " to " + selectedDates[1]
             dateSummaryLabel.text = travelDate
             dateSummaryLabel.sizeToFit()
             dateSummaryLabel.numberOfLines = 2

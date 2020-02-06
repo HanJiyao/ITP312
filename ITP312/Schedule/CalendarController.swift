@@ -31,7 +31,7 @@ class CalendarController: UIViewController, FSCalendarDataSource, FSCalendarDele
         override func loadView() {
             
             let view = UIView(frame: UIScreen.main.bounds)
-            view.backgroundColor = UIColor.groupTableViewBackground
+            view.backgroundColor = UIColor.white
             self.view = view
             
             let height: CGFloat = UIDevice.current.model.hasPrefix("iPad") ? 400 : 300
@@ -136,7 +136,7 @@ class CalendarController: UIViewController, FSCalendarDataSource, FSCalendarDele
         }
         
         func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
-            var date = self.formatter.string(from: date)
+            let date = self.formatter.string(from: date)
             print("did select date \(date)")
             selectedDates.append(date)
             self.configureVisibleCells()

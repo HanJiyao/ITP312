@@ -178,6 +178,7 @@ class ChatLogViewController: UIViewController, UITableViewDataSource, UITableVie
                 cell.profileImage.isHidden = true
                 cell.bubbleViewRightAnchor?.isActive = true
                 cell.bubbleViewLeftAnchor?.isActive = false
+                cell.bubbleView.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMinXMaxYCorner, .layerMinXMinYCorner,]
             } else {
                 cell.bubbleView.image = nil
                 cell.bubbleView.backgroundColor = UIColor.init(red: 245/255, green: 245/255, blue: 245/255, alpha: 1)
@@ -185,6 +186,7 @@ class ChatLogViewController: UIViewController, UITableViewDataSource, UITableVie
                 cell.profileImage.isHidden = false
                 cell.bubbleViewRightAnchor?.isActive = false
                 cell.bubbleViewLeftAnchor?.isActive = true
+                cell.bubbleView.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMinXMaxYCorner, .layerMaxXMinYCorner,]
             }
         } else if message.imageURL != nil {
             cell.bubbleView.loadImageCache(urlString: message.imageURL!)
@@ -199,9 +201,10 @@ class ChatLogViewController: UIViewController, UITableViewDataSource, UITableVie
                 cell.bubbleViewRightAnchor?.isActive = false
                 cell.bubbleViewLeftAnchor?.isActive = true
             }
-        } else {
-            // cell.messageImageView.isHidden = true
         }
+//        } else {
+//            // cell.messageImageView.isHidden = true
+//        }
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {

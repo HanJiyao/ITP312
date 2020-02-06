@@ -1,0 +1,6 @@
+framework module ShadowView {
+  umbrella header "ShadowView-umbrella.h"
+
+  export *
+  module * { export * }
+}
