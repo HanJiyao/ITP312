@@ -28,8 +28,8 @@ class GuideDetailViewController: UIViewController {
         super.viewDidLoad()
         
         chatButton.layer.cornerRadius = 15
-        chatButton.layer.borderColor = UIColor.systemGreen.cgColor
-        chatButton.layer.borderWidth = 2
+        chatButton.layer.borderColor = UIColor.systemBlue.cgColor
+        chatButton.layer.borderWidth = 1
         bookBtn.layer.cornerRadius = 15
     }
     

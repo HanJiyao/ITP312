@@ -15,7 +15,8 @@ class GuideMainViewController: UIViewController, UITableViewDataSource, UITableV
     let cellID = "GuideCell"
     
     @IBOutlet weak var guideTableView: UITableView!
-    @IBOutlet weak var createButton: UIBarButtonItem!
+    @IBOutlet weak var createButton: UIButton!
+    
     
     var guides:[Guide] = []
     var guideRole = false
@@ -52,9 +53,9 @@ class GuideMainViewController: UIViewController, UITableViewDataSource, UITableV
     
     func toggleRole (isGuide: Bool) {
         if isGuide {
-            createButton.title = "My Guide Profile"
+            createButton.setTitle("My Guide Profile", for: .normal)
         } else {
-            createButton.title = "Become New Guide!"
+            createButton.setTitle("Become New Guide!", for: .normal)
         }
     }
     
