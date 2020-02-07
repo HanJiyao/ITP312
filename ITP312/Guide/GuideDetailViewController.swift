@@ -13,7 +13,9 @@ import ShadowView
 class GuideDetailViewController: UIViewController {
 
     var user: User?
-    var guide:Guide?
+    var guide: Guide?
+    var preview = false
+    
     @IBOutlet weak var guideImageView: UIImageView!
     @IBOutlet weak var userNameTextLabel: UILabel!
     @IBOutlet weak var serviceTextLabel: UITextView!
@@ -23,6 +25,7 @@ class GuideDetailViewController: UIViewController {
     @IBOutlet weak var userProfileImg: UIImageView!
     @IBOutlet weak var userProfileOuter: UIView!
     @IBOutlet weak var bookBtn: UIButton!
+    @IBOutlet weak var bottomBar: UIStackView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,17 +34,7 @@ class GuideDetailViewController: UIViewController {
         chatButton.layer.borderColor = UIColor.systemBlue.cgColor
         chatButton.layer.borderWidth = 1
         bookBtn.layer.cornerRadius = 15
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        guard let uid = Auth.auth().currentUser?.uid else {
-            return
-        }
-        if uid == guide?.guideID {
-            chatButton.isHidden = true
-        }
-        guideImageView.loadImageCache(urlString: (guide?.imgURL!)!)
-        userProfileImg.loadImageCache(urlString: (user?.profileURL!)!)
+        
         userProfileImg.layer.cornerRadius = 30
         userProfileImg.clipsToBounds = true
         userProfileImg.layer.borderColor = CGColor.init(srgbRed: 1, green: 1, blue: 1, alpha: 1)
@@ -51,29 +44,69 @@ class GuideDetailViewController: UIViewController {
         userProfileOuter.layer.shadowOffset = CGSize.zero
         userProfileOuter.layer.shadowColor = UIColor.black.cgColor
         userProfileOuter.layer.shadowOpacity = 0.3
-        userNameTextLabel.text = user?.name
-        descTextLabel.text = guide?.desc
-        serviceTextLabel.text = guide?.service
-        if guide != nil {
-            dateTextLabel.text = "\(guide!.fromDate!) to \(guide!.toDate!)"
+        
+        if preview {
+            bottomBar.isHidden = true
+        }
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        guard let guideID = guide?.guideID else {
+            return
+        }
+        Database.database().reference().child("users").observeSingleEvent(of: .value, with: { (snapshot) in
+            if let dictionary = snapshot.value as? [String: AnyObject] {
+                for i in dictionary {
+                    if i.key == guideID {
+                        self.user = User(
+                            id: i.key,
+                            name: i.value["name"]!! as! String,
+                            email: i.value["email"]!! as! String,
+                            profileURL: i.value["profileURL"]!! as! String
+                        )
+                        if self.guide?.imgURL != nil {
+                            self.guideImageView.loadImageCache(urlString: (self.guide?.imgURL!)!)
+                        }
+                        self.userProfileImg.loadImageCache(urlString: (self.user?.profileURL!)!)
+                        self.userNameTextLabel.text = self.user?.name
+                        self.descTextLabel.text = self.guide?.desc
+                        self.serviceTextLabel.text = self.guide?.service
+                        self.dateTextLabel.text = "\(self.guide!.fromDate!) to \(self.guide!.toDate!)"
+                    }
+                }
+            }
+        }) { (error) in
+            print(error.localizedDescription)
+        }
+        
+        if let booked = guide?.booked{
+            if booked {
+                bookBtn.setTitle("Booked", for: .normal)
+                bookBtn.backgroundColor = .lightGray
+                bookBtn.isEnabled = false
+            }
         }
     }
 
     @IBAction func handleRedirectChat(_ sender: Any) {
-//        guard let uid = Auth.auth().currentUser?.uid else {
-//            return
-//        }
-//        if uid == guide?.guideID {
-//            let GuideEditViewController = self.storyboard?.instantiateViewController(withIdentifier: "CreateGuide") as! GuideEditViewController
-//            GuideEditViewController.guide = guide
-//            self.navigationController?.pushViewController(GuideEditViewController, animated: true)
-//        } else {
-            let chatLogViewController = self.storyboard?.instantiateViewController(withIdentifier: "ChatLog") as! ChatLogViewController
-            chatLogViewController.user = user
-            // self.navigationController?.pushViewController(chatLogViewController, animated: true)
-            present(chatLogViewController, animated: true, completion: nil)
-//        }
+        let chatLogViewController = self.storyboard?.instantiateViewController(withIdentifier: "ChatLog") as! ChatLogViewController
+        chatLogViewController.user = user
+        // self.navigationController?.pushViewController(chatLogViewController, animated: true)
+        present(chatLogViewController, animated: true, completion: nil)
     }
     @IBAction func handleBook(_ sender: Any) {
+        guard  let uid = Auth.auth().currentUser?.uid, let guidID = guide?.guideID else {
+            return
+        }
+        let ref = Database.database().reference()
+        
+        ref.child("/guides/\(guidID)").updateChildValues(["booked":true])
+        ref.child("/user-guides/guide-to-user/").updateChildValues([guidID:uid])
+        ref.child("/user-guides/user-to-guide/\(uid)/\(guidID)/").updateChildValues(["status":0])
+        
+        bookBtn.setTitle("Booked", for: .normal)
+        bookBtn.backgroundColor = .lightGray
+        bookBtn.isEnabled = false
     }
 }

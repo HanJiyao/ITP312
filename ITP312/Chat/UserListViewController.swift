@@ -30,19 +30,26 @@ class UserListViewController: UIViewController, UITableViewDataSource, UITableVi
     func fetchUser() {
         var ref: DatabaseReference!
         ref = Database.database().reference()
-        ref.child("users").observeSingleEvent(of: .value, with: { (snapshot) in
+        ref.child("/user-guides/guide-to-user/").observeSingleEvent(of: .value, with: { (snapshot) in
             if let dictionary = snapshot.value as? [String: AnyObject] {
                 for i in dictionary {
-                    if i.key != Auth.auth().currentUser?.uid {
-                        self.users.append(User(
-                            id: i.key,
-                            name: i.value["name"]!! as! String,
-                            email: i.value["email"]!! as! String,
-                            profileURL: i.value["profileURL"]!! as! String
-                        ))
+                    let userID = i.value as! String
+                    if userID == Auth.auth().currentUser!.uid {
+                        ref.child("/users/\(i.key)").observeSingleEvent(of: .value) { (snapshot) in
+                            if let dictionary = snapshot.value as? [String: AnyObject] {
+                                print(dictionary)
+                                let user = User(
+                                    id: i.key,
+                                    name: dictionary["name"]! as! String,
+                                    email: dictionary["email"]! as! String,
+                                    profileURL: dictionary["profileURL"]! as! String
+                                )
+                                self.users.append(user)
+                            }
+                            self.tableView.reloadData()
+                        }
                     }
                 }
-                self.tableView.reloadData()
             }
         }) { (error) in
             print(error.localizedDescription)

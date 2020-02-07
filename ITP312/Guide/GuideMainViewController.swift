@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import DropDown
 
 
 class GuideMainViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
@@ -16,16 +17,84 @@ class GuideMainViewController: UIViewController, UITableViewDataSource, UITableV
     
     @IBOutlet weak var guideTableView: UITableView!
     @IBOutlet weak var createButton: UIButton!
-    
+    @IBOutlet weak var sortButton: UIButton!
+    @IBOutlet weak var orderButton: UIImageView!
+    @IBOutlet weak var myBookingButton: UIButton!
     
     var guides:[Guide] = []
+    var users:[User] = []
     var guideRole = false
+    let dropDown = DropDown()
+    var ascending = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
         guideTableView.register(GuideCell.self, forCellReuseIdentifier: cellID)
         guideTableView.delegate = self
         guideTableView.rowHeight = 90
+        createButton.layer.cornerRadius = 15
+        
+        dropDown.anchorView = guideTableView
+        // UIView or UIBarButtonItem
+        dropDown.customCellConfiguration = { (index: Index, item: String, cell: DropDownCell) -> Void in
+            // Setup your custom UI components
+            cell.optionLabel.textAlignment = .center
+        }
+        // The list of items to display. Can be changed dynamically
+        dropDown.dataSource = ["Popularity", "Name", "Start Date", "End Date"]
+        dropDown.selectionAction = { [unowned self] (index: Int, item: String) in
+          print("Selected item: \(item) at index: \(index)")
+            self.sortButton.setTitle(item, for: .normal)
+            if self.sortButton.titleLabel!.text == item {
+                self.ascending.toggle()
+                if self.ascending {
+                    self.orderButton.image = UIImage.init(systemName: "chevron.up.circle")
+                } else {
+                     self.orderButton.image = UIImage.init(systemName: "chevron.down.circle")
+                }
+                self.attemptReload()
+            }
+        }
+        
+        // observeRefreshGuides()
+    }
+    
+    private func handleSortTable() {
+        if sortButton.titleLabel!.text == "Start Date" && ascending {
+            self.guides.sort(by: {(guide1: Guide, guide2: Guide) -> Bool in
+                guide1.fromDate! < guide2.fromDate!
+            })
+        }
+        else if sortButton.titleLabel!.text == "Start Date" && !ascending
+        {
+            self.guides.sort(by: {(guide1: Guide, guide2: Guide) -> Bool in
+                guide1.fromDate! > guide2.fromDate!
+            })
+        }
+        else if sortButton.titleLabel!.text == "End Date" && ascending
+        {
+           self.guides.sort(by: {(guide1: Guide, guide2: Guide) -> Bool in
+               guide1.toDate! < guide2.toDate!
+           })
+        }
+        else if sortButton.titleLabel!.text == "End Date" && !ascending
+        {
+          self.guides.sort(by: {(guide1: Guide, guide2: Guide) -> Bool in
+              guide1.toDate! > guide2.toDate!
+          })
+        }
+        else if sortButton.titleLabel!.text == "Name" && ascending
+        {
+          self.guides.sort(by: {(guide1: Guide, guide2: Guide) -> Bool in
+              guide1.guideName! < guide2.guideName!
+          })
+        }
+        else if sortButton.titleLabel!.text == "Name" && !ascending
+        {
+          self.guides.sort(by: {(guide1: Guide, guide2: Guide) -> Bool in
+              guide1.guideName! > guide2.guideName!
+          })
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -34,17 +103,26 @@ class GuideMainViewController: UIViewController, UITableViewDataSource, UITableV
     }
     
     func observeRefreshGuides () {
-        Database.database().reference().child("guide").observe(.value) { (snapshot) in
+        Database.database().reference().child("guides").observe(.value) { (snapshot) in
             self.guides.removeAll()
             if let dictionary = snapshot.value as? [String:AnyObject] {
                 for i in dictionary {
                     let guide = Guide(dictionary: i.value as! [String : AnyObject])
-                    if guide.guideID == Auth.auth().currentUser?.uid {
-                        self.guideRole = true
-                    } else {
-                        self.guides.append(guide)
-                    }
-                    self.toggleRole(isGuide: self.guideRole)
+                    
+                    let guideID = guide.guideID!
+                    Database.database().reference().child("users").child(guideID)
+                        .observeSingleEvent(of: .value, with: { (snapshot) in
+                            if let dictionary = snapshot.value as? [String:AnyObject] {
+                                guide.guideName = dictionary["name"]! as? String
+                                if guide.guideID == Auth.auth().currentUser?.uid {
+                                    self.guideRole = true
+                                } else {
+                                    self.guides.append(guide)
+                                }
+                                self.toggleRole(isGuide: self.guideRole)
+                            }
+                        }
+                    )
                 }
                 self.attemptReload()
             }
@@ -54,21 +132,22 @@ class GuideMainViewController: UIViewController, UITableViewDataSource, UITableV
     func toggleRole (isGuide: Bool) {
         if isGuide {
             createButton.setTitle("My Guide Profile", for: .normal)
+            myBookingButton.isHidden = false
         } else {
-            createButton.setTitle("Become New Guide!", for: .normal)
+            createButton.setTitle("Join as Guide!", for: .normal)
+            myBookingButton.isHidden = true
         }
     }
     
     var timer:Timer?
+    
     private func attemptReload() {
         self.timer?.invalidate()
         self.timer = Timer.scheduledTimer(timeInterval: 0.2, target: self, selector: #selector(self.handleReload), userInfo: nil, repeats: false)
     }
     
     @objc func handleReload() {
-        self.guides.sort(by: {(guide1: Guide, guide2: Guide) -> Bool in
-            guide1.fromDate! > guide2.fromDate!
-        })
+        handleSortTable()
         guideTableView.reloadData()
     }
     
@@ -87,27 +166,16 @@ class GuideMainViewController: UIViewController, UITableViewDataSource, UITableV
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let guide = guides[indexPath.row]
-        let guideID = guide.guideID!
-        let ref = Database.database().reference().child("/users/\(guideID)/")
-        ref.observe(.value, with: { (snapshot) in
-            guard let dictionary = snapshot.value as? [String: AnyObject] else {
-                return
-            }
-            let user = User(
-                id: guideID,
-                name: dictionary["name"]! as! String,
-                email: dictionary["email"]! as! String,
-                profileURL: dictionary["profileURL"]! as! String
-            )
-            self.showGuideDetails(user: user, guide: guide)
-        })
+        self.showGuideDetails(guide: guide)
     }
     
-    private func showGuideDetails(user: User, guide: Guide) {
+    private func showGuideDetails(guide: Guide) {
         let GuideDetailViewController = self.storyboard?.instantiateViewController(withIdentifier: "GuideDetail") as! GuideDetailViewController
-        GuideDetailViewController.user = user
         GuideDetailViewController.guide = guide
         self.navigationController?.pushViewController(GuideDetailViewController, animated: true)
     }
     
+    @IBAction func handleSort(_ sender: Any) {
+        dropDown.show()
+    }
 }

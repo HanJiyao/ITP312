@@ -18,8 +18,7 @@ class GuideCell: UITableViewCell {
     
     func setupNameAndProfile () {
         if let id = guide?.guideID {
-            let ref = Database.database().reference().child("users")
-            ref.child(id).observeSingleEvent(of: .value, with: { (snapshot) in
+            Database.database().reference().child("users").child(id).observeSingleEvent(of: .value, with: { (snapshot) in
                 if let dictionary = snapshot.value as? [String: AnyObject] {
                     self.textLabel?.text = dictionary["name"] as? String
                     if let profileURL = dictionary["profileURL"] as? String {

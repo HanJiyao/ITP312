@@ -9,7 +9,6 @@
 import UIKit
 import Firebase
 import RSSelectionMenu
-import SwiftValidator
 
 class GuideEditViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextViewDelegate {
 
@@ -22,6 +21,7 @@ class GuideEditViewController: UIViewController, UIImagePickerControllerDelegate
     @IBOutlet weak var selectServiceBtn: UIButton!
     @IBOutlet weak var serviceSeperator: UIView!
     @IBOutlet weak var dateSeperator: UIView!
+    @IBOutlet weak var previewBtn: UIButton!
     
     var user: User?
     var guide: Guide?
@@ -35,9 +35,10 @@ class GuideEditViewController: UIViewController, UIImagePickerControllerDelegate
         descTextLabel.delegate = self
         fromDateTextLabel.delegate = self
         toDateTextLabel.delegate = self
-        
+        previewBtn.layer.cornerRadius = 15
         saveBtn.layer.cornerRadius = 15
         disableBtn(button: saveBtn)
+        disableBtn(button: previewBtn)
         
 //        validator.registerField(fromDateTextLabel, rules: [RequiredRule()])
 //        validator.registerField(toDateTextLabel, rules: [RequiredRule()])
@@ -45,7 +46,9 @@ class GuideEditViewController: UIViewController, UIImagePickerControllerDelegate
     
     override func viewDidAppear(_ animated: Bool) {
         if guide != nil {
-            guideImageView.loadImageCache(urlString: (guide?.imgURL!)!)
+            if guide?.imgURL != nil {
+                guideImageView.loadImageCache(urlString: (guide?.imgURL!)!)
+            }
             selectServiceBtn.setTitle(guide?.service, for: .normal)
             displayService = guide!.service!
             descTextLabel.text = guide?.desc
@@ -55,7 +58,7 @@ class GuideEditViewController: UIViewController, UIImagePickerControllerDelegate
     }
     
     func observeExisting() {
-        Database.database().reference().child("guide").observe(.value) { (snapshot) in
+        Database.database().reference().child("guides").observe(.value) { (snapshot) in
             if let dictionary = snapshot.value as? [String:AnyObject] {
                 for i in dictionary {
                     let guide = Guide(dictionary: i.value as! [String : AnyObject])
@@ -88,12 +91,14 @@ class GuideEditViewController: UIViewController, UIImagePickerControllerDelegate
         if  desc == "" {
             descSeperator.backgroundColor = .red
             disableBtn(button: saveBtn)
+            disableBtn(button: previewBtn)
         } else {
             descSeperator.backgroundColor = .systemGreen
         }
         if displayService == "" {
             serviceSeperator.backgroundColor = .red
             disableBtn(button: saveBtn)
+            disableBtn(button: previewBtn)
         } else {
             serviceSeperator.backgroundColor = .systemGreen
         }
@@ -102,28 +107,23 @@ class GuideEditViewController: UIViewController, UIImagePickerControllerDelegate
         if  fromDate == "" ||  toDate == "" {
             dateSeperator.backgroundColor = .red
             disableBtn(button: saveBtn)
+            disableBtn(button: previewBtn)
         } else {
             dateSeperator.backgroundColor = .systemGreen
         }
         if desc != "" && displayService != "" && toDate != "" && fromDate != "" {
+            guide = Guide(dictionary:
+                [
+                    "guideID": Auth.auth().currentUser?.uid as AnyObject,
+                    "service": displayService as AnyObject,
+                    "desc": desc as AnyObject,
+                    "fromDate": fromDate as AnyObject,
+                    "toDate":toDate as AnyObject
+                ]
+            )
             enableBtn(button: saveBtn)
+            enableBtn(button: previewBtn)
         }
-    }
-    
-    func validationSuccessful() {
-        saveGuideData()
-    }
-
-    func validationFailed(_ errors:[(Validatable ,ValidationError)]) {
-      // turn the fields to red
-      for (field, error) in errors {
-        if let field = field as? UITextField {
-          field.layer.borderColor = UIColor.red.cgColor
-          field.layer.borderWidth = 1.0
-        }
-        error.errorLabel?.text = error.errorMessage // works if you added labels
-        error.errorLabel?.isHidden = false
-      }
     }
     
     @objc func handleGuideImage(){
@@ -215,7 +215,7 @@ class GuideEditViewController: UIViewController, UIImagePickerControllerDelegate
             return
         }
         let data = self.guideImageView.image!.jpegData(compressionQuality: 1)
-        let storageRef = Storage.storage().reference().child("guide").child("\(uid).png")
+        let storageRef = Storage.storage().reference().child("guides").child("\(uid).png")
         storageRef.putData(data!, metadata: nil) { (metadata, error) in
             storageRef.downloadURL { (url, error) in
                 guard let downloadURL = url else {
@@ -230,7 +230,7 @@ class GuideEditViewController: UIViewController, UIImagePickerControllerDelegate
                     "imgURL":downloadURL.absoluteString,
                     "guideID":uid
                 ]
-                Database.database().reference().child("guide/\(uid)/").updateChildValues(values) {
+                Database.database().reference().child("guides/\(uid)/").updateChildValues(values) {
                     (error:Error?, ref:DatabaseReference) in
                     if let error = error {
                         print("Guide Data could not be saved: \(error).")
@@ -259,10 +259,11 @@ class GuideEditViewController: UIViewController, UIImagePickerControllerDelegate
                 email: dictionary["email"]! as! String,
                 profileURL: dictionary["profileURL"]! as! String
             )
-            let GuideDetailViewController = self.storyboard?.instantiateViewController(withIdentifier: "GuideDetail") as! GuideDetailViewController
-            GuideDetailViewController.user = user
-            GuideDetailViewController.guide = self.guide
-            self.navigationController?.pushViewController(GuideDetailViewController, animated: true)
+            let guideDetailViewController = self.storyboard?.instantiateViewController(withIdentifier: "GuideDetail") as! GuideDetailViewController
+            guideDetailViewController.user = user
+            guideDetailViewController.guide = self.guide
+            guideDetailViewController.preview = true
+            self.navigationController?.pushViewController(guideDetailViewController, animated: true)
         })
     }
     

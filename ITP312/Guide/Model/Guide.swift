@@ -17,6 +17,8 @@ class Guide: NSObject {
     var fromDate: String?
     var toDate:String?
     var guideID: String?
+    var guideName: String?
+    var booked: Bool?
     
     // init as a whole dictionary so that the value can be flexiable
     init (dictionary:[String:AnyObject]) {
@@ -27,6 +29,8 @@ class Guide: NSObject {
         fromDate = dictionary["fromDate"] as? String
         toDate = dictionary["toDate"] as? String
         guideID = dictionary["guideID"] as? String
+        guideName = dictionary["guideName"] as? String
+        booked = dictionary["booked"] as? Bool
     }
     
 }

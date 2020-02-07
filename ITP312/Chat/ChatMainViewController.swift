@@ -173,4 +173,8 @@ class ChatMainViewController: UIViewController, UITableViewDataSource, UITableVi
         self.navigationController?.pushViewController(chatLogViewController, animated: true)
     }
     
+    @IBAction func handleDismiss(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
+    }
+    
 }

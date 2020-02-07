@@ -60,6 +60,11 @@
                         <viewLayoutGuide key="safeArea" id="Tbq-np-hVg"/>
                     </view>
                     <navigationItem key="navigationItem" id="rMb-uJ-dLP">
+                        <barButtonItem key="leftBarButtonItem" image="chevron.left" catalog="system" style="plain" id="8rR-9O-1tQ">
+                            <connections>
+                                <action selector="handleDismiss:" destination="eYM-Ca-lLu" id="joL-c3-Wox"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="compose" id="B97-17-bVR">
                             <connections>
                                 <action selector="compose:" destination="eYM-Ca-lLu" id="GlH-Q2-iEm"/>
@@ -121,7 +126,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                 <items>
                                     <navigationItem title="My Guides Contact" id="E0D-rn-jqK">
-                                        <barButtonItem key="leftBarButtonItem" title="❮" id="Ty5-qe-OTe">
+                                        <barButtonItem key="leftBarButtonItem" image="chevron.left" catalog="system" id="Ty5-qe-OTe">
                                             <connections>
                                                 <action selector="cancelPressed:" destination="RLQ-5T-whi" id="Fbp-A3-QbE"/>
                                             </connections>
@@ -266,6 +271,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="chevron.left" catalog="system" width="48" height="64"/>
         <image name="chevron.right" catalog="system" width="48" height="64"/>
         <image name="photo.on.rectangle" catalog="system" width="64" height="48"/>
     </resources>
