@@ -53,7 +53,6 @@ class AccountViewController: UIViewController, GalleryDelegate {
         }
     }
     
-    
     func logout() {
         do {
             try Auth.auth().signOut()

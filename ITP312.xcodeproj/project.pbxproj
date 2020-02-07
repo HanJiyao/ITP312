@@ -28,6 +28,7 @@
 		5156A07023CDA449008328C5 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5156A06F23CDA449008328C5 /* LoginViewController.swift */; };
 		5156A07223CDA45D008328C5 /* ChatStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5156A07123CDA45D008328C5 /* ChatStoryboard.storyboard */; };
 		5156A07423CDAC30008328C5 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5156A07323CDAC30008328C5 /* GoogleService-Info.plist */; };
+		51AC72BF23EDA1E9007B6479 /* GuideBookViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51AC72BE23EDA1E9007B6479 /* GuideBookViewController.swift */; };
 		70AC62B627809D8F22395BB7 /* Pods_ITP312.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A38D9AD9C7E44A1B66BD63E9 /* Pods_ITP312.framework */; };
 		7788232623D0F61C0036304C /* ChatLogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7788232523D0F61B0036304C /* ChatLogViewController.swift */; };
 		7788232923D1138C0036304C /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7788232823D1138C0036304C /* Message.swift */; };
@@ -85,6 +86,7 @@
 		5156A06F23CDA449008328C5 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		5156A07123CDA45D008328C5 /* ChatStoryboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ChatStoryboard.storyboard; sourceTree = "<group>"; };
 		5156A07323CDAC30008328C5 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		51AC72BE23EDA1E9007B6479 /* GuideBookViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideBookViewController.swift; sourceTree = "<group>"; };
 		7733A5DDFB82ABEA7DCE0DE4 /* Pods-ITP312.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ITP312.release.xcconfig"; path = "Target Support Files/Pods-ITP312/Pods-ITP312.release.xcconfig"; sourceTree = "<group>"; };
 		7788232523D0F61B0036304C /* ChatLogViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatLogViewController.swift; sourceTree = "<group>"; };
 		7788232823D1138C0036304C /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
@@ -138,6 +140,7 @@
 				512AE6FB23E9211900F0832C /* GuideDetailViewController.swift */,
 				512AE6F923E9204D00F0832C /* GuideEditViewController.swift */,
 				512AE6F723E91DF300F0832C /* GuideMainViewController.swift */,
+				51AC72BE23EDA1E9007B6479 /* GuideBookViewController.swift */,
 			);
 			path = Guide;
 			sourceTree = "<group>";
@@ -462,6 +465,7 @@
 				FB4D4AA623E93628007B67B2 /* DIYCalendarCell.swift in Sources */,
 				FBEF089623E80D1800636B47 /* TableViewController.swift in Sources */,
 				FB4D4AA823E94DE6007B67B2 /* PlanCellDataController.swift in Sources */,
+				51AC72BF23EDA1E9007B6479 /* GuideBookViewController.swift in Sources */,
 				FB4D4AA223E9016E007B67B2 /* SetDateForPlanViewController.swift in Sources */,
 				77A88CAA23D08536003C5C2C /* ImageExtension.swift in Sources */,
 				D5D3E88B23ED3A9300DDDCB6 /* GalleryModel.swift in Sources */,

@@ -104,11 +104,11 @@ class GuideMainViewController: UIViewController, UITableViewDataSource, UITableV
     
     func observeRefreshGuides () {
         Database.database().reference().child("guides").observe(.value) { (snapshot) in
+            self.guideRole = false
             self.guides.removeAll()
             if let dictionary = snapshot.value as? [String:AnyObject] {
                 for i in dictionary {
                     let guide = Guide(dictionary: i.value as! [String : AnyObject])
-                    
                     let guideID = guide.guideID!
                     Database.database().reference().child("users").child(guideID)
                         .observeSingleEvent(of: .value, with: { (snapshot) in
@@ -132,10 +132,10 @@ class GuideMainViewController: UIViewController, UITableViewDataSource, UITableV
     func toggleRole (isGuide: Bool) {
         if isGuide {
             createButton.setTitle("My Guide Profile", for: .normal)
-            myBookingButton.isHidden = false
+            myBookingButton.setTitle("My Booking Offer", for: .normal)
         } else {
             createButton.setTitle("Join as Guide!", for: .normal)
-            myBookingButton.isHidden = true
+            myBookingButton.setTitle("Booking Request", for: .normal)
         }
     }
     
