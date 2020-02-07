@@ -9,16 +9,19 @@
 import UIKit
 import Firebase
 import RSSelectionMenu
+import SwiftValidator
 
 class GuideEditViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextViewDelegate {
 
     @IBOutlet weak var guideImageView: UIImageView!
     @IBOutlet weak var descTextLabel: UITextView!
-    @IBOutlet weak var dateTextLabel: UITextField!
+    @IBOutlet weak var fromDateTextLabel: UITextView!
+    @IBOutlet weak var toDateTextLabel: UITextView!
     @IBOutlet weak var saveBtn: UIButton!
     @IBOutlet weak var descSeperator: UIView!
     @IBOutlet weak var selectServiceBtn: UIButton!
     @IBOutlet weak var serviceSeperator: UIView!
+    @IBOutlet weak var dateSeperator: UIView!
     
     var user: User?
     var guide: Guide?
@@ -30,9 +33,14 @@ class GuideEditViewController: UIViewController, UIImagePickerControllerDelegate
         guideImageView.isUserInteractionEnabled = true
         guideImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleGuideImage)))
         descTextLabel.delegate = self
+        fromDateTextLabel.delegate = self
+        toDateTextLabel.delegate = self
         
         saveBtn.layer.cornerRadius = 15
         disableBtn(button: saveBtn)
+        
+//        validator.registerField(fromDateTextLabel, rules: [RequiredRule()])
+//        validator.registerField(toDateTextLabel, rules: [RequiredRule()])
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -41,7 +49,8 @@ class GuideEditViewController: UIViewController, UIImagePickerControllerDelegate
             selectServiceBtn.setTitle(guide?.service, for: .normal)
             displayService = guide!.service!
             descTextLabel.text = guide?.desc
-            dateTextLabel.text = guide?.date
+            fromDateTextLabel.text = guide?.fromDate
+            toDateTextLabel.text = guide?.toDate
         }
     }
     
@@ -69,26 +78,52 @@ class GuideEditViewController: UIViewController, UIImagePickerControllerDelegate
     }
     
     func textViewDidEndEditing(_ textView: UITextView) {
+        print("validate input")
         validateGuideInput()
     }
-    
+        
     private func validateGuideInput () {
-        if descTextLabel.text == nil || descTextLabel.text == "" {
+
+        let desc = descTextLabel.text.trimmingCharacters(in: .whitespacesAndNewlines)
+        if  desc == "" {
             descSeperator.backgroundColor = .red
             disableBtn(button: saveBtn)
         } else {
-            descSeperator.backgroundColor = .green
+            descSeperator.backgroundColor = .systemGreen
         }
         if displayService == "" {
             serviceSeperator.backgroundColor = .red
             disableBtn(button: saveBtn)
         } else {
-            serviceSeperator.backgroundColor = .green
+            serviceSeperator.backgroundColor = .systemGreen
         }
-        if descTextLabel.text != "" && displayService != ""{
-            descSeperator.backgroundColor = .green
+        let fromDate = fromDateTextLabel.text.trimmingCharacters(in: .whitespacesAndNewlines)
+        let toDate = toDateTextLabel.text.trimmingCharacters(in: .whitespacesAndNewlines)
+        if  fromDate == "" ||  toDate == "" {
+            dateSeperator.backgroundColor = .red
+            disableBtn(button: saveBtn)
+        } else {
+            dateSeperator.backgroundColor = .systemGreen
+        }
+        if desc != "" && displayService != "" && toDate != "" && fromDate != "" {
             enableBtn(button: saveBtn)
         }
+    }
+    
+    func validationSuccessful() {
+        saveGuideData()
+    }
+
+    func validationFailed(_ errors:[(Validatable ,ValidationError)]) {
+      // turn the fields to red
+      for (field, error) in errors {
+        if let field = field as? UITextField {
+          field.layer.borderColor = UIColor.red.cgColor
+          field.layer.borderWidth = 1.0
+        }
+        error.errorLabel?.text = error.errorMessage // works if you added labels
+        error.errorLabel?.isHidden = false
+      }
     }
     
     @objc func handleGuideImage(){
@@ -111,11 +146,21 @@ class GuideEditViewController: UIViewController, UIImagePickerControllerDelegate
         }
     }
     
-    let simpleDataArray = ["Sachin", "Rahul", "Saurav", "Virat", "Suresh", "Ravindra", "Chris"]
+    let serviceDataArray = [
+        "Pick up & Driving Tours",
+        "Shopping",
+        "Food & Restaurants",
+        "Sports & Recreation",
+        "History & Culture",
+        "Art & Museums",
+        "Nightlife & Bars",
+        "Exploration & Sightseeing",
+        "Translation & Interpretation"
+    ]
     var selectedDataArray = [String]()
     
     @IBAction func selectService(_ sender: Any) {
-        let selectionMenu = RSSelectionMenu(selectionStyle: .multiple, dataSource: simpleDataArray) { (cell, name, indexPath) in
+        let selectionMenu = RSSelectionMenu(selectionStyle: .multiple, dataSource: serviceDataArray) { (cell, name, indexPath) in
             cell.textLabel?.text = name
             cell.tintColor = .systemBlue
         }
@@ -140,10 +185,32 @@ class GuideEditViewController: UIViewController, UIImagePickerControllerDelegate
 
     }
     
-    @IBAction func handleSave(_ sender: Any) {
+    @IBAction func handleCalender(_ sender: Any) {
+        let formatter: DateFormatter = {
+            let formatter = DateFormatter()
+            formatter.dateFormat = "yyyy-MM-dd"
+            return formatter
+        }()
+        
+        guard let guideCalenderViewController = self.storyboard?.instantiateViewController(withIdentifier: "GuideCalender") as? GuideCalenderViewController else { return }
+        if let fromDate = formatter.date(from: fromDateTextLabel.text!), let toDate = formatter.date(from: toDateTextLabel.text!) {
+            guideCalenderViewController.datesRange = guideCalenderViewController.datesRange(from: fromDate, to: toDate)
+            guideCalenderViewController.firstDate = fromDate
+            guideCalenderViewController.lastDate = toDate
+        }
+        guideCalenderViewController.callbackClosure = { [weak self] in
+            self?.fromDateTextLabel.text = guideCalenderViewController.startDateLabel.text!
+            self?.toDateTextLabel.text = guideCalenderViewController.endDateLabel.text!
+            self?.validateGuideInput()
+         }
+         present(guideCalenderViewController, animated: true, completion: nil)
+    }
+    
+    private func saveGuideData() {
         let service = displayService
         let desc = descTextLabel.text!
-        let date = dateTextLabel.text!
+        let fromDate = fromDateTextLabel.text!
+        let toDate = toDateTextLabel.text!
         guard let uid = Auth.auth().currentUser?.uid else {
             return
         }
@@ -158,7 +225,8 @@ class GuideEditViewController: UIViewController, UIImagePickerControllerDelegate
                 let values = [
                     "service":service,
                     "desc": desc,
-                    "date": date,
+                    "fromDate": fromDate,
+                    "toDate":toDate,
                     "imgURL":downloadURL.absoluteString,
                     "guideID":uid
                 ]
@@ -173,6 +241,10 @@ class GuideEditViewController: UIViewController, UIImagePickerControllerDelegate
                 }
             }
         }
+    }
+    
+    @IBAction func handleSave(_ sender: Any) {
+        saveGuideData()
     }
     
     @IBAction func handlePreviewBtn(_ sender: Any) {

@@ -28,7 +28,7 @@ class GuideCell: UITableViewCell {
                 }
             })
         }
-        self.timeLabel.text = guide?.date
+        self.timeLabel.text = "\(guide!.fromDate!) to \(guide!.toDate!)"
         self.detailTextLabel?.text = guide?.service
         self.descLabel.text = guide?.desc
     }
@@ -41,7 +41,7 @@ class GuideCell: UITableViewCell {
     
     let profileImage:UIImageView = {
         let imageView = UIImageView()
-        imageView.image = UIImage(named: "no-image")
+        imageView.image = UIImage(named: "profile")
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.layer.cornerRadius = 10
         imageView.layer.masksToBounds = true
@@ -82,8 +82,8 @@ class GuideCell: UITableViewCell {
         descLabel.widthAnchor.constraint(equalToConstant: 150).isActive = true
         
         timeLabel.rightAnchor.constraint(equalTo: self.rightAnchor).isActive = true
-        timeLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 20).isActive = true
-        timeLabel.widthAnchor.constraint(equalToConstant: 100).isActive = true
+        timeLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 15).isActive = true
+        timeLabel.widthAnchor.constraint(equalToConstant: 166).isActive = true
         
     }
     

@@ -12,7 +12,7 @@ import FSCalendar
 class GuideCalenderViewController: UIViewController, FSCalendarDelegate, FSCalendarDataSource {
 
     
-    @IBOutlet weak var calender: FSCalendar!
+    @IBOutlet weak var guideCalender: FSCalendar!
     @IBOutlet weak var startDateLabel: UILabel!
     @IBOutlet weak var endDateLabel: UILabel!
     
@@ -22,15 +22,24 @@ class GuideCalenderViewController: UIViewController, FSCalendarDelegate, FSCalen
         return formatter
     }()
     
-    private var firstDate:Date?
-    private var lastDate:Date?
-    private var datesRange: [Date]?
+    var firstDate:Date?
+    var lastDate:Date?
+    var datesRange: [Date]?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        calender.dataSource = self
-        calender.delegate = self
-        calender.allowsMultipleSelection = true
+        guideCalender.dataSource = self
+        guideCalender.delegate = self
+        guideCalender.allowsMultipleSelection = true
+        if firstDate != nil || lastDate != nil {
+            startDateLabel.text = self.formatter.string(from: firstDate!)
+            endDateLabel.text = self.formatter.string(from: lastDate!)
+        }
+        if datesRange != nil {
+            for d in datesRange! {
+                guideCalender.select(d)
+            }
+        }
     }
     
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
@@ -105,7 +114,30 @@ class GuideCalenderViewController: UIViewController, FSCalendarDelegate, FSCalen
     }
     
     @IBAction func handleBack(_ sender: Any) {
-        dismiss(animated: true, completion: nil)
+        if startDateLabel.text! == "Not choose yet" || endDateLabel.text! == "Not choose yet"{
+            let alert = UIAlertController(title: "Sorry", message: "Please choose date", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
+                  switch action.style{
+                  case .default:
+                        print("default")
+
+                  case .cancel:
+                        print("cancel")
+
+                  case .destructive:
+                        print("destructive")
+                  @unknown default:
+                    fatalError()
+                }}))
+            self.present(alert, animated: true, completion: nil)
+        } else {
+            dismiss(animated: true, completion: nil)
+        }
+    }
+    
+    var callbackClosure: (() -> Void)?
+    override func viewWillDisappear(_ animated: Bool) {
+        callbackClosure?()
     }
     
 }

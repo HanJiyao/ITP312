@@ -22,12 +22,15 @@ class GuideDetailViewController: UIViewController {
     @IBOutlet weak var chatButton: UIButton!
     @IBOutlet weak var userProfileImg: UIImageView!
     @IBOutlet weak var userProfileOuter: UIView!
+    @IBOutlet weak var bookBtn: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         chatButton.layer.cornerRadius = 15
-        
+        chatButton.layer.borderColor = UIColor.systemGreen.cgColor
+        chatButton.layer.borderWidth = 2
+        bookBtn.layer.cornerRadius = 15
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -51,7 +54,9 @@ class GuideDetailViewController: UIViewController {
         userNameTextLabel.text = user?.name
         descTextLabel.text = guide?.desc
         serviceTextLabel.text = guide?.service
-        dateTextLabel.text = guide?.date
+        if guide != nil {
+            dateTextLabel.text = "\(guide!.fromDate!) to \(guide!.toDate!)"
+        }
     }
 
     @IBAction func handleRedirectChat(_ sender: Any) {
@@ -68,5 +73,7 @@ class GuideDetailViewController: UIViewController {
             // self.navigationController?.pushViewController(chatLogViewController, animated: true)
             present(chatLogViewController, animated: true, completion: nil)
 //        }
+    }
+    @IBAction func handleBook(_ sender: Any) {
     }
 }

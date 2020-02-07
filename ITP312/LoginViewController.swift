@@ -39,7 +39,7 @@ class LoginViewController: UIViewController, UIImagePickerControllerDelegate, UI
         loginRegisterSegment.selectedSegmentIndex = 1
         nameTextField.isHidden = true
         
-        profileImageView.image = UIImage.init(named: "no-image")
+        profileImageView.image = UIImage.init(named: "profile")
         profileImageView.isUserInteractionEnabled = false
         profileImageView.removeGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleProfileImage)))
         profileImageViewHeightAnchor = profileImageView.heightAnchor.constraint(equalToConstant: 150)
@@ -162,12 +162,12 @@ class LoginViewController: UIViewController, UIImagePickerControllerDelegate, UI
         let state = loginRegisterSegment.titleForSegment(at: loginRegisterSegment.selectedSegmentIndex)
         if loginRegisterSegment.selectedSegmentIndex == 0 {
             nameTextField.isHidden = false
-            profileImageView.image = UIImage.init(named: "profile")
+            profileImageView.image = UIImage.init(named: "profile-image")
             profileImageView.isUserInteractionEnabled = true
             profileImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleProfileImage)))
         } else {
             nameTextField.isHidden = true
-            profileImageView.image = UIImage.init(named: "no-image")
+            profileImageView.image = UIImage.init(named: "profile")
             profileImageView.isUserInteractionEnabled = false
             profileImageView.removeGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleProfileImage)))
         }

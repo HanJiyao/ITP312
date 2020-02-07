@@ -14,7 +14,8 @@ class Guide: NSObject {
     var service: String?
     var imgURL: String?
     var desc: String?
-    var date: String?
+    var fromDate: String?
+    var toDate:String?
     var guideID: String?
     
     // init as a whole dictionary so that the value can be flexiable
@@ -23,7 +24,8 @@ class Guide: NSObject {
         service = dictionary["service"] as? String
         imgURL = dictionary["imgURL"] as? String
         desc = dictionary["desc"] as? String
-        date = dictionary["date"] as? String
+        fromDate = dictionary["fromDate"] as? String
+        toDate = dictionary["toDate"] as? String
         guideID = dictionary["guideID"] as? String
     }
     

@@ -70,7 +70,7 @@ class ChatLogViewController: UIViewController, UITableViewDataSource, UITableVie
         }
     }
     
-    private func uploadToFirebaseStorage(image: UIImage){
+    func uploadToFirebaseStorage(image: UIImage){
         let imageName = NSUUID().uuidString
         let data = image.jpegData(compressionQuality: 0.3)
         let storageRef = Storage.storage().reference().child("message").child(imageName)

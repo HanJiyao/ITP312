@@ -79,5 +79,15 @@ class AccountViewController: UIViewController, GalleryDelegate {
  
     func doSomethingWith(data: String) {
            print("received data!!!", data)
+        let uid = Auth.auth().currentUser!.uid
+        let storageRef = Storage.storage().reference().child("profile").child("\(uid).png")
+        // Get metadata properties
+        storageRef.getMetadata { metadata, error in
+          if let error = error {
+            print(error)
+          } else {
+            print(metadata)
+          }
+        }
     }
 }

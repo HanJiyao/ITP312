@@ -66,7 +66,7 @@ class GuideMainViewController: UIViewController, UITableViewDataSource, UITableV
     
     @objc func handleReload() {
         self.guides.sort(by: {(guide1: Guide, guide2: Guide) -> Bool in
-            guide1.date! > guide2.date!
+            guide1.fromDate! > guide2.fromDate!
         })
         guideTableView.reloadData()
     }

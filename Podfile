@@ -14,5 +14,6 @@ target 'ITP312' do
   pod 'FSCalendar'
   pod 'ShadowView'
   pod 'RSSelectionMenu'
+  pod 'SwiftValidator', :git => 'https://github.com/jpotts18/SwiftValidator.git', :tag => '5.0.0'
 
 end

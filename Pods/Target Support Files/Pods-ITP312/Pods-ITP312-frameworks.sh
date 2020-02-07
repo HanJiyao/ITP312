@@ -167,6 +167,7 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/PromisesObjC/FBLPromises.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/RSSelectionMenu/RSSelectionMenu.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/ShadowView/ShadowView.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/SwiftValidator/SwiftValidator.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework"
 fi
@@ -177,6 +178,7 @@ if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/PromisesObjC/FBLPromises.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/RSSelectionMenu/RSSelectionMenu.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/ShadowView/ShadowView.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/SwiftValidator/SwiftValidator.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework"
 fi

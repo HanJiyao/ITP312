@@ -17,11 +17,11 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
                     <connections>
-                        <segue destination="He2-I9-58i" kind="relationship" relationship="viewControllers" id="bwU-Io-aUx"/>
-                        <segue destination="J8s-eh-9YG" kind="relationship" relationship="viewControllers" id="aXb-y4-g3F"/>
-                        <segue destination="vLj-iK-Dpc" kind="relationship" relationship="viewControllers" id="BqC-Qe-Pm6"/>
-                        <segue destination="WEm-RY-KT9" kind="relationship" relationship="viewControllers" id="xeG-us-Iuc"/>
-                        <segue destination="4JD-Ez-zYX" kind="relationship" relationship="viewControllers" id="rlC-Ys-nJr"/>
+                        <segue destination="WEm-RY-KT9" kind="relationship" relationship="viewControllers" id="tcs-sq-j9K"/>
+                        <segue destination="He2-I9-58i" kind="relationship" relationship="viewControllers" id="8Ok-Md-q11"/>
+                        <segue destination="J8s-eh-9YG" kind="relationship" relationship="viewControllers" id="B2m-eP-iQd"/>
+                        <segue destination="vLj-iK-Dpc" kind="relationship" relationship="viewControllers" id="UPG-t5-5MZ"/>
+                        <segue destination="4JD-Ez-zYX" kind="relationship" relationship="viewControllers" id="XrU-Tn-KyC"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="q0Z-hB-0L7" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -32,7 +32,7 @@
         <scene sceneID="6mC-Te-3T2">
             <objects>
                 <navigationController id="J8s-eh-9YG" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Guide" image="person.2.square.stack" catalog="system" id="0gx-B6-c07"/>
+                    <tabBarItem key="tabBarItem" title="Guide" image="flag.circle" catalog="system" id="0gx-B6-c07"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="jEF-b1-C92">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -43,7 +43,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="a4F-ns-kxY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-3307" y="143"/>
+            <point key="canvasLocation" x="-2478" y="143"/>
         </scene>
         <!--Guide-->
         <scene sceneID="77A-XY-h9d">
@@ -53,7 +53,7 @@
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8GX-fS-K86" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-3309" y="578"/>
+            <point key="canvasLocation" x="-2480" y="578"/>
         </scene>
         <!--Plan-->
         <scene sceneID="lMj-Jm-kMv">
@@ -71,7 +71,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4ke-Hw-wBy" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-4164" y="143"/>
+            <point key="canvasLocation" x="-3356" y="143"/>
         </scene>
         <!--Account-->
         <scene sceneID="7Oj-OT-lx1">
@@ -100,33 +100,19 @@
             </objects>
             <point key="canvasLocation" x="-778" y="578"/>
         </scene>
-        <!--Chat-->
-        <scene sceneID="RR3-Fk-8jb">
-            <objects>
-                <viewControllerPlaceholder storyboardName="ChatStoryboard" referencedIdentifier="Chat" id="4jE-RP-bg9" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="czm-SS-w4m"/>
-                    <navigationItem key="navigationItem" id="plb-kx-KON"/>
-                </viewControllerPlaceholder>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="boU-Vf-dta" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-1620" y="578"/>
-        </scene>
-        <!--Chat-->
+        <!--Discover-->
         <scene sceneID="1Qq-WO-Rib">
             <objects>
                 <navigationController id="WEm-RY-KT9" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Chat" image="message.circle.fill" catalog="system" id="K3g-4b-3JB"/>
+                    <tabBarItem key="tabBarItem" title="Discover" image="safari" catalog="system" id="K3g-4b-3JB"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="zHA-nc-p5u">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
-                    <connections>
-                        <segue destination="4jE-RP-bg9" kind="relationship" relationship="rootViewController" id="mZn-wS-Khd"/>
-                    </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fAV-7B-8nq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1619" y="143"/>
+            <point key="canvasLocation" x="-4274" y="143"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="Eg4-Vo-B2n">
@@ -264,7 +250,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vcO-Jq-iRX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-3308" y="-636.4317841079461"/>
+            <point key="canvasLocation" x="-3356" y="-636"/>
         </scene>
         <!--Gallery-->
         <scene sceneID="tOA-ZS-nbx">
@@ -281,7 +267,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eRg-JL-Sad" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2475" y="143"/>
+            <point key="canvasLocation" x="-1617" y="143"/>
         </scene>
         <!--Gallery-->
         <scene sceneID="1KO-ru-IGM">
@@ -291,7 +277,7 @@
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Bq9-zo-S7b" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2478" y="578"/>
+            <point key="canvasLocation" x="-1620" y="578"/>
         </scene>
         <!--PlansID-->
         <scene sceneID="TGg-Dp-gBe">
@@ -301,15 +287,15 @@
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0cb-AV-gJd" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-4165" y="578"/>
+            <point key="canvasLocation" x="-3358" y="578"/>
         </scene>
     </scenes>
     <resources>
         <image name="calendar" catalog="system" width="64" height="52"/>
-        <image name="message.circle.fill" catalog="system" width="64" height="60"/>
-        <image name="person.2.square.stack" catalog="system" width="56" height="64"/>
+        <image name="flag.circle" catalog="system" width="64" height="60"/>
         <image name="person.circle" catalog="system" width="64" height="60"/>
         <image name="photo.on.rectangle" catalog="system" width="64" height="48"/>
         <image name="profile" width="500" height="500"/>
+        <image name="safari" catalog="system" width="64" height="60"/>
     </resources>
 </document>
