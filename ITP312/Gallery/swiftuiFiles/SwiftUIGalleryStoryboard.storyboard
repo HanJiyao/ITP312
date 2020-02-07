@@ -88,7 +88,7 @@
                     <navigationItem key="navigationItem" id="9vR-5O-UaA">
                         <barButtonItem key="rightBarButtonItem" title="Item" image="photo" catalog="system" id="jyN-Fc-7MO">
                             <connections>
-                                <segue destination="8EA-mq-50g" kind="presentation" identifier="uploadPhoto" id="JIL-DS-0s8"/>
+                                <segue destination="8EA-mq-50g" kind="presentation" id="JIL-DS-0s8"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>

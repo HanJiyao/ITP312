@@ -9,8 +9,8 @@
 import UIKit
 import Firebase
 
-class AccountViewController: UIViewController {
-
+class AccountViewController: UIViewController, GalleryDelegate {
+    
     @IBOutlet weak var greetingLable: UILabel!
     @IBOutlet weak var userLabel: UILabel!
     override func viewDidLoad() {
@@ -52,7 +52,7 @@ class AccountViewController: UIViewController {
             print(error.localizedDescription)
         }
     }
-
+    
     
     func logout() {
         do {
@@ -66,5 +66,18 @@ class AccountViewController: UIViewController {
     @IBAction func handleLogout(_ sender: Any) {
         logout()
     }
-
+    
+    @IBAction func navigateToGalleryBtnClicked(_ sender: Any) {
+        let storyboard = UIStoryboard(name: "GalleryStoryboard", bundle: nil)
+        let galleryViewController = storyboard.instantiateViewController(identifier: "Gallery") as! GalleryCollectionViewController
+        galleryViewController.returnImage = true
+        //        self.navigationController?.pushViewController(galleryViewController, animated: true)
+        galleryViewController.delegate = self
+        self.present(galleryViewController, animated: true, completion: nil)
+        
+    }
+ 
+    func doSomethingWith(data: String) {
+           print("received data!!!", data)
+    }
 }

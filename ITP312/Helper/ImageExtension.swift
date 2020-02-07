@@ -32,3 +32,13 @@ extension UIImageView {
             }).resume()
     }
 }
+
+
+
+extension NSObject {
+    func printObj(_ text: String) {
+        print("\n \(text)-----------------")
+        dump(self)
+        print("\n end of printing-------------")
+    }
+}

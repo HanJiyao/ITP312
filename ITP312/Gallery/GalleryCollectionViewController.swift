@@ -10,12 +10,20 @@ import UIKit
 import Firebase
 
 
-class GalleryCollectionViewController: UIViewController, UICollectionViewDelegate,UICollectionViewDataSource {
+protocol GalleryDelegate: NSObjectProtocol {
+    func doSomethingWith(data: String)
+}
+
+class GalleryCollectionViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
     
+    weak var delegate: GalleryDelegate?
     
     @IBOutlet weak var collectionView: UICollectionView!
     
     var galleryList:[GalleryModel] = []
+    
+    var returnImage = false
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,10 +31,12 @@ class GalleryCollectionViewController: UIViewController, UICollectionViewDelegat
         // Do any additional setup after loading the view.
         self.navigationItem.title = "Photo frames"
         print("view did load")
+//        loadData()
+        loadGallery()
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        loadData()
+//        loadData()
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -37,28 +47,27 @@ class GalleryCollectionViewController: UIViewController, UICollectionViewDelegat
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "collectionViewCell", for: indexPath) as! CollectionViewCell
         let onePhotoFrame = galleryList[indexPath.row]
-//        cell.nameLabel.text = onePhotoFrame.name
-//        cell.imageView = UIImageView(image: UIImage(named: onePhotoFrame.imageURL!))
-//        dump(onePhotoFrame)
-        print(onePhotoFrame.name!)
+        //        cell.nameLabel.text = onePhotoFrame.name
+        //        cell.imageView = UIImageView(image: UIImage(named: onePhotoFrame.imageURL!))
+        //        dump(onePhotoFrame)
+        //        print(onePhotoFrame.name)
         
-        Storage.storage().reference(forURL: onePhotoFrame.imageURL!).getData(maxSize: 2000000) { (data, error) in
-            //https://stackoverflow.com/questions/54029490/firebase-storage-to-uiimageview
-            // print("data", data)
-            guard let imageData = data, error == nil else {
-                print("error", error!)
-                return
-            }
-            print("image data", imageData)
-           
-            cell.displayContent(image: UIImage(data: imageData)!, price: onePhotoFrame.price!)
-
-        }
+        //        Storage.storage().reference(forURL: onePhotoFrame.imageURL!).getData(maxSize: 2000000) { (data, error) in
+        //            //https://stackoverflow.com/questions/54029490/firebase-storage-to-uiimageview
+        //            print("data", data)
+        //            guard let imageData = data, error == nil else {
+        //                print("error", error)
+        //                return
+        //            }
+        //            print("image data", imageData)
+        //
+        //            cell.displayContent(image: UIImage(data: imageData)!, price: onePhotoFrame.price!)
+        //
+        //        }
+        cell.imageView.loadImageCache(urlString: onePhotoFrame.imageURL!)
+        cell.nameLabel.text = "$" + onePhotoFrame.price!
         
-            //cell.displayContent(image: UIImage(data: url!), name: onePhotoFrame.name)
         
-//        cell.displayContent(image: UIImage(named: onePhotoFrame!.imageURL), name: onePhotoFrame.name)
-
         return cell
     }
     
@@ -73,44 +82,110 @@ class GalleryCollectionViewController: UIViewController, UICollectionViewDelegat
      }
      */
     
-    //https://medium.com/yay-its-erica/creating-a-collection-view-swift-3-77da2898bb7c
+    
     func loadData() {
         print("loading data")
         let ref = Database.database().reference()
-        ref.child("photoframe").observe(.value) { (snapshot) in
-            self.galleryList = []
+        ref.child("photoframe").queryOrdered(byChild: "timestamp").observe(.value) { (snapshot) in
+            self.galleryList.removeAll()
             //            if let snapDict = snapshot.children as? DataSnapshot {
-            for case let rest as DataSnapshot in snapshot.children {
-                //                print(snapDict)
-                let snapDict = rest.value as? [String: Any]
-                
-                print("name", snapDict!["name"] as! String)
-                let oneGallery = GalleryModel(id: rest.key, name: snapDict!["name"] as! String, price: snapDict!["price"] as! String, imageURL: snapDict!["imageURL"] as! String)
+            print("snapshot value", snapshot.value!)
+            for child in snapshot.children.allObjects as! [DataSnapshot] { //don't convert into dictionary, dictionary won't maintain order of items
+                print("child val",child.value)
+                print("cihld key", child.key)
+                let oneGallery = GalleryModel(data: child.value as! [String : Any])
                 self.galleryList.append(oneGallery)
-                //                for child in snapDict{
-                //
-                //                    //                    let shotKey = snapshot.children.nextObject() as! FIRDataSnapshot
+            }
+
+//                for i in (snapshot.value as? [String:AnyObject])! {
+//
+//                    print("i val", i.value)
+//                    print("i key?", i.key)
+//                    let oneGallery = GalleryModel(data: i.value as! [String : Any])
+//                    self.galleryList.append(oneGallery)
+//                }
+            
+//                let oneGallery = GalleryModel(data: snapshot.value as! [String : Any])
+//                self.galleryList.append(oneGallery)
+                
+                for case let rest as DataSnapshot in snapshot.children {
+                    //                print(snapDict)
+                    let snapDict = rest.value as? [String: Any]
+                    
+                    //                print("name", snapDict!["name"] as? String)
+                    print("snapdict")
+                    print(snapDict!)
+                    //                let oneGallery = GalleryModel(id: rest.key, name: snapDict!["name"] as! String, price: snapDict!["price"] as! String, imageURL: snapDict!["imageURL"] as! String)
+                    //                let oneGallery = GalleryModel(data: snapDict!)
+                    //                self.galleryList.append(oneGallery)
+                    //                for child in snapDict{
+                    //
+                    //                    //                    let shotKey = snapshot.children.nextObject() as! FIRDataSnapshot
+                    //                    print(child.key)
+                    //                    //                    if let name = child.value as? [String:AnyObject]{
+                    ////                    print(child["name"])
+                    //                    let oneGallery = GalleryModel(id: child.key, name: snapDict["name"] as! String, price: snapDict["price"] as! String, imageURL: snapDict["imageURL"] as! String)
+                    //                    self.galleryList.append(oneGallery)
+                    //                }
+                }
+                //            if let result = snapshot.children.allObjects as? [DataSnapshot] {
+                //                for child in result {
                 //                    print(child.key)
-                //                    //                    if let name = child.value as? [String:AnyObject]{
-                ////                    print(child["name"])
-                //                    let oneGallery = GalleryModel(id: child.key, name: snapDict["name"] as! String, price: snapDict["price"] as! String, imageURL: snapDict["imageURL"] as! String)
+                //                    let oneGallery = GalleryModel(id: child.key, name: child["name"], price: child["price"] as! String, imageURL: child!["imageURL"] as! String)
                 //                    self.galleryList.append(oneGallery)
                 //                }
+                //            }
+                DispatchQueue.main.async {
+                    self.collectionView.reloadData()
+                }
+                
             }
-            //            if let result = snapshot.children.allObjects as? [DataSnapshot] {
-            //                for child in result {
-            //                    print(child.key)
-            //                    let oneGallery = GalleryModel(id: child.key, name: child["name"], price: child["price"] as! String, imageURL: child!["imageURL"] as! String)
-            //                    self.galleryList.append(oneGallery)
-            //                }
-            //            }
-            self.collectionView.reloadData()
-
+            //        DispatchQueue.main.async {
+            //
+            //            self.collectionView.reloadData()
+            //        }
         }
-//        DispatchQueue.main.async {
-//
-//            self.collectionView.reloadData()
-//        }
+    
+    func loadGallery() { //fix all in scope shortcut key = ctrl + opt + cmd + f
+        DataManager.loadGallery { (galleryListFromFirebase) in
+            self.galleryList = galleryListFromFirebase
+            print("gallery list count load from firebase", self.galleryList.count)
+            self.collectionView.reloadData()
+        }
     }
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+//        print("selected item", indexPath)
+//        dump(galleryList[indexPath.row], name: "dump object")
+//        print((galleryList[indexPath.row]))
+//
+//        galleryList[indexPath.row].printObj("This Text")
+        print("clicked on one row collectionview")
+        
+        if !returnImage {return}
+        
+        //https://fluffy.es/3-ways-to-pass-data-between-view-controllers/
+        if let delegate = delegate {
+            delegate.doSomethingWith(data: galleryList[indexPath.row].imageURL!)
+            self.dismiss(animated: true, completion: nil)
+//            self.navigationController?.popViewController(animated: true)
+        }
+    
+    }
+    
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+         if segue.identifier == "uploadPhoto" {
+             let destinationVC = segue.destination as! GalleryUploadPhotoFrameViewController
+             // Set any variable in ViewController2
+             destinationVC.callbackResult = { result in
+             // assign passing data etc..
+                print("result received!", result)
+                print("gallery after upload", self.galleryList.count)
+//                self.collectionView.reloadData()
+//                self.loadGallery()
+             }
+         }
+      }
+
 }
