@@ -65,7 +65,8 @@ class GuideDetailViewController: UIViewController {
 //        } else {
             let chatLogViewController = self.storyboard?.instantiateViewController(withIdentifier: "ChatLog") as! ChatLogViewController
             chatLogViewController.user = user
-            self.navigationController?.pushViewController(chatLogViewController, animated: true)
+            // self.navigationController?.pushViewController(chatLogViewController, animated: true)
+            present(chatLogViewController, animated: true, completion: nil)
 //        }
     }
 }

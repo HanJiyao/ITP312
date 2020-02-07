@@ -19,6 +19,7 @@
 		512AE6FC23E9211900F0832C /* GuideDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 512AE6FB23E9211900F0832C /* GuideDetailViewController.swift */; };
 		512AE70023E9343300F0832C /* Guide.swift in Sources */ = {isa = PBXBuildFile; fileRef = 512AE6FF23E9343300F0832C /* Guide.swift */; };
 		512AE70323E93CDC00F0832C /* GuideCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 512AE70223E93CDC00F0832C /* GuideCell.swift */; };
+		514FD30A23ED15AE0035EAD9 /* GuideCalenderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 514FD30923ED15AE0035EAD9 /* GuideCalenderViewController.swift */; };
 		5156A05C23CDA39A008328C5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5156A05B23CDA39A008328C5 /* AppDelegate.swift */; };
 		5156A05E23CDA39A008328C5 /* RootController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5156A05D23CDA39A008328C5 /* RootController.swift */; };
 		5156A06123CDA39A008328C5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5156A05F23CDA39A008328C5 /* Main.storyboard */; };
@@ -71,6 +72,7 @@
 		512AE6FB23E9211900F0832C /* GuideDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideDetailViewController.swift; sourceTree = "<group>"; };
 		512AE6FF23E9343300F0832C /* Guide.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Guide.swift; sourceTree = "<group>"; };
 		512AE70223E93CDC00F0832C /* GuideCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideCell.swift; sourceTree = "<group>"; };
+		514FD30923ED15AE0035EAD9 /* GuideCalenderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideCalenderViewController.swift; sourceTree = "<group>"; };
 		5156A05823CDA39A008328C5 /* ITP312.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ITP312.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5156A05B23CDA39A008328C5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5156A05D23CDA39A008328C5 /* RootController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootController.swift; sourceTree = "<group>"; };
@@ -210,6 +212,7 @@
 			isa = PBXGroup;
 			children = (
 				512AE70223E93CDC00F0832C /* GuideCell.swift */,
+				514FD30923ED15AE0035EAD9 /* GuideCalenderViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -445,6 +448,7 @@
 				FB4D4AA823E94DE6007B67B2 /* PlanCellDataController.swift in Sources */,
 				FB4D4AA223E9016E007B67B2 /* SetDateForPlanViewController.swift in Sources */,
 				77A88CAA23D08536003C5C2C /* ImageExtension.swift in Sources */,
+				514FD30A23ED15AE0035EAD9 /* GuideCalenderViewController.swift in Sources */,
 				7788232B23D123840036304C /* UserCell.swift in Sources */,
 				7788232623D0F61C0036304C /* ChatLogViewController.swift in Sources */,
 				D5D38D8023E9618B0070ED85 /* GalleryModel.swift in Sources */,

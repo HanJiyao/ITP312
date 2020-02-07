@@ -297,4 +297,8 @@ class ChatLogViewController: UIViewController, UITableViewDataSource, UITableVie
     @IBAction func handleEnter(_ sender: Any) {
         sendMessage()
     }
+    
+    @IBAction func backBtn(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
+    }
 }
