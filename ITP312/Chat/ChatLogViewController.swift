@@ -416,45 +416,44 @@ class ChatLogViewController: UIViewController, UITableViewDataSource, UITableVie
 //                    dictionary: dictionary
 //                )
         for message in self.messages {
-            if self.translationSwitch.isOn {
-                    if language == "Chinese" {
-                        self.chineseEnglishTranslator.translate(message.text!) { translatedText, error in
-                            guard error == nil, let translatedText = translatedText else { return }
-                            print(translatedText)
-                            message.text = translatedText
-                            self.tableView.reloadData()
-                        }
-                    } else if language=="Japnese" {
-                        self.japEngTranslator.translate(message.text!) { translatedText, error in
-                            guard error == nil, let translatedText = translatedText else { return }
-                            print(translatedText)
-                            message.text = translatedText
-                            self.tableView.reloadData()
-                        }
-                    } else if language=="Germany" {
-                        self.germanyEnglishTranslator.translate(message.text!) { translatedText, error in
-                            guard error == nil, let translatedText = translatedText else { return }
-                            print(translatedText)
-                            message.text = translatedText
-                            self.tableView.reloadData()
-                        }
-                    } else if language=="Malay" {
-                        self.malayEngTranslator.translate(message.text!) { translatedText, error in
-                            guard error == nil, let translatedText = translatedText else { return }
-                            print(translatedText)
-                            message.text = translatedText
-                            self.tableView.reloadData()
-                        }
-                    } else if language=="Russian" {
-                        self.russEngTranslator.translate(message.text!) { translatedText, error in
-                            guard error == nil, let translatedText = translatedText else { return }
-                            print(translatedText)
-                            message.text = translatedText
-                            self.tableView.reloadData()
-                        }
+            if self.translationSwitch.isOn && message.text != nil {
+                if language == "Chinese" {
+                    self.chineseEnglishTranslator.translate(message.text!) { translatedText, error in
+                        guard error == nil, let translatedText = translatedText else { return }
+                        print(translatedText)
+                        message.text = translatedText
+                        self.tableView.reloadData()
                     }
-                    
+                } else if language=="Japnese" {
+                    self.japEngTranslator.translate(message.text!) { translatedText, error in
+                        guard error == nil, let translatedText = translatedText else { return }
+                        print(translatedText)
+                        message.text = translatedText
+                        self.tableView.reloadData()
+                    }
+                } else if language=="Germany" {
+                    self.germanyEnglishTranslator.translate(message.text!) { translatedText, error in
+                        guard error == nil, let translatedText = translatedText else { return }
+                        print(translatedText)
+                        message.text = translatedText
+                        self.tableView.reloadData()
+                    }
+                } else if language=="Malay" {
+                    self.malayEngTranslator.translate(message.text!) { translatedText, error in
+                        guard error == nil, let translatedText = translatedText else { return }
+                        print(translatedText)
+                        message.text = translatedText
+                        self.tableView.reloadData()
+                    }
+                } else if language=="Russian" {
+                    self.russEngTranslator.translate(message.text!) { translatedText, error in
+                        guard error == nil, let translatedText = translatedText else { return }
+                        print(translatedText)
+                        message.text = translatedText
+                        self.tableView.reloadData()
+                    }
                 }
+            }
         }
     }
 
