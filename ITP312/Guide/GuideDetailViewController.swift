@@ -90,10 +90,11 @@ class GuideDetailViewController: UIViewController {
     }
 
     @IBAction func handleRedirectChat(_ sender: Any) {
-        let chatLogViewController = self.storyboard?.instantiateViewController(withIdentifier: "ChatLog") as! ChatLogViewController
+        let storyboard = UIStoryboard(name: "ChatStoryboard", bundle: nil)
+        let chatLogViewController = storyboard.instantiateViewController(withIdentifier: "ChatLog") as! ChatLogViewController
         chatLogViewController.user = user
-        // self.navigationController?.pushViewController(chatLogViewController, animated: true)
-        present(chatLogViewController, animated: true, completion: nil)
+        self.navigationController?.pushViewController(chatLogViewController, animated: true)
+        // present(chatLogViewController, animated: true, completion: nil)
     }
     @IBAction func handleBook(_ sender: Any) {
         guard  let uid = Auth.auth().currentUser?.uid, let guidID = guide?.guideID else {
@@ -102,8 +103,7 @@ class GuideDetailViewController: UIViewController {
         let ref = Database.database().reference()
         
         ref.child("/guides/\(guidID)").updateChildValues(["booked":true])
-        ref.child("/user-guides/guide-to-user/").updateChildValues([guidID:uid])
-        ref.child("/user-guides/user-to-guide/\(uid)/\(guidID)/").updateChildValues(["status":0])
+        ref.child("user-guides").updateChildValues([guidID:uid])
         
         bookBtn.setTitle("Booked", for: .normal)
         bookBtn.backgroundColor = .lightGray

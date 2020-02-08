@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import DropDown
 
 class ChatLogViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate
 {
@@ -15,12 +16,50 @@ class ChatLogViewController: UIViewController, UITableViewDataSource, UITableVie
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var bottomBar: UIStackView!
     @IBOutlet weak var sendImageViewButton: UIImageView!
+    @IBOutlet weak var fromLanguage: UIButton!
+    @IBOutlet weak var toLanguage: UIButton!
+    @IBOutlet weak var translationSwitch: UISwitch!
+    @IBOutlet weak var topBar: UIStackView!
     
     var user: User?
     var messages: [Message] = []
     let cellID = "ChatLogCell"
     
     var bottomBarBottomAnchor: NSLayoutConstraint?
+    let dropDown1 = DropDown()
+    let dropDown2 = DropDown()
+    let englishChineseTranslator = NaturalLanguage.naturalLanguage().translator(options:
+        TranslatorOptions(sourceLanguage: .en, targetLanguage: .zh)
+    )
+    let chineseEnglishTranslator = NaturalLanguage.naturalLanguage().translator(options:
+        TranslatorOptions(sourceLanguage: .zh, targetLanguage: .en)
+    )
+    let englishGermanyTranslator = NaturalLanguage.naturalLanguage().translator(options:
+        TranslatorOptions(sourceLanguage: .en, targetLanguage: .de)
+    )
+    let germanyEnglishTranslator = NaturalLanguage.naturalLanguage().translator(options:
+        TranslatorOptions(sourceLanguage: .de, targetLanguage: .en)
+    )
+    let japEngTranslator = NaturalLanguage.naturalLanguage().translator(options:
+        TranslatorOptions(sourceLanguage: .ja, targetLanguage: .en)
+    )
+    let engJapTranslator = NaturalLanguage.naturalLanguage().translator(options:
+        TranslatorOptions(sourceLanguage: .en, targetLanguage: .ja)
+    )
+    let malayEngTranslator = NaturalLanguage.naturalLanguage().translator(options:
+    TranslatorOptions(sourceLanguage: .ms, targetLanguage: .en)
+    )
+    let engMalayTranslator = NaturalLanguage.naturalLanguage().translator(options:
+    TranslatorOptions(sourceLanguage: .en, targetLanguage: .ms)
+    )
+    let russEngTranslator = NaturalLanguage.naturalLanguage().translator(options:
+    TranslatorOptions(sourceLanguage: .ru, targetLanguage: .en)
+    )
+    let engRussTranslator = NaturalLanguage.naturalLanguage().translator(options:
+        TranslatorOptions(sourceLanguage: .en, targetLanguage:.ru)
+    )
+    
+    var translation = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,6 +67,7 @@ class ChatLogViewController: UIViewController, UITableViewDataSource, UITableVie
             self.navigationItem.title = user!.name
             navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
             observeMessages()
+
         }
         self.tableView.delegate = self
         tableView.register(ChatLogCell.self, forCellReuseIdentifier: cellID)
@@ -42,6 +82,75 @@ class ChatLogViewController: UIViewController, UITableViewDataSource, UITableVie
         
         sendImageViewButton.isUserInteractionEnabled = true
         sendImageViewButton.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleSendImageTap)))
+        
+        
+        let conditions = ModelDownloadConditions(
+            allowsCellularAccess: false,
+            allowsBackgroundDownloading: true
+        )
+        
+        translationSwitch.isOn = false
+        
+        englishChineseTranslator.downloadModelIfNeeded(with: conditions) { error in
+            guard error == nil else { return }
+        }
+        chineseEnglishTranslator.downloadModelIfNeeded(with: conditions) { error in
+            guard error == nil else { return }
+        }
+        engJapTranslator.downloadModelIfNeeded(with: conditions) { error in
+            guard error == nil else { return }
+        }
+        japEngTranslator.downloadModelIfNeeded(with: conditions) { error in
+            guard error == nil else { return }
+        }
+        germanyEnglishTranslator.downloadModelIfNeeded(with: conditions) { error in
+            guard error == nil else { return }
+        }
+        englishGermanyTranslator.downloadModelIfNeeded(with: conditions) { error in
+            guard error == nil else { return }
+        }
+        russEngTranslator.downloadModelIfNeeded(with: conditions) { error in
+            guard error == nil else { return }
+        }
+        engRussTranslator.downloadModelIfNeeded(with: conditions) { error in
+            guard error == nil else { return }
+        }
+        malayEngTranslator.downloadModelIfNeeded(with: conditions) { error in
+            guard error == nil else { return }
+        }
+        engMalayTranslator.downloadModelIfNeeded(with: conditions) { error in
+            guard error == nil else { return }
+        }
+        
+        topBar.layer.borderColor = UIColor.init(red: 0, green: 0, blue: 0, alpha: 0.05).cgColor
+        topBar.layer.borderWidth = 1
+        
+        dropDown1.anchorView = fromLanguage
+        // UIView or UIBarButtonItem
+        dropDown1.customCellConfiguration = { (index: Index, item: String, cell: DropDownCell) -> Void in
+            // Setup your custom UI components
+            cell.optionLabel.textAlignment = .center
+        }
+        // The list of items to display. Can be changed dynamically
+        dropDown1.dataSource = ["English", "Chinese", "Japnese", "Germany", "Russian"]
+        dropDown1.selectionAction = { [unowned self] (index: Int, item: String) in
+            print("Selected item: \(item) at index: \(index)")
+            self.fromLanguage.setTitle(item, for: .normal)
+            self.handleTranslate(language: item)
+        }
+//        dropDown2.anchorView = toLanguage
+//        // UIView or UIBarButtonItem
+//        dropDown2.customCellConfiguration = { (index: Index, item: String, cell: DropDownCell) -> Void in
+//           // Setup your custom UI components
+//           cell.optionLabel.textAlignment = .center
+//        }
+//        // The list of items to display. Can be changed dynamically
+//        dropDown2.dataSource = ["English", "Chinese", "Japnese", "Germany", "Russian"]
+//        dropDown2.selectionAction = { [unowned self] (index: Int, item: String) in
+//           print("Selected item: \(item) at index: \(index)")
+//           self.toLanguage.setTitle(item, for: .normal)
+//        }
+        
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -290,6 +399,69 @@ class ChatLogViewController: UIViewController, UITableViewDataSource, UITableVie
         }
     }
     
+    func handleTranslate(language: String) {
+//        guard let uid = Auth.auth().currentUser?.uid, let toID = user?.id else {
+//            return
+//        }
+//        self.messages = []
+//        let userMessageRef = Database.database().reference().child("user-messages").child(uid).child(toID)
+//        userMessageRef.observe(.childAdded) { (snapshot) in
+//            let messageID = snapshot.key
+//            let messageRef = Database.database().reference().child("messages").child(messageID)
+//            messageRef.observe(.value, with: { (snapshot) in
+//                guard let dictionary = snapshot.value as? [String: AnyObject] else {
+//                    return
+//                }
+//                let message = Message(
+//                    dictionary: dictionary
+//                )
+        for message in self.messages {
+            if self.translationSwitch.isOn {
+                    if language == "Chinese" {
+                        self.chineseEnglishTranslator.translate(message.text!) { translatedText, error in
+                            guard error == nil, let translatedText = translatedText else { return }
+                            print(translatedText)
+                            message.text = translatedText
+                            self.tableView.reloadData()
+                        }
+                    } else if language=="Japnese" {
+                        self.japEngTranslator.translate(message.text!) { translatedText, error in
+                            guard error == nil, let translatedText = translatedText else { return }
+                            print(translatedText)
+                            message.text = translatedText
+                            self.tableView.reloadData()
+                        }
+                    } else if language=="Germany" {
+                        self.germanyEnglishTranslator.translate(message.text!) { translatedText, error in
+                            guard error == nil, let translatedText = translatedText else { return }
+                            print(translatedText)
+                            message.text = translatedText
+                            self.tableView.reloadData()
+                        }
+                    } else if language=="Malay" {
+                        self.malayEngTranslator.translate(message.text!) { translatedText, error in
+                            guard error == nil, let translatedText = translatedText else { return }
+                            print(translatedText)
+                            message.text = translatedText
+                            self.tableView.reloadData()
+                        }
+                    } else if language=="Russian" {
+                        self.russEngTranslator.translate(message.text!) { translatedText, error in
+                            guard error == nil, let translatedText = translatedText else { return }
+                            print(translatedText)
+                            message.text = translatedText
+                            self.tableView.reloadData()
+                        }
+                    }
+                    
+                }
+        }
+    }
+
+//            })
+//        }
+//    }
+    
     @IBAction func handleSend(_ sender: Any) {
         sendMessage()
     }
@@ -298,7 +470,22 @@ class ChatLogViewController: UIViewController, UITableViewDataSource, UITableVie
         sendMessage()
     }
     
-    @IBAction func backBtn(_ sender: Any) {
-        dismiss(animated: true, completion: nil)
+    @IBAction func handleFromLanguage(_ sender: Any) {
+        dropDown1.show()
     }
+    
+    @IBAction func handleToLanguage(_ sender: Any) {
+        // dropDown2.show()
+    }
+    
+    @IBAction func handleToggle(_ sender: Any) {
+        if translationSwitch.isOn {
+            let lan = fromLanguage.titleLabel!.text!
+            handleTranslate(language: lan)
+        } else {
+            self.messages = []
+            observeMessages()
+        }
+    }
+    
 }

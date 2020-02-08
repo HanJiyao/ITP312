@@ -15,5 +15,7 @@ target 'ITP312' do
   pod 'ShadowView'
   pod 'RSSelectionMenu'
   pod 'DropDown'
+  pod 'Firebase/MLNLTranslate'
+
 
 end

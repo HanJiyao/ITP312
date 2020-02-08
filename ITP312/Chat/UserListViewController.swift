@@ -30,14 +30,13 @@ class UserListViewController: UIViewController, UITableViewDataSource, UITableVi
     func fetchUser() {
         var ref: DatabaseReference!
         ref = Database.database().reference()
-        ref.child("/user-guides/guide-to-user/").observeSingleEvent(of: .value, with: { (snapshot) in
+        ref.child("user-guides").observeSingleEvent(of: .value, with: { (snapshot) in
             if let dictionary = snapshot.value as? [String: AnyObject] {
                 for i in dictionary {
                     let userID = i.value as! String
                     if userID == Auth.auth().currentUser!.uid {
                         ref.child("/users/\(i.key)").observeSingleEvent(of: .value) { (snapshot) in
                             if let dictionary = snapshot.value as? [String: AnyObject] {
-                                print(dictionary)
                                 let user = User(
                                     id: i.key,
                                     name: dictionary["name"]! as! String,

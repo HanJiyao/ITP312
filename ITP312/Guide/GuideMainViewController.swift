@@ -18,8 +18,8 @@ class GuideMainViewController: UIViewController, UITableViewDataSource, UITableV
     @IBOutlet weak var guideTableView: UITableView!
     @IBOutlet weak var createButton: UIButton!
     @IBOutlet weak var sortButton: UIButton!
-    @IBOutlet weak var orderButton: UIImageView!
     @IBOutlet weak var myBookingButton: UIButton!
+    @IBOutlet weak var sortBtn: UIBarButtonItem!
     
     var guides:[Guide] = []
     var users:[User] = []
@@ -27,12 +27,22 @@ class GuideMainViewController: UIViewController, UITableViewDataSource, UITableV
     let dropDown = DropDown()
     var ascending = false
     
+    let searchController = UISearchController(searchResultsController: nil)
+    var filteredGuides: [Guide] = []
+    var isSearchBarEmpty: Bool {
+      return searchController.searchBar.text?.isEmpty ?? true
+    }
+    var isFiltering: Bool {
+      return searchController.isActive && !isSearchBarEmpty
+    }
+    
+    var prevSort = ""
     override func viewDidLoad() {
         super.viewDidLoad()
         guideTableView.register(GuideCell.self, forCellReuseIdentifier: cellID)
         guideTableView.delegate = self
         guideTableView.rowHeight = 90
-        createButton.layer.cornerRadius = 15
+        createButton.layer.cornerRadius = 18
         
         dropDown.anchorView = guideTableView
         // UIView or UIBarButtonItem
@@ -43,20 +53,28 @@ class GuideMainViewController: UIViewController, UITableViewDataSource, UITableV
         // The list of items to display. Can be changed dynamically
         dropDown.dataSource = ["Popularity", "Name", "Start Date", "End Date"]
         dropDown.selectionAction = { [unowned self] (index: Int, item: String) in
-          print("Selected item: \(item) at index: \(index)")
-            self.sortButton.setTitle(item, for: .normal)
+            print("Selected item: \(item) at index: \(index)")
             if self.sortButton.titleLabel!.text == item {
                 self.ascending.toggle()
                 if self.ascending {
-                    self.orderButton.image = UIImage.init(systemName: "chevron.up.circle")
+                    self.sortBtn.image = UIImage.init(systemName: "chevron.up")
                 } else {
-                     self.orderButton.image = UIImage.init(systemName: "chevron.down.circle")
+                    self.sortBtn.image = UIImage.init(systemName: "chevron.down")
                 }
                 self.attemptReload()
             }
+            self.sortButton.setTitle(item, for: .normal)
+            self.attemptReload()
+            self.prevSort = item
         }
         
         // observeRefreshGuides()
+        
+        searchController.searchResultsUpdater = self
+        searchController.obscuresBackgroundDuringPresentation = false
+        searchController.searchBar.placeholder = "Search Guides"
+        navigationItem.searchController = searchController
+        definesPresentationContext = true
     }
     
     private func handleSortTable() {
@@ -103,27 +121,25 @@ class GuideMainViewController: UIViewController, UITableViewDataSource, UITableV
     }
     
     func observeRefreshGuides () {
-        Database.database().reference().child("guides").observe(.value) { (snapshot) in
+        Database.database().reference().child("guides").observe(.childAdded) { (snapshot) in
             self.guideRole = false
             self.guides.removeAll()
             if let dictionary = snapshot.value as? [String:AnyObject] {
-                for i in dictionary {
-                    let guide = Guide(dictionary: i.value as! [String : AnyObject])
-                    let guideID = guide.guideID!
-                    Database.database().reference().child("users").child(guideID)
-                        .observeSingleEvent(of: .value, with: { (snapshot) in
-                            if let dictionary = snapshot.value as? [String:AnyObject] {
-                                guide.guideName = dictionary["name"]! as? String
-                                if guide.guideID == Auth.auth().currentUser?.uid {
-                                    self.guideRole = true
-                                } else {
-                                    self.guides.append(guide)
-                                }
-                                self.toggleRole(isGuide: self.guideRole)
+                let guide = Guide(dictionary: dictionary)
+                let guideID = guide.guideID!
+                Database.database().reference().child("users").child(guideID)
+                    .observeSingleEvent(of: .value, with: { (snapshot) in
+                        if let dictionary = snapshot.value as? [String:AnyObject] {
+                            guide.guideName = dictionary["name"]! as? String
+                            if guide.guideID == Auth.auth().currentUser?.uid {
+                                self.guideRole = true
+                            } else {
+                                self.guides.append(guide)
                             }
+                            self.toggleRole(isGuide: self.guideRole)
                         }
-                    )
-                }
+                    }
+                )
                 self.attemptReload()
             }
         }
@@ -152,12 +168,21 @@ class GuideMainViewController: UIViewController, UITableViewDataSource, UITableV
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return guides.count
+        if isFiltering {
+            return filteredGuides.count
+        } else {
+            return guides.count
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellID, for: indexPath) as! GuideCell
-        let guide = guides[indexPath.row]
+        var guide: Guide
+        if isFiltering {
+          guide = filteredGuides[indexPath.row]
+        } else {
+          guide = guides[indexPath.row]
+        }
         if guide.guideID != Auth.auth().currentUser?.uid{
             cell.guide = guide
         }
@@ -178,4 +203,30 @@ class GuideMainViewController: UIViewController, UITableViewDataSource, UITableV
     @IBAction func handleSort(_ sender: Any) {
         dropDown.show()
     }
+        
+    @IBAction func handleOfferRequest(_ sender: Any) {
+        print(guideRole)
+        if guideRole {
+            let guideBookOfferViewController = self.storyboard?.instantiateViewController(withIdentifier: "GuideOffer") as! GuideBookOfferViewController
+            present(guideBookOfferViewController, animated: true, completion: nil)
+        } else {
+            let guideBookRequestViewController = self.storyboard?.instantiateViewController(withIdentifier: "GuideRequest") as! GuideBookRequestViewController
+            present(guideBookRequestViewController, animated: true, completion: nil)
+        }
+    }
+
+    func filterContentForSearchText(_ searchText: String) {
+      filteredGuides = guides.filter { (guide: Guide) -> Bool in
+        return guide.guideName!.lowercased().contains(searchText.lowercased())
+      }
+      
+      guideTableView.reloadData()
+    }
+}
+
+extension GuideMainViewController: UISearchResultsUpdating {
+  func updateSearchResults(for searchController: UISearchController) {
+    let searchBar = searchController.searchBar
+    filterContentForSearchText(searchBar.text!)
+  }
 }

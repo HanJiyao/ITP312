@@ -22,6 +22,7 @@ class GuideEditViewController: UIViewController, UIImagePickerControllerDelegate
     @IBOutlet weak var serviceSeperator: UIView!
     @IBOutlet weak var dateSeperator: UIView!
     @IBOutlet weak var previewBtn: UIButton!
+    @IBOutlet weak var deleteBtn: UIButton!
     
     var user: User?
     var guide: Guide?
@@ -54,6 +55,8 @@ class GuideEditViewController: UIViewController, UIImagePickerControllerDelegate
             descTextLabel.text = guide?.desc
             fromDateTextLabel.text = guide?.fromDate
             toDateTextLabel.text = guide?.toDate
+        } else {
+           deleteBtn.isHidden = true
         }
     }
     
@@ -228,8 +231,10 @@ class GuideEditViewController: UIViewController, UIImagePickerControllerDelegate
                     "fromDate": fromDate,
                     "toDate":toDate,
                     "imgURL":downloadURL.absoluteString,
-                    "guideID":uid
-                ]
+                    "guideID":uid,
+                    "offerID":"",
+                    "booked":false
+                    ] as [String : Any]
                 Database.database().reference().child("guides/\(uid)/").updateChildValues(values) {
                     (error:Error?, ref:DatabaseReference) in
                     if let error = error {
@@ -266,5 +271,15 @@ class GuideEditViewController: UIViewController, UIImagePickerControllerDelegate
             self.navigationController?.pushViewController(guideDetailViewController, animated: true)
         })
     }
+    
+    @IBAction func handleDelete(_ sender: Any) {
+        guard let uid = Auth.auth().currentUser?.uid else {
+            return
+        }
+        Database.database().reference().child("/guides/\(uid)").removeValue()
+        Database.database().reference().child("/user-guide/\(uid)").removeValue()
+        self.navigationController?.popToRootViewController(animated: true)
+    }
+    
     
 }
