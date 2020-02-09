@@ -109,10 +109,23 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
+                    <connections>
+                        <segue destination="CMH-oD-jxw" kind="relationship" relationship="rootViewController" id="D1e-XD-hhw"/>
+                    </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fAV-7B-8nq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-4274" y="143"/>
+        </scene>
+        <!--Discover-->
+        <scene sceneID="VeV-y9-Qcc">
+            <objects>
+                <viewControllerPlaceholder storyboardName="DiscoverStoryboard" referencedIdentifier="Discover" id="CMH-oD-jxw" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="5fn-nQ-1Jw"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="47e-rY-NMG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-4274" y="546"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="Eg4-Vo-B2n">

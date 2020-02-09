@@ -35,6 +35,8 @@
 		7788232923D1138C0036304C /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7788232823D1138C0036304C /* Message.swift */; };
 		7788232B23D123840036304C /* UserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7788232A23D123840036304C /* UserCell.swift */; };
 		77A88CAA23D08536003C5C2C /* ImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77A88CA923D08536003C5C2C /* ImageExtension.swift */; };
+		D53FE06023F0899D004C9FA8 /* DiscoverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D53FE05E23F0899D004C9FA8 /* DiscoverViewController.swift */; };
+		D53FE06123F0899E004C9FA8 /* DiscoverStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D53FE05F23F0899D004C9FA8 /* DiscoverStoryboard.storyboard */; };
 		D5D38D8623E9619C0070ED85 /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D38D8523E9619C0070ED85 /* CollectionViewCell.swift */; };
 		D5D3E88423ED3A6200DDDCB6 /* GalleryDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D3E88323ED3A6200DDDCB6 /* GalleryDataManager.swift */; };
 		D5D3E88923ED3A9300DDDCB6 /* GalleryStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D5D3E88523ED3A9000DDDCB6 /* GalleryStoryboard.storyboard */; };
@@ -91,6 +93,8 @@
 		7788232A23D123840036304C /* UserCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCell.swift; sourceTree = "<group>"; };
 		77A88CA923D08536003C5C2C /* ImageExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageExtension.swift; sourceTree = "<group>"; };
 		A38D9AD9C7E44A1B66BD63E9 /* Pods_ITP312.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ITP312.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D53FE05E23F0899D004C9FA8 /* DiscoverViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiscoverViewController.swift; sourceTree = "<group>"; };
+		D53FE05F23F0899D004C9FA8 /* DiscoverStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = DiscoverStoryboard.storyboard; sourceTree = "<group>"; };
 		D5D38D8523E9619C0070ED85 /* CollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
 		D5D3E88323ED3A6200DDDCB6 /* GalleryDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GalleryDataManager.swift; sourceTree = "<group>"; };
 		D5D3E88523ED3A9000DDDCB6 /* GalleryStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = GalleryStoryboard.storyboard; sourceTree = "<group>"; };
@@ -238,6 +242,7 @@
 		5156A05A23CDA39A008328C5 /* ITP312 */ = {
 			isa = PBXGroup;
 			children = (
+				D53FE05D23F08978004C9FA8 /* Discover */,
 				512AE6F623E90EBD00F0832C /* ITP312.entitlements */,
 				512AE6FD23E932BC00F0832C /* Helper */,
 				511A196D23E822B5008B7E63 /* Guide */,
@@ -294,6 +299,15 @@
 				A38D9AD9C7E44A1B66BD63E9 /* Pods_ITP312.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D53FE05D23F08978004C9FA8 /* Discover */ = {
+			isa = PBXGroup;
+			children = (
+				D53FE05F23F0899D004C9FA8 /* DiscoverStoryboard.storyboard */,
+				D53FE05E23F0899D004C9FA8 /* DiscoverViewController.swift */,
+			);
+			path = Discover;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -363,6 +377,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D53FE06123F0899E004C9FA8 /* DiscoverStoryboard.storyboard in Resources */,
 				5156A06623CDA39B008328C5 /* LaunchScreen.storyboard in Resources */,
 				5156A07223CDA45D008328C5 /* ChatStoryboard.storyboard in Resources */,
 				5156A07423CDAC30008328C5 /* GoogleService-Info.plist in Resources */,
@@ -459,6 +474,7 @@
 				FB4D4AA023E8AE6B007B67B2 /* SearchTextField.swift in Sources */,
 				FB4D4A9C23E89459007B67B2 /* SearchText.swift in Sources */,
 				5125825623CEB2A2006C694C /* ChatMainViewController.swift in Sources */,
+				D53FE06023F0899D004C9FA8 /* DiscoverViewController.swift in Sources */,
 				511BB21023E01C0500E2A1BE /* ChatLogCell.swift in Sources */,
 				512AE70323E93CDC00F0832C /* GuideCell.swift in Sources */,
 				FB4D4AA623E93628007B67B2 /* DIYCalendarCell.swift in Sources */,
