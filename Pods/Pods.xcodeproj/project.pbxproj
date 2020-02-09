@@ -6697,6 +6697,7 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				Base,
 			);
 			mainGroup = CF1408CF629C7361332E53B88F7BD30C;
 			productRefGroup = 37189A5EF794BB5D7C09B9857B6E9FC7 /* Products */;
@@ -8259,22 +8260,6 @@
 			};
 			name = Release;
 		};
-		17AD5EB4160ADB882B10F6943A647B26 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 855C4BE30F1B7682D7940C120427EC99 /* FirebaseMLNLTranslate.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/FirebaseMLNLTranslate";
-				INFOPLIST_FILE = "Target Support Files/FirebaseMLNLTranslate/ResourceBundle-FirebaseMLNLTranslate_resource-FirebaseMLNLTranslate-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				PRODUCT_NAME = FirebaseMLNLTranslate_resource;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				WRAPPER_EXTENSION = bundle;
-			};
-			name = Release;
-		};
 		1DDC5F99DBA351FD0B3BEFC3CA3EDF36 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = AA7644C2E778D287F108AB420E90F3E6 /* nanopb.xcconfig */;
@@ -8836,22 +8821,6 @@
 			};
 			name = Debug;
 		};
-		676C8860CDE10BC1CF5CF701A4C8DA1F /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 855C4BE30F1B7682D7940C120427EC99 /* FirebaseMLNLTranslate.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/FirebaseMLNLTranslate";
-				INFOPLIST_FILE = "Target Support Files/FirebaseMLNLTranslate/ResourceBundle-FirebaseMLNLTranslate_resource-FirebaseMLNLTranslate-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				PRODUCT_NAME = FirebaseMLNLTranslate_resource;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				WRAPPER_EXTENSION = bundle;
-			};
-			name = Debug;
-		};
 		68EE8ABD6ABBB63072F495003B4191CC /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 9EE900633D2450A6DA10512F802EEB30 /* GoogleUtilities.xcconfig */;
@@ -9248,6 +9217,23 @@
 			};
 			name = Debug;
 		};
+		989C927FF6BF2965AF8B11599E543C27 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 855C4BE30F1B7682D7940C120427EC99 /* FirebaseMLNLTranslate.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/FirebaseMLNLTranslate";
+				IBSC_MODULE = FirebaseMLNLTranslate;
+				INFOPLIST_FILE = "Target Support Files/FirebaseMLNLTranslate/ResourceBundle-FirebaseMLNLTranslate_resource-FirebaseMLNLTranslate-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				PRODUCT_NAME = FirebaseMLNLTranslate_resource;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				WRAPPER_EXTENSION = bundle;
+			};
+			name = Debug;
+		};
 		99AC8E5E69081515638C7485F0B1C79E /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 0CC6A0E533639BAB5017A82D1738ACE4 /* FirebaseAuthInterop.xcconfig */;
@@ -9458,6 +9444,23 @@
 				VERSION_INFO_PREFIX = "";
 			};
 			name = Debug;
+		};
+		AA5C3291D34747A017FC331B979D75A4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 855C4BE30F1B7682D7940C120427EC99 /* FirebaseMLNLTranslate.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/FirebaseMLNLTranslate";
+				IBSC_MODULE = FirebaseMLNLTranslate;
+				INFOPLIST_FILE = "Target Support Files/FirebaseMLNLTranslate/ResourceBundle-FirebaseMLNLTranslate_resource-FirebaseMLNLTranslate-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				PRODUCT_NAME = FirebaseMLNLTranslate_resource;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				WRAPPER_EXTENSION = bundle;
+			};
+			name = Release;
 		};
 		AD5D303185D7F57FE431C26E2F589ED5 /* Release */ = {
 			isa = XCBuildConfiguration;
@@ -10348,8 +10351,8 @@
 		5C988C5657AB2A1A1A3972F728B83842 /* Build configuration list for PBXNativeTarget "FirebaseMLNLTranslate-FirebaseMLNLTranslate_resource" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				676C8860CDE10BC1CF5CF701A4C8DA1F /* Debug */,
-				17AD5EB4160ADB882B10F6943A647B26 /* Release */,
+				989C927FF6BF2965AF8B11599E543C27 /* Debug */,
+				AA5C3291D34747A017FC331B979D75A4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
