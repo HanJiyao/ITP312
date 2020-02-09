@@ -16,6 +16,6 @@ target 'ITP312' do
   pod 'RSSelectionMenu'
   pod 'DropDown'
   pod 'Firebase/MLNLTranslate'
-
+  pod 'SDWebImage', '~> 5.0'
 
 end

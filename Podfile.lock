@@ -151,6 +151,9 @@ PODS:
   - PromisesObjC (1.2.8)
   - Protobuf (3.11.3)
   - RSSelectionMenu (6.1.0)
+  - SDWebImage (5.5.2):
+    - SDWebImage/Core (= 5.5.2)
+  - SDWebImage/Core (5.5.2)
   - ShadowView (1.4.3)
 
 DEPENDENCIES:
@@ -163,6 +166,7 @@ DEPENDENCIES:
   - Firebase/Storage
   - FSCalendar
   - RSSelectionMenu
+  - SDWebImage (~> 5.0)
   - ShadowView
 
 SPEC REPOS:
@@ -197,6 +201,7 @@ SPEC REPOS:
     - PromisesObjC
     - Protobuf
     - RSSelectionMenu
+    - SDWebImage
     - ShadowView
 
 SPEC CHECKSUMS:
@@ -230,8 +235,9 @@ SPEC CHECKSUMS:
   PromisesObjC: c119f3cd559f50b7ae681fa59dc1acd19173b7e6
   Protobuf: 0e94afe3b47cb11876eb6aee296638711a24bf75
   RSSelectionMenu: dac4fa365e4bbd95c0eccd0b6ff51a623a22a1c6
+  SDWebImage: 4d5c027c935438f341ed33dbac53ff9f479922ca
   ShadowView: d2d92fd2706b3f6a182be2147149db0b1cf7700d
 
-PODFILE CHECKSUM: cd24e461f471f7d49342ecae06ca3252f7ba7c2f
+PODFILE CHECKSUM: aa987f623d1d27288d8b7caa60e3cc253d19ec36
 
 COCOAPODS: 1.8.4

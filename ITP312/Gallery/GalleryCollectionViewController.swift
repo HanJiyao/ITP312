@@ -8,13 +8,13 @@
 
 import UIKit
 import Firebase
-
+import SDWebImage
 
 protocol GalleryDelegate: NSObjectProtocol {
     func doSomethingWith(data: String)
 }
 
-class GalleryCollectionViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
+class GalleryCollectionViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     weak var delegate: GalleryDelegate?
     
@@ -24,6 +24,8 @@ class GalleryCollectionViewController: UIViewController, UICollectionViewDelegat
     
     var returnImage = false
     
+    let screenSize = UIScreen.main.bounds
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,7 +34,23 @@ class GalleryCollectionViewController: UIViewController, UICollectionViewDelegat
         self.navigationItem.title = "Photo frames"
         print("view did load")
 //        loadData()
+        let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
+
         loadGallery()
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let numberOfItemsPerRow:CGFloat = 4
+        let spacingBetweenCells:CGFloat = 16
+        
+        let totalSpacing = (2 * 16) + ((numberOfItemsPerRow - 1) * spacingBetweenCells) //Amount of total spacing in a row
+        
+        if let collection = self.collectionView{
+            let width = (collection.bounds.width - totalSpacing)/numberOfItemsPerRow
+            return CGSize(width: width, height: width)
+        }else{
+            return CGSize(width: 0, height: 0)
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -64,7 +82,10 @@ class GalleryCollectionViewController: UIViewController, UICollectionViewDelegat
         //            cell.displayContent(image: UIImage(data: imageData)!, price: onePhotoFrame.price!)
         //
         //        }
-        cell.imageView.loadImageCache(urlString: onePhotoFrame.imageURL!)
+        
+//        cell.imageView.loadImageCache(urlString: onePhotoFrame.imageURL!)
+        cell.imageView.sd_setImage(with: URL(string: onePhotoFrame.imageURL!), placeholderImage: UIImage(named: "image-placeholder"))
+        
         cell.nameLabel.text = "$" + onePhotoFrame.price!
         
         
@@ -162,7 +183,37 @@ class GalleryCollectionViewController: UIViewController, UICollectionViewDelegat
 //        galleryList[indexPath.row].printObj("This Text")
         print("clicked on one row collectionview")
         
-        if !returnImage {return}
+        if !returnImage {
+            let storyboard = UIStoryboard(name: "ChatStoryboard", bundle: nil)
+            let chatLogViewController = storyboard.instantiateViewController(identifier: "ChatLog") as! ChatLogViewController
+            let guideID = "L8GStyrpxtMy7HOC69CfwWOxlt12"
+            let ref = Database.database().reference().child("/users/\(guideID)/")
+            ref.observe(.value, with: { (snapshot) in
+                guard let dictionary = snapshot.value as? [String: AnyObject] else {
+                    return
+                }
+                let user = User(
+                    id: guideID,
+                    name: dictionary["name"]! as! String,
+                    email: dictionary["email"]! as! String,
+                    profileURL: dictionary["profileURL"]! as! String
+                )
+                chatLogViewController.user = user
+                // self.navigationController?.pushViewController(chatLogViewController, animated: true)
+                
+                //                guard let stringURL = URL(string: self.galleryList[indexPath.row].imageURL!) else {return}
+                //                guard let imageRetrieved = UIImage(data: try! Data(contentsOf: stringURL)) else {return}
+                //                self.uploadImageToChat(image: imageRetrieved, toID: guideID)
+                
+                let imageFromCell = self.collectionView.cellForItem(at: indexPath) as? CollectionViewCell
+                if let image = imageFromCell?.imageView.image { //or guard let image = ... else return
+                    self.uploadImageToChat(image: image, toID: guideID)
+                    //                    imageFromCell?.imageView.sd_setImage
+                    self.present(chatLogViewController, animated: true, completion: nil)
+                }
+            })
+            
+        }
         
         //https://fluffy.es/3-ways-to-pass-data-between-view-controllers/
         if let delegate = delegate {
@@ -187,5 +238,45 @@ class GalleryCollectionViewController: UIViewController, UICollectionViewDelegat
              }
          }
       }
+    
+    func uploadImageToChat(image: UIImage, toID: String?) {
+        // MARK: TODO: create uiimage download from firebase?
+        // FIXME: test
+        let imageName = NSUUID().uuidString
+        let data = image.jpegData(compressionQuality: 0.3)
+        
+        let storageRef = Storage.storage().reference().child("message").child(imageName)
+        let createStorage = StorageMetadata()
+        let createCustom = [
+            "imageHeight": "\(image.size.height)",
+            "imageWidth": "\(image.size.width)"
+        ]
+        createStorage.customMetadata = createCustom
+        
+        storageRef.putData(data!, metadata: createStorage) { (metadata, error) in
+            storageRef.downloadURL { (url, error) in
+                if let imageURL = url?.absoluteString {
+                    let ref = Database.database().reference()
+                    //                    let toID = self.user!.id
+                    let toID = toID
+                    let fromID = Auth.auth().currentUser?.uid
+                    let timestamp: NSNumber = NSNumber(value: Date().timeIntervalSince1970)
+                    let values = [
+                        "toID":toID!,
+                        "fromID":fromID!,
+                        "timestamp":timestamp,
+                        "imageURL": imageURL,
+                        "imageHeight": image.size.height,
+                        "imageWidth": image.size.width
+                        ] as [String : Any]
+                    guard let key = ref.childByAutoId().key else { return }
+                    
+                    ref.child("messages").updateChildValues(["\(key)":values])
+                    ref.child("/user-messages/\(fromID!)/\(toID!)/").updateChildValues(["\(key)":0])
+                    ref.child("/user-messages/\(toID!)/\(fromID!)/").updateChildValues(["\(key)":0])
+                }
+            }
+        }
+    }
 
 }
