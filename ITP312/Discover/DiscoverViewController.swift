@@ -9,7 +9,7 @@
 import SpriteKit
 import Magnetic
 
-class ViewController: UIViewController, MagneticDelegate {
+class DiscoverViewController: UIViewController, MagneticDelegate {
     
     var nodeList: [String] = []
     
@@ -50,16 +50,38 @@ class ViewController: UIViewController, MagneticDelegate {
     
     
     func addNodes() {
-        let name = UIImage.names.randomItem()
-        let color = UIColor.colors.randomItem()
+        let name = UIImage.names.randomItemHey()
+        let color = UIColor.colors.randomItemHey()
         let node = Node(text: name.capitalized, image: UIImage(named: name), color: color, radius: 40)
+        magnetic.addChild(node)
+    }
+    
+    func addNodesCountry(countryName: String) {
+        let color = UIColor.colors.randomItemHey()
+        let name = UIImage.names.randomItemHey()
+        let node = Node(text: countryName, image: UIImage(named: name), color: color, radius: 40)
         magnetic.addChild(node)
     }
     
     
     
     @IBAction func addBtnPressed(_ sender: Any) {
-        addNodes()
+//        addNodes()
+        let alert = UIAlertController(style: .alert, title: "Select method", message: "2 kinds of adding")
+        alert.addAction(title: "Add random", style: .default) { _ in
+            self.addNodes()
+        }
+        alert.addAction(title: "Add country", style: .default) { _ in
+            print("addd country")
+            let alert = UIAlertController(style: .actionSheet, title: "Select Country")
+            alert.addLocalePicker(type: .country) { info in
+                print("selected info", info)
+                self.addNodesCountry(countryName: info!.country)
+            }
+            alert.addAction(title: "Cancel", style: .cancel)
+            alert.show()
+        }
+        alert.show()
     }
     
     @IBAction func doneBtnPressed(_ sender: Any) {

@@ -18,5 +18,7 @@ target 'ITP312' do
   pod 'Firebase/MLNLTranslate'
   pod 'SDWebImage', '~> 5.0'
   pod 'Magnetic'  
+  pod 'JJFloatingActionButton'
+  pod 'FlagKit'
 
 end
