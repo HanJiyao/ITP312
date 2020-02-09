@@ -19,7 +19,7 @@ class TableViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     var storePlanName: String?
     var storeCountryName: String?
-    
+    var storePlanId: String?
     // Create array for plans
     var planList = [Plan]()
     
@@ -41,7 +41,7 @@ class TableViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     @objc func buttonAction(sender: UIButton!) {
         print("Button clicked")
-        performSegue(withIdentifier: "TableViewToCreatePlan", sender: nil)
+        performSegue(withIdentifier: "toCreatePlanVC", sender: nil)
         
         
     }
@@ -69,7 +69,8 @@ class TableViewController: UIViewController, UITableViewDelegate, UITableViewDat
                     let thisCountry = restDict!["country"] as? String
                     let fromDate = restDict!["fromDate"] as? String
                     let toDate = restDict!["toDate"] as? String
-                    let thisPlan = Plan(planName: thisPlanName, country: thisCountry!, user: thisUser!, fromDate: fromDate!, toDate: toDate!)
+                    let planId = restDict!["planId"] as? String
+                    let thisPlan = Plan(planName: thisPlanName, country: thisCountry!, user: thisUser!, fromDate: fromDate!, toDate: toDate!, planId: planId!)
                     print("each plan " ,thisPlan.planName!)
                     self.planList.append(thisPlan)
                     
@@ -146,6 +147,16 @@ class TableViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
+            
+            let planID = planList[indexPath.row].planId
+            
+            Database.database().reference(withPath: "travelPlans").queryOrdered(byChild: "planId").queryEqual(toValue: planID).observe(.value, with: { (snapshot) in
+                if let travelPlans = snapshot.value as? [String: [String: AnyObject]] {
+                    for (key, _) in travelPlans {
+                            FirebaseDatabase.Database.database().reference(withPath: "travelPlans").child(key).removeValue()
+                    }
+                }
+            })
             planList.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .automatic)
         }
@@ -156,6 +167,7 @@ class TableViewController: UIViewController, UITableViewDelegate, UITableViewDat
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         storePlanName = self.planList[indexPath.row].planName
         storeCountryName = self.planList[indexPath.row].country
+        storePlanId = self.planList[indexPath.row].planId
         self.performSegue(withIdentifier: "TableToCellData", sender: self)
         
     }
@@ -165,6 +177,7 @@ class TableViewController: UIViewController, UITableViewDelegate, UITableViewDat
             let tableToCellVC = segue.destination as! PlanCellDataController
             tableToCellVC.selectedPlanName = storePlanName
             tableToCellVC.selectedCountry = storeCountryName
+            tableToCellVC.planId = storePlanId
         }
     }
     

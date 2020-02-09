@@ -22,7 +22,6 @@ class PlanInfoViewController: UIViewController {
     
    
     var countryList: [String] = []
-    var planName: String?
     var countryName: String?
     
     override func viewDidLoad() {
@@ -43,11 +42,7 @@ class PlanInfoViewController: UIViewController {
         countryText.layer.shadowOpacity = 1.0
         countryText.layer.shadowRadius = 0.0
         
-        if planName != nil {
-            print(planName!)
-        } else {
-            print("planName not found")
-        }
+     
         // Fill text fields with data
         if countryName != nil {
             print(countryName!)
@@ -88,15 +83,8 @@ class PlanInfoViewController: UIViewController {
     
     // Pass data to next controller for further processing
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if (segue.identifier == "gotoMapView") {
-            let displayMV = segue.destination as! MapViewController
-            displayMV.planName = planName
-        }
         if (segue.identifier == "toDateController") {
             let dateVC = segue.destination as! SetDateForPlanViewController
-            if planName != nil {
-                dateVC.planName = planName
-            }
             if countryName != nil {
                 dateVC.countryName = countryName
             }

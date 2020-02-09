@@ -33,8 +33,6 @@ class MapViewController: UIViewController {
         // Get selected country string
         let countrySelected = searchTextField.text
         countryName = countrySelected
-        print(planName!)
-        print(countrySelected!)
     
         // UIApplication.shared.beginIgnoringInteractionEvents()
         
@@ -80,7 +78,6 @@ class MapViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "dataBackToPlanInfo") {
             let planInfoVC = segue.destination as! PlanInfoViewController
-            planInfoVC.planName = planName
             planInfoVC.countryName = countryName
         }
     }

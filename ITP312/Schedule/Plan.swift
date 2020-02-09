@@ -14,12 +14,14 @@ class Plan: NSObject {
     var user: String
     var fromDate: String
     var toDate: String
-    init (planName: String?, country: String, user: String, fromDate: String, toDate: String) {
+    var planId: String
+    init (planName: String?, country: String, user: String, fromDate: String, toDate: String, planId: String) {
         self.planName = planName
         self.country = country
         self.user = user
         self.fromDate = fromDate
         self.toDate = toDate
+        self.planId = planId
     }
     
 }

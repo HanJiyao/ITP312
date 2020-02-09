@@ -92,7 +92,6 @@ class CalendarController: UIViewController, FSCalendarDataSource, FSCalendarDele
         override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
             if (segue.identifier == "CalendarReturnToComplete") {
                 let displayPV = segue.destination as! SetDateForPlanViewController
-                displayPV.planName = planName
                 displayPV.countryName = countryName
                 displayPV.selectedDates = selectedDates
             }

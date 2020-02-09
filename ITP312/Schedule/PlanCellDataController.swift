@@ -8,17 +8,26 @@
 
 import UIKit
 import MapKit
+import Firebase
 
-class PlanCellDataController: UIViewController {
+class PlanCellDataController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+    
+    
+    
+    
+    
     
     // !!! TO DO - Use unique identifier of cell from database !!!
     
     var selectedPlanName: String?
     var selectedCountry: String?
+    var planId: String?
+    var searchLocationName: String?
+    var locationList = [Location]()
     @IBOutlet weak var planNameLabel: UILabel!
     @IBOutlet weak var countryNameLabel: UILabel!
-    @IBOutlet weak var MapView: MKMapView!
     
+    @IBOutlet weak var TableView: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -27,41 +36,41 @@ class PlanCellDataController: UIViewController {
         
         // Do any additional setup after loading the view.
         
-        // TO DO - REPLACE WITH DATABASE QUERY USING UNIQUE IDENTIFIER
+        
         let nameLabelText = "Plan Name: " + selectedPlanName!
         planNameLabel.text = nameLabelText
         let countryLabelText = "Country: " + selectedCountry!
         countryNameLabel.text = countryLabelText
         
+        print(planId)
         planNameLabel.sizeToFit()
         countryNameLabel.sizeToFit()
+        let ref = Database.database().reference()
+        ref.child("LocationInfo").observeSingleEvent(of: .value) {snapshot in
+        // Get all children of travelPlans in database
+        for case let rest as DataSnapshot in snapshot.children {
+            // Put all values of children into dictionary
+            let restDict = rest.value as? [String: Any]
+            // Store values into list if it belongs to current user
+            let thisLocationName = restDict!["searchLocationName"] as? String
+            let thisLatitude = restDict!["latitude"] as? CLLocationDegrees
+            let thisLongitude = restDict!["longitude"] as? CLLocationDegrees
+            let thisLocationId = restDict!["locationId"] as? String
+            let thisPlanId = self.planId!
+            let thisLocation = Location(latitude: thisLatitude, longitude: thisLongitude, planId: thisPlanId, locationId: thisLocationId, searchLocationName: thisLocationName
+            )
+            self.locationList.append(thisLocation)
+            print(self.locationList , "locationList")
+                
+            
+        }
         
-        let searchRequest = MKLocalSearch.Request()
-               searchRequest.naturalLanguageQuery = selectedCountry
-               let activeSearch = MKLocalSearch(request: searchRequest)
-               activeSearch.start { (response, error) in
-                   
-                   
-                   
-                   if response == nil {
-                       print("ERROR")
-                   } else {
-                       
-                       // Get coordinates of centroid for search result
-                       let latitude = response?.boundingRegion.center.latitude
-                       let longitude = response?.boundingRegion.center.longitude
-                       
-                       // Zooming onto coordinate
-                       let coordinate: CLLocationCoordinate2D = CLLocationCoordinate2DMake(latitude!, longitude!)
-                       let span = MKCoordinateSpan(latitudeDelta: 0.5, longitudeDelta: 0.5)
-                       let region = MKCoordinateRegion(center: coordinate, span: span)
-                       self.MapView.setRegion(region, animated: true)
-                       
-                       
-                   }
-                   
-               }
+        
+        
+      
     }
+    
+    
     
 
     /*
@@ -74,4 +83,24 @@ class PlanCellDataController: UIViewController {
     }
     */
 
+}
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+          return self.locationList.count
+      }
+      
+      func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+          let cell : PlanCell = tableView.dequeueReusableCell(withIdentifier: "locationCell", for: indexPath) as! PlanCell
+          let p = self.locationList[indexPath.row]
+          cell.textLabel!.text = p.searchLocationName!
+          cell.textLabel?.sizeToFit()
+        let image : UIImage = UIImage(named: "location")!
+
+          cell.imageView!.image = image
+      
+          
+    
+         
+          
+          return cell
+      }
 }

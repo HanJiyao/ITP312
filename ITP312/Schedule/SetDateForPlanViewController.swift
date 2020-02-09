@@ -18,7 +18,6 @@ class SetDateForPlanViewController: UIViewController {
     @IBOutlet weak var dateSummaryLabel: UILabel!
     @IBOutlet weak var datePlaceholder: UITextField!
     
-    var planName: String?
     var countryName: String?
     var fromDate: String?
     var toDate: String?
@@ -53,11 +52,6 @@ class SetDateForPlanViewController: UIViewController {
         self.view.sendSubviewToBack(presentImgView)
         
         
-        if planName != nil {
-            print("Plan name" ,planName!)
-        } else {
-            print("plan name is nil")
-        }
         if !selectedDates.isEmpty {
             print(selectedDates)
         }
@@ -68,6 +62,8 @@ class SetDateForPlanViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         if !selectedDates.isEmpty {
             let travelDate = selectedDates[0] + " to " + selectedDates[1]
+            fromDate = selectedDates[0]
+            toDate = selectedDates[1]
             dateSummaryLabel.text = travelDate
             dateSummaryLabel.sizeToFit()
             dateSummaryLabel.numberOfLines = 2
@@ -85,44 +81,20 @@ class SetDateForPlanViewController: UIViewController {
     
     @IBAction func createPlanBtnPress(_ sender: Any) {
         
-        // Get current logged in user
-        let username = Auth.auth().currentUser?.uid
         
-        // Set database reference
-        let ref = Database.database().reference()
-        
-        
-        // Load existing data into variables
-        
-        let thisPlanName = planName
-        let thisCountryName = countryName
-        var thisFromDate: String?
-        var thisToDate: String?
-        if !selectedDates.isEmpty {
-            thisFromDate = selectedDates[0]
-            thisToDate = selectedDates[1]
-        }
-    
-        
-        // ref.child(username! + "/" + planName!).setValue(planName!)
-        
-        let plan = Plan(planName: thisPlanName!, country: thisCountryName!, user: username!, fromDate: thisFromDate!, toDate: thisToDate!)
-        print("plan class = " ,plan)
-        let planInfoDict = ["planName" : plan.planName,
-            "country" : plan.country,
-            "user" : plan.user,
-            "fromDate": plan.fromDate,
-            "toDate": plan.toDate]
-        print(planInfoDict)
-        ref.child("travelPlans").childByAutoId().setValue(planInfoDict)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "showCalendar") {
             let displayPV = segue.destination as! CalendarController
-            displayPV.planName = planName
             displayPV.countryName = countryName
             displayPV.selectedDates = selectedDates
+        }
+        if (segue.identifier == "DateVCToFinal") {
+            let finalVC = segue.destination as! FinalCreatePlanViewController
+            finalVC.countryName = countryName
+            finalVC.fromDate = fromDate
+            finalVC.toDate = toDate
         }
     }
     

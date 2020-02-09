@@ -101,6 +101,11 @@
 		D5D3E88A23ED3A9300DDDCB6 /* GalleryUploadPhotoFrameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D3E88623ED3A9100DDDCB6 /* GalleryUploadPhotoFrameViewController.swift */; };
 		D5D3E88B23ED3A9300DDDCB6 /* GalleryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D3E88723ED3A9200DDDCB6 /* GalleryModel.swift */; };
 		D5D3E88C23ED3A9300DDDCB6 /* GalleryCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D3E88823ED3A9300DDDCB6 /* GalleryCollectionViewController.swift */; };
+		FB22CB3723F08C5F0097180E /* SearchLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB22CB3623F08C5F0097180E /* SearchLocation.swift */; };
+		FB22CB3923F08C860097180E /* AddLocationMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB22CB3823F08C860097180E /* AddLocationMapViewController.swift */; };
+		FB22CB3B23F08C960097180E /* FinalCreatePlanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB22CB3A23F08C960097180E /* FinalCreatePlanViewController.swift */; };
+		FB22CB3D23F08D110097180E /* Plans.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FB22CB3C23F08D110097180E /* Plans.storyboard */; };
+		FB22CB3F23F0B9E80097180E /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB22CB3E23F0B9E80097180E /* Location.swift */; };
 		FB4D4A9C23E89459007B67B2 /* SearchText.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB4D4A9B23E89459007B67B2 /* SearchText.swift */; };
 		FB4D4A9E23E8A71D007B67B2 /* SearchItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB4D4A9D23E8A71D007B67B2 /* SearchItem.swift */; };
 		FB4D4AA023E8AE6B007B67B2 /* SearchTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB4D4A9F23E8AE6B007B67B2 /* SearchTextField.swift */; };
@@ -108,8 +113,6 @@
 		FB4D4AA423E935A3007B67B2 /* CalendarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB4D4AA323E935A3007B67B2 /* CalendarController.swift */; };
 		FB4D4AA623E93628007B67B2 /* DIYCalendarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB4D4AA523E93628007B67B2 /* DIYCalendarCell.swift */; };
 		FB4D4AA823E94DE6007B67B2 /* PlanCellDataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB4D4AA723E94DE6007B67B2 /* PlanCellDataController.swift */; };
-		FBEF088B23E80CA800636B47 /* Plans.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FBEF088A23E80CA800636B47 /* Plans.storyboard */; };
-		FBEF089323E80D1800636B47 /* CreatePlanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBEF088C23E80D1500636B47 /* CreatePlanViewController.swift */; };
 		FBEF089523E80D1800636B47 /* Plan.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBEF088E23E80D1600636B47 /* Plan.swift */; };
 		FBEF089623E80D1800636B47 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBEF088F23E80D1700636B47 /* TableViewController.swift */; };
 		FBEF089723E80D1800636B47 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBEF089023E80D1700636B47 /* MapViewController.swift */; };
@@ -217,6 +220,11 @@
 		D5D3E88623ED3A9100DDDCB6 /* GalleryUploadPhotoFrameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GalleryUploadPhotoFrameViewController.swift; sourceTree = "<group>"; };
 		D5D3E88723ED3A9200DDDCB6 /* GalleryModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GalleryModel.swift; sourceTree = "<group>"; };
 		D5D3E88823ED3A9300DDDCB6 /* GalleryCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GalleryCollectionViewController.swift; sourceTree = "<group>"; };
+		FB22CB3623F08C5F0097180E /* SearchLocation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchLocation.swift; sourceTree = "<group>"; };
+		FB22CB3823F08C860097180E /* AddLocationMapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddLocationMapViewController.swift; sourceTree = "<group>"; };
+		FB22CB3A23F08C960097180E /* FinalCreatePlanViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FinalCreatePlanViewController.swift; sourceTree = "<group>"; };
+		FB22CB3C23F08D110097180E /* Plans.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Plans.storyboard; sourceTree = "<group>"; };
+		FB22CB3E23F0B9E80097180E /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		FB4D4A9B23E89459007B67B2 /* SearchText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchText.swift; sourceTree = "<group>"; };
 		FB4D4A9D23E8A71D007B67B2 /* SearchItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchItem.swift; sourceTree = "<group>"; };
 		FB4D4A9F23E8AE6B007B67B2 /* SearchTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTextField.swift; sourceTree = "<group>"; };
@@ -224,8 +232,6 @@
 		FB4D4AA323E935A3007B67B2 /* CalendarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarController.swift; sourceTree = "<group>"; };
 		FB4D4AA523E93628007B67B2 /* DIYCalendarCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DIYCalendarCell.swift; sourceTree = "<group>"; };
 		FB4D4AA723E94DE6007B67B2 /* PlanCellDataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanCellDataController.swift; sourceTree = "<group>"; };
-		FBEF088A23E80CA800636B47 /* Plans.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Plans.storyboard; sourceTree = "<group>"; };
-		FBEF088C23E80D1500636B47 /* CreatePlanViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreatePlanViewController.swift; sourceTree = "<group>"; };
 		FBEF088E23E80D1600636B47 /* Plan.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Plan.swift; sourceTree = "<group>"; };
 		FBEF088F23E80D1700636B47 /* TableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
 		FBEF089023E80D1700636B47 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
@@ -294,20 +300,23 @@
 		512985ED23E3DC980053D3D9 /* Schedule */ = {
 			isa = PBXGroup;
 			children = (
+				FB22CB3C23F08D110097180E /* Plans.storyboard */,
 				FB4D4AA523E93628007B67B2 /* DIYCalendarCell.swift */,
 				FB4D4A9F23E8AE6B007B67B2 /* SearchTextField.swift */,
-				FBEF088C23E80D1500636B47 /* CreatePlanViewController.swift */,
 				FBEF089023E80D1700636B47 /* MapViewController.swift */,
 				FBEF088E23E80D1600636B47 /* Plan.swift */,
+				FB22CB3E23F0B9E80097180E /* Location.swift */,
 				FBEF089123E80D1800636B47 /* PlanCell.swift */,
 				FBEF089223E80D1800636B47 /* PlanInfoViewController.swift */,
 				FBEF088F23E80D1700636B47 /* TableViewController.swift */,
-				FBEF088A23E80CA800636B47 /* Plans.storyboard */,
+				FB4D4AA723E94DE6007B67B2 /* PlanCellDataController.swift */,
 				FB4D4A9B23E89459007B67B2 /* SearchText.swift */,
 				FB4D4A9D23E8A71D007B67B2 /* SearchItem.swift */,
 				FB4D4AA123E9016E007B67B2 /* SetDateForPlanViewController.swift */,
 				FB4D4AA323E935A3007B67B2 /* CalendarController.swift */,
-				FB4D4AA723E94DE6007B67B2 /* PlanCellDataController.swift */,
+				FB22CB3A23F08C960097180E /* FinalCreatePlanViewController.swift */,
+				FB22CB3823F08C860097180E /* AddLocationMapViewController.swift */,
+				FB22CB3623F08C5F0097180E /* SearchLocation.swift */,
 			);
 			path = Schedule;
 			sourceTree = "<group>";
@@ -801,6 +810,7 @@
 			files = (
 				5156A06623CDA39B008328C5 /* LaunchScreen.storyboard in Resources */,
 				5156A07223CDA45D008328C5 /* ChatStoryboard.storyboard in Resources */,
+				FB22CB3D23F08D110097180E /* Plans.storyboard in Resources */,
 				5156A07423CDAC30008328C5 /* GoogleService-Info.plist in Resources */,
 				FBEF088B23E80CA800636B47 /* Plans.storyboard in Resources */,
 				D5BA97F623F0C02E00A8F523 /* Countries.bundle in Resources */,
@@ -941,6 +951,7 @@
 				D5BA97F323F0C02E00A8F523 /* UITextField+Extensions.swift in Sources */,
 				FB4D4AA623E93628007B67B2 /* DIYCalendarCell.swift in Sources */,
 				FBEF089623E80D1800636B47 /* TableViewController.swift in Sources */,
+				FB22CB3B23F08C960097180E /* FinalCreatePlanViewController.swift in Sources */,
 				FB4D4AA823E94DE6007B67B2 /* PlanCellDataController.swift in Sources */,
 				D5BA970123F0BBB600A8F523 /* TypeOneCell.swift in Sources */,
 				D5BA97FF23F0C02E00A8F523 /* Assets.swift in Sources */,
@@ -965,6 +976,7 @@
 				D5BA97ED23F0C02E00A8F523 /* UISearchBar+Extensions.swift in Sources */,
 				D5BA980323F0C02E00A8F523 /* SearchHistoryManager.swift in Sources */,
 				512AE6F823E91DF300F0832C /* GuideMainViewController.swift in Sources */,
+				FB22CB3F23F0B9E80097180E /* Location.swift in Sources */,
 				D5D38D8623E9619C0070ED85 /* CollectionViewCell.swift in Sources */,
 				FBEF089723E80D1800636B47 /* MapViewController.swift in Sources */,
 				D5BA980223F0C02E00A8F523 /* LocationPickerViewController.swift in Sources */,
@@ -973,6 +985,7 @@
 				512AE70023E9343300F0832C /* Guide.swift in Sources */,
 				D5BA97E623F0C02E00A8F523 /* UIViewController+Extensions.swift in Sources */,
 				512AE6FA23E9204D00F0832C /* GuideEditViewController.swift in Sources */,
+				FB22CB3723F08C5F0097180E /* SearchLocation.swift in Sources */,
 				512AE6FC23E9211900F0832C /* GuideDetailViewController.swift in Sources */,
 				D5BA980723F0C02E00A8F523 /* ContactsPickerViewController.swift in Sources */,
 			);
