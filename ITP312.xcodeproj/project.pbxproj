@@ -36,7 +36,7 @@
 		7788232B23D123840036304C /* UserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7788232A23D123840036304C /* UserCell.swift */; };
 		77A88CAA23D08536003C5C2C /* ImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77A88CA923D08536003C5C2C /* ImageExtension.swift */; };
 		D53FE06023F0899D004C9FA8 /* DiscoverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D53FE05E23F0899D004C9FA8 /* DiscoverViewController.swift */; };
-		D53FE06123F0899E004C9FA8 /* DiscoverStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D53FE05F23F0899D004C9FA8 /* DiscoverStoryboard.storyboard */; };
+		D5BA96FC23F0B6A900A8F523 /* DiscoverStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D5BA96FB23F0B6A900A8F523 /* DiscoverStoryboard.storyboard */; };
 		D5D38D8623E9619C0070ED85 /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D38D8523E9619C0070ED85 /* CollectionViewCell.swift */; };
 		D5D3E88423ED3A6200DDDCB6 /* GalleryDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D3E88323ED3A6200DDDCB6 /* GalleryDataManager.swift */; };
 		D5D3E88923ED3A9300DDDCB6 /* GalleryStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D5D3E88523ED3A9000DDDCB6 /* GalleryStoryboard.storyboard */; };
@@ -94,7 +94,7 @@
 		77A88CA923D08536003C5C2C /* ImageExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageExtension.swift; sourceTree = "<group>"; };
 		A38D9AD9C7E44A1B66BD63E9 /* Pods_ITP312.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ITP312.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D53FE05E23F0899D004C9FA8 /* DiscoverViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiscoverViewController.swift; sourceTree = "<group>"; };
-		D53FE05F23F0899D004C9FA8 /* DiscoverStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = DiscoverStoryboard.storyboard; sourceTree = "<group>"; };
+		D5BA96FB23F0B6A900A8F523 /* DiscoverStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = DiscoverStoryboard.storyboard; sourceTree = "<group>"; };
 		D5D38D8523E9619C0070ED85 /* CollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
 		D5D3E88323ED3A6200DDDCB6 /* GalleryDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GalleryDataManager.swift; sourceTree = "<group>"; };
 		D5D3E88523ED3A9000DDDCB6 /* GalleryStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = GalleryStoryboard.storyboard; sourceTree = "<group>"; };
@@ -304,7 +304,7 @@
 		D53FE05D23F08978004C9FA8 /* Discover */ = {
 			isa = PBXGroup;
 			children = (
-				D53FE05F23F0899D004C9FA8 /* DiscoverStoryboard.storyboard */,
+				D5BA96FB23F0B6A900A8F523 /* DiscoverStoryboard.storyboard */,
 				D53FE05E23F0899D004C9FA8 /* DiscoverViewController.swift */,
 			);
 			path = Discover;
@@ -377,11 +377,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D53FE06123F0899E004C9FA8 /* DiscoverStoryboard.storyboard in Resources */,
 				5156A06623CDA39B008328C5 /* LaunchScreen.storyboard in Resources */,
 				5156A07223CDA45D008328C5 /* ChatStoryboard.storyboard in Resources */,
 				5156A07423CDAC30008328C5 /* GoogleService-Info.plist in Resources */,
 				FBEF088B23E80CA800636B47 /* Plans.storyboard in Resources */,
+				D5BA96FC23F0B6A900A8F523 /* DiscoverStoryboard.storyboard in Resources */,
 				512985E923E3D5040053D3D9 /* AccountStoryboard.storyboard in Resources */,
 				D5D3E88923ED3A9300DDDCB6 /* GalleryStoryboard.storyboard in Resources */,
 				511A196F23E82409008B7E63 /* GuideStoryboard.storyboard in Resources */,
@@ -643,14 +643,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = ITP312/ITP312.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = NSATM797YY;
+				DEVELOPMENT_TEAM = 2R4S77FLXX;
 				INFOPLIST_FILE = ITP312/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.nyp.ITP312;
+				PRODUCT_BUNDLE_IDENTIFIER = com.nyp.ITP312un;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -664,14 +664,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = ITP312/ITP312.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = NSATM797YY;
+				DEVELOPMENT_TEAM = 2R4S77FLXX;
 				INFOPLIST_FILE = ITP312/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.nyp.ITP312;
+				PRODUCT_BUNDLE_IDENTIFIER = com.nyp.ITP312un;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;

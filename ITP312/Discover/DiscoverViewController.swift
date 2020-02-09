@@ -1,45 +1,71 @@
-import UIKit
-import SafariServices
-import Photos
+//
+//  ViewController.swift
+//  librariestesting
+//
+//  Created by tyr on 6/2/20.
+//  Copyright © 2020 tyr. All rights reserved.
+//
 
-class DiscoverViewController: UIViewController {
+import SpriteKit
+import Magnetic
+
+class ViewController: UIViewController, MagneticDelegate {
     
-    var window: UIWindow?
+    var nodeList: [String] = []
+    
+    func magnetic(_ magnetic: Magnetic, didSelect node: Node) {
+        print("didSelect -> \(node)")
+        print(node.text)
+        nodeList.append(node.text!)
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-//        
-//        let alert = UIAlertController(style: .actionSheet, message: "Select Country")
-//        alert.addLocalePicker(type: .country) { info in
-//            // action with selected object
-//            dump(info)
-//        }
-//        alert.addAction(title: "OK", style: .cancel)
-//        alert.show()
-//        window = UIWindow(frame: UIScreen.main.bounds)
-//            window?.rootViewController = UINavigationController(rootViewController: ViewController())
-//            window?.makeKeyAndVisible()
-//        let storyBoard = UIStoryboard(name: "DiscoverStoryboard", bundle: nil) as UIStoryboard
-//        let loginViewController = ViewController()
-////        window.contentViewController = loginViewController
-//        window?.rootViewController = loginViewController
-        
-//    let alert = UIAlertController(style: .actionSheet, title: "Currencies")
-//        alert.addLocalePicker(type: .currency) { info in
-//            alert.title = info?.currencyCode
-//            alert.message = "is selected"
-//            // action with selected object
-//        }
-//        alert.addAction(title: "OK", style: .cancel)
-//        alert.show()
-        
-//        let chatLogViewController = self.storyboard.instantiateViewController(identifier: "ChatLog") as! ChatLogViewController
-//            present(ViewController(), animated: true, completion: nil)
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-//        navigationController?.pushViewController(ViewController(), animated: true)
+    func magnetic(_ magnetic: Magnetic, didDeselect node: Node) {
+        print("didDeselect -> \(node)")
     }
     
+    
+//    var magneticDelegate: MagneticDelegate? // magnetic delegate
+
+    @IBOutlet weak var magneticView: MagneticView! {
+        didSet {
+            magnetic.magneticDelegate = self
+        }
+    }
+    
+        var magnetic: Magnetic {
+            return magneticView.magnetic
+        }
+    
+//    var magnetic: Magnetic?
+    
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        for _ in 0..<12 {
+            addNodes()
+        }
+    }
+    
+    
+    func addNodes() {
+        let name = UIImage.names.randomItem()
+        let color = UIColor.colors.randomItem()
+        let node = Node(text: name.capitalized, image: UIImage(named: name), color: color, radius: 40)
+        magnetic.addChild(node)
+    }
+    
+    
+    
+    @IBAction func addBtnPressed(_ sender: Any) {
+        addNodes()
+    }
+    
+    @IBAction func doneBtnPressed(_ sender: Any) {
+        for i in nodeList {
+            print(i)
+        }
+    }
     
 }

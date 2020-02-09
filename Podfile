@@ -17,5 +17,6 @@ target 'ITP312' do
   pod 'DropDown'
   pod 'Firebase/MLNLTranslate'
   pod 'SDWebImage', '~> 5.0'
+  pod 'Magnetic'  
 
 end
