@@ -183,6 +183,14 @@ class ChatLogViewController: UIViewController, UITableViewDataSource, UITableVie
         let imageName = NSUUID().uuidString
         let data = image.jpegData(compressionQuality: 0.3)
         let storageRef = Storage.storage().reference().child("message").child(imageName)
+        
+        let createStorage = StorageMetadata()
+        let createCustom = [
+            "imageHeight": "\(image.size.height)",
+            "imageWidth": "\(image.size.width)"
+        ]
+        createStorage.customMetadata = createCustom
+        
         storageRef.putData(data!, metadata: nil) { (metadata, error) in
             storageRef.downloadURL { (url, error) in
                 if let imageURL = url?.absoluteString {
