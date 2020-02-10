@@ -12,17 +12,19 @@ import Firebase
 
 class PlanLocation: NSObject {
 
-        var latitude: CLLocationDegrees?
-        var longitude: CLLocationDegrees?
-        var planId: String?
-        var locationId: String?
-        var searchLocationName: String?
+    var latitude: CLLocationDegrees?
+    var longitude: CLLocationDegrees?
+    var planId: String?
+    var locationId: String?
+    var searchLocationName: String?
+    var locDescription: String?
 
-        init (latitude: CLLocationDegrees?, longitude: CLLocationDegrees?, planId: String?, locationId: String?, searchLocationName: String?) {
-            self.latitude = latitude
-            self.longitude = longitude
-            self.planId = planId
-            self.locationId = locationId
-            self.searchLocationName = searchLocationName
-        }
+    init (latitude: CLLocationDegrees?, longitude: CLLocationDegrees?, planId: String?, locationId: String?, searchLocationName: String?, locDescription: String?) {
+        self.latitude = latitude
+        self.longitude = longitude
+        self.planId = planId
+        self.locationId = locationId
+        self.searchLocationName = searchLocationName
+        self.locDescription = locDescription
     }
+}

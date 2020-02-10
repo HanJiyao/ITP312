@@ -11,14 +11,7 @@ import MapKit
 import Firebase
 
 class PlanCellDataController: UIViewController, UITableViewDelegate, UITableViewDataSource {
-    
-    
-    
-    
-    
-    
-    // !!! TO DO - Use unique identifier of cell from database !!!
-    
+        
     var selectedPlanName: String?
     var selectedCountry: String?
     var planId: String?
@@ -27,20 +20,27 @@ class PlanCellDataController: UIViewController, UITableViewDelegate, UITableView
     @IBOutlet weak var planNameLabel: UILabel!
     @IBOutlet weak var countryNameLabel: UILabel!
     
+    var selectedLocationId: String?
+    
     @IBOutlet weak var TableView: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        
+        TableView.delegate = self
+        TableView.dataSource = self
         
         
         // Do any additional setup after loading the view.
         
         
-        let nameLabelText = "Plan Name: " + selectedPlanName!
+        let nameLabelText = selectedPlanName!
         planNameLabel.text = nameLabelText
-        let countryLabelText = "Country: " + selectedCountry!
+        planNameLabel.textColor = UIColor.gray
+        planNameLabel.font = UIFont(name:"Helvetica-Bold", size: 20.0)
+        let countryLabelText = selectedCountry!
         countryNameLabel.text = countryLabelText
+        countryNameLabel.textColor = UIColor.blue
+        countryNameLabel.font = UIFont(name:"Helvetica", size: 18.0)
         
         print(planId)
         planNameLabel.sizeToFit()
@@ -49,62 +49,69 @@ class PlanCellDataController: UIViewController, UITableViewDelegate, UITableView
      
         // Get user value
        
-        
-        ref.child("LocationInfo").observeSingleEvent(of: .value) {snapshot in
+        ref.child("LocationInfo").child(planId!).observeSingleEvent(of: .value) {snapshot in
         // Get all children of travelPlans in database
+            print("snapshot children count " , snapshot.childrenCount)
         for case let rest as DataSnapshot in snapshot.children {
+            
             // Put all values of children into dictionary
             let restDict = rest.value as? [String: Any]
+            print("restdict : " ,restDict)
             // Store values into list if it belongs to current user
             let thisLocationName = restDict!["searchLocationName"] as? String
             let thisLatitude = restDict!["latitude"] as? CLLocationDegrees
             let thisLongitude = restDict!["longitude"] as? CLLocationDegrees
             let thisLocationId = restDict!["locationId"] as? String
             let thisPlanId = self.planId!
-            let thisLocation = PlanLocation(latitude: thisLatitude, longitude: thisLongitude, planId: thisPlanId, locationId: thisLocationId, searchLocationName: thisLocationName
+            let thisLocDescription = restDict!["locDescription"] as? String
+            let thisLocation = PlanLocation(latitude: thisLatitude, longitude: thisLongitude, planId: thisPlanId, locationId: thisLocationId, searchLocationName: thisLocationName, locDescription: thisLocDescription
             )
             self.locationList.append(thisLocation)
             print(self.locationList , "locationList")
                 
             
         }
+        self.TableView.reloadData()
+
         
-        
-        
-      
+        }
+    
     }
-    
-    
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
-}
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-          return self.locationList.count
-      }
+        print("return locationList tableview: " ,self.locationList.count)
+        return self.locationList.count
+    }
       
-      func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-          let cell : PlanCell = tableView.dequeueReusableCell(withIdentifier: "locationCell", for: indexPath) as! PlanCell
-          let p = self.locationList[indexPath.row]
-          cell.textLabel!.text = p.searchLocationName!
-          cell.textLabel?.sizeToFit()
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell : PlanLocationCell = tableView.dequeueReusableCell(withIdentifier: "locationCell", for: indexPath) as! PlanLocationCell
+        let p = self.locationList[indexPath.row]
+        cell.locationTitle.text = p.locDescription!
+        cell.locationTitle.sizeToFit()
+        cell.locationSubtitle.text = p.searchLocationName!
+        cell.locationSubtitle.sizeToFit()
+        
+        
         let image : UIImage = UIImage(named: "location")!
-
-          cell.imageView!.image = image
-      
+        cell.locationIcon.image = image
           
+        return cell
+        
+    }
     
-         
-          
-          return cell
-      }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        selectedLocationId = self.locationList[indexPath.row].locationId
+        self.performSegue(withIdentifier: "showMapLocationVC", sender: self)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if (segue.identifier == "showMapLocationVC") {
+            let showMapLocationVC = segue.destination as! ShowLocationViewController
+            showMapLocationVC.locationId = self.selectedLocationId
+            showMapLocationVC.planId = self.planId
+    
+            
+        }
+    }
+    
+    
 }

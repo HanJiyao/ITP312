@@ -168,6 +168,8 @@ class TableViewController: UIViewController, UITableViewDelegate, UITableViewDat
         storePlanName = self.planList[indexPath.row].planName
         storeCountryName = self.planList[indexPath.row].country
         storePlanId = self.planList[indexPath.row].planId
+        GlobalData.shared.planId = storePlanId!
+        GlobalData.shared.countryName = storeCountryName!
         self.performSegue(withIdentifier: "TableToCellData", sender: self)
         
     }

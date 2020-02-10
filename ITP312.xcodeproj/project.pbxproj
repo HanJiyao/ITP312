@@ -104,7 +104,10 @@
 		FB22CB3723F08C5F0097180E /* SearchLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB22CB3623F08C5F0097180E /* SearchLocation.swift */; };
 		FB22CB3B23F08C960097180E /* FinalCreatePlanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB22CB3A23F08C960097180E /* FinalCreatePlanViewController.swift */; };
 		FB22CB3D23F08D110097180E /* Plans.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FB22CB3C23F08D110097180E /* Plans.storyboard */; };
+		FB44FC1A23F16C2500500456 /* PlanLocationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB44FC1923F16C2500500456 /* PlanLocationCell.swift */; };
+		FB44FC1C23F19DA400500456 /* ShowLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB44FC1B23F19DA400500456 /* ShowLocationViewController.swift */; };
 		FB4CA4CA23F0D6EB007173A1 /* PlanLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB4CA4C923F0D6EB007173A1 /* PlanLocation.swift */; };
+		FB4CA4CC23F0DDA7007173A1 /* AddLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB4CA4CB23F0DDA7007173A1 /* AddLocationViewController.swift */; };
 		FB4D4A9C23E89459007B67B2 /* SearchText.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB4D4A9B23E89459007B67B2 /* SearchText.swift */; };
 		FB4D4A9E23E8A71D007B67B2 /* SearchItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB4D4A9D23E8A71D007B67B2 /* SearchItem.swift */; };
 		FB4D4AA023E8AE6B007B67B2 /* SearchTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB4D4A9F23E8AE6B007B67B2 /* SearchTextField.swift */; };
@@ -223,7 +226,10 @@
 		FB22CB3823F08C860097180E /* AddLocationMapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddLocationMapViewController.swift; sourceTree = "<group>"; };
 		FB22CB3A23F08C960097180E /* FinalCreatePlanViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FinalCreatePlanViewController.swift; sourceTree = "<group>"; };
 		FB22CB3C23F08D110097180E /* Plans.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Plans.storyboard; sourceTree = "<group>"; };
+		FB44FC1923F16C2500500456 /* PlanLocationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanLocationCell.swift; sourceTree = "<group>"; };
+		FB44FC1B23F19DA400500456 /* ShowLocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowLocationViewController.swift; sourceTree = "<group>"; };
 		FB4CA4C923F0D6EB007173A1 /* PlanLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanLocation.swift; sourceTree = "<group>"; };
+		FB4CA4CB23F0DDA7007173A1 /* AddLocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddLocationViewController.swift; sourceTree = "<group>"; };
 		FB4D4A9B23E89459007B67B2 /* SearchText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchText.swift; sourceTree = "<group>"; };
 		FB4D4A9D23E8A71D007B67B2 /* SearchItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchItem.swift; sourceTree = "<group>"; };
 		FB4D4A9F23E8AE6B007B67B2 /* SearchTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTextField.swift; sourceTree = "<group>"; };
@@ -316,6 +322,9 @@
 				FB22CB3823F08C860097180E /* AddLocationMapViewController.swift */,
 				FB22CB3623F08C5F0097180E /* SearchLocation.swift */,
 				FB4CA4C923F0D6EB007173A1 /* PlanLocation.swift */,
+				FB4CA4CB23F0DDA7007173A1 /* AddLocationViewController.swift */,
+				FB44FC1923F16C2500500456 /* PlanLocationCell.swift */,
+				FB44FC1B23F19DA400500456 /* ShowLocationViewController.swift */,
 			);
 			path = Schedule;
 			sourceTree = "<group>";
@@ -905,6 +914,7 @@
 				D5BA97F523F0C02E00A8F523 /* TextViewController.swift in Sources */,
 				D5BA97E323F0C02D00A8F523 /* Array+Extensions.swift in Sources */,
 				D5BA97FC23F0C02E00A8F523 /* CountryCell.swift in Sources */,
+				FB4CA4CC23F0DDA7007173A1 /* AddLocationViewController.swift in Sources */,
 				D5BA97F823F0C02E00A8F523 /* LocaleInfo.swift in Sources */,
 				5156A05E23CDA39A008328C5 /* RootController.swift in Sources */,
 				D5BA97FA23F0C02E00A8F523 /* PhoneCodeCell.swift in Sources */,
@@ -967,8 +977,10 @@
 				7788232B23D123840036304C /* UserCell.swift in Sources */,
 				7788232623D0F61C0036304C /* ChatLogViewController.swift in Sources */,
 				D5BA97E923F0C02E00A8F523 /* String+Extensions.swift in Sources */,
+				FB44FC1C23F19DA400500456 /* ShowLocationViewController.swift in Sources */,
 				D5BA97FE23F0C02E00A8F523 /* OneTextFieldViewController.swift in Sources */,
 				FBEF089523E80D1800636B47 /* Plan.swift in Sources */,
+				FB44FC1A23F16C2500500456 /* PlanLocationCell.swift in Sources */,
 				D5BA980023F0C02E00A8F523 /* PhotoLibraryPickerViewController.swift in Sources */,
 				D5BA980D23F0C02E00A8F523 /* ImagePickerViewController.swift in Sources */,
 				D5BA97ED23F0C02E00A8F523 /* UISearchBar+Extensions.swift in Sources */,
