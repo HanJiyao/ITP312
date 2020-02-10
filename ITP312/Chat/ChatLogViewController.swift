@@ -557,6 +557,7 @@ class ChatLogViewController: UIViewController, UITableViewDataSource, UITableVie
                 // The conversation's language isn't supported, so the
                 // the result doesn't contain any suggestions.
                 print("not support language")
+                self.smartReplyLabel.text = "not support language"
             } else if (result.status == .success) {
                 for suggestion in result.suggestions {
                     print("Suggested reply: \(suggestion.text)")

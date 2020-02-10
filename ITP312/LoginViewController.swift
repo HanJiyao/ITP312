@@ -162,7 +162,7 @@ class LoginViewController: UIViewController, UIImagePickerControllerDelegate, UI
         let state = loginRegisterSegment.titleForSegment(at: loginRegisterSegment.selectedSegmentIndex)
         if loginRegisterSegment.selectedSegmentIndex == 0 {
             nameTextField.isHidden = false
-            profileImageView.image = UIImage.init(named: "profile-image")
+            profileImageView.image = UIImage.init(named: "profile-text")
             profileImageView.isUserInteractionEnabled = true
             profileImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleProfileImage)))
         } else {
