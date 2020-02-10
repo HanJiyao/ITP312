@@ -42,7 +42,7 @@ class DiscoverViewController: UIViewController, MagneticDelegate {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
+        self.navigationItem.title = "Discover"
         for _ in 0..<12 {
             addNodes()
         }

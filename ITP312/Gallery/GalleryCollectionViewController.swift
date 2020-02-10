@@ -36,7 +36,8 @@ class GalleryCollectionViewController: UIViewController, UICollectionViewDelegat
 //        loadData()
         let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
 
-        loadGallery()
+        //loadGallery()
+        loadData()
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
