@@ -229,7 +229,7 @@ class ChatLogViewController: UIViewController, UITableViewDataSource, UITableVie
                         let visionImage = VisionImage(image: image)
                         cloudDetector.detect(in: visionImage) { landmarks, error in
                           guard error == nil, let landmarks = landmarks, !landmarks.isEmpty else {
-                            print(error!)
+                            print(error)
                             return
                           }
 

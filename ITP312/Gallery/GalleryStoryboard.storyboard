@@ -17,23 +17,39 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="wnp-5v-7qY" kind="relationship" relationship="rootViewController" id="BGc-1v-mQe"/>
+                        <segue destination="n2k-2Q-GXJ" kind="relationship" relationship="rootViewController" id="W4H-5Z-sw0"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EOC-xR-bFL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-646" y="135"/>
+            <point key="canvasLocation" x="-879" y="152"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="d9f-hJ-ETK">
+            <objects>
+                <viewController storyboardIdentifier="Gallery" id="n2k-2Q-GXJ" customClass="ViewController" customModule="ITP312" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="WjY-pO-PiE">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="b5U-Oy-gJb"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="Vrk-8Q-ba7"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="yRl-3G-oL1" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-100" y="-576"/>
         </scene>
         <!--Gallery-->
         <scene sceneID="PsI-sy-8s7">
             <objects>
-                <viewController storyboardIdentifier="Gallery" id="wnp-5v-7qY" customClass="GalleryCollectionViewController" customModule="ITP312" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="GalleryPF" id="wnp-5v-7qY" customClass="GalleryCollectionViewController" customModule="ITP312" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="tNZ-Bk-nME">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="PCD-Em-q4o">
-                                <rect key="frame" x="0.0" y="44" width="375" height="574"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="jOU-Uk-s20">
                                     <size key="itemSize" width="178" height="148"/>

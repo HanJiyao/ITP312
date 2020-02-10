@@ -68,11 +68,11 @@ class AccountViewController: UIViewController, GalleryDelegate {
     
     @IBAction func navigateToGalleryBtnClicked(_ sender: Any) {
         let storyboard = UIStoryboard(name: "GalleryStoryboard", bundle: nil)
-        let galleryViewController = storyboard.instantiateViewController(identifier: "Gallery") as! GalleryCollectionViewController
-        galleryViewController.returnImage = true
-        //        self.navigationController?.pushViewController(galleryViewController, animated: true)
-        galleryViewController.delegate = self
-        self.present(galleryViewController, animated: true, completion: nil)
+        let galleryViewController = storyboard.instantiateViewController(identifier: "GalleryPF") as! GalleryCollectionViewController
+        //galleryViewController.returnImage = true
+                self.navigationController?.pushViewController(galleryViewController, animated: true)
+        //galleryViewController.delegate = self
+        //self.present(galleryViewController, animated: true, completion: nil)
         
     }
  

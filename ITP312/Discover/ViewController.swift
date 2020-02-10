@@ -180,12 +180,12 @@ class ViewController: UIViewController {
         let longPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(handleLongGesture))
         self.collectionView.addGestureRecognizer(longPressGesture)
         
-        title = "Alerts & Pickers"
+        title = "Gallery"
 
         
         let add = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addTapped))
         add.tintColor = .blue
-        self.navigationItem.rightBarButtonItem = add
+        //self.navigationItem.rightBarButtonItem = add
         
         navigationController?.navigationBar.backgroundColor = .white
         navigationController?.navigationBar.tintColor = .white
