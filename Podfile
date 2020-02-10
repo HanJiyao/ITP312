@@ -20,5 +20,8 @@ target 'ITP312' do
   pod 'Magnetic'  
   pod 'JJFloatingActionButton'
   pod 'FlagKit'
+  pod 'Firebase/MLCommon'
+  pod 'Firebase/MLNLSmartReply'
+  pod 'Firebase/MLVision'
 
 end

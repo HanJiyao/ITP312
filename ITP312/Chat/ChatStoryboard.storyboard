@@ -165,7 +165,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="r24-km-vFP">
-                                <rect key="frame" x="0.0" y="5" width="375" height="562"/>
+                                <rect key="frame" x="0.0" y="5" width="375" height="512"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fb8-bl-XD1">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="35"/>
@@ -227,7 +227,7 @@
                                         </constraints>
                                     </stackView>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="interactive" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="bTd-PC-mBg">
-                                        <rect key="frame" x="0.0" y="35" width="375" height="527"/>
+                                        <rect key="frame" x="0.0" y="35" width="375" height="477"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <color key="sectionIndexColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <color key="sectionIndexBackgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -252,17 +252,51 @@
                                 </constraints>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="6uf-jL-jDP">
-                                <rect key="frame" x="0.0" y="567" width="375" height="51"/>
+                                <rect key="frame" x="0.0" y="517" width="375" height="101"/>
                                 <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SCT-UF-xlY">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
+                                        <subviews>
+                                            <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UDj-8o-oIU">
+                                                <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
+                                                <subviews>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SuN-7D-JJd">
+                                                        <rect key="frame" x="0.0" y="0.0" width="120" height="50"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" constant="120" id="DUy-UQ-MUz"/>
+                                                        </constraints>
+                                                        <state key="normal" title="Smart Reply"/>
+                                                        <connections>
+                                                            <action selector="handleSmartReply:" destination="Cdn-T9-l1F" eventType="touchUpInside" id="c4x-1A-fxz"/>
+                                                        </connections>
+                                                    </button>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="reply" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="syC-GR-oq1">
+                                                        <rect key="frame" x="120" y="0.0" width="255" height="50"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                            </stackView>
+                                        </subviews>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="bottom" secondItem="UDj-8o-oIU" secondAttribute="bottom" id="4QY-Ug-Cct"/>
+                                            <constraint firstAttribute="trailing" secondItem="UDj-8o-oIU" secondAttribute="trailing" id="BbX-d8-L2G"/>
+                                            <constraint firstItem="UDj-8o-oIU" firstAttribute="leading" secondItem="SCT-UF-xlY" secondAttribute="leading" id="K6c-ia-aCh"/>
+                                            <constraint firstItem="UDj-8o-oIU" firstAttribute="top" secondItem="SCT-UF-xlY" secondAttribute="top" id="Nwe-4z-dmY"/>
+                                            <constraint firstAttribute="height" constant="50" id="ebE-Bt-GLz"/>
+                                        </constraints>
+                                    </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="80Z-p0-G7z">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="1"/>
+                                        <rect key="frame" x="0.0" y="50" width="375" height="1"/>
                                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="1" id="bh3-h3-NJZ"/>
                                         </constraints>
                                     </view>
                                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KVZ-Wz-349">
-                                        <rect key="frame" x="0.0" y="1" width="375" height="50"/>
+                                        <rect key="frame" x="0.0" y="51" width="375" height="50"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uWe-Mf-6Rg">
                                                 <rect key="frame" x="0.0" y="0.0" width="10" height="50"/>
@@ -329,6 +363,8 @@
                         <outlet property="fromLanguage" destination="jKO-3B-dle" id="t7T-ev-g8F"/>
                         <outlet property="messageTextField" destination="jbs-br-H6D" id="RJO-vo-k5m"/>
                         <outlet property="sendImageViewButton" destination="xSI-3I-Vy6" id="b0c-sp-A2J"/>
+                        <outlet property="smartReplyBtn" destination="SuN-7D-JJd" id="Ajh-5B-aT0"/>
+                        <outlet property="smartReplyLabel" destination="syC-GR-oq1" id="loD-XT-lEC"/>
                         <outlet property="tableView" destination="bTd-PC-mBg" id="Pdb-tJ-sGb"/>
                         <outlet property="toLanguage" destination="ayX-mX-oRL" id="Rih-Rh-15X"/>
                         <outlet property="topBar" destination="fb8-bl-XD1" id="xe1-gH-Wcm"/>

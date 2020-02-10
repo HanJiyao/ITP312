@@ -1,2 +1,3 @@
 ${PODS_ROOT}/Target Support Files/Pods-ITP312/Pods-ITP312-resources.sh
+${PODS_CONFIGURATION_BUILD_DIR}/FirebaseMLNLSmartReply/PredictOnDeviceResource.bundle
 ${PODS_CONFIGURATION_BUILD_DIR}/FirebaseMLNLTranslate/FirebaseMLNLTranslate_resource.bundle

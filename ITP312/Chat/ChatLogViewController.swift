@@ -20,10 +20,15 @@ class ChatLogViewController: UIViewController, UITableViewDataSource, UITableVie
     @IBOutlet weak var toLanguage: UIButton!
     @IBOutlet weak var translationSwitch: UISwitch!
     @IBOutlet weak var topBar: UIStackView!
+    @IBOutlet weak var smartReplyBtn: UIButton!
+    @IBOutlet weak var smartReplyLabel: UILabel!
+    
     
     var user: User?
     var messages: [Message] = []
     let cellID = "ChatLogCell"
+    
+    var conversation: [TextMessage] = []
     
     var bottomBarBottomAnchor: NSLayoutConstraint?
     let dropDown1 = DropDown()
@@ -60,6 +65,10 @@ class ChatLogViewController: UIViewController, UITableViewDataSource, UITableVie
     )
     
     var translation = false
+    
+    lazy var vision = Vision.vision()
+
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -151,6 +160,7 @@ class ChatLogViewController: UIViewController, UITableViewDataSource, UITableVie
 //           self.toLanguage.setTitle(item, for: .normal)
 //        }
         
+        
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -211,6 +221,35 @@ class ChatLogViewController: UIViewController, UITableViewDataSource, UITableVie
                     ref.child("messages").updateChildValues(["\(key)":values])
                     ref.child("/user-messages/\(fromID!)/\(toID!)/").updateChildValues(["\(key)":0])
                     ref.child("/user-messages/\(toID!)/\(fromID!)/").updateChildValues(["\(key)":0])
+                    
+                    let options = VisionCloudDetectorOptions()
+                    options.modelType = .latest
+                    options.maxResults = 2
+                    let cloudDetector = self.vision.cloudLandmarkDetector(options: options)
+                        let visionImage = VisionImage(image: image)
+                        cloudDetector.detect(in: visionImage) { landmarks, error in
+                          guard error == nil, let landmarks = landmarks, !landmarks.isEmpty else {
+                            print(error!)
+                            return
+                          }
+
+                          for landmark in landmarks {
+            //                let landmarkDesc = landmark.landmark
+            //                let boundingPoly = landmark.frame
+            //                let entityId = landmark.entityId
+
+                            // A landmark can have multiple locations: for example, the location the image
+                            // was taken, and the location of the landmark depicted.
+                            for location in landmark.locations! {
+                                print(landmark.landmark)
+                                
+                            }
+                            
+                            self.messageTextField.text = landmarks[0].landmark
+
+                           // let confidence = landmark.confidence
+                        }
+                    }
                 }
             }
         }
@@ -318,6 +357,8 @@ class ChatLogViewController: UIViewController, UITableViewDataSource, UITableVie
                 cell.bubbleViewRightAnchor?.isActive = false
                 cell.bubbleViewLeftAnchor?.isActive = true
             }
+            
+            
         }
 //        } else {
 //            // cell.messageImageView.isHidden = true
@@ -378,6 +419,17 @@ class ChatLogViewController: UIViewController, UITableViewDataSource, UITableVie
                 //scroll to the last index
                 let indexPath = IndexPath(item: 0, section: self.messages.count - 1)
                 self.tableView.scrollToRow(at: indexPath, at: .top, animated: true)
+                
+                // Then, for each message sent and received:
+                if message.text != nil {
+                    let MLmessage = TextMessage(
+                        text: message.text!,
+                        timestamp: TimeInterval(truncating: message.timestamp!),
+                        userID: message.fromID!,
+                        isLocalUser: true)
+                    self.conversation.append(MLmessage)
+                }
+                
             })
         }
     }
@@ -492,6 +544,27 @@ class ChatLogViewController: UIViewController, UITableViewDataSource, UITableVie
         } else {
             self.messages = []
             observeMessages()
+        }
+    }
+    @IBAction func handleSmartReply(_ sender: Any) {
+        var reply = ""
+        let naturalLanguage = NaturalLanguage.naturalLanguage()
+        naturalLanguage.smartReply().suggestReplies(for: conversation) { result, error in
+            guard error == nil, let result = result else {
+                return
+            }
+            if (result.status == .notSupportedLanguage) {
+                // The conversation's language isn't supported, so the
+                // the result doesn't contain any suggestions.
+                print("not support language")
+            } else if (result.status == .success) {
+                for suggestion in result.suggestions {
+                    print("Suggested reply: \(suggestion.text)")
+                    reply += "\(suggestion.text)  |  "
+                }
+                self.smartReplyLabel.text = reply
+            }
+            
         }
     }
     
