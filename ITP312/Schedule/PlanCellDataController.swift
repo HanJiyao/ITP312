@@ -23,7 +23,7 @@ class PlanCellDataController: UIViewController, UITableViewDelegate, UITableView
     var selectedCountry: String?
     var planId: String?
     var searchLocationName: String?
-    var locationList = [Location]()
+    var locationList = [PlanLocation]()
     @IBOutlet weak var planNameLabel: UILabel!
     @IBOutlet weak var countryNameLabel: UILabel!
     
@@ -46,6 +46,10 @@ class PlanCellDataController: UIViewController, UITableViewDelegate, UITableView
         planNameLabel.sizeToFit()
         countryNameLabel.sizeToFit()
         let ref = Database.database().reference()
+     
+        // Get user value
+       
+        
         ref.child("LocationInfo").observeSingleEvent(of: .value) {snapshot in
         // Get all children of travelPlans in database
         for case let rest as DataSnapshot in snapshot.children {
@@ -57,7 +61,7 @@ class PlanCellDataController: UIViewController, UITableViewDelegate, UITableView
             let thisLongitude = restDict!["longitude"] as? CLLocationDegrees
             let thisLocationId = restDict!["locationId"] as? String
             let thisPlanId = self.planId!
-            let thisLocation = Location(latitude: thisLatitude, longitude: thisLongitude, planId: thisPlanId, locationId: thisLocationId, searchLocationName: thisLocationName
+            let thisLocation = PlanLocation(latitude: thisLatitude, longitude: thisLongitude, planId: thisPlanId, locationId: thisLocationId, searchLocationName: thisLocationName
             )
             self.locationList.append(thisLocation)
             print(self.locationList , "locationList")

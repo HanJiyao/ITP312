@@ -102,10 +102,9 @@
 		D5D3E88B23ED3A9300DDDCB6 /* GalleryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D3E88723ED3A9200DDDCB6 /* GalleryModel.swift */; };
 		D5D3E88C23ED3A9300DDDCB6 /* GalleryCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D3E88823ED3A9300DDDCB6 /* GalleryCollectionViewController.swift */; };
 		FB22CB3723F08C5F0097180E /* SearchLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB22CB3623F08C5F0097180E /* SearchLocation.swift */; };
-		FB22CB3923F08C860097180E /* AddLocationMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB22CB3823F08C860097180E /* AddLocationMapViewController.swift */; };
 		FB22CB3B23F08C960097180E /* FinalCreatePlanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB22CB3A23F08C960097180E /* FinalCreatePlanViewController.swift */; };
 		FB22CB3D23F08D110097180E /* Plans.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FB22CB3C23F08D110097180E /* Plans.storyboard */; };
-		FB22CB3F23F0B9E80097180E /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB22CB3E23F0B9E80097180E /* Location.swift */; };
+		FB4CA4CA23F0D6EB007173A1 /* PlanLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB4CA4C923F0D6EB007173A1 /* PlanLocation.swift */; };
 		FB4D4A9C23E89459007B67B2 /* SearchText.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB4D4A9B23E89459007B67B2 /* SearchText.swift */; };
 		FB4D4A9E23E8A71D007B67B2 /* SearchItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB4D4A9D23E8A71D007B67B2 /* SearchItem.swift */; };
 		FB4D4AA023E8AE6B007B67B2 /* SearchTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB4D4A9F23E8AE6B007B67B2 /* SearchTextField.swift */; };
@@ -224,7 +223,7 @@
 		FB22CB3823F08C860097180E /* AddLocationMapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddLocationMapViewController.swift; sourceTree = "<group>"; };
 		FB22CB3A23F08C960097180E /* FinalCreatePlanViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FinalCreatePlanViewController.swift; sourceTree = "<group>"; };
 		FB22CB3C23F08D110097180E /* Plans.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Plans.storyboard; sourceTree = "<group>"; };
-		FB22CB3E23F0B9E80097180E /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
+		FB4CA4C923F0D6EB007173A1 /* PlanLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanLocation.swift; sourceTree = "<group>"; };
 		FB4D4A9B23E89459007B67B2 /* SearchText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchText.swift; sourceTree = "<group>"; };
 		FB4D4A9D23E8A71D007B67B2 /* SearchItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchItem.swift; sourceTree = "<group>"; };
 		FB4D4A9F23E8AE6B007B67B2 /* SearchTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTextField.swift; sourceTree = "<group>"; };
@@ -305,7 +304,6 @@
 				FB4D4A9F23E8AE6B007B67B2 /* SearchTextField.swift */,
 				FBEF089023E80D1700636B47 /* MapViewController.swift */,
 				FBEF088E23E80D1600636B47 /* Plan.swift */,
-				FB22CB3E23F0B9E80097180E /* Location.swift */,
 				FBEF089123E80D1800636B47 /* PlanCell.swift */,
 				FBEF089223E80D1800636B47 /* PlanInfoViewController.swift */,
 				FBEF088F23E80D1700636B47 /* TableViewController.swift */,
@@ -317,6 +315,7 @@
 				FB22CB3A23F08C960097180E /* FinalCreatePlanViewController.swift */,
 				FB22CB3823F08C860097180E /* AddLocationMapViewController.swift */,
 				FB22CB3623F08C5F0097180E /* SearchLocation.swift */,
+				FB4CA4C923F0D6EB007173A1 /* PlanLocation.swift */,
 			);
 			path = Schedule;
 			sourceTree = "<group>";
@@ -812,7 +811,6 @@
 				5156A07223CDA45D008328C5 /* ChatStoryboard.storyboard in Resources */,
 				FB22CB3D23F08D110097180E /* Plans.storyboard in Resources */,
 				5156A07423CDAC30008328C5 /* GoogleService-Info.plist in Resources */,
-				FBEF088B23E80CA800636B47 /* Plans.storyboard in Resources */,
 				D5BA97F623F0C02E00A8F523 /* Countries.bundle in Resources */,
 				D5BA96FC23F0B6A900A8F523 /* DiscoverStoryboard.storyboard in Resources */,
 				512985E923E3D5040053D3D9 /* AccountStoryboard.storyboard in Resources */,
@@ -913,6 +911,7 @@
 				FB4D4A9E23E8A71D007B67B2 /* SearchItem.swift in Sources */,
 				D5BA97F423F0C02E00A8F523 /* AttributedTextBlock.swift in Sources */,
 				D5BA981223F0C02E00A8F523 /* LikeButtonCell.swift in Sources */,
+				FB4CA4CA23F0D6EB007173A1 /* PlanLocation.swift in Sources */,
 				D5BA980423F0C02E00A8F523 /* Location.swift in Sources */,
 				D5BA97E723F0C02E00A8F523 /* UIView+Extensions.swift in Sources */,
 				FB4D4AA423E935A3007B67B2 /* CalendarController.swift in Sources */,
@@ -929,7 +928,6 @@
 				D5D3E88423ED3A6200DDDCB6 /* GalleryDataManager.swift in Sources */,
 				5125825C23CEC0C6006C694C /* User.swift in Sources */,
 				5198C85E23EDBDA60030798A /* GuideBookOfferViewController.swift in Sources */,
-				FBEF089323E80D1800636B47 /* CreatePlanViewController.swift in Sources */,
 				D5BA97EF23F0C02E00A8F523 /* UIAlertController+Extensions.swift in Sources */,
 				D5BA981523F0C02E00A8F523 /* GradientSlider.swift in Sources */,
 				D5D3E88A23ED3A9300DDDCB6 /* GalleryUploadPhotoFrameViewController.swift in Sources */,
@@ -976,7 +974,6 @@
 				D5BA97ED23F0C02E00A8F523 /* UISearchBar+Extensions.swift in Sources */,
 				D5BA980323F0C02E00A8F523 /* SearchHistoryManager.swift in Sources */,
 				512AE6F823E91DF300F0832C /* GuideMainViewController.swift in Sources */,
-				FB22CB3F23F0B9E80097180E /* Location.swift in Sources */,
 				D5D38D8623E9619C0070ED85 /* CollectionViewCell.swift in Sources */,
 				FBEF089723E80D1800636B47 /* MapViewController.swift in Sources */,
 				D5BA980223F0C02E00A8F523 /* LocationPickerViewController.swift in Sources */,
