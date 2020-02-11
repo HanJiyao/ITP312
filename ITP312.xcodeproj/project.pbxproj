@@ -263,6 +263,7 @@
 				512AE6FE23E933ED00F0832C /* Model */,
 				511A196E23E82409008B7E63 /* GuideStoryboard.storyboard */,
 				512AE6FB23E9211900F0832C /* GuideDetailViewController.swift */,
+				514FD30923ED15AE0035EAD9 /* GuideCalenderViewController.swift */,
 				512AE6F923E9204D00F0832C /* GuideEditViewController.swift */,
 				512AE6F723E91DF300F0832C /* GuideMainViewController.swift */,
 				51AC72BE23EDA1E9007B6479 /* GuideBookRequestViewController.swift */,
@@ -349,7 +350,6 @@
 			isa = PBXGroup;
 			children = (
 				512AE70223E93CDC00F0832C /* GuideCell.swift */,
-				514FD30923ED15AE0035EAD9 /* GuideCalenderViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";

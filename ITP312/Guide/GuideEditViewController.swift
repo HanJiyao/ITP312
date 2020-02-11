@@ -27,6 +27,7 @@ class GuideEditViewController: UIViewController, UIImagePickerControllerDelegate
     var user: User?
     var guide: Guide?
     var displayService:String = ""
+    var guideDates:[String] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,9 +41,6 @@ class GuideEditViewController: UIViewController, UIImagePickerControllerDelegate
         saveBtn.layer.cornerRadius = 15
         disableBtn(button: saveBtn)
         disableBtn(button: previewBtn)
-        
-//        validator.registerField(fromDateTextLabel, rules: [RequiredRule()])
-//        validator.registerField(toDateTextLabel, rules: [RequiredRule()])
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -61,25 +59,31 @@ class GuideEditViewController: UIViewController, UIImagePickerControllerDelegate
     }
     
     func observeExisting() {
-        Database.database().reference().child("guides").observe(.value) { (snapshot) in
+        guard let uid = Auth.auth().currentUser?.uid else {
+            return
+        }
+        Database.database().reference().child("guides/\(uid)").observe(.value) { (snapshot) in
             if let dictionary = snapshot.value as? [String:AnyObject] {
-                for i in dictionary {
-                    let guide = Guide(dictionary: i.value as! [String : AnyObject])
-                    if guide.guideID == Auth.auth().currentUser?.uid {
-                        self.guide = guide
-                    }
+                let guide = Guide(dictionary: dictionary )
+                self.guide = guide
+                for i in (dictionary["guideDates"] as? [String:AnyObject])! {
+                    self.guideDates.append(i.key)
                 }
             }
         }
     }
     
     private func disableBtn (button: UIButton) {
-        button.backgroundColor = .lightGray
+        if button.titleLabel?.text! == "Save" {
+            button.backgroundColor = .lightGray
+        }
         button.isEnabled = false
     }
     
     private func enableBtn (button: UIButton) {
-        button.backgroundColor = .systemBlue
+        if button.titleLabel?.text! == "Save" {
+            button.backgroundColor = .systemBlue
+        }
         button.isEnabled = true
     }
     
@@ -95,14 +99,14 @@ class GuideEditViewController: UIViewController, UIImagePickerControllerDelegate
             descSeperator.backgroundColor = .red
             disableBtn(button: saveBtn)
             disableBtn(button: previewBtn)
-        } else {
+        } else if desc != guide?.desc {
             descSeperator.backgroundColor = .systemGreen
         }
         if displayService == "" {
             serviceSeperator.backgroundColor = .red
             disableBtn(button: saveBtn)
             disableBtn(button: previewBtn)
-        } else {
+        } else if displayService != guide?.service {
             serviceSeperator.backgroundColor = .systemGreen
         }
         let fromDate = fromDateTextLabel.text.trimmingCharacters(in: .whitespacesAndNewlines)
@@ -111,7 +115,7 @@ class GuideEditViewController: UIViewController, UIImagePickerControllerDelegate
             dateSeperator.backgroundColor = .red
             disableBtn(button: saveBtn)
             disableBtn(button: previewBtn)
-        } else {
+        } else if fromDate != guide?.fromDate || toDate != guide?.toDate {
             dateSeperator.backgroundColor = .systemGreen
         }
         if desc != "" && displayService != "" && toDate != "" && fromDate != "" {
@@ -168,19 +172,31 @@ class GuideEditViewController: UIViewController, UIImagePickerControllerDelegate
             cell.tintColor = .systemBlue
         }
         selectionMenu.dismissAutomatically = false
-
+        if let serviceList = self.guide?.service!.trimmingCharacters(in: .whitespacesAndNewlines).components(separatedBy: ", ") {
+            selectionMenu.setSelectedItems(items: serviceList) { (item, index, bol, items) in
+            }
+        }
         selectionMenu.show(style: .actionSheet(title: nil, action: "Done", height: nil), from: self)
         selectionMenu.onDismiss = { selectedItems in
+            print(selectedItems)
             self.displayService =  ""
-            for i in selectedItems {
-                self.displayService += "\(i), "
+            if selectedItems.count != 0 {
+                for i in selectedItems {
+                    if i != selectedItems.last {
+                        self.displayService += "\(i), "
+                    }
+                    else
+                    {
+                        self.displayService += "\(i)"
+                    }
+                }
             }
             if self.displayService == "" {
                 self.selectServiceBtn.setTitle(" Please select at least one service", for: .normal)
                 self.selectServiceBtn.setTitleColor(.red, for: .normal)
 
             } else {
-                 self.selectServiceBtn.setTitle(self.displayService, for: .normal)
+                self.selectServiceBtn.setTitle(self.displayService, for: .normal)
                 self.selectServiceBtn.setTitleColor(.systemBlue, for: .normal)
             }
             self.validateGuideInput()
@@ -189,21 +205,28 @@ class GuideEditViewController: UIViewController, UIImagePickerControllerDelegate
     }
     
     @IBAction func handleCalender(_ sender: Any) {
-        let formatter: DateFormatter = {
-            let formatter = DateFormatter()
-            formatter.dateFormat = "yyyy-MM-dd"
-            return formatter
-        }()
         
         guard let guideCalenderViewController = self.storyboard?.instantiateViewController(withIdentifier: "GuideCalender") as? GuideCalenderViewController else { return }
-        if let fromDate = formatter.date(from: fromDateTextLabel.text!), let toDate = formatter.date(from: toDateTextLabel.text!) {
-            guideCalenderViewController.datesRange = guideCalenderViewController.datesRange(from: fromDate, to: toDate)
-            guideCalenderViewController.firstDate = fromDate
-            guideCalenderViewController.lastDate = toDate
+        if self.guideDates.count != 0 {
+            var datesRange:[Date] = []
+            for i in self.guideDates {
+                let date = guideCalenderViewController.formatter.date(from: i)
+                datesRange.append(date!)
+            }
+            datesRange = datesRange.sorted(by: { $0.compare($1) == .orderedAscending })
+            guideCalenderViewController.datesRange = datesRange
+            guideCalenderViewController.firstDate = datesRange.first
+            guideCalenderViewController.lastDate = datesRange.last
+            // guideCalenderViewController.guideRole = true
         }
         guideCalenderViewController.callbackClosure = { [weak self] in
             self?.fromDateTextLabel.text = guideCalenderViewController.startDateLabel.text!
             self?.toDateTextLabel.text = guideCalenderViewController.endDateLabel.text!
+            self?.guideDates = []
+            for i in guideCalenderViewController.datesRange {
+                let date = guideCalenderViewController.formatter.string(from: i)
+                self?.guideDates.append(date)
+            }
             self?.validateGuideInput()
          }
          present(guideCalenderViewController, animated: true, completion: nil)
@@ -240,6 +263,9 @@ class GuideEditViewController: UIViewController, UIImagePickerControllerDelegate
                     if let error = error {
                         print("Guide Data could not be saved: \(error).")
                     } else {
+                        for i in self.guideDates {
+                            Database.database().reference().child("guides/\(uid)/guideDates/").updateChildValues([i:0])
+                        }
                         print("Guide Data saved successfully!")
                         self.navigationController?.popToRootViewController(animated: true)
                     }
