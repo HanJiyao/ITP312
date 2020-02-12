@@ -144,7 +144,7 @@ class ChatLogViewController: UIViewController, UITableViewDataSource, UITableVie
             cell.optionLabel.textAlignment = .center
         }
         // The list of items to display. Can be changed dynamically
-        dropDown1.dataSource = ["English", "Chinese", "Japnese", "Germany", "Russian"]
+        dropDown1.dataSource = ["English", "Chinese", "Malay", "Japnese", "Germany", "Russian"]
         dropDown1.selectionAction = { [unowned self] (index: Int, item: String) in
             print("Selected item: \(item) at index: \(index)")
             self.fromLanguage.setTitle(item, for: .normal)
@@ -232,7 +232,7 @@ class ChatLogViewController: UIViewController, UITableViewDataSource, UITableVie
                         let visionImage = VisionImage(image: image)
                         cloudDetector.detect(in: visionImage) { landmarks, error in
                           guard error == nil, let landmarks = landmarks, !landmarks.isEmpty else {
-                            print(error)
+                            print(error!)
                             return
                           }
 
@@ -243,12 +243,12 @@ class ChatLogViewController: UIViewController, UITableViewDataSource, UITableVie
 
                             // A landmark can have multiple locations: for example, the location the image
                             // was taken, and the location of the landmark depicted.
-                            for location in landmark.locations! {
-                                print(landmark.landmark)
-                                
-                            }
+//                            for location in landmark.locations! {
+//                                print(landmark.landmark)
+//
+//                            }
                             
-                            self.replyBtn1.setTitle(landmarks[0].landmark, for: .normal)
+                            self.replyBtn1.setTitle(landmark.landmark, for: .normal)
 
                            // let confidence = landmark.confidence
                         }
@@ -419,10 +419,6 @@ class ChatLogViewController: UIViewController, UITableViewDataSource, UITableVie
                 self.messages.append(message)
                 self.tableView.reloadData()
                 
-                //scroll to the last index
-                let indexPath = IndexPath(item: 0, section: self.messages.count - 1)
-                self.tableView.scrollToRow(at: indexPath, at: .top, animated: true)
-                
                 // Then, for each message sent and received:
                 if message.text != nil {
                     let MLmessage = TextMessage(
@@ -431,45 +427,48 @@ class ChatLogViewController: UIViewController, UITableViewDataSource, UITableVie
                         userID: message.fromID!,
                         isLocalUser: true)
                     self.conversation.append(MLmessage)
+                    
+                    if self.translationSwitch.isOn {
+                        let language = self.fromLanguage.titleLabel!.text!
+                        self.handleTranslate(language: language)
+                    }
                 }
+                
+                //scroll to the last index
+                self.scrollToBottom()
                 
             })
         }
     }
     
-    func sendMessage() {
-        if self.messageTextField.text! != "" {
-            let messageText = messageTextField.text!
-            if translationSwitch.isOn {
-                let language = fromLanguage.titleLabel!.text!
-                if language == "Japnese" {
-                    self.engJapTranslator.translate(messageText) { translatedText, error in
-                        guard error == nil, let translatedText = translatedText else { return }
-                        print(translatedText)
-                    }
-                }
-            }
-            let ref = Database.database().reference()
-            let toID = user!.id
-            let fromID = Auth.auth().currentUser?.uid
-            let timestamp: NSNumber = NSNumber(value: Date().timeIntervalSince1970)
-            let values = [
-                "text": messageText,
-                "toID":toID!,
-                "fromID":fromID!,
-                "timestamp":timestamp
-                ] as [String : Any]
-            guard let key = ref.childByAutoId().key else { return }
-            
-            // the structure of the user-message is to store the message relationship
-            // that the message id is stored under both sender and receiver that can easily filtered and retrive later
-            
-            ref.child("messages").updateChildValues(["\(key)":values])
-            ref.child("/user-messages/\(fromID!)/\(toID!)/").updateChildValues(["\(key)":0])
-            ref.child("/user-messages/\(toID!)/\(fromID!)/").updateChildValues(["\(key)":0])
-            
-            self.messageTextField.text = nil
+    func scrollToBottom(){
+        DispatchQueue.main.async {
+            let indexPath = IndexPath(row: 0, section: self.messages.count-1)
+            self.tableView.scrollToRow(at: indexPath, at: .bottom, animated: true)
         }
+    }
+    
+    func sendMessage(messageText: String) {
+        let ref = Database.database().reference()
+        let toID = user!.id
+        let fromID = Auth.auth().currentUser?.uid
+        let timestamp: NSNumber = NSNumber(value: Date().timeIntervalSince1970)
+        let values = [
+            "text": messageText,
+            "toID":toID!,
+            "fromID":fromID!,
+            "timestamp":timestamp
+            ] as [String : Any]
+        guard let key = ref.childByAutoId().key else { return }
+        
+        // the structure of the user-message is to store the message relationship
+        // that the message id is stored under both sender and receiver that can easily filtered and retrive later
+        
+        ref.child("messages").updateChildValues(["\(key)":values])
+        ref.child("/user-messages/\(fromID!)/\(toID!)/").updateChildValues(["\(key)":0])
+        ref.child("/user-messages/\(toID!)/\(fromID!)/").updateChildValues(["\(key)":0])
+        
+        self.messageTextField.text = nil
     }
     
     func handleTranslate(language: String) {
@@ -496,6 +495,7 @@ class ChatLogViewController: UIViewController, UITableViewDataSource, UITableVie
                         print(translatedText)
                         message.text = translatedText
                         self.tableView.reloadData()
+                        self.scrollToBottom()
                     }
                 } else if language=="Japnese" {
                     self.japEngTranslator.translate(message.text!) { translatedText, error in
@@ -503,6 +503,7 @@ class ChatLogViewController: UIViewController, UITableViewDataSource, UITableVie
                         print(translatedText)
                         message.text = translatedText
                         self.tableView.reloadData()
+                        self.scrollToBottom()
                     }
                 } else if language=="Germany" {
                     self.germanyEnglishTranslator.translate(message.text!) { translatedText, error in
@@ -510,6 +511,7 @@ class ChatLogViewController: UIViewController, UITableViewDataSource, UITableVie
                         print(translatedText)
                         message.text = translatedText
                         self.tableView.reloadData()
+                        self.scrollToBottom()
                     }
                 } else if language=="Malay" {
                     self.malayEngTranslator.translate(message.text!) { translatedText, error in
@@ -517,6 +519,7 @@ class ChatLogViewController: UIViewController, UITableViewDataSource, UITableVie
                         print(translatedText)
                         message.text = translatedText
                         self.tableView.reloadData()
+                        self.scrollToBottom()
                     }
                 } else if language=="Russian" {
                     self.russEngTranslator.translate(message.text!) { translatedText, error in
@@ -524,6 +527,7 @@ class ChatLogViewController: UIViewController, UITableViewDataSource, UITableVie
                         print(translatedText)
                         message.text = translatedText
                         self.tableView.reloadData()
+                        self.scrollToBottom()
                     }
                 }
             }
@@ -534,12 +538,61 @@ class ChatLogViewController: UIViewController, UITableViewDataSource, UITableVie
 //        }
 //    }
     
+    private func sendWithTranslate(){
+        if self.messageTextField.text! != "" {
+            var messageText = messageTextField.text!
+            if translationSwitch.isOn {
+                let language = fromLanguage.titleLabel!.text!
+                if language == "Chinese" {
+                    self.englishChineseTranslator.translate(messageText) { translatedText, error in
+                        guard error == nil, let translatedText = translatedText else { return }
+                        print(translatedText)
+                        messageText = messageText + "\nTranslated: \n" + translatedText
+                        self.sendMessage(messageText: messageText)
+                    }
+                } else if language == "Japnese" {
+                    self.engJapTranslator.translate(messageText) { translatedText, error in
+                        guard error == nil, let translatedText = translatedText else { return }
+                        print(translatedText)
+                        messageText = messageText + "\nTranslated: \n" + translatedText
+                        self.sendMessage(messageText: messageText)
+                    }
+                } else if language == "Malay" {
+                    self.engMalayTranslator.translate(messageText) { translatedText, error in
+                        guard error == nil, let translatedText = translatedText else { return }
+                        print(translatedText)
+                        messageText = messageText + "\nTranslated: \n" + translatedText
+                        self.sendMessage(messageText: messageText)
+                    }
+                } else if language == "Germany" {
+                    self.englishGermanyTranslator.translate(messageText) { translatedText, error in
+                        guard error == nil, let translatedText = translatedText else { return }
+                        print(translatedText)
+                        messageText = messageText + "\nTranslated: \n" + translatedText
+                        self.sendMessage(messageText: messageText)
+                    }
+                } else if language == "Russian" {
+                    self.engRussTranslator.translate(messageText) { translatedText, error in
+                        guard error == nil, let translatedText = translatedText else { return }
+                        print(translatedText)
+                        messageText = messageText + "\nTranslated: \n" + translatedText
+                        self.sendMessage(messageText: messageText)
+                    }
+                }
+            }
+            else
+            {
+                sendMessage(messageText: messageText)
+            }
+        }
+    }
+    
     @IBAction func handleSend(_ sender: Any) {
-        sendMessage()
+        sendWithTranslate()
     }
 
     @IBAction func handleEnter(_ sender: Any) {
-        sendMessage()
+        sendWithTranslate()
     }
     
     @IBAction func handleFromLanguage(_ sender: Any) {
