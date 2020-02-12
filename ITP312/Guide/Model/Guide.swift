@@ -20,6 +20,7 @@ class Guide: NSObject {
     var guideName: String?
     var booked: Bool?
     var offerID: String?
+    var country: String?
     
     // init as a whole dictionary so that the value can be flexiable
     init (dictionary:[String:AnyObject]) {
@@ -33,6 +34,7 @@ class Guide: NSObject {
         guideName = dictionary["guideName"] as? String
         booked = dictionary["booked"] as? Bool
         offerID = dictionary["offerID"] as? String
+        country = dictionary["country"] as? String
     }
     
 }

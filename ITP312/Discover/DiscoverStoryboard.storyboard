@@ -55,25 +55,17 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" id="Rcn-rY-jAd">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="ET7-tL-gK0">
+                                <rect key="frame" x="0.0" y="74" width="375" height="593"/>
                                 <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="ET7-tL-gK0">
-                                        <rect key="frame" x="50" y="40" width="267" height="48.5"/>
-                                    </stackView>
-                                    <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="scT-fi-T6k" customClass="MagneticView" customModule="Magnetic">
-                                        <rect key="frame" x="0.0" y="122" width="375" height="523"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Discover new countries." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aC7-to-LWB">
-                                        <rect key="frame" x="37" y="75" width="301" height="33"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="33"/>
                                         <fontDescription key="fontDescription" name="SFUIDisplay-Ultralight" family="SF UI Display" pointSize="28"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tap on the countries you like." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3dF-jg-1AY">
-                                        <rect key="frame" x="54" y="108" width="267" height="16"/>
+                                        <rect key="frame" x="0.0" y="33" width="375" height="16"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="16" id="xCe-GR-fFH"/>
                                         </constraints>
@@ -81,26 +73,20 @@
                                         <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="scT-fi-T6k" customClass="MagneticView" customModule="Magnetic">
+                                        <rect key="frame" x="0.0" y="49" width="375" height="544"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </view>
                                 </subviews>
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstItem="3dF-jg-1AY" firstAttribute="top" secondItem="ET7-tL-gK0" secondAttribute="bottom" constant="19.5" id="2Xr-aZ-yYF"/>
-                                    <constraint firstItem="3dF-jg-1AY" firstAttribute="leading" secondItem="Rcn-rY-jAd" secondAttribute="leading" constant="54" id="5Yg-ad-BDa"/>
-                                    <constraint firstItem="scT-fi-T6k" firstAttribute="leading" secondItem="Rcn-rY-jAd" secondAttribute="leading" id="5c1-IF-dFN"/>
-                                    <constraint firstItem="scT-fi-T6k" firstAttribute="centerX" secondItem="Rcn-rY-jAd" secondAttribute="centerX" id="77p-j7-Ki5"/>
-                                    <constraint firstItem="ET7-tL-gK0" firstAttribute="leading" secondItem="Rcn-rY-jAd" secondAttribute="leading" constant="50" id="D42-4q-da5"/>
-                                    <constraint firstItem="3dF-jg-1AY" firstAttribute="centerX" secondItem="scT-fi-T6k" secondAttribute="centerX" id="EgA-dj-kQq"/>
-                                    <constraint firstAttribute="trailing" secondItem="ET7-tL-gK0" secondAttribute="trailing" constant="58" id="JYP-Id-CQR"/>
-                                    <constraint firstItem="scT-fi-T6k" firstAttribute="top" secondItem="ET7-tL-gK0" secondAttribute="bottom" constant="7.5" id="c62-5n-aKL"/>
-                                    <constraint firstItem="3dF-jg-1AY" firstAttribute="centerX" secondItem="aC7-to-LWB" secondAttribute="centerX" id="e76-D5-r1p"/>
-                                    <constraint firstItem="3dF-jg-1AY" firstAttribute="top" secondItem="aC7-to-LWB" secondAttribute="bottom" id="f0B-TA-3Qt"/>
-                                    <constraint firstAttribute="bottom" secondItem="scT-fi-T6k" secondAttribute="bottom" constant="48" id="j7U-Bu-Equ"/>
-                                    <constraint firstItem="scT-fi-T6k" firstAttribute="top" secondItem="Rcn-rY-jAd" secondAttribute="top" constant="96" id="x0W-NE-HAP"/>
-                                    <constraint firstItem="ET7-tL-gK0" firstAttribute="top" secondItem="Rcn-rY-jAd" secondAttribute="top" constant="40" id="znR-b6-Kqp"/>
-                                </constraints>
-                            </view>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="ET7-tL-gK0" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="3Ji-06-iuu"/>
+                            <constraint firstItem="ET7-tL-gK0" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="30" id="aV2-KN-H2C"/>
+                            <constraint firstItem="ET7-tL-gK0" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="af1-Fw-kMU"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="ET7-tL-gK0" secondAttribute="bottom" id="cdh-be-RLm"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <navigationItem key="navigationItem" id="pth-rL-iGv">
@@ -121,7 +107,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="127" y="138"/>
+            <point key="canvasLocation" x="125.59999999999999" y="137.18140929535232"/>
         </scene>
     </scenes>
 </document>

@@ -8,7 +8,6 @@
 
 import UIKit
 import FSCalendar
-import Firebase
 
 class GuideCalenderViewController: UIViewController, FSCalendarDelegate, FSCalendarDataSource {
     
@@ -25,6 +24,7 @@ class GuideCalenderViewController: UIViewController, FSCalendarDelegate, FSCalen
     var firstDate:Date?
     var lastDate:Date?
     var datesRange: [Date] = []
+    var availableDatesRange: [Date] = []
     var guideRole = false
     
     override func viewDidLoad() {
@@ -33,13 +33,15 @@ class GuideCalenderViewController: UIViewController, FSCalendarDelegate, FSCalen
         guideCalender.delegate = self
         guideCalender.allowsMultipleSelection = true
         guideCalender.swipeToChooseGesture.isEnabled = true // Swipe-To-Choose
-
         if firstDate != nil || lastDate != nil {
             startDateLabel.text = self.formatter.string(from: firstDate!)
             endDateLabel.text = self.formatter.string(from: lastDate!)
         }
-        for d in datesRange {
-            guideCalender.select(d)
+        self.availableDatesRange = self.datesRange
+        if guideRole {
+            for d in datesRange {
+                guideCalender.select(d)
+            }
         }
     }
     
@@ -53,24 +55,46 @@ class GuideCalenderViewController: UIViewController, FSCalendarDelegate, FSCalen
             }
             else
             {
-                return false
+                if self.availableDatesRange.contains(date) {
+                    return true
+                } else {
+                    return false
+                }
             }
         }
     }
     
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
-        datesRange.append(date)
-        sortAndDisplayDates()
+        if guideRole{
+            datesRange.append(date)
+            sortAndDisplayDates()
+        } else {
+            availableDatesRange.removeAll(date)
+        }
+       
     }
 
     func calendar(_ calendar: FSCalendar, didDeselect date: Date, at monthPosition: FSCalendarMonthPosition) {
-        datesRange.removeAll(date)
-        sortAndDisplayDates()
+        if guideRole{
+            datesRange.removeAll(date)
+            sortAndDisplayDates()
+        } else {
+            availableDatesRange.append(date)
+        }
+    }
+    
+    func calendar(_ calendar: FSCalendar, numberOfEventsFor date: Date) -> Int {
+
+        if self.datesRange.contains(date) {
+            return 1
+        }
+        return 0
     }
     
     func sortAndDisplayDates() {
         if datesRange.count != 0 {
             datesRange = datesRange.sorted(by: { $0.compare($1) == .orderedAscending })
+            availableDatesRange = availableDatesRange.sorted(by: { $0.compare($1) == .orderedAscending })
             startDateLabel.text = self.formatter.string(from:  datesRange.first!)
             endDateLabel.text = self.formatter.string(from: datesRange.last!)
         }

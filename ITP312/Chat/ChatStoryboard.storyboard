@@ -261,21 +261,39 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SuN-7D-JJd">
-                                                        <rect key="frame" x="0.0" y="0.0" width="120" height="50"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="110" height="50"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="width" constant="120" id="DUy-UQ-MUz"/>
+                                                            <constraint firstAttribute="width" constant="110" id="DUy-UQ-MUz"/>
                                                         </constraints>
                                                         <state key="normal" title="Smart Reply"/>
                                                         <connections>
                                                             <action selector="handleSmartReply:" destination="Cdn-T9-l1F" eventType="touchUpInside" id="c4x-1A-fxz"/>
                                                         </connections>
                                                     </button>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="syC-GR-oq1">
-                                                        <rect key="frame" x="120" y="0.0" width="255" height="50"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                        <nil key="textColor"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kyN-0i-mde">
+                                                        <rect key="frame" x="110" y="0.0" width="90" height="50"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" constant="90" id="vAl-LQ-1oD"/>
+                                                        </constraints>
+                                                        <state key="normal">
+                                                            <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                        </state>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qzk-Nz-cv6">
+                                                        <rect key="frame" x="200" y="0.0" width="90" height="50"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" constant="90" id="lap-HE-yrS"/>
+                                                        </constraints>
+                                                        <state key="normal">
+                                                            <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                        </state>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aJw-RZ-Qxq">
+                                                        <rect key="frame" x="290" y="0.0" width="85" height="50"/>
+                                                        <state key="normal">
+                                                            <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                        </state>
+                                                    </button>
                                                 </subviews>
                                             </stackView>
                                         </subviews>
@@ -362,9 +380,11 @@
                         <outlet property="bottomBar" destination="6uf-jL-jDP" id="r30-Od-wTS"/>
                         <outlet property="fromLanguage" destination="jKO-3B-dle" id="t7T-ev-g8F"/>
                         <outlet property="messageTextField" destination="jbs-br-H6D" id="RJO-vo-k5m"/>
+                        <outlet property="replyBtn1" destination="kyN-0i-mde" id="CbX-6t-e5u"/>
+                        <outlet property="replyBtn2" destination="Qzk-Nz-cv6" id="wze-7V-TbY"/>
+                        <outlet property="replyBtn3" destination="aJw-RZ-Qxq" id="lP4-3H-Y4f"/>
                         <outlet property="sendImageViewButton" destination="xSI-3I-Vy6" id="b0c-sp-A2J"/>
                         <outlet property="smartReplyBtn" destination="SuN-7D-JJd" id="Ajh-5B-aT0"/>
-                        <outlet property="smartReplyLabel" destination="syC-GR-oq1" id="loD-XT-lEC"/>
                         <outlet property="tableView" destination="bTd-PC-mBg" id="Pdb-tJ-sGb"/>
                         <outlet property="toLanguage" destination="ayX-mX-oRL" id="Rih-Rh-15X"/>
                         <outlet property="topBar" destination="fb8-bl-XD1" id="xe1-gH-Wcm"/>

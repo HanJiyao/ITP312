@@ -51,7 +51,7 @@ class GuideMainViewController: UIViewController, UITableViewDataSource, UITableV
             cell.optionLabel.textAlignment = .center
         }
         // The list of items to display. Can be changed dynamically
-        dropDown.dataSource = ["Popularity", "Name", "Start Date", "End Date"]
+        dropDown.dataSource = ["Popularity", "Country", "Start Date", "End Date"]
         dropDown.selectionAction = { [unowned self] (index: Int, item: String) in
             print("Selected item: \(item) at index: \(index)")
             if self.sortButton.titleLabel!.text == item {
@@ -72,7 +72,7 @@ class GuideMainViewController: UIViewController, UITableViewDataSource, UITableV
         
         searchController.searchResultsUpdater = self
         searchController.obscuresBackgroundDuringPresentation = false
-        searchController.searchBar.placeholder = "Search Guides"
+        searchController.searchBar.placeholder = "Search Country"
         navigationItem.searchController = searchController
         definesPresentationContext = true
     }
@@ -101,16 +101,16 @@ class GuideMainViewController: UIViewController, UITableViewDataSource, UITableV
               guide1.toDate! > guide2.toDate!
           })
         }
-        else if sortButton.titleLabel!.text == "Name" && ascending
+        else if sortButton.titleLabel!.text == "Country" && ascending
         {
           self.guides.sort(by: {(guide1: Guide, guide2: Guide) -> Bool in
-              guide1.guideName! < guide2.guideName!
+              guide1.country! < guide2.country!
           })
         }
-        else if sortButton.titleLabel!.text == "Name" && !ascending
+        else if sortButton.titleLabel!.text == "Country Name" && !ascending
         {
           self.guides.sort(by: {(guide1: Guide, guide2: Guide) -> Bool in
-              guide1.guideName! > guide2.guideName!
+              guide1.country! > guide2.country!
           })
         }
     }
@@ -217,9 +217,8 @@ class GuideMainViewController: UIViewController, UITableViewDataSource, UITableV
 
     func filterContentForSearchText(_ searchText: String) {
       filteredGuides = guides.filter { (guide: Guide) -> Bool in
-        return guide.guideName!.lowercased().contains(searchText.lowercased())
+        return guide.country!.lowercased().contains(searchText.lowercased())
       }
-      
       guideTableView.reloadData()
     }
 }

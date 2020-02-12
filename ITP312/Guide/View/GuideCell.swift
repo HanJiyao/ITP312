@@ -20,16 +20,14 @@ class GuideCell: UITableViewCell {
         if let id = guide?.guideID {
             Database.database().reference().child("users").child(id).observeSingleEvent(of: .value, with: { (snapshot) in
                 if let dictionary = snapshot.value as? [String: AnyObject] {
-                    self.textLabel?.text = dictionary["name"] as? String
-                    if let profileURL = dictionary["profileURL"] as? String {
-                        self.profileImage.loadImageCache(urlString: profileURL)
-                    }
+                    self.descLabel.text = dictionary["name"] as? String
                 }
             })
         }
+        self.textLabel?.text = guide?.country
+        self.profileImage.loadImageCache(urlString: guide!.imgURL!)
         self.timeLabel.text = "\(guide!.fromDate!) to \(guide!.toDate!)"
         self.detailTextLabel?.text = guide?.service
-        self.descLabel.text = guide?.desc
     }
     
     override func layoutSubviews() {
@@ -44,6 +42,7 @@ class GuideCell: UITableViewCell {
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.layer.cornerRadius = 10
         imageView.layer.masksToBounds = true
+        imageView.contentMode = .scaleAspectFill
         return imageView
     }()
     
@@ -82,7 +81,7 @@ class GuideCell: UITableViewCell {
         
         timeLabel.rightAnchor.constraint(equalTo: self.rightAnchor).isActive = true
         timeLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 15).isActive = true
-        timeLabel.widthAnchor.constraint(equalToConstant: 166).isActive = true
+        timeLabel.widthAnchor.constraint(equalToConstant: 180).isActive = true
         
     }
     

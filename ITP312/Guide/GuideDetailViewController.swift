@@ -15,6 +15,7 @@ class GuideDetailViewController: UIViewController {
     var user: User?
     var guide: Guide?
     var preview = false
+    var guideDates:[String] = []
     
     @IBOutlet weak var guideImageView: UIImageView!
     @IBOutlet weak var userNameTextLabel: UILabel!
@@ -26,6 +27,7 @@ class GuideDetailViewController: UIViewController {
     @IBOutlet weak var userProfileOuter: UIView!
     @IBOutlet weak var bookBtn: UIButton!
     @IBOutlet weak var bottomBar: UIStackView!
+    @IBOutlet weak var countryTextLabel: UITextView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -70,6 +72,7 @@ class GuideDetailViewController: UIViewController {
                         }
                         self.userProfileImg.loadImageCache(urlString: (self.user?.profileURL!)!)
                         self.userNameTextLabel.text = self.user?.name
+                        self.countryTextLabel.text = self.guide?.country
                         self.descTextLabel.text = self.guide?.desc
                         self.serviceTextLabel.text = self.guide?.service
                         self.dateTextLabel.text = "\(self.guide!.fromDate!) to \(self.guide!.toDate!)"
@@ -80,13 +83,23 @@ class GuideDetailViewController: UIViewController {
             print(error.localizedDescription)
         }
         
-        if let booked = guide?.booked{
-            if booked {
-                bookBtn.setTitle("Booked", for: .normal)
-                bookBtn.backgroundColor = .lightGray
-                bookBtn.isEnabled = false
+//        if let booked = guide?.booked{
+//            if booked {
+//                bookBtn.setTitle("Booked", for: .normal)
+//                bookBtn.backgroundColor = .lightGray
+//                bookBtn.isEnabled = false
+//            }
+//        }
+        Database.database().reference().child("guides/\(guideID)").observe(.value) { (snapshot) in
+            if let dictionary = snapshot.value as? [String:AnyObject] {
+                let guide = Guide(dictionary: dictionary )
+                self.guide = guide
+                for i in (dictionary["guideDates"] as? [String:AnyObject])! {
+                    self.guideDates.append(i.key)
+                }
             }
         }
+        
     }
 
     @IBAction func handleRedirectChat(_ sender: Any) {
@@ -96,17 +109,51 @@ class GuideDetailViewController: UIViewController {
         self.navigationController?.pushViewController(chatLogViewController, animated: true)
         // present(chatLogViewController, animated: true, completion: nil)
     }
+    
     @IBAction func handleBook(_ sender: Any) {
-        guard  let uid = Auth.auth().currentUser?.uid, let guidID = guide?.guideID else {
+        guard  let uid = Auth.auth().currentUser?.uid, let guideID = guide?.guideID else {
             return
         }
         let ref = Database.database().reference()
         
-        ref.child("/guides/\(guidID)").updateChildValues(["booked":true])
-        ref.child("user-guides").updateChildValues([guidID:uid])
+        ref.child("/guides/\(guideID)").updateChildValues(["booked":true])
+        ref.child("user-guides").updateChildValues([guideID:uid])
         
-        bookBtn.setTitle("Booked", for: .normal)
-        bookBtn.backgroundColor = .lightGray
-        bookBtn.isEnabled = false
+//        bookBtn.setTitle("Booked", for: .normal)
+//        bookBtn.backgroundColor = .lightGray
+//        bookBtn.isEnabled = false
+        guard let guideCalenderViewController = self.storyboard?.instantiateViewController(withIdentifier: "GuideCalender") as? GuideCalenderViewController else { return }
+        guideCalenderViewController.datesRange.removeAll()
+        if self.guideDates.count != 0 {
+            var datesRange:[Date] = []
+            for i in self.guideDates {
+                let date = guideCalenderViewController.formatter.date(from: i)
+                datesRange.append(date!)
+            }
+            datesRange = datesRange.sorted(by: { $0.compare($1) == .orderedAscending })
+            guideCalenderViewController.datesRange = datesRange
+            guideCalenderViewController.firstDate = datesRange.first
+            guideCalenderViewController.lastDate = datesRange.last
+            guideCalenderViewController.guideRole = false
+        }
+        guideCalenderViewController.callbackClosure = { [self] in
+            var guideDictionary:[String:Int] = [:]
+            var guideDates:[String] = []
+            for i in guideCalenderViewController.availableDatesRange {
+                let date = guideCalenderViewController.formatter.string(from: i)
+                guideDates.append(date)
+                guideDictionary[date] = 0
+            }
+            if guideDates != self.guideDates {
+                let updateFromDate = guideCalenderViewController.formatter.string(from:  guideCalenderViewController.availableDatesRange.first!)
+                let updateToDate = guideCalenderViewController.formatter.string(from:  guideCalenderViewController.availableDatesRange.last!)
+                Database.database().reference().child("guides/\(guideID)/guideDates").setValue(guideDictionary)
+                Database.database().reference().child("guides/\(guideID)/fromDate").setValue(updateFromDate)
+                Database.database().reference().child("guides/\(guideID)/toDate").setValue(updateToDate)
+                self.guideDates = guideDates
+                self.bookBtn.setTitle("Booked", for: .normal)
+            }
+         }
+         present(guideCalenderViewController, animated: true, completion: nil)
     }
 }

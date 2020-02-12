@@ -23,6 +23,7 @@ class GuideEditViewController: UIViewController, UIImagePickerControllerDelegate
     @IBOutlet weak var dateSeperator: UIView!
     @IBOutlet weak var previewBtn: UIButton!
     @IBOutlet weak var deleteBtn: UIButton!
+    @IBOutlet weak var countryBtn: UIButton!
     
     var user: User?
     var guide: Guide?
@@ -41,6 +42,7 @@ class GuideEditViewController: UIViewController, UIImagePickerControllerDelegate
         saveBtn.layer.cornerRadius = 15
         disableBtn(button: saveBtn)
         disableBtn(button: previewBtn)
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -72,6 +74,7 @@ class GuideEditViewController: UIViewController, UIImagePickerControllerDelegate
             }
         }
     }
+    
     
     private func disableBtn (button: UIButton) {
         if button.titleLabel?.text! == "Save" {
@@ -192,7 +195,7 @@ class GuideEditViewController: UIViewController, UIImagePickerControllerDelegate
                 }
             }
             if self.displayService == "" {
-                self.selectServiceBtn.setTitle(" Please select at least one service", for: .normal)
+                self.selectServiceBtn.setTitle("Please select at least one service", for: .normal)
                 self.selectServiceBtn.setTitleColor(.red, for: .normal)
 
             } else {
@@ -205,7 +208,6 @@ class GuideEditViewController: UIViewController, UIImagePickerControllerDelegate
     }
     
     @IBAction func handleCalender(_ sender: Any) {
-        
         guard let guideCalenderViewController = self.storyboard?.instantiateViewController(withIdentifier: "GuideCalender") as? GuideCalenderViewController else { return }
         if self.guideDates.count != 0 {
             var datesRange:[Date] = []
@@ -217,26 +219,31 @@ class GuideEditViewController: UIViewController, UIImagePickerControllerDelegate
             guideCalenderViewController.datesRange = datesRange
             guideCalenderViewController.firstDate = datesRange.first
             guideCalenderViewController.lastDate = datesRange.last
-            // guideCalenderViewController.guideRole = true
         }
-        guideCalenderViewController.callbackClosure = { [weak self] in
-            self?.fromDateTextLabel.text = guideCalenderViewController.startDateLabel.text!
-            self?.toDateTextLabel.text = guideCalenderViewController.endDateLabel.text!
-            self?.guideDates = []
+        guideCalenderViewController.guideRole = true
+        guideCalenderViewController.callbackClosure = { [self] in
+            self.fromDateTextLabel.text = guideCalenderViewController.startDateLabel.text!
+            self.toDateTextLabel.text = guideCalenderViewController.endDateLabel.text!
+            self.guideDates.removeAll()
             for i in guideCalenderViewController.datesRange {
                 let date = guideCalenderViewController.formatter.string(from: i)
-                self?.guideDates.append(date)
+                self.guideDates.append(date)
             }
-            self?.validateGuideInput()
+            self.validateGuideInput()
          }
          present(guideCalenderViewController, animated: true, completion: nil)
     }
     
-    private func saveGuideData() {
+    @IBAction func handleSave(_ sender: Any) {
         let service = displayService
         let desc = descTextLabel.text!
         let fromDate = fromDateTextLabel.text!
         let toDate = toDateTextLabel.text!
+        var guideDictionary:[String:Int] = [:]
+        for i in self.guideDates {
+            guideDictionary[i] = 0
+        }
+        let country = countryBtn.titleLabel!.text!
         guard let uid = Auth.auth().currentUser?.uid else {
             return
         }
@@ -256,26 +263,21 @@ class GuideEditViewController: UIViewController, UIImagePickerControllerDelegate
                     "imgURL":downloadURL.absoluteString,
                     "guideID":uid,
                     "offerID":"",
-                    "booked":false
+                    "booked":false,
+                    "guideDates":guideDictionary,
+                    "country":country,
                     ] as [String : Any]
-                Database.database().reference().child("guides/\(uid)/").updateChildValues(values) {
+                Database.database().reference().child("guides/\(uid)/").setValue(values) {
                     (error:Error?, ref:DatabaseReference) in
                     if let error = error {
                         print("Guide Data could not be saved: \(error).")
                     } else {
-                        for i in self.guideDates {
-                            Database.database().reference().child("guides/\(uid)/guideDates/").updateChildValues([i:0])
-                        }
                         print("Guide Data saved successfully!")
                         self.navigationController?.popToRootViewController(animated: true)
                     }
                 }
             }
         }
-    }
-    
-    @IBAction func handleSave(_ sender: Any) {
-        saveGuideData()
     }
     
     @IBAction func handlePreviewBtn(_ sender: Any) {
@@ -307,5 +309,14 @@ class GuideEditViewController: UIViewController, UIImagePickerControllerDelegate
         self.navigationController?.popToRootViewController(animated: true)
     }
     
-    
+    @IBAction func handleSelectCountry(_ sender: Any) {
+        let alert = UIAlertController(style: .actionSheet, message: "Select Country")
+        alert.addLocalePicker(type: .country) { info in
+            if info != nil {
+                self.countryBtn.setTitle(info!.country, for: .normal)
+            }
+        }
+        alert.addAction(title: "cancel", style: .cancel)
+        alert.show()
+    }
 }

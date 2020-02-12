@@ -21,7 +21,9 @@ class ChatLogViewController: UIViewController, UITableViewDataSource, UITableVie
     @IBOutlet weak var translationSwitch: UISwitch!
     @IBOutlet weak var topBar: UIStackView!
     @IBOutlet weak var smartReplyBtn: UIButton!
-    @IBOutlet weak var smartReplyLabel: UILabel!
+    @IBOutlet weak var replyBtn1: UIButton!
+    @IBOutlet weak var replyBtn2: UIButton!
+    @IBOutlet weak var replyBtn3: UIButton!
     
     
     var user: User?
@@ -75,6 +77,7 @@ class ChatLogViewController: UIViewController, UITableViewDataSource, UITableVie
         if user != nil {
             self.navigationItem.title = user!.name
             navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+            self.replyBtn1.addTarget(self, action: #selector(self.selectReply), for: .touchDown)
             observeMessages()
 
         }
@@ -245,7 +248,7 @@ class ChatLogViewController: UIViewController, UITableViewDataSource, UITableVie
                                 
                             }
                             
-                            self.messageTextField.text = landmarks[0].landmark
+                            self.replyBtn1.setTitle(landmarks[0].landmark, for: .normal)
 
                            // let confidence = landmark.confidence
                         }
@@ -361,7 +364,7 @@ class ChatLogViewController: UIViewController, UITableViewDataSource, UITableVie
             
         }
 //        } else {
-//            // cell.messageImageView.isHidden = true
+//             cell.messageImageView.isHidden = true
 //        }
     }
     
@@ -546,8 +549,8 @@ class ChatLogViewController: UIViewController, UITableViewDataSource, UITableVie
             observeMessages()
         }
     }
+    
     @IBAction func handleSmartReply(_ sender: Any) {
-        var reply = ""
         let naturalLanguage = NaturalLanguage.naturalLanguage()
         naturalLanguage.smartReply().suggestReplies(for: conversation) { result, error in
             guard error == nil, let result = result else {
@@ -557,16 +560,22 @@ class ChatLogViewController: UIViewController, UITableViewDataSource, UITableVie
                 // The conversation's language isn't supported, so the
                 // the result doesn't contain any suggestions.
                 print("not support language")
-                self.smartReplyLabel.text = "not support language"
+                self.replyBtn1.setTitle("not support language", for: .normal)
             } else if (result.status == .success) {
                 for suggestion in result.suggestions {
                     print("Suggested reply: \(suggestion.text)")
-                    reply += "\(suggestion.text)  |  "
                 }
-                self.smartReplyLabel.text = reply
+                self.replyBtn1.setTitle(result.suggestions[0].text, for: .normal)
+                self.replyBtn2.setTitle(result.suggestions[1].text, for: .normal)
+                self.replyBtn3.setTitle(result.suggestions[2].text, for: .normal)
+                
             }
-            
         }
+    }
+    
+    @objc func selectReply() {
+        print("smart reply")
+        self.messageTextField.text = self.replyBtn1.titleLabel!.text
     }
     
 }
