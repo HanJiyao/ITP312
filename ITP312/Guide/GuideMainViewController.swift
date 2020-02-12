@@ -107,7 +107,7 @@ class GuideMainViewController: UIViewController, UITableViewDataSource, UITableV
               guide1.country! < guide2.country!
           })
         }
-        else if sortButton.titleLabel!.text == "Country Name" && !ascending
+        else if sortButton.titleLabel!.text == "Country" && !ascending
         {
           self.guides.sort(by: {(guide1: Guide, guide2: Guide) -> Bool in
               guide1.country! > guide2.country!

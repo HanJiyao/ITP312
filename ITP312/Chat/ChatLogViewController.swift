@@ -439,12 +439,22 @@ class ChatLogViewController: UIViewController, UITableViewDataSource, UITableVie
     
     func sendMessage() {
         if self.messageTextField.text! != "" {
+            let messageText = messageTextField.text!
+            if translationSwitch.isOn {
+                let language = fromLanguage.titleLabel!.text!
+                if language == "Japnese" {
+                    self.engJapTranslator.translate(messageText) { translatedText, error in
+                        guard error == nil, let translatedText = translatedText else { return }
+                        print(translatedText)
+                    }
+                }
+            }
             let ref = Database.database().reference()
             let toID = user!.id
             let fromID = Auth.auth().currentUser?.uid
             let timestamp: NSNumber = NSNumber(value: Date().timeIntervalSince1970)
             let values = [
-                "text": messageTextField.text!,
+                "text": messageText,
                 "toID":toID!,
                 "fromID":fromID!,
                 "timestamp":timestamp
