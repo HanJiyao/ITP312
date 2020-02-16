@@ -23,5 +23,9 @@ target 'ITP312' do
   pod 'Firebase/MLCommon'
   pod 'Firebase/MLNLSmartReply'
   pod 'Firebase/MLVision'
+  pod 'INSPhotoGallery'
+  pod 'INSNibLoading'
+  pod 'PopBounceButton'
+  pod 'Shuffle-iOS'
 
 end
