@@ -178,6 +178,8 @@ PODS:
   - GTMSessionFetcher/Core (1.3.1)
   - GTMSessionFetcher/Full (1.3.1):
     - GTMSessionFetcher/Core (= 1.3.1)
+  - INSNibLoading (1.0.2)
+  - INSPhotoGallery (1.2.8)
   - JJFloatingActionButton (2.1.0)
   - leveldb-library (1.22)
   - Magnetic (3.1.2)
@@ -186,6 +188,9 @@ PODS:
     - nanopb/encode (= 0.3.9011)
   - nanopb/decode (0.3.9011)
   - nanopb/encode (0.3.9011)
+  - pop (1.0.12)
+  - PopBounceButton (1.2.2):
+    - pop (~> 1.0)
   - PromisesObjC (1.2.8)
   - Protobuf (3.11.3)
   - RSSelectionMenu (6.1.0)
@@ -193,6 +198,7 @@ PODS:
     - SDWebImage/Core (= 5.5.2)
   - SDWebImage/Core (5.5.2)
   - ShadowView (1.4.3)
+  - Shuffle-iOS (0.1.3)
 
 DEPENDENCIES:
   - DropDown
@@ -207,11 +213,15 @@ DEPENDENCIES:
   - Firebase/Storage
   - FlagKit
   - FSCalendar
+  - INSNibLoading
+  - INSPhotoGallery
   - JJFloatingActionButton
   - Magnetic
+  - PopBounceButton
   - RSSelectionMenu
   - SDWebImage (~> 5.0)
   - ShadowView
+  - Shuffle-iOS
 
 SPEC REPOS:
   trunk:
@@ -245,15 +255,20 @@ SPEC REPOS:
     - GoogleToolboxForMac
     - GoogleUtilities
     - GTMSessionFetcher
+    - INSNibLoading
+    - INSPhotoGallery
     - JJFloatingActionButton
     - leveldb-library
     - Magnetic
     - nanopb
+    - pop
+    - PopBounceButton
     - PromisesObjC
     - Protobuf
     - RSSelectionMenu
     - SDWebImage
     - ShadowView
+    - Shuffle-iOS
 
 SPEC CHECKSUMS:
   DropDown: 8a2116376c1981888557f72ec2ffc9a5e0e456ec
@@ -286,16 +301,21 @@ SPEC CHECKSUMS:
   GoogleToolboxForMac: 800648f8b3127618c1b59c7f97684427630c5ea3
   GoogleUtilities: 06eb53bb579efe7099152735900dd04bf09e7275
   GTMSessionFetcher: cea130bbfe5a7edc8d06d3f0d17288c32ffe9925
+  INSNibLoading: 0244d5b9c30d4642c77b31469cbfd905e8b1efb3
+  INSPhotoGallery: ad317cb9a59c7a5f08550e4155b49622c24dcab3
   JJFloatingActionButton: 26805f87c7e9f68c6a91bd9f3f09c2e6b904a84f
   leveldb-library: 55d93ee664b4007aac644a782d11da33fba316f7
   Magnetic: dc24bdaa891c55d7d5edcc8b5b3d8cd64465aed1
   nanopb: 18003b5e52dab79db540fe93fe9579f399bd1ccd
+  pop: d582054913807fd11fd50bfe6a539d91c7e1a55a
+  PopBounceButton: 34105a012678222f058f8d2621672724a3d5c9fb
   PromisesObjC: c119f3cd559f50b7ae681fa59dc1acd19173b7e6
   Protobuf: 0e94afe3b47cb11876eb6aee296638711a24bf75
   RSSelectionMenu: dac4fa365e4bbd95c0eccd0b6ff51a623a22a1c6
   SDWebImage: 4d5c027c935438f341ed33dbac53ff9f479922ca
   ShadowView: d2d92fd2706b3f6a182be2147149db0b1cf7700d
+  Shuffle-iOS: 03153c90ff2eb6c6f811157d601b2ac4e360c404
 
-PODFILE CHECKSUM: 1e892a3ddea2716a9d4616797fb50578ffece25f
+PODFILE CHECKSUM: 8436a0e968361ab5daec680b06934d8d66f77d24
 
 COCOAPODS: 1.8.4
