@@ -5,7 +5,6 @@
 //  Created by Jia Rong on 11/2/20.
 //  Copyright © 2020 ITP312. All rights reserved.
 //
-
 import UIKit
 import FSCalendar
 
@@ -49,7 +48,6 @@ class PlanCalendarViewController: UIViewController, FSCalendarDelegate, FSCalend
     
     /*
     // MARK: - Navigation
-
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destination.

@@ -112,7 +112,8 @@
 		D5BA981523F0C02E00A8F523 /* GradientSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5BA97E023F0C02D00A8F523 /* GradientSlider.swift */; };
 		D5BA981623F0C02E00A8F523 /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5BA97E123F0C02D00A8F523 /* TextField.swift */; };
 		D5BA981723F0C02E00A8F523 /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5BA97E223F0C02D00A8F523 /* Button.swift */; };
-		D5C15DF223FAAFEA00CA6FA5 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D5C15DF123FAAFEA00CA6FA5 /* GoogleService-Info.plist */; };
+		D5F7573823FB23CB007428DF /* PlanCalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5F7573723FB23CB007428DF /* PlanCalendarViewController.swift */; };
+		D5F7573A23FB240E007428DF /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D5F7573923FB240E007428DF /* GoogleService-Info.plist */; };
 		FB22CB3723F08C5F0097180E /* SearchLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB22CB3623F08C5F0097180E /* SearchLocation.swift */; };
 		FB22CB3B23F08C960097180E /* FinalCreatePlanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB22CB3A23F08C960097180E /* FinalCreatePlanViewController.swift */; };
 		FB22CB3D23F08D110097180E /* Plans.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FB22CB3C23F08D110097180E /* Plans.storyboard */; };
@@ -127,7 +128,6 @@
 		FB4D4AA423E935A3007B67B2 /* CalendarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB4D4AA323E935A3007B67B2 /* CalendarController.swift */; };
 		FB4D4AA623E93628007B67B2 /* DIYCalendarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB4D4AA523E93628007B67B2 /* DIYCalendarCell.swift */; };
 		FB4D4AA823E94DE6007B67B2 /* PlanCellDataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB4D4AA723E94DE6007B67B2 /* PlanCellDataController.swift */; };
-		FB51F25D23FB172800125EB3 /* PlanCalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB51F25C23FB172800125EB3 /* PlanCalendarViewController.swift */; };
 		FBEF089523E80D1800636B47 /* Plan.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBEF088E23E80D1600636B47 /* Plan.swift */; };
 		FBEF089623E80D1800636B47 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBEF088F23E80D1700636B47 /* TableViewController.swift */; };
 		FBEF089723E80D1800636B47 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBEF089023E80D1700636B47 /* MapViewController.swift */; };
@@ -246,7 +246,8 @@
 		D5BA97E023F0C02D00A8F523 /* GradientSlider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GradientSlider.swift; sourceTree = "<group>"; };
 		D5BA97E123F0C02D00A8F523 /* TextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextField.swift; sourceTree = "<group>"; };
 		D5BA97E223F0C02D00A8F523 /* Button.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Button.swift; sourceTree = "<group>"; };
-		D5C15DF123FAAFEA00CA6FA5 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		D5F7573723FB23CB007428DF /* PlanCalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanCalendarViewController.swift; sourceTree = "<group>"; };
+		D5F7573923FB240E007428DF /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		FB22CB3623F08C5F0097180E /* SearchLocation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchLocation.swift; sourceTree = "<group>"; };
 		FB22CB3823F08C860097180E /* AddLocationMapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddLocationMapViewController.swift; sourceTree = "<group>"; };
 		FB22CB3A23F08C960097180E /* FinalCreatePlanViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FinalCreatePlanViewController.swift; sourceTree = "<group>"; };
@@ -262,7 +263,6 @@
 		FB4D4AA323E935A3007B67B2 /* CalendarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarController.swift; sourceTree = "<group>"; };
 		FB4D4AA523E93628007B67B2 /* DIYCalendarCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DIYCalendarCell.swift; sourceTree = "<group>"; };
 		FB4D4AA723E94DE6007B67B2 /* PlanCellDataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanCellDataController.swift; sourceTree = "<group>"; };
-		FB51F25C23FB172800125EB3 /* PlanCalendarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PlanCalendarViewController.swift; path = ../../../FinalPITP312/ITP312/Schedule/PlanCalendarViewController.swift; sourceTree = "<group>"; };
 		FBEF088E23E80D1600636B47 /* Plan.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Plan.swift; sourceTree = "<group>"; };
 		FBEF088F23E80D1700636B47 /* TableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
 		FBEF089023E80D1700636B47 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
@@ -356,7 +356,7 @@
 				FB4CA4CB23F0DDA7007173A1 /* AddLocationViewController.swift */,
 				FB44FC1923F16C2500500456 /* PlanLocationCell.swift */,
 				FB44FC1B23F19DA400500456 /* ShowLocationViewController.swift */,
-				FB51F25C23FB172800125EB3 /* PlanCalendarViewController.swift */,
+				D5F7573723FB23CB007428DF /* PlanCalendarViewController.swift */,
 			);
 			path = Schedule;
 			sourceTree = "<group>";
@@ -422,7 +422,7 @@
 				5156A06223CDA39B008328C5 /* Assets.xcassets */,
 				5156A06423CDA39B008328C5 /* LaunchScreen.storyboard */,
 				5156A06723CDA39B008328C5 /* Info.plist */,
-				D5C15DF123FAAFEA00CA6FA5 /* GoogleService-Info.plist */,
+				D5F7573923FB240E007428DF /* GoogleService-Info.plist */,
 			);
 			path = ITP312;
 			sourceTree = "<group>";
@@ -863,7 +863,7 @@
 				D5BA97F623F0C02E00A8F523 /* Countries.bundle in Resources */,
 				512985E923E3D5040053D3D9 /* AccountStoryboard.storyboard in Resources */,
 				511A196F23E82409008B7E63 /* GuideStoryboard.storyboard in Resources */,
-				D5C15DF223FAAFEA00CA6FA5 /* GoogleService-Info.plist in Resources */,
+				D5F7573A23FB240E007428DF /* GoogleService-Info.plist in Resources */,
 				5156A06323CDA39B008328C5 /* Assets.xcassets in Resources */,
 				5156A06123CDA39A008328C5 /* Main.storyboard in Resources */,
 			);
@@ -1007,7 +1007,7 @@
 				FB22CB3B23F08C960097180E /* FinalCreatePlanViewController.swift in Sources */,
 				FB4D4AA823E94DE6007B67B2 /* PlanCellDataController.swift in Sources */,
 				D53CEDC723F9C3F300EEAEA5 /* SwipePhotoViewController.swift in Sources */,
-				FB51F25D23FB172800125EB3 /* PlanCalendarViewController.swift in Sources */,
+				D5F7573823FB23CB007428DF /* PlanCalendarViewController.swift in Sources */,
 				D5BA970123F0BBB600A8F523 /* TypeOneCell.swift in Sources */,
 				D5BA97FF23F0C02E00A8F523 /* Assets.swift in Sources */,
 				51AC72BF23EDA1E9007B6479 /* GuideBookRequestViewController.swift in Sources */,
