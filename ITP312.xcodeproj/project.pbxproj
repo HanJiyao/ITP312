@@ -35,7 +35,6 @@
 		7788232923D1138C0036304C /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7788232823D1138C0036304C /* Message.swift */; };
 		7788232B23D123840036304C /* UserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7788232A23D123840036304C /* UserCell.swift */; };
 		77A88CAA23D08536003C5C2C /* ImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77A88CA923D08536003C5C2C /* ImageExtension.swift */; };
-		D53CEDC523F9C31200EEAEA5 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D53CEDC423F9C31200EEAEA5 /* GoogleService-Info.plist */; };
 		D53CEDC723F9C3F300EEAEA5 /* SwipePhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D53CEDC623F9C3F300EEAEA5 /* SwipePhotoViewController.swift */; };
 		D53CEDD123F9C42800EEAEA5 /* ButtonStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D53CEDC823F9C42200EEAEA5 /* ButtonStackView.swift */; };
 		D53CEDD223F9C42800EEAEA5 /* TinderButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D53CEDC923F9C42400EEAEA5 /* TinderButton.swift */; };
@@ -113,6 +112,7 @@
 		D5BA981523F0C02E00A8F523 /* GradientSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5BA97E023F0C02D00A8F523 /* GradientSlider.swift */; };
 		D5BA981623F0C02E00A8F523 /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5BA97E123F0C02D00A8F523 /* TextField.swift */; };
 		D5BA981723F0C02E00A8F523 /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5BA97E223F0C02D00A8F523 /* Button.swift */; };
+		D5C15DF223FAAFEA00CA6FA5 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D5C15DF123FAAFEA00CA6FA5 /* GoogleService-Info.plist */; };
 		FB22CB3723F08C5F0097180E /* SearchLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB22CB3623F08C5F0097180E /* SearchLocation.swift */; };
 		FB22CB3B23F08C960097180E /* FinalCreatePlanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB22CB3A23F08C960097180E /* FinalCreatePlanViewController.swift */; };
 		FB22CB3D23F08D110097180E /* Plans.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FB22CB3C23F08D110097180E /* Plans.storyboard */; };
@@ -168,7 +168,6 @@
 		7788232A23D123840036304C /* UserCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCell.swift; sourceTree = "<group>"; };
 		77A88CA923D08536003C5C2C /* ImageExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageExtension.swift; sourceTree = "<group>"; };
 		A38D9AD9C7E44A1B66BD63E9 /* Pods_ITP312.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ITP312.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		D53CEDC423F9C31200EEAEA5 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		D53CEDC623F9C3F300EEAEA5 /* SwipePhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipePhotoViewController.swift; sourceTree = "<group>"; };
 		D53CEDC823F9C42200EEAEA5 /* ButtonStackView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonStackView.swift; sourceTree = "<group>"; };
 		D53CEDC923F9C42400EEAEA5 /* TinderButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TinderButton.swift; sourceTree = "<group>"; };
@@ -246,6 +245,7 @@
 		D5BA97E023F0C02D00A8F523 /* GradientSlider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GradientSlider.swift; sourceTree = "<group>"; };
 		D5BA97E123F0C02D00A8F523 /* TextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextField.swift; sourceTree = "<group>"; };
 		D5BA97E223F0C02D00A8F523 /* Button.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Button.swift; sourceTree = "<group>"; };
+		D5C15DF123FAAFEA00CA6FA5 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		FB22CB3623F08C5F0097180E /* SearchLocation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchLocation.swift; sourceTree = "<group>"; };
 		FB22CB3823F08C860097180E /* AddLocationMapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddLocationMapViewController.swift; sourceTree = "<group>"; };
 		FB22CB3A23F08C960097180E /* FinalCreatePlanViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FinalCreatePlanViewController.swift; sourceTree = "<group>"; };
@@ -419,7 +419,7 @@
 				5156A06223CDA39B008328C5 /* Assets.xcassets */,
 				5156A06423CDA39B008328C5 /* LaunchScreen.storyboard */,
 				5156A06723CDA39B008328C5 /* Info.plist */,
-				D53CEDC423F9C31200EEAEA5 /* GoogleService-Info.plist */,
+				D5C15DF123FAAFEA00CA6FA5 /* GoogleService-Info.plist */,
 			);
 			path = ITP312;
 			sourceTree = "<group>";
@@ -860,7 +860,7 @@
 				D5BA97F623F0C02E00A8F523 /* Countries.bundle in Resources */,
 				512985E923E3D5040053D3D9 /* AccountStoryboard.storyboard in Resources */,
 				511A196F23E82409008B7E63 /* GuideStoryboard.storyboard in Resources */,
-				D53CEDC523F9C31200EEAEA5 /* GoogleService-Info.plist in Resources */,
+				D5C15DF223FAAFEA00CA6FA5 /* GoogleService-Info.plist in Resources */,
 				5156A06323CDA39B008328C5 /* Assets.xcassets in Resources */,
 				5156A06123CDA39A008328C5 /* Main.storyboard in Resources */,
 			);

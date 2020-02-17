@@ -311,12 +311,17 @@
                                 </connections>
                             </containerView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ifh-xY-Cfh">
-                                <rect key="frame" x="30" y="537" width="315" height="30"/>
+                                <rect key="frame" x="30" y="597" width="315" height="30"/>
                                 <color key="backgroundColor" systemColor="linkColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="15"/>
                                 <state key="normal" title="Upload">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="15"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="uploadBtnClicked:" destination="8DW-2h-58t" eventType="touchUpInside" id="JAe-eJ-zla"/>
                                 </connections>
@@ -325,13 +330,13 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="h1k-cn-h6X" firstAttribute="top" secondItem="7c9-ph-GAf" secondAttribute="top" id="2LH-dn-iY2"/>
-                            <constraint firstItem="7c9-ph-GAf" firstAttribute="bottom" secondItem="Ifh-xY-Cfh" secondAttribute="bottom" constant="100" id="KI2-Th-wrz"/>
+                            <constraint firstItem="7c9-ph-GAf" firstAttribute="bottom" secondItem="Ifh-xY-Cfh" secondAttribute="bottom" constant="40" id="AUJ-8l-3zw"/>
+                            <constraint firstItem="Ifh-xY-Cfh" firstAttribute="leading" secondItem="7c9-ph-GAf" secondAttribute="leading" constant="30" id="DPs-DP-5gA"/>
                             <constraint firstItem="h1k-cn-h6X" firstAttribute="leading" secondItem="7c9-ph-GAf" secondAttribute="leading" id="Kj9-IC-jb3"/>
-                            <constraint firstItem="Ifh-xY-Cfh" firstAttribute="leading" secondItem="7c9-ph-GAf" secondAttribute="leading" constant="30" id="LT0-Xi-Vcg"/>
                             <constraint firstAttribute="trailing" secondItem="h1k-cn-h6X" secondAttribute="trailing" id="Ysv-sf-vs9"/>
                             <constraint firstItem="Tzf-9e-OmU" firstAttribute="top" secondItem="h1k-cn-h6X" secondAttribute="bottom" constant="50" id="kYv-Aq-FzR"/>
-                            <constraint firstItem="7c9-ph-GAf" firstAttribute="trailing" secondItem="Ifh-xY-Cfh" secondAttribute="trailing" constant="30" id="nfD-Lg-R3M"/>
                             <constraint firstItem="Tzf-9e-OmU" firstAttribute="leading" secondItem="7c9-ph-GAf" secondAttribute="leading" id="pqe-Ym-Spu"/>
+                            <constraint firstItem="7c9-ph-GAf" firstAttribute="trailing" secondItem="Ifh-xY-Cfh" secondAttribute="trailing" constant="30" id="w4C-8g-Lvv"/>
                             <constraint firstItem="Tzf-9e-OmU" firstAttribute="trailing" secondItem="7c9-ph-GAf" secondAttribute="trailing" id="yvQ-KD-7Ce"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="7c9-ph-GAf"/>
