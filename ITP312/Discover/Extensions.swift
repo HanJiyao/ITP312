@@ -52,13 +52,13 @@ extension UIColor {
 
 extension UIImage {
     
-    static let names: [String] = ["argentina", "bolivia", "brazil", "chile", "costa rica", "cuba", "dominican republic", "ecuador", "el salvador", "haiti", "honduras", "mexico", "nicaragua", "panama", "paraguay", "peru", "venezuela"]
+    static let names: [String] = ["singapore", "malaysia", "thailand", "brazil", "costa rica", "cuba", "dominican republic", "ecuador", "el salvador", "haiti", "honduras", "mexico", "nicaragua", "panama", "paraguay", "peru", "venezuela"]
     
 }
 
 extension Array {
     
-    func randomItemHey() -> Element {
+    func randomFromArray() -> Element {
         let index = Int(arc4random_uniform(UInt32(self.count)))
         return self[index]
     }
@@ -71,4 +71,12 @@ extension CGPoint {
         return hypot(point.x - x, point.y - y)
     }
     
+}
+
+extension Locale { //https://stackoverflow.com/questions/12671829/get-country-code-from-country-name-in-ios
+    func isoCode(for countryName: String) -> String? {
+        return Locale.isoRegionCodes.first(where: { (code) -> Bool in
+            localizedString(forRegionCode: code)?.compare(countryName, options: [.caseInsensitive, .diacriticInsensitive]) == .orderedSame
+        })
+    }
 }

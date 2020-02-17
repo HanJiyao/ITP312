@@ -177,7 +177,7 @@ extension ImagePickerViewController: UICollectionViewDataSource {
 extension ImagePickerViewController: UICollectionViewDelegateFlowLayout {
     
     public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        Log("view size = \(view.bounds), collectionView = \(collectionView.size), itemSize = \(itemSize)")
+//        Log("view size = \(view.bounds), collectionView = \(collectionView.size), itemSize = \(itemSize)")
         return itemSize
     }
 }

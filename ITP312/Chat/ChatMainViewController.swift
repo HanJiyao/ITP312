@@ -9,8 +9,14 @@
 import UIKit
 import Firebase
 
+protocol ChatDelegate: NSObjectProtocol {
+    func passChatUser(user: User)
+}
+
 class ChatMainViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
+    weak var chatDelegate: ChatDelegate?
+
     var messages: [Message] = []
     var messageDictionary = [String: Message]()
     let cellID = "MessageCell"
@@ -167,8 +173,15 @@ class ChatMainViewController: UIViewController, UITableViewDataSource, UITableVi
     }
 
     func showChatControllerForUser(_ user: User) {
+        if let delegate = chatDelegate {
+            print("let chat delegate...")
+            delegate.passChatUser(user: user)
+            self.dismiss(animated: true, completion: nil)
+            return
+        }
         let chatLogViewController = self.storyboard?.instantiateViewController(withIdentifier: "ChatLog") as! ChatLogViewController
         chatLogViewController.user = user
+        chatLogViewController.presentFromTopMostViewController = true
         print("Chat to \(user)")
         self.navigationController?.pushViewController(chatLogViewController, animated: true)
     }

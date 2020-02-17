@@ -28,19 +28,38 @@
 		5156A07223CDA45D008328C5 /* ChatStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5156A07123CDA45D008328C5 /* ChatStoryboard.storyboard */; };
 		5198C85E23EDBDA60030798A /* GuideBookOfferViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5198C85D23EDBDA60030798A /* GuideBookOfferViewController.swift */; };
 		51AC72BF23EDA1E9007B6479 /* GuideBookRequestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51AC72BE23EDA1E9007B6479 /* GuideBookRequestViewController.swift */; };
-		51FEC41F23F0F53200CC2B71 /* GalleryStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 51FEC41E23F0F53100CC2B71 /* GalleryStoryboard.storyboard */; };
 		51FEC42323F0F54800CC2B71 /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51FEC42223F0F54800CC2B71 /* AccountViewController.swift */; };
-		51FEC42523F0F56E00CC2B71 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51FEC42423F0F56C00CC2B71 /* ViewController.swift */; };
 		51FEC42723F0F5D600CC2B71 /* DiscoverStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 51FEC42623F0F5D500CC2B71 /* DiscoverStoryboard.storyboard */; };
 		70AC62B627809D8F22395BB7 /* Pods_ITP312.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A38D9AD9C7E44A1B66BD63E9 /* Pods_ITP312.framework */; };
 		7788232623D0F61C0036304C /* ChatLogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7788232523D0F61B0036304C /* ChatLogViewController.swift */; };
 		7788232923D1138C0036304C /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7788232823D1138C0036304C /* Message.swift */; };
 		7788232B23D123840036304C /* UserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7788232A23D123840036304C /* UserCell.swift */; };
 		77A88CAA23D08536003C5C2C /* ImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77A88CA923D08536003C5C2C /* ImageExtension.swift */; };
-		D53FE06023F0899D004C9FA8 /* DiscoverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D53FE05E23F0899D004C9FA8 /* DiscoverViewController.swift */; };
+		D53CEDC523F9C31200EEAEA5 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D53CEDC423F9C31200EEAEA5 /* GoogleService-Info.plist */; };
+		D53CEDC723F9C3F300EEAEA5 /* SwipePhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D53CEDC623F9C3F300EEAEA5 /* SwipePhotoViewController.swift */; };
+		D53CEDD123F9C42800EEAEA5 /* ButtonStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D53CEDC823F9C42200EEAEA5 /* ButtonStackView.swift */; };
+		D53CEDD223F9C42800EEAEA5 /* TinderButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D53CEDC923F9C42400EEAEA5 /* TinderButton.swift */; };
+		D53CEDD323F9C42800EEAEA5 /* TinderUIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D53CEDCA23F9C42600EEAEA5 /* TinderUIView+Extensions.swift */; };
+		D53CEDD423F9C42800EEAEA5 /* SampleCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = D53CEDCC23F9C42800EEAEA5 /* SampleCard.swift */; };
+		D53CEDD523F9C42800EEAEA5 /* SampleCardContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D53CEDCD23F9C42800EEAEA5 /* SampleCardContentView.swift */; };
+		D53CEDD623F9C42800EEAEA5 /* SampleCardOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = D53CEDCE23F9C42800EEAEA5 /* SampleCardOverlay.swift */; };
+		D53CEDD723F9C42800EEAEA5 /* SampleCardFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D53CEDCF23F9C42800EEAEA5 /* SampleCardFooterView.swift */; };
+		D53CEDD823F9C42800EEAEA5 /* SampleCardModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D53CEDD023F9C42800EEAEA5 /* SampleCardModel.swift */; };
+		D53CEDE323F9C4A500EEAEA5 /* CustomOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D53CEDD923F9C49300EEAEA5 /* CustomOverlayView.swift */; };
+		D53CEDE423F9C4A500EEAEA5 /* GalleryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D53CEDDA23F9C49500EEAEA5 /* GalleryModel.swift */; };
+		D53CEDE523F9C4A500EEAEA5 /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D53CEDDB23F9C49700EEAEA5 /* CollectionViewCell.swift */; };
+		D53CEDE623F9C4A500EEAEA5 /* GalleryUploadPhotoFrameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D53CEDDC23F9C49900EEAEA5 /* GalleryUploadPhotoFrameViewController.swift */; };
+		D53CEDE723F9C4A500EEAEA5 /* GalleryDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D53CEDDD23F9C49B00EEAEA5 /* GalleryDataManager.swift */; };
+		D53CEDE823F9C4A500EEAEA5 /* UploadPhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D53CEDDE23F9C49D00EEAEA5 /* UploadPhotoViewController.swift */; };
+		D53CEDE923F9C4A500EEAEA5 /* PhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D53CEDDF23F9C49F00EEAEA5 /* PhotoViewController.swift */; };
+		D53CEDEA23F9C4A500EEAEA5 /* GalleryStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D53CEDE023F9C4A100EEAEA5 /* GalleryStoryboard.storyboard */; };
+		D53CEDEB23F9C4A500EEAEA5 /* ExampleCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D53CEDE123F9C4A300EEAEA5 /* ExampleCollectionViewCell.swift */; };
+		D53CEDEC23F9C4A500EEAEA5 /* GalleryCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D53CEDE223F9C4A500EEAEA5 /* GalleryCollectionViewController.swift */; };
+		D53CEDEF23F9C54400EEAEA5 /* DiscoverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D53CEDED23F9C54300EEAEA5 /* DiscoverViewController.swift */; };
+		D53CEDF023F9C54400EEAEA5 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D53CEDEE23F9C54400EEAEA5 /* ViewController.swift */; };
+		D53CEDF223F9C55C00EEAEA5 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D53CEDF123F9C55C00EEAEA5 /* Extensions.swift */; };
 		D5BA970123F0BBB600A8F523 /* TypeOneCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5BA96FE23F0BBB600A8F523 /* TypeOneCell.swift */; };
 		D5BA970223F0BBB600A8F523 /* VegaScrollFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5BA970023F0BBB600A8F523 /* VegaScrollFlowLayout.swift */; };
-		D5BA978C23F0BE6C00A8F523 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5BA978B23F0BE6C00A8F523 /* Extensions.swift */; };
 		D5BA97E323F0C02D00A8F523 /* Array+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5BA979423F0C02D00A8F523 /* Array+Extensions.swift */; };
 		D5BA97E423F0C02D00A8F523 /* UISegmentedControl+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5BA979523F0C02D00A8F523 /* UISegmentedControl+Extensions.swift */; };
 		D5BA97E523F0C02D00A8F523 /* UIImageView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5BA979623F0C02D00A8F523 /* UIImageView+Extensions.swift */; };
@@ -94,12 +113,6 @@
 		D5BA981523F0C02E00A8F523 /* GradientSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5BA97E023F0C02D00A8F523 /* GradientSlider.swift */; };
 		D5BA981623F0C02E00A8F523 /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5BA97E123F0C02D00A8F523 /* TextField.swift */; };
 		D5BA981723F0C02E00A8F523 /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5BA97E223F0C02D00A8F523 /* Button.swift */; };
-		D5D24C6D23F9C1A5003C4D85 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D5D24C6C23F9C1A5003C4D85 /* GoogleService-Info.plist */; };
-		D5D38D8623E9619C0070ED85 /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D38D8523E9619C0070ED85 /* CollectionViewCell.swift */; };
-		D5D3E88423ED3A6200DDDCB6 /* GalleryDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D3E88323ED3A6200DDDCB6 /* GalleryDataManager.swift */; };
-		D5D3E88A23ED3A9300DDDCB6 /* GalleryUploadPhotoFrameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D3E88623ED3A9100DDDCB6 /* GalleryUploadPhotoFrameViewController.swift */; };
-		D5D3E88B23ED3A9300DDDCB6 /* GalleryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D3E88723ED3A9200DDDCB6 /* GalleryModel.swift */; };
-		D5D3E88C23ED3A9300DDDCB6 /* GalleryCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D3E88823ED3A9300DDDCB6 /* GalleryCollectionViewController.swift */; };
 		FB22CB3723F08C5F0097180E /* SearchLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB22CB3623F08C5F0097180E /* SearchLocation.swift */; };
 		FB22CB3B23F08C960097180E /* FinalCreatePlanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB22CB3A23F08C960097180E /* FinalCreatePlanViewController.swift */; };
 		FB22CB3D23F08D110097180E /* Plans.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FB22CB3C23F08D110097180E /* Plans.storyboard */; };
@@ -147,9 +160,7 @@
 		5156A07123CDA45D008328C5 /* ChatStoryboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ChatStoryboard.storyboard; sourceTree = "<group>"; };
 		5198C85D23EDBDA60030798A /* GuideBookOfferViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideBookOfferViewController.swift; sourceTree = "<group>"; };
 		51AC72BE23EDA1E9007B6479 /* GuideBookRequestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideBookRequestViewController.swift; sourceTree = "<group>"; };
-		51FEC41E23F0F53100CC2B71 /* GalleryStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = GalleryStoryboard.storyboard; sourceTree = "<group>"; };
 		51FEC42223F0F54800CC2B71 /* AccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountViewController.swift; sourceTree = "<group>"; };
-		51FEC42423F0F56C00CC2B71 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		51FEC42623F0F5D500CC2B71 /* DiscoverStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = DiscoverStoryboard.storyboard; sourceTree = "<group>"; };
 		7733A5DDFB82ABEA7DCE0DE4 /* Pods-ITP312.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ITP312.release.xcconfig"; path = "Target Support Files/Pods-ITP312/Pods-ITP312.release.xcconfig"; sourceTree = "<group>"; };
 		7788232523D0F61B0036304C /* ChatLogViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatLogViewController.swift; sourceTree = "<group>"; };
@@ -157,10 +168,31 @@
 		7788232A23D123840036304C /* UserCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCell.swift; sourceTree = "<group>"; };
 		77A88CA923D08536003C5C2C /* ImageExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageExtension.swift; sourceTree = "<group>"; };
 		A38D9AD9C7E44A1B66BD63E9 /* Pods_ITP312.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ITP312.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		D53FE05E23F0899D004C9FA8 /* DiscoverViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiscoverViewController.swift; sourceTree = "<group>"; };
+		D53CEDC423F9C31200EEAEA5 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		D53CEDC623F9C3F300EEAEA5 /* SwipePhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipePhotoViewController.swift; sourceTree = "<group>"; };
+		D53CEDC823F9C42200EEAEA5 /* ButtonStackView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonStackView.swift; sourceTree = "<group>"; };
+		D53CEDC923F9C42400EEAEA5 /* TinderButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TinderButton.swift; sourceTree = "<group>"; };
+		D53CEDCA23F9C42600EEAEA5 /* TinderUIView+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TinderUIView+Extensions.swift"; sourceTree = "<group>"; };
+		D53CEDCC23F9C42800EEAEA5 /* SampleCard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SampleCard.swift; sourceTree = "<group>"; };
+		D53CEDCD23F9C42800EEAEA5 /* SampleCardContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SampleCardContentView.swift; sourceTree = "<group>"; };
+		D53CEDCE23F9C42800EEAEA5 /* SampleCardOverlay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SampleCardOverlay.swift; sourceTree = "<group>"; };
+		D53CEDCF23F9C42800EEAEA5 /* SampleCardFooterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SampleCardFooterView.swift; sourceTree = "<group>"; };
+		D53CEDD023F9C42800EEAEA5 /* SampleCardModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SampleCardModel.swift; sourceTree = "<group>"; };
+		D53CEDD923F9C49300EEAEA5 /* CustomOverlayView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomOverlayView.swift; sourceTree = "<group>"; };
+		D53CEDDA23F9C49500EEAEA5 /* GalleryModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GalleryModel.swift; sourceTree = "<group>"; };
+		D53CEDDB23F9C49700EEAEA5 /* CollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
+		D53CEDDC23F9C49900EEAEA5 /* GalleryUploadPhotoFrameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GalleryUploadPhotoFrameViewController.swift; sourceTree = "<group>"; };
+		D53CEDDD23F9C49B00EEAEA5 /* GalleryDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GalleryDataManager.swift; sourceTree = "<group>"; };
+		D53CEDDE23F9C49D00EEAEA5 /* UploadPhotoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UploadPhotoViewController.swift; sourceTree = "<group>"; };
+		D53CEDDF23F9C49F00EEAEA5 /* PhotoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoViewController.swift; sourceTree = "<group>"; };
+		D53CEDE023F9C4A100EEAEA5 /* GalleryStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = GalleryStoryboard.storyboard; sourceTree = "<group>"; };
+		D53CEDE123F9C4A300EEAEA5 /* ExampleCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExampleCollectionViewCell.swift; sourceTree = "<group>"; };
+		D53CEDE223F9C4A500EEAEA5 /* GalleryCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GalleryCollectionViewController.swift; sourceTree = "<group>"; };
+		D53CEDED23F9C54300EEAEA5 /* DiscoverViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiscoverViewController.swift; sourceTree = "<group>"; };
+		D53CEDEE23F9C54400EEAEA5 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		D53CEDF123F9C55C00EEAEA5 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		D5BA96FE23F0BBB600A8F523 /* TypeOneCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TypeOneCell.swift; sourceTree = "<group>"; };
 		D5BA970023F0BBB600A8F523 /* VegaScrollFlowLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VegaScrollFlowLayout.swift; sourceTree = "<group>"; };
-		D5BA978B23F0BE6C00A8F523 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		D5BA979423F0C02D00A8F523 /* Array+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array+Extensions.swift"; sourceTree = "<group>"; };
 		D5BA979523F0C02D00A8F523 /* UISegmentedControl+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UISegmentedControl+Extensions.swift"; sourceTree = "<group>"; };
 		D5BA979623F0C02D00A8F523 /* UIImageView+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extensions.swift"; sourceTree = "<group>"; };
@@ -214,12 +246,6 @@
 		D5BA97E023F0C02D00A8F523 /* GradientSlider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GradientSlider.swift; sourceTree = "<group>"; };
 		D5BA97E123F0C02D00A8F523 /* TextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextField.swift; sourceTree = "<group>"; };
 		D5BA97E223F0C02D00A8F523 /* Button.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Button.swift; sourceTree = "<group>"; };
-		D5D24C6C23F9C1A5003C4D85 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		D5D38D8523E9619C0070ED85 /* CollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
-		D5D3E88323ED3A6200DDDCB6 /* GalleryDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GalleryDataManager.swift; sourceTree = "<group>"; };
-		D5D3E88623ED3A9100DDDCB6 /* GalleryUploadPhotoFrameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GalleryUploadPhotoFrameViewController.swift; sourceTree = "<group>"; };
-		D5D3E88723ED3A9200DDDCB6 /* GalleryModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GalleryModel.swift; sourceTree = "<group>"; };
-		D5D3E88823ED3A9300DDDCB6 /* GalleryCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GalleryCollectionViewController.swift; sourceTree = "<group>"; };
 		FB22CB3623F08C5F0097180E /* SearchLocation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchLocation.swift; sourceTree = "<group>"; };
 		FB22CB3823F08C860097180E /* AddLocationMapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddLocationMapViewController.swift; sourceTree = "<group>"; };
 		FB22CB3A23F08C960097180E /* FinalCreatePlanViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FinalCreatePlanViewController.swift; sourceTree = "<group>"; };
@@ -291,12 +317,16 @@
 		512985EC23E3DC7C0053D3D9 /* Gallery */ = {
 			isa = PBXGroup;
 			children = (
-				D5D3E88323ED3A6200DDDCB6 /* GalleryDataManager.swift */,
-				D5D38D8523E9619C0070ED85 /* CollectionViewCell.swift */,
-				D5D3E88723ED3A9200DDDCB6 /* GalleryModel.swift */,
-				D5D3E88823ED3A9300DDDCB6 /* GalleryCollectionViewController.swift */,
-				51FEC41E23F0F53100CC2B71 /* GalleryStoryboard.storyboard */,
-				D5D3E88623ED3A9100DDDCB6 /* GalleryUploadPhotoFrameViewController.swift */,
+				D53CEDDD23F9C49B00EEAEA5 /* GalleryDataManager.swift */,
+				D53CEDDB23F9C49700EEAEA5 /* CollectionViewCell.swift */,
+				D53CEDDA23F9C49500EEAEA5 /* GalleryModel.swift */,
+				D53CEDE223F9C4A500EEAEA5 /* GalleryCollectionViewController.swift */,
+				D53CEDE023F9C4A100EEAEA5 /* GalleryStoryboard.storyboard */,
+				D53CEDDC23F9C49900EEAEA5 /* GalleryUploadPhotoFrameViewController.swift */,
+				D53CEDE123F9C4A300EEAEA5 /* ExampleCollectionViewCell.swift */,
+				D53CEDDF23F9C49F00EEAEA5 /* PhotoViewController.swift */,
+				D53CEDDE23F9C49D00EEAEA5 /* UploadPhotoViewController.swift */,
+				D53CEDD923F9C49300EEAEA5 /* CustomOverlayView.swift */,
 			);
 			path = Gallery;
 			sourceTree = "<group>";
@@ -389,7 +419,7 @@
 				5156A06223CDA39B008328C5 /* Assets.xcassets */,
 				5156A06423CDA39B008328C5 /* LaunchScreen.storyboard */,
 				5156A06723CDA39B008328C5 /* Info.plist */,
-				D5D24C6C23F9C1A5003C4D85 /* GoogleService-Info.plist */,
+				D53CEDC423F9C31200EEAEA5 /* GoogleService-Info.plist */,
 			);
 			path = ITP312;
 			sourceTree = "<group>";
@@ -433,15 +463,32 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		D53CEDCB23F9C42800EEAEA5 /* SampleCard */ = {
+			isa = PBXGroup;
+			children = (
+				D53CEDCC23F9C42800EEAEA5 /* SampleCard.swift */,
+				D53CEDCD23F9C42800EEAEA5 /* SampleCardContentView.swift */,
+				D53CEDCE23F9C42800EEAEA5 /* SampleCardOverlay.swift */,
+				D53CEDCF23F9C42800EEAEA5 /* SampleCardFooterView.swift */,
+				D53CEDD023F9C42800EEAEA5 /* SampleCardModel.swift */,
+			);
+			path = SampleCard;
+			sourceTree = "<group>";
+		};
 		D53FE05D23F08978004C9FA8 /* Discover */ = {
 			isa = PBXGroup;
 			children = (
 				D5BA96FF23F0BBB600A8F523 /* FlowLayouts */,
 				D5BA96FD23F0BBB600A8F523 /* Views */,
-				51FEC42423F0F56C00CC2B71 /* ViewController.swift */,
-				D53FE05E23F0899D004C9FA8 /* DiscoverViewController.swift */,
+				D53CEDEE23F9C54400EEAEA5 /* ViewController.swift */,
+				D53CEDED23F9C54300EEAEA5 /* DiscoverViewController.swift */,
 				51FEC42623F0F5D500CC2B71 /* DiscoverStoryboard.storyboard */,
-				D5BA978B23F0BE6C00A8F523 /* Extensions.swift */,
+				D53CEDF123F9C55C00EEAEA5 /* Extensions.swift */,
+				D53CEDC623F9C3F300EEAEA5 /* SwipePhotoViewController.swift */,
+				D53CEDCB23F9C42800EEAEA5 /* SampleCard */,
+				D53CEDC823F9C42200EEAEA5 /* ButtonStackView.swift */,
+				D53CEDC923F9C42400EEAEA5 /* TinderButton.swift */,
+				D53CEDCA23F9C42600EEAEA5 /* TinderUIView+Extensions.swift */,
 			);
 			path = Discover;
 			sourceTree = "<group>";
@@ -806,14 +853,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				51FEC42723F0F5D600CC2B71 /* DiscoverStoryboard.storyboard in Resources */,
+				D53CEDEA23F9C4A500EEAEA5 /* GalleryStoryboard.storyboard in Resources */,
 				5156A06623CDA39B008328C5 /* LaunchScreen.storyboard in Resources */,
 				5156A07223CDA45D008328C5 /* ChatStoryboard.storyboard in Resources */,
 				FB22CB3D23F08D110097180E /* Plans.storyboard in Resources */,
 				D5BA97F623F0C02E00A8F523 /* Countries.bundle in Resources */,
-				D5D24C6D23F9C1A5003C4D85 /* GoogleService-Info.plist in Resources */,
 				512985E923E3D5040053D3D9 /* AccountStoryboard.storyboard in Resources */,
 				511A196F23E82409008B7E63 /* GuideStoryboard.storyboard in Resources */,
-				51FEC41F23F0F53200CC2B71 /* GalleryStoryboard.storyboard in Resources */,
+				D53CEDC523F9C31200EEAEA5 /* GoogleService-Info.plist in Resources */,
 				5156A06323CDA39B008328C5 /* Assets.xcassets in Resources */,
 				5156A06123CDA39A008328C5 /* Main.storyboard in Resources */,
 			);
@@ -892,11 +939,14 @@
 				FBEF089923E80D1800636B47 /* PlanInfoViewController.swift in Sources */,
 				D5BA981723F0C02E00A8F523 /* Button.swift in Sources */,
 				D5BA981323F0C02E00A8F523 /* Label.swift in Sources */,
+				D53CEDE623F9C4A500EEAEA5 /* GalleryUploadPhotoFrameViewController.swift in Sources */,
 				D5BA97FB23F0C02E00A8F523 /* CurrencyCell.swift in Sources */,
 				FBEF089823E80D1800636B47 /* PlanCell.swift in Sources */,
 				51174C5223CEF22300B9DF4A /* UserListViewController.swift in Sources */,
 				D5BA980B23F0C02E00A8F523 /* ColorPickerViewController.swift in Sources */,
 				D5BA980E23F0C02E00A8F523 /* ItemWithImage.swift in Sources */,
+				D53CEDD423F9C42800EEAEA5 /* SampleCard.swift in Sources */,
+				D53CEDE823F9C4A500EEAEA5 /* UploadPhotoViewController.swift in Sources */,
 				D5BA97EB23F0C02E00A8F523 /* UIColor+Extensions.swift in Sources */,
 				D5BA981123F0C02E00A8F523 /* ItemWithPhoto.swift in Sources */,
 				D5BA97F523F0C02E00A8F523 /* TextViewController.swift in Sources */,
@@ -907,64 +957,71 @@
 				5156A05E23CDA39A008328C5 /* RootController.swift in Sources */,
 				D5BA97FA23F0C02E00A8F523 /* PhoneCodeCell.swift in Sources */,
 				FB4D4A9E23E8A71D007B67B2 /* SearchItem.swift in Sources */,
+				D53CEDE323F9C4A500EEAEA5 /* CustomOverlayView.swift in Sources */,
 				D5BA97F423F0C02E00A8F523 /* AttributedTextBlock.swift in Sources */,
 				D5BA981223F0C02E00A8F523 /* LikeButtonCell.swift in Sources */,
 				FB4CA4CA23F0D6EB007173A1 /* PlanLocation.swift in Sources */,
 				D5BA980423F0C02E00A8F523 /* Location.swift in Sources */,
 				D5BA97E723F0C02E00A8F523 /* UIView+Extensions.swift in Sources */,
+				D53CEDD523F9C42800EEAEA5 /* SampleCardContentView.swift in Sources */,
 				FB4D4AA423E935A3007B67B2 /* CalendarController.swift in Sources */,
 				D5BA97E523F0C02D00A8F523 /* UIImageView+Extensions.swift in Sources */,
 				5156A07023CDA449008328C5 /* LoginViewController.swift in Sources */,
+				D53CEDD223F9C42800EEAEA5 /* TinderButton.swift in Sources */,
 				D5BA980523F0C02E00A8F523 /* Address.swift in Sources */,
+				D53CEDEF23F9C54400EEAEA5 /* DiscoverViewController.swift in Sources */,
 				7788232923D1138C0036304C /* Message.swift in Sources */,
 				D5BA97F723F0C02E00A8F523 /* LocaleStore.swift in Sources */,
 				D5BA97F923F0C02E00A8F523 /* LocalePickerViewController.swift in Sources */,
 				D5BA980823F0C02E00A8F523 /* Contacts.swift in Sources */,
 				D5BA97F123F0C02E00A8F523 /* Common+Extensions.swift in Sources */,
+				D53CEDEC23F9C4A500EEAEA5 /* GalleryCollectionViewController.swift in Sources */,
 				D5BA981023F0C02E00A8F523 /* TelegramPickerViewController.swift in Sources */,
-				D5D3E88423ED3A6200DDDCB6 /* GalleryDataManager.swift in Sources */,
 				5125825C23CEC0C6006C694C /* User.swift in Sources */,
 				5198C85E23EDBDA60030798A /* GuideBookOfferViewController.swift in Sources */,
 				51FEC42323F0F54800CC2B71 /* AccountViewController.swift in Sources */,
-				51FEC42523F0F56E00CC2B71 /* ViewController.swift in Sources */,
+				D53CEDE923F9C4A500EEAEA5 /* PhotoViewController.swift in Sources */,
 				D5BA97EF23F0C02E00A8F523 /* UIAlertController+Extensions.swift in Sources */,
 				D5BA981523F0C02E00A8F523 /* GradientSlider.swift in Sources */,
-				D5D3E88A23ED3A9300DDDCB6 /* GalleryUploadPhotoFrameViewController.swift in Sources */,
 				5156A05C23CDA39A008328C5 /* AppDelegate.swift in Sources */,
 				FB4D4AA023E8AE6B007B67B2 /* SearchTextField.swift in Sources */,
 				D5BA97F223F0C02E00A8F523 /* Locale+Extensions.swift in Sources */,
 				D5BA980123F0C02E00A8F523 /* LocationSearchResultsViewController.swift in Sources */,
+				D53CEDF223F9C55C00EEAEA5 /* Extensions.swift in Sources */,
 				D5BA980623F0C02E00A8F523 /* PickerViewViewController.swift in Sources */,
 				D5BA97F023F0C02E00A8F523 /* Optional+Extensions.swift in Sources */,
 				FB4D4A9C23E89459007B67B2 /* SearchText.swift in Sources */,
 				5125825623CEB2A2006C694C /* ChatMainViewController.swift in Sources */,
 				D5BA980C23F0C02E00A8F523 /* DatePickerViewController.swift in Sources */,
-				D53FE06023F0899D004C9FA8 /* DiscoverViewController.swift in Sources */,
-				D5BA978C23F0BE6C00A8F523 /* Extensions.swift in Sources */,
+				D53CEDEB23F9C4A500EEAEA5 /* ExampleCollectionViewCell.swift in Sources */,
 				511BB21023E01C0500E2A1BE /* ChatLogCell.swift in Sources */,
 				D5BA97EA23F0C02E00A8F523 /* UITextView+Extensions.swift in Sources */,
 				512AE70323E93CDC00F0832C /* GuideCell.swift in Sources */,
 				D5BA97F323F0C02E00A8F523 /* UITextField+Extensions.swift in Sources */,
 				FB4D4AA623E93628007B67B2 /* DIYCalendarCell.swift in Sources */,
 				FBEF089623E80D1800636B47 /* TableViewController.swift in Sources */,
+				D53CEDE523F9C4A500EEAEA5 /* CollectionViewCell.swift in Sources */,
 				FB22CB3B23F08C960097180E /* FinalCreatePlanViewController.swift in Sources */,
 				FB4D4AA823E94DE6007B67B2 /* PlanCellDataController.swift in Sources */,
+				D53CEDC723F9C3F300EEAEA5 /* SwipePhotoViewController.swift in Sources */,
 				D5BA970123F0BBB600A8F523 /* TypeOneCell.swift in Sources */,
 				D5BA97FF23F0C02E00A8F523 /* Assets.swift in Sources */,
 				51AC72BF23EDA1E9007B6479 /* GuideBookRequestViewController.swift in Sources */,
 				FB4D4AA223E9016E007B67B2 /* SetDateForPlanViewController.swift in Sources */,
+				D53CEDF023F9C54400EEAEA5 /* ViewController.swift in Sources */,
 				D5BA97E823F0C02E00A8F523 /* Date+Extension.swift in Sources */,
 				77A88CAA23D08536003C5C2C /* ImageExtension.swift in Sources */,
 				D5BA981623F0C02E00A8F523 /* TextField.swift in Sources */,
 				D5BA981423F0C02E00A8F523 /* SegmentedControl.swift in Sources */,
 				D5BA97EC23F0C02E00A8F523 /* UIImage+Extensions.swift in Sources */,
-				D5D3E88B23ED3A9300DDDCB6 /* GalleryModel.swift in Sources */,
 				D5BA97E423F0C02D00A8F523 /* UISegmentedControl+Extensions.swift in Sources */,
 				D5BA970223F0BBB600A8F523 /* VegaScrollFlowLayout.swift in Sources */,
 				514FD30A23ED15AE0035EAD9 /* GuideCalenderViewController.swift in Sources */,
 				7788232B23D123840036304C /* UserCell.swift in Sources */,
+				D53CEDD623F9C42800EEAEA5 /* SampleCardOverlay.swift in Sources */,
 				7788232623D0F61C0036304C /* ChatLogViewController.swift in Sources */,
 				D5BA97E923F0C02E00A8F523 /* String+Extensions.swift in Sources */,
+				D53CEDD123F9C42800EEAEA5 /* ButtonStackView.swift in Sources */,
 				FB44FC1C23F19DA400500456 /* ShowLocationViewController.swift in Sources */,
 				D5BA97FE23F0C02E00A8F523 /* OneTextFieldViewController.swift in Sources */,
 				FBEF089523E80D1800636B47 /* Plan.swift in Sources */,
@@ -973,18 +1030,21 @@
 				D5BA980D23F0C02E00A8F523 /* ImagePickerViewController.swift in Sources */,
 				D5BA97ED23F0C02E00A8F523 /* UISearchBar+Extensions.swift in Sources */,
 				D5BA980323F0C02E00A8F523 /* SearchHistoryManager.swift in Sources */,
+				D53CEDE723F9C4A500EEAEA5 /* GalleryDataManager.swift in Sources */,
 				512AE6F823E91DF300F0832C /* GuideMainViewController.swift in Sources */,
-				D5D38D8623E9619C0070ED85 /* CollectionViewCell.swift in Sources */,
 				FBEF089723E80D1800636B47 /* MapViewController.swift in Sources */,
 				D5BA980223F0C02E00A8F523 /* LocationPickerViewController.swift in Sources */,
 				D5BA97FD23F0C02E00A8F523 /* TwoTextFieldsViewController.swift in Sources */,
-				D5D3E88C23ED3A9300DDDCB6 /* GalleryCollectionViewController.swift in Sources */,
 				512AE70023E9343300F0832C /* Guide.swift in Sources */,
+				D53CEDD323F9C42800EEAEA5 /* TinderUIView+Extensions.swift in Sources */,
 				D5BA97E623F0C02E00A8F523 /* UIViewController+Extensions.swift in Sources */,
 				512AE6FA23E9204D00F0832C /* GuideEditViewController.swift in Sources */,
 				FB22CB3723F08C5F0097180E /* SearchLocation.swift in Sources */,
 				512AE6FC23E9211900F0832C /* GuideDetailViewController.swift in Sources */,
+				D53CEDE423F9C4A500EEAEA5 /* GalleryModel.swift in Sources */,
 				D5BA980723F0C02E00A8F523 /* ContactsPickerViewController.swift in Sources */,
+				D53CEDD823F9C42800EEAEA5 /* SampleCardModel.swift in Sources */,
+				D53CEDD723F9C42800EEAEA5 /* SampleCardFooterView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

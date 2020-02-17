@@ -106,6 +106,7 @@ class GuideDetailViewController: UIViewController {
         let storyboard = UIStoryboard(name: "ChatStoryboard", bundle: nil)
         let chatLogViewController = storyboard.instantiateViewController(withIdentifier: "ChatLog") as! ChatLogViewController
         chatLogViewController.user = user
+        chatLogViewController.presentFromTopMostViewController = false
         self.navigationController?.pushViewController(chatLogViewController, animated: true)
         // present(chatLogViewController, animated: true, completion: nil)
     }

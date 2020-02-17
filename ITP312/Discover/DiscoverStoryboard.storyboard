@@ -102,12 +102,28 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="discoverLabel" destination="aC7-to-LWB" id="Oxa-vA-wJv"/>
                         <outlet property="magneticView" destination="scT-fi-T6k" id="DU9-Lp-QWc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="125.59999999999999" y="137.18140929535232"/>
+        </scene>
+        <!--Swipe Photo View Controller-->
+        <scene sceneID="P4Y-wJ-Tf4">
+            <objects>
+                <viewController storyboardIdentifier="SwipePhoto" id="h0x-lX-Yhs" customClass="SwipePhotoViewController" customModule="ITP312" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="wqU-br-JD6">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="MMM-Xt-2ZD"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="sSN-0Y-CnV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1162" y="137"/>
         </scene>
     </scenes>
 </document>

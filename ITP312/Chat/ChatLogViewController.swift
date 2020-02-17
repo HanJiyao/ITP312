@@ -10,8 +10,10 @@ import UIKit
 import Firebase
 import DropDown
 
-class ChatLogViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate
+
+class ChatLogViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, FolderDelegate
 {
+    
     @IBOutlet weak var messageTextField: UITextField!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var bottomBar: UIStackView!
@@ -70,7 +72,10 @@ class ChatLogViewController: UIViewController, UITableViewDataSource, UITableVie
     
     lazy var vision = Vision.vision()
 
-    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        tabBarController?.tabBar.isHidden = false //needed to show tabbar when going back to other pages like discover, gallery
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -171,12 +176,53 @@ class ChatLogViewController: UIViewController, UITableViewDataSource, UITableVie
         NotificationCenter.default.removeObserver(self)
     }
     
-    @objc func handleSendImageTap () {
+    
+    
+    
+    
+    
+    func uploadPhotoFromPhone(_ alertAction: UIAlertAction) {
         let imagePickerController = UIImagePickerController()
         imagePickerController.allowsEditing = true
         imagePickerController.delegate = self
         present(imagePickerController, animated: true, completion: nil)
     }
+    
+    func chooseCloudFolder(_ alertAction: UIAlertAction) {
+        print("choose folder...")
+        let viewController = DataManager.viewControllerFromStoryboard(name: "DiscoverStoryboard", identifier: "Folder") as! ViewController
+        viewController.folderDelegate = self
+        viewController.hideActionButton()
+        present(viewController, animated: true, completion: nil)
+    }
+    
+    func passFolderID(data: String) {
+        //check if current view is presented modally or pushed, boolean pass over to datamanager
+        let presentBool = navigationController?.presentingViewController != nil ? true : false
+        DataManager.passFolderID(data: data, presentFromTopMostViewController: presentBool) { (image) in
+            self.uploadToFirebaseStorage(image: image)
+        }
+    }
+    
+    var presentFromTopMostViewController = false
+    
+    @objc func handleSendImageTap () {
+        print("image tap...")
+        let actionSheet = UIAlertController(style: .actionSheet)
+        actionSheet.set(title: "Select one of the following", font: .systemFont(ofSize: 20), color: .black)
+        actionSheet.addAction(image: UIImage(systemName: "photo"), title: "Upload from phone gallery", color: .blue, handler: uploadPhotoFromPhone)
+        actionSheet.addAction(image: UIImage(systemName: "icloud.and.arrow.up.fill"), title: "Upload from cloud folder", color: .blue, handler: chooseCloudFolder)
+        actionSheet.addAction(title: "Cancel", style: .cancel)
+        //need check for top most view controller because current screen could be presented modally already, if yes present on top of most top
+        presentFromTopMostViewController
+            ? UIApplication.shared.keyWindowInConnectedScenes?.rootViewController?.presentedViewController?.present(actionSheet, animated: true, completion: nil)
+            : actionSheet.show()
+    }
+    
+    
+    
+    
+    
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         var selectedImageFromPicker: UIImage?

@@ -84,11 +84,9 @@ class GalleryUploadPhotoFrameViewController: UIViewController, UIImagePickerCont
     }
     
     
- 
-    
     @objc func imagePressed() {
         imagePicker.delegate = self
-        imagePicker.sourceType = .photoLibrary
+//        imagePicker.sourceType = .photoLibrary
         imagePicker.allowsEditing = false
         present(imagePicker, animated: true)
     }

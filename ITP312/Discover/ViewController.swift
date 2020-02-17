@@ -6,8 +6,14 @@ import JJFloatingActionButton
 import FlagKit
 import Firebase
 
+protocol FolderDelegate: NSObjectProtocol {
+    func passFolderID(data: String)
+}
+
 class ViewController: UIViewController {
     
+    weak var folderDelegate: FolderDelegate?
+
     // MARK: Enums
     
     enum AlertType: String {
@@ -187,38 +193,43 @@ class ViewController: UIViewController {
         add.tintColor = .blue
         //self.navigationItem.rightBarButtonItem = add
         
-        navigationController?.navigationBar.backgroundColor = .white
-        navigationController?.navigationBar.tintColor = .white
-        navigationController?.navigationBar.isTranslucent = false
-        navigationController?.navigationBar.shadowImage = UIImage()
+        //navigationController?.navigationBar.backgroundColor = .white
+        //navigationController?.navigationBar.tintColor = .white
+        navigationController?.navigationBar.isTranslucent = false //scroll back to top title from middle goes back to largetitle
+        //navigationController?.navigationBar.shadowImage = UIImage()
 
-        if #available(iOS 11.0, *) {
-            navigationController?.navigationBar.prefersLargeTitles = true
-            //navigationItem.largeTitleDisplayMode = .always
-            let navBarAppearance = UINavigationBarAppearance()
-            
-            navBarAppearance.configureWithOpaqueBackground() //needed to make bar white
-//            navBarAppearance.backgroundColor = .init(red: 95, green: 201, blue: 248)
-            
-            navigationController?.navigationBar.standardAppearance = navBarAppearance
-            navigationController?.navigationBar.scrollEdgeAppearance = navBarAppearance
-            
-        }
 
         layout.itemSize = itemSize
         collectionView.collectionViewLayout.invalidateLayout()
-        collectionView.reloadData()
+//        collectionView.reloadData()
         
 //        navigationItem.titleView = segments
         alertStyle = .actionSheet
         segments.selectedSegmentIndex = 1
         
-        
-        
         configureActionButton()
      
         loadFolder()
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        if #available(iOS 11.0, *) {
+            navigationController?.navigationBar.prefersLargeTitles = true
+            navigationItem.largeTitleDisplayMode = .always
+            let navBarAppearance = UINavigationBarAppearance()
+            
+            navBarAppearance.configureWithOpaqueBackground() //needed to make bar white
+            //            navBarAppearance.backgroundColor = .init(red: 95, green: 201, blue: 248)
+            navigationController?.view.backgroundColor = .white //https://blog.kulman.sk/fixing-black-artifact-changing-large-tiles-mode/
+            navBarAppearance.shadowColor = nil //remove line below title
+            navigationController?.navigationBar.standardAppearance = navBarAppearance
+            navigationController?.navigationBar.scrollEdgeAppearance = navBarAppearance
+            
+        }
+    }
+    
     
     @objc func handleLongGesture(gesture: UILongPressGestureRecognizer) {
 
@@ -237,6 +248,7 @@ class ViewController: UIViewController {
             collectionView.cancelInteractiveMovement()
         }
     }
+    
     func configureActionButton() {
         //        actionButton.itemAnimationConfiguration = .slideIn(withInterItemSpacing: 14)
         
@@ -274,7 +286,7 @@ class ViewController: UIViewController {
             alert.addAction(title: "OK", style: .cancel, handler: { result in
                 print("ok clicked", textRetrieved)
                 if textRetrieved != "" {
-                    self.createFolder(title: textRetrieved, subtitle: "0", image: "listings")
+                    self.createFolder(title: textRetrieved, subtitle: "0")
                 } else {
                     let alertController = UIAlertController(title: "Oops!", message: "Folder name cannot be empty!", preferredStyle: .alert)
                     let action = UIAlertAction(title: "Noted!", style: .default)
@@ -349,33 +361,27 @@ class ViewController: UIViewController {
     func createCountry(countryCode: String, countryName: String) {
         let flag = Flag(countryCode: countryCode)!
         let originalImage = flag.originalImage
-        createFolder(title: countryName, subtitle: "0", image: countryCode, countryCode: countryCode)
+        createFolder(title: countryName, subtitle: "0", countryCode: countryCode)
     }
     
-    func createFolder(title: String, subtitle: String, image: String, countryCode: String? = nil) {
-        let values = [
-            "title": title,
-            "subtitle": subtitle,
-            "image": countryCode ?? "listings",
-            "timestamp": ServerValue.timestamp()
-        ] as [String : Any]
-        let ref = Database.database().reference()
-        ref.child("folder").child(Auth.auth().currentUser!.uid).childByAutoId().setValue(values) { (error, ref) in
-            if error != nil {return}
-            let newFolder = FolderModel(title: title, subtitle: subtitle, image: image)
-//            self.folderList.append(newFolder)
-            self.collectionView.reloadData()
-        }
+    func createFolder(title: String, subtitle: String, countryCode: String? = nil) {
+        let oneFolder = DataManager.createFolder(title: title, subtitle: subtitle, countryCode: countryCode)
+        self.folderList.append(oneFolder)
     }
     
     func loadFolder() { //fix all in scope shortcut key = ctrl + opt + cmd + f
-        let ref = Database.database().reference()
-        ref.child("folder").child(Auth.auth().currentUser!.uid).queryOrdered(byChild: "timestamp").observe(.value) { (snapshot) in
+        let ref = DataManager.ref()
+        let currentUser = DataManager.currentUser()
+        ref.child("folder").child(currentUser).queryOrdered(byChild: "timestamp").observe(.value) { (snapshot) in
             self.folderList.removeAll()
             for child in snapshot.children.allObjects as! [DataSnapshot] {
+//                print("child key", child.key)
+//                let photoCount = child.childSnapshot(forPath: "photo").childrenCount
+//                ref.child("folder").child(currentUser).child(child.key).updateChildValues(["subtitle": photoCount])
                 let oneFolder = FolderModel(data: child.value as! [String : Any])
 //                let image = oneFolder.image = "listings" ? UIImage(named: "listings") : UIImage(Flag(countryCode: "\(oneFolder.image)")?.originalImage)
-                
+//                print("phot ocount", photoCount)
+//                oneFolder.subtitle = "\(photoCount)"
                 self.folderList.append(oneFolder)
             }
             DispatchQueue.main.async {
@@ -638,9 +644,23 @@ class ViewController: UIViewController {
 extension ViewController: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        Log("selected alert - \(alerts[indexPath.item].rawValue)")
+        if let delegate = folderDelegate {
+            print("let delegate...")
+            delegate.passFolderID(data: folderList[indexPath.row].key!)
+            self.dismiss(animated: true, completion: nil)
+            return
+        }
+//        Log("selected alert - \(alerts[indexPath.item].rawValue)")
 //        show(alert: alerts[indexPath.item])
-        
+        let storyboard = UIStoryboard(name: "GalleryStoryboard", bundle: nil)
+        let photoViewController = storyboard.instantiateViewController(withIdentifier: "PhotoView") as! PhotoViewController
+//        present(photoViewController, animated: true, completion: nil)
+        photoViewController.folderObject = folderList[indexPath.row]
+        navigationController?.pushViewController(photoViewController, animated: true)
+    }
+    
+    func hideActionButton() {
+        actionButton.isHidden = true
     }
 }
 
@@ -659,7 +679,6 @@ extension ViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let item = collectionView.dequeueReusableCell(withReuseIdentifier: TypeOneCell.identifier, for: indexPath) as? TypeOneCell else { return UICollectionViewCell() }
-        
 //        let alert = alerts[indexPath.item]
         let folder = folderList[indexPath.item]
         if folder.image == "listings" {
@@ -682,35 +701,16 @@ extension ViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, moveItemAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
-        
-        let temp = alerts.remove(at: sourceIndexPath.item)
-        alerts.insert(temp, at: destinationIndexPath.item)
+        //let itemToMove = alerts[sourceIndexPath.item]
+        let temp = folderList.remove(at: sourceIndexPath.item)
+        folderList.insert(temp, at: destinationIndexPath.item)
         //https://nshint.github.io/blog/2015/07/16/uicollectionviews-now-have-easy-reordering/
-//        print("Starting Index: \(sourceIndexPath.item)")
-//        print("Ending Index: \(destinationIndexPath.item)")
+                print("Starting Index: \(sourceIndexPath.item)")
+                print("Ending Index: \(destinationIndexPath.item)")
     }
     
     func collectionView(_ collectionView: UICollectionView, canMoveItemAt indexPath: IndexPath) -> Bool {
         return true
     }
-}
-
-
-class FolderModel: NSObject {
     
-    var title: String?
-    var subtitle: String?
-    var image: String?
-    
-    init(title: String, subtitle: String, image: String) {
-        self.title = title
-        self.subtitle = subtitle
-        self.image = image
-    }
-    
-    init(data: [String: Any]) {
-        self.title = data["title"] as? String
-        self.subtitle = data["subtitle"] as? String
-        self.image = data["image"] as? String
-    }
 }

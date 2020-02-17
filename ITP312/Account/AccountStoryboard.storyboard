@@ -112,12 +112,12 @@
                                                     <constraint firstAttribute="height" constant="1" id="LbM-Rh-xpN"/>
                                                 </constraints>
                                             </view>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qQl-hV-4gf">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qQl-hV-4gf" userLabel="Photo Frame">
                                                 <rect key="frame" x="0.0" y="305.5" width="275" height="50"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="50" id="rrX-oR-TQV"/>
                                                 </constraints>
-                                                <state key="normal" title="Gallery Setting"/>
+                                                <state key="normal" title="Photo Frame"/>
                                                 <connections>
                                                     <action selector="navigateToGalleryBtnClicked:" destination="gjZ-dG-Gis" eventType="touchUpInside" id="XpR-fV-Dmb"/>
                                                 </connections>
