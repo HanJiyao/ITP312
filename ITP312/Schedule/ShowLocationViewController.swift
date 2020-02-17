@@ -21,6 +21,7 @@ class ShowLocationViewController: UIViewController {
         let ref = Database.database().reference()
         
         print("location id" ,self.locationId!)
+        // Retrieve all locations based on plan ID
         ref.child("LocationInfo").child(self.planId!).queryOrdered(byChild: "locationId").queryEqual(toValue: self.locationId).observeSingleEvent(of: .value, with: { snap in
             for case let rest as DataSnapshot in snap.children {
             let dict = rest.value as? [String: Any]
@@ -28,6 +29,7 @@ class ShowLocationViewController: UIViewController {
             let latitude: CLLocationDegrees = dict!["latitude"] as! CLLocationDegrees
             let longitude: CLLocationDegrees = dict!["longitude"] as! CLLocationDegrees
             let searchLocationName: String? = dict!["searchLocationName"] as? String
+            let locationDesc: String? = dict!["locDescription"] as? String
             
             
             // Reset annotations
@@ -36,8 +38,9 @@ class ShowLocationViewController: UIViewController {
             
             // Create annotation
             let annotation = MKPointAnnotation()
-            annotation.title = searchLocationName!
+            annotation.title = locationDesc!
             annotation.coordinate = CLLocationCoordinate2DMake(latitude, longitude)
+            
             self.MapView.addAnnotation(annotation)
                         
             // Zooming onto coordinate

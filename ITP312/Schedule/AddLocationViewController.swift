@@ -24,6 +24,15 @@ class AddLocationViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        locDescText.borderStyle = .none
+        locDescText.layer.backgroundColor = UIColor.white.cgColor
+
+        locDescText.layer.masksToBounds = false
+        locDescText.layer.shadowColor = UIColor.gray.cgColor
+        locDescText.layer.shadowOffset = CGSize(width: 0.0, height: 1.0)
+        locDescText.layer.shadowOpacity = 1.0
+        locDescText.layer.shadowRadius = 0.0
 
         // Do any additional setup after loading the view.
     }
@@ -132,6 +141,21 @@ class AddLocationViewController: UIViewController {
                 ref.child("LocationInfo").child(thisPlanId).childByAutoId().setValue(locationInfoDict)
             }
         
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if (segue.identifier == "AddLocReturnViewLocVC") {
+            let PlanCellVC = segue.destination as! PlanCellDataController
+            if (PlanGlobalData.shared.planId != "") {
+                PlanCellVC.planId = PlanGlobalData.shared.planId
+                PlanCellVC.selectedPlanName = PlanGlobalData.shared.planName
+                PlanCellVC.selectedCountry = PlanGlobalData.shared.countryName
+            } else {
+                PlanCellVC.planId = GlobalData.shared.planId
+                PlanCellVC.selectedPlanName = PlanGlobalData.shared.planName
+                PlanCellVC.selectedCountry = GlobalData.shared.countryName
+            }
+        }
     }
     
     

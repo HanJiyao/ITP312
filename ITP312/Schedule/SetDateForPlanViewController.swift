@@ -27,6 +27,7 @@ class SetDateForPlanViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        print("Country name? : " ,self.countryName)
         // Do any additional setup after loading the view
         // Set styles of relevant textfields
        
@@ -61,7 +62,7 @@ class SetDateForPlanViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         if !selectedDates.isEmpty {
-            let travelDate = selectedDates[0] + " to " + selectedDates[1]
+            let travelDate = "From " + selectedDates[0] + " to " + selectedDates[1]
             fromDate = selectedDates[0]
             toDate = selectedDates[1]
             dateSummaryLabel.text = travelDate
@@ -70,6 +71,7 @@ class SetDateForPlanViewController: UIViewController {
             dateSummaryLabel.layoutIfNeeded()
             dateSummaryLabel.font = UIFont.boldSystemFont(ofSize: 16.0)
             dateSummaryLabel.textColor = .white
+            datePlaceholder.text = travelDate
         }
     }
    
@@ -86,7 +88,7 @@ class SetDateForPlanViewController: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "showCalendar") {
-            let displayPV = segue.destination as! CalendarController
+            let displayPV = segue.destination as! PlanCalendarViewController
             displayPV.countryName = countryName
             displayPV.selectedDates = selectedDates
         }

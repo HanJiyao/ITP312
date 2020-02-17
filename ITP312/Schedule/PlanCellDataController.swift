@@ -29,54 +29,66 @@ class PlanCellDataController: UIViewController, UITableViewDelegate, UITableView
         TableView.delegate = self
         TableView.dataSource = self
         
-        
+        loadData()
         // Do any additional setup after loading the view.
         
         
-        let nameLabelText = selectedPlanName!
-        planNameLabel.text = nameLabelText
-        planNameLabel.textColor = UIColor.gray
-        planNameLabel.font = UIFont(name:"Helvetica-Bold", size: 20.0)
-        let countryLabelText = selectedCountry!
-        countryNameLabel.text = countryLabelText
-        countryNameLabel.textColor = UIColor.blue
-        countryNameLabel.font = UIFont(name:"Helvetica", size: 18.0)
         
-        print(planId)
-        planNameLabel.sizeToFit()
-        countryNameLabel.sizeToFit()
-        let ref = Database.database().reference()
-     
-        // Get user value
-       
-        ref.child("LocationInfo").child(planId!).observeSingleEvent(of: .value) {snapshot in
-        // Get all children of travelPlans in database
-            print("snapshot children count " , snapshot.childrenCount)
-        for case let rest as DataSnapshot in snapshot.children {
-            
-            // Put all values of children into dictionary
-            let restDict = rest.value as? [String: Any]
-            print("restdict : " ,restDict)
-            // Store values into list if it belongs to current user
-            let thisLocationName = restDict!["searchLocationName"] as? String
-            let thisLatitude = restDict!["latitude"] as? CLLocationDegrees
-            let thisLongitude = restDict!["longitude"] as? CLLocationDegrees
-            let thisLocationId = restDict!["locationId"] as? String
-            let thisPlanId = self.planId!
-            let thisLocDescription = restDict!["locDescription"] as? String
-            let thisLocation = PlanLocation(latitude: thisLatitude, longitude: thisLongitude, planId: thisPlanId, locationId: thisLocationId, searchLocationName: thisLocationName, locDescription: thisLocDescription
-            )
-            self.locationList.append(thisLocation)
-            print(self.locationList , "locationList")
-                
-            
-        }
-        self.TableView.reloadData()
-
-        
-        }
     
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        loadData()
+    }
+    
+    func loadData() {
+        self.locationList = []
+        let nameLabelText = selectedPlanName!
+           planNameLabel.text = nameLabelText
+           planNameLabel.textColor = UIColor.gray
+           planNameLabel.font = UIFont(name:"Helvetica-Bold", size: 20.0)
+        planNameLabel.sizeToFit()
+           let countryLabelText = selectedCountry!
+           countryNameLabel.text = countryLabelText
+           countryNameLabel.textColor = UIColor.blue
+           countryNameLabel.font = UIFont(name:"Helvetica", size: 18.0)
+        countryNameLabel.sizeToFit()
+           
+           print(planId)
+           planNameLabel.sizeToFit()
+           countryNameLabel.sizeToFit()
+           let ref = Database.database().reference()
+        
+           // Get user value
+          
+           ref.child("LocationInfo").child(planId!).observeSingleEvent(of: .value) {snapshot in
+           // Get all children of travelPlans in database
+               print("snapshot children count " , snapshot.childrenCount)
+           for case let rest as DataSnapshot in snapshot.children {
+               
+               // Put all values of children into dictionary
+               let restDict = rest.value as? [String: Any]
+               print("restdict : " ,restDict)
+               // Store values into list if it belongs to current user
+               let thisLocationName = restDict!["searchLocationName"] as? String
+               let thisLatitude = restDict!["latitude"] as? CLLocationDegrees
+               let thisLongitude = restDict!["longitude"] as? CLLocationDegrees
+               let thisLocationId = restDict!["locationId"] as? String
+               let thisPlanId = self.planId!
+               let thisLocDescription = restDict!["locDescription"] as? String
+               let thisLocation = PlanLocation(latitude: thisLatitude, longitude: thisLongitude, planId: thisPlanId, locationId: thisLocationId, searchLocationName: thisLocationName, locDescription: thisLocDescription
+               )
+               self.locationList.append(thisLocation)
+               print(self.locationList , "locationList")
+                   
+               
+           }
+           self.TableView.reloadData()
+
+           
+           }
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         print("return locationList tableview: " ,self.locationList.count)
         return self.locationList.count
@@ -91,7 +103,7 @@ class PlanCellDataController: UIViewController, UITableViewDelegate, UITableView
         cell.locationSubtitle.sizeToFit()
         
         
-        let image : UIImage = UIImage(named: "location")!
+        let image : UIImage = UIImage(named: "bluemarker")!
         cell.locationIcon.image = image
           
         return cell

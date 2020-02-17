@@ -36,6 +36,7 @@ class FinalCreatePlanViewController: UIViewController {
 
         // Do any additional setup after loading the view.
         ImageView.image = UIImage(named: "paper-plane")
+        PlanGlobalData.shared.planId = ""
     }
     
     @IBAction func FinishCreatePlan(_ sender: Any) {
@@ -94,6 +95,7 @@ class FinalCreatePlanViewController: UIViewController {
             self.planId = thisPlanId!
             GlobalData.shared.countryName = thisCountryName!
             GlobalData.shared.planId = thisPlanId!
+            PlanGlobalData.shared.planName = thisPlanName!
             
                 
             let plan = Plan(planName: thisPlanName!, country: thisCountryName!, user: username!, fromDate: thisFromDate!, toDate: thisToDate!, planId: thisPlanId!)

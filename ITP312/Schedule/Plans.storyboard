@@ -49,34 +49,40 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="150"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="planNameLabel" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sLf-Yc-SlN">
-                                                    <rect key="frame" x="20" y="10" width="119" height="21"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sLf-Yc-SlN">
+                                                    <rect key="frame" x="20" y="20" width="0.0" height="0.0"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="countryLabel" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XlK-TF-Sr1">
-                                                    <rect key="frame" x="20" y="50" width="101" height="21"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XlK-TF-Sr1">
+                                                    <rect key="frame" x="20" y="60" width="0.0" height="0.0"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="dateLabel" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W8W-nm-Sev">
-                                                    <rect key="frame" x="20" y="90" width="76" height="21"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W8W-nm-Sev">
+                                                    <rect key="frame" x="20" y="100" width="0.0" height="0.0"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="W8W-nm-Sev" firstAttribute="top" secondItem="e3t-fR-1Ay" secondAttribute="top" constant="90" id="ARA-XC-czQ"/>
-                                                <constraint firstItem="sLf-Yc-SlN" firstAttribute="top" secondItem="e3t-fR-1Ay" secondAttribute="top" constant="10" id="Nwv-bX-nUO"/>
+                                                <constraint firstItem="W8W-nm-Sev" firstAttribute="top" secondItem="e3t-fR-1Ay" secondAttribute="top" constant="100" id="ARA-XC-czQ"/>
+                                                <constraint firstItem="sLf-Yc-SlN" firstAttribute="top" secondItem="e3t-fR-1Ay" secondAttribute="top" constant="20" id="Nwv-bX-nUO"/>
                                                 <constraint firstItem="W8W-nm-Sev" firstAttribute="leading" secondItem="e3t-fR-1Ay" secondAttribute="leading" constant="20" id="V0s-2b-AQ6"/>
                                                 <constraint firstItem="sLf-Yc-SlN" firstAttribute="leading" secondItem="e3t-fR-1Ay" secondAttribute="leading" constant="20" id="a0B-sN-659"/>
                                                 <constraint firstItem="XlK-TF-Sr1" firstAttribute="leading" secondItem="e3t-fR-1Ay" secondAttribute="leading" constant="20" id="d6J-eb-aYS"/>
-                                                <constraint firstItem="XlK-TF-Sr1" firstAttribute="top" secondItem="e3t-fR-1Ay" secondAttribute="top" constant="50" id="zd5-mN-pIF"/>
+                                                <constraint firstItem="XlK-TF-Sr1" firstAttribute="top" secondItem="e3t-fR-1Ay" secondAttribute="top" constant="60" id="zd5-mN-pIF"/>
                                             </constraints>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity">
+                                                    <real key="value" value="2"/>
+                                                </userDefinedRuntimeAttribute>
+                                            </userDefinedRuntimeAttributes>
                                         </tableViewCellContentView>
+                                        <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <connections>
                                             <outlet property="dateLabel" destination="W8W-nm-Sev" id="9tj-4T-ose"/>
                                             <outlet property="destinationNameLabel" destination="XlK-TF-Sr1" id="gdi-jK-Lhz"/>
@@ -113,7 +119,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qur-2r-nPg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1121.7391304347827" y="128.57142857142856"/>
+            <point key="canvasLocation" x="1120.8" y="128.18590704647679"/>
         </scene>
         <!--Plan Info View Controller-->
         <scene sceneID="ktc-66-lBz">
@@ -277,7 +283,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rdd-qW-6uS">
-                                <rect key="frame" x="120" y="74" width="135" height="21"/>
+                                <rect key="frame" x="80" y="74" width="215" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -353,13 +359,13 @@
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="xAI-ah-WJG" firstAttribute="trailing" secondItem="rdd-qW-6uS" secondAttribute="trailing" constant="120" id="1DP-P1-bJF"/>
+                            <constraint firstItem="xAI-ah-WJG" firstAttribute="trailing" secondItem="rdd-qW-6uS" secondAttribute="trailing" constant="80" id="1DP-P1-bJF"/>
                             <constraint firstItem="uE5-v1-9zk" firstAttribute="leading" secondItem="xAI-ah-WJG" secondAttribute="leading" constant="25" id="39A-zw-OGa"/>
                             <constraint firstItem="uE5-v1-9zk" firstAttribute="top" secondItem="3kS-wn-HqE" secondAttribute="bottom" constant="30" id="3Le-RH-l5d"/>
                             <constraint firstItem="rdd-qW-6uS" firstAttribute="top" secondItem="xAI-ah-WJG" secondAttribute="top" constant="30" id="CBX-Pu-MfC"/>
                             <constraint firstItem="3kS-wn-HqE" firstAttribute="leading" secondItem="xAI-ah-WJG" secondAttribute="leading" constant="120" id="ZnF-1e-lRY"/>
                             <constraint firstItem="3kS-wn-HqE" firstAttribute="top" secondItem="xAI-ah-WJG" secondAttribute="top" constant="60" id="fz5-Jj-ZWK"/>
-                            <constraint firstItem="rdd-qW-6uS" firstAttribute="leading" secondItem="xAI-ah-WJG" secondAttribute="leading" constant="120" id="gax-IH-LXu"/>
+                            <constraint firstItem="rdd-qW-6uS" firstAttribute="leading" secondItem="xAI-ah-WJG" secondAttribute="leading" constant="80" id="gax-IH-LXu"/>
                             <constraint firstItem="xAI-ah-WJG" firstAttribute="trailing" secondItem="3kS-wn-HqE" secondAttribute="trailing" constant="120" id="jjd-gd-jl8"/>
                             <constraint firstItem="xAI-ah-WJG" firstAttribute="trailing" secondItem="uE5-v1-9zk" secondAttribute="trailing" constant="25" id="koM-ta-mdp"/>
                         </constraints>
@@ -481,7 +487,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cXX-Vt-Xz0" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2692.753623188406" y="896.65178571428567"/>
+            <point key="canvasLocation" x="2143" y="919"/>
         </scene>
         <!--Final Create Plan View Controller-->
         <scene sceneID="VWz-bn-l4I">
@@ -513,7 +519,7 @@
                                     <action selector="FinishCreatePlan:" destination="Yab-Zr-pqK" eventType="touchUpInside" id="fZZ-yc-IfS"/>
                                     <action selector="btnSaveData:" destination="pdO-OO-1Mu" eventType="touchUpInside" id="6KB-nD-6hH"/>
                                     <action selector="createPlanBtnPress:" destination="MlP-XA-i93" eventType="touchUpInside" id="v94-CQ-4f8"/>
-                                    <segue destination="5Mf-qm-rEL" kind="show" identifier="FinalVCToLocationVC" id="MeB-7O-dBW"/>
+                                    <segue destination="5Mf-qm-rEL" kind="show" identifier="FinalVCToLocationVC" id="WMc-jF-K9b"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PG0-ue-Hev">
@@ -621,6 +627,7 @@
                                 <connections>
                                     <action selector="ConfirmLocationClick:" destination="5Mf-qm-rEL" eventType="touchUpInside" id="JBg-E7-VYo"/>
                                     <action selector="SearchLocationTextDidEnd:" destination="5Mf-qm-rEL" eventType="touchUpInside" id="zzP-Ru-Ixu"/>
+                                    <segue destination="czi-9d-4Pj" kind="show" identifier="AddLocReturnViewLocVC" id="rpZ-c2-tKt"/>
                                 </connections>
                             </button>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="Xky-S6-fd1">
@@ -663,13 +670,13 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="62f-IY-o2N" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="mKG-05-WHw" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="1121" y="1718"/>
+            <point key="canvasLocation" x="1068" y="1788"/>
         </scene>
-        <!--Calendar Controller-->
+        <!--Data Source-->
         <scene sceneID="84w-Vp-VQY">
             <objects>
-                <viewController id="FAr-EB-2Cp" customClass="CalendarController" customModule="ITP312" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="HgV-Sf-Vyh">
+                <viewController id="FAr-EB-2Cp" customClass="PlanCalendarViewController" customModule="ITP312" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" ambiguous="YES" id="HgV-Sf-Vyh">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -686,6 +693,29 @@
                                     <segue destination="MlP-XA-i93" kind="show" identifier="CalendarReturnToComplete" id="PmG-jv-uqg"/>
                                 </connections>
                             </button>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Q2t-3v-5u8" customClass="FSCalendar">
+                                <rect key="frame" x="16" y="70" width="343" height="402"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="FAr-EB-2Cp" id="aMM-lY-i9l"/>
+                                    <outlet property="delegate" destination="FAr-EB-2Cp" id="ehX-pc-cfi"/>
+                                </connections>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZYJ-gs-ZLO">
+                                <rect key="frame" x="31" y="579" width="315" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                <state key="normal" title="Next Step">
+                                    <color key="titleColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                </state>
+                                <connections>
+                                    <action selector="CalendarFinishClick:" destination="FAr-EB-2Cp" eventType="touchUpInside" id="cW9-OC-QsQ"/>
+                                    <action selector="btnSaveData:" destination="pdO-OO-1Mu" eventType="touchUpInside" id="qC3-2P-zoz"/>
+                                    <action selector="createPlanBtnPress:" destination="MlP-XA-i93" eventType="touchUpInside" id="YjH-Ce-L3i"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
@@ -697,10 +727,13 @@
                         <viewLayoutGuide key="safeArea" id="QCM-Pj-XJH"/>
                     </view>
                     <navigationItem key="navigationItem" id="dKb-5R-FVY"/>
+                    <connections>
+                        <outlet property="FSCalendar" destination="Q2t-3v-5u8" id="XHB-4L-PaE"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KeG-uR-hAi" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3559.420289855073" y="901.33928571428567"/>
+            <point key="canvasLocation" x="3559.1999999999998" y="900.89955022488766"/>
         </scene>
     </scenes>
     <resources>
@@ -711,6 +744,7 @@
     <inferredMetricsTieBreakers>
         <segue reference="Vaq-G4-YUg"/>
         <segue reference="E6e-ZD-cGn"/>
+        <segue reference="fvZ-9y-oQ7"/>
         <segue reference="FSk-fg-Yai"/>
         <segue reference="tqk-ST-czm"/>
     </inferredMetricsTieBreakers>

@@ -9,6 +9,13 @@
 import UIKit
 import Firebase
 
+class PlanGlobalData: NSObject {
+    static let shared: PlanGlobalData = PlanGlobalData()
+    var planName = ""
+    var countryName = ""
+    var planId = ""
+}
+
 class TableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     
@@ -130,18 +137,72 @@ class TableViewController: UIViewController, UITableViewDelegate, UITableViewDat
 //        cell.textLabel?.text = p.planName
         let cell : PlanCell = tableView.dequeueReusableCell(withIdentifier: "planCell", for: indexPath) as! PlanCell
         let p = self.planList[indexPath.row]
-        cell.planNameLabel.text = p.planName
-        cell.destinationNameLabel.text = p.country
-        cell.dateLabel.text = p.fromDate + " to " + p.toDate
-        cell.planNameLabel.sizeToFit()
-        cell.destinationNameLabel.sizeToFit()
-        cell.dateLabel.sizeToFit()
+        
         var image : UIImageView? = UIImageView(image: UIImage(named: p.country))
         if (image == nil) {
             image = UIImageView(image: UIImage(named: "United States"))
         }
-        cell.backgroundView = image
         
+        if cell.viewWithTag(99) == nil {
+        
+            let dynamicView : UIView? = UIView(frame: cell.bounds)
+            dynamicView?.removeFromSuperview()
+            dynamicView!.backgroundColor = UIColor.clear
+            dynamicView!.addSubview(image!)
+            
+            let transpView = UIView(frame: cell.bounds)
+            transpView.removeFromSuperview()
+            transpView.backgroundColor = UIColor.white
+            transpView.backgroundColor = transpView.backgroundColor!.withAlphaComponent(0.3)
+            
+//            let planNameLabel = UILabel(frame: CGRect(x: 20, y: 20, width: 50, height: 200))
+//            planNameLabel.text = p.planName
+//            planNameLabel.font = UIFont(name: "Helvetica-Bold", size: 18.0)
+//            planNameLabel.textColor = UIColor.white
+//            planNameLabel.sizeToFit()
+//            let destinationNameLabel = UILabel(frame: CGRect(x: 20, y: cell.bounds.minY + 60, width: 50, height: 200))
+//            destinationNameLabel.text = p.country
+//            destinationNameLabel.font = UIFont(name: "Helvetica-Bold", size: 18.0)
+//            destinationNameLabel.textColor = UIColor.white
+//            destinationNameLabel.sizeToFit()
+//            let dateLabel = UILabel(frame: CGRect(x: 20, y: cell.bounds.minY + 100, width: 50, height: 200))
+//            dateLabel.text = "From " + p.fromDate + " to " + p.toDate
+//            dateLabel.font = UIFont(name: "Helvetica-Bold", size: 18.0)
+//            dateLabel.textColor = UIColor.white
+//            dateLabel.sizeToFit()
+            
+            
+//            transpView.addSubview(planNameLabel)
+//            transpView.addSubview(destinationNameLabel)
+//            transpView.addSubview(dateLabel)
+//            cell.bringSubviewToFront(planNameLabel)
+//            cell.bringSubviewToFront(destinationNameLabel)
+//            cell.bringSubviewToFront(dateLabel)
+            
+            dynamicView?.tag = 99
+            
+            dynamicView!.addSubview(transpView)
+            cell.addSubview(dynamicView!)
+        }
+//        cell.addSubview(planNameLabel)
+        
+        cell.backgroundView = image
+        cell.planNameLabel.text = p.planName
+//        cell.planNameLabel.isHidden = true
+        cell.destinationNameLabel.text = p.country
+//        cell.destinationNameLabel.isHidden = true
+        cell.dateLabel.text = p.fromDate + " to " + p.toDate
+//        cell.dateLabel.isHidden = true
+        cell.planNameLabel.sizeToFit()
+        cell.destinationNameLabel.sizeToFit()
+        cell.dateLabel.sizeToFit()
+        cell.planNameLabel.font = UIFont(name: "Helvetica-Bold", size: 18.0)
+        cell.destinationNameLabel.font = UIFont(name: "Helvetica-Bold", size: 18.0)
+        cell.dateLabel.font = UIFont(name: "Helvetica-Bold", size: 18.0)
+        cell.planNameLabel.layer.zPosition = 2
+        self.view.bringSubviewToFront(cell.planNameLabel)
+        self.view.bringSubviewToFront(cell.destinationNameLabel)
+        self.view.bringSubviewToFront(cell.dateLabel)
         return cell
     }
     
@@ -170,6 +231,9 @@ class TableViewController: UIViewController, UITableViewDelegate, UITableViewDat
         storePlanId = self.planList[indexPath.row].planId
         GlobalData.shared.planId = storePlanId!
         GlobalData.shared.countryName = storeCountryName!
+        PlanGlobalData.shared.planId = storePlanId!
+        PlanGlobalData.shared.countryName = storeCountryName!
+        PlanGlobalData.shared.planName = storePlanName!
         self.performSegue(withIdentifier: "TableToCellData", sender: self)
         
     }
