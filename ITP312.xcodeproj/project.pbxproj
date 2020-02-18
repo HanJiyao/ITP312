@@ -29,7 +29,6 @@
 		5198C85E23EDBDA60030798A /* GuideBookOfferViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5198C85D23EDBDA60030798A /* GuideBookOfferViewController.swift */; };
 		51AC72BF23EDA1E9007B6479 /* GuideBookRequestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51AC72BE23EDA1E9007B6479 /* GuideBookRequestViewController.swift */; };
 		51FEC42323F0F54800CC2B71 /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51FEC42223F0F54800CC2B71 /* AccountViewController.swift */; };
-		51FEC42723F0F5D600CC2B71 /* DiscoverStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 51FEC42623F0F5D500CC2B71 /* DiscoverStoryboard.storyboard */; };
 		70AC62B627809D8F22395BB7 /* Pods_ITP312.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A38D9AD9C7E44A1B66BD63E9 /* Pods_ITP312.framework */; };
 		7788232623D0F61C0036304C /* ChatLogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7788232523D0F61B0036304C /* ChatLogViewController.swift */; };
 		7788232923D1138C0036304C /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7788232823D1138C0036304C /* Message.swift */; };
@@ -113,7 +112,8 @@
 		D5BA981623F0C02E00A8F523 /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5BA97E123F0C02D00A8F523 /* TextField.swift */; };
 		D5BA981723F0C02E00A8F523 /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5BA97E223F0C02D00A8F523 /* Button.swift */; };
 		D5F7573823FB23CB007428DF /* PlanCalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5F7573723FB23CB007428DF /* PlanCalendarViewController.swift */; };
-		D5F7573A23FB240E007428DF /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D5F7573923FB240E007428DF /* GoogleService-Info.plist */; };
+		D5F7573C23FB2568007428DF /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D5F7573B23FB2568007428DF /* GoogleService-Info.plist */; };
+		D5F7573E23FB28C1007428DF /* DiscoverStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D5F7573D23FB28C1007428DF /* DiscoverStoryboard.storyboard */; };
 		FB22CB3723F08C5F0097180E /* SearchLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB22CB3623F08C5F0097180E /* SearchLocation.swift */; };
 		FB22CB3B23F08C960097180E /* FinalCreatePlanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB22CB3A23F08C960097180E /* FinalCreatePlanViewController.swift */; };
 		FB22CB3D23F08D110097180E /* Plans.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FB22CB3C23F08D110097180E /* Plans.storyboard */; };
@@ -162,7 +162,6 @@
 		5198C85D23EDBDA60030798A /* GuideBookOfferViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideBookOfferViewController.swift; sourceTree = "<group>"; };
 		51AC72BE23EDA1E9007B6479 /* GuideBookRequestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideBookRequestViewController.swift; sourceTree = "<group>"; };
 		51FEC42223F0F54800CC2B71 /* AccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountViewController.swift; sourceTree = "<group>"; };
-		51FEC42623F0F5D500CC2B71 /* DiscoverStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = DiscoverStoryboard.storyboard; sourceTree = "<group>"; };
 		7733A5DDFB82ABEA7DCE0DE4 /* Pods-ITP312.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ITP312.release.xcconfig"; path = "Target Support Files/Pods-ITP312/Pods-ITP312.release.xcconfig"; sourceTree = "<group>"; };
 		7788232523D0F61B0036304C /* ChatLogViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatLogViewController.swift; sourceTree = "<group>"; };
 		7788232823D1138C0036304C /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
@@ -247,7 +246,8 @@
 		D5BA97E123F0C02D00A8F523 /* TextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextField.swift; sourceTree = "<group>"; };
 		D5BA97E223F0C02D00A8F523 /* Button.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Button.swift; sourceTree = "<group>"; };
 		D5F7573723FB23CB007428DF /* PlanCalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanCalendarViewController.swift; sourceTree = "<group>"; };
-		D5F7573923FB240E007428DF /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		D5F7573B23FB2568007428DF /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		D5F7573D23FB28C1007428DF /* DiscoverStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = DiscoverStoryboard.storyboard; sourceTree = "<group>"; };
 		FB22CB3623F08C5F0097180E /* SearchLocation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchLocation.swift; sourceTree = "<group>"; };
 		FB22CB3823F08C860097180E /* AddLocationMapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddLocationMapViewController.swift; sourceTree = "<group>"; };
 		FB22CB3A23F08C960097180E /* FinalCreatePlanViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FinalCreatePlanViewController.swift; sourceTree = "<group>"; };
@@ -422,7 +422,7 @@
 				5156A06223CDA39B008328C5 /* Assets.xcassets */,
 				5156A06423CDA39B008328C5 /* LaunchScreen.storyboard */,
 				5156A06723CDA39B008328C5 /* Info.plist */,
-				D5F7573923FB240E007428DF /* GoogleService-Info.plist */,
+				D5F7573B23FB2568007428DF /* GoogleService-Info.plist */,
 			);
 			path = ITP312;
 			sourceTree = "<group>";
@@ -485,7 +485,7 @@
 				D5BA96FD23F0BBB600A8F523 /* Views */,
 				D53CEDEE23F9C54400EEAEA5 /* ViewController.swift */,
 				D53CEDED23F9C54300EEAEA5 /* DiscoverViewController.swift */,
-				51FEC42623F0F5D500CC2B71 /* DiscoverStoryboard.storyboard */,
+				D5F7573D23FB28C1007428DF /* DiscoverStoryboard.storyboard */,
 				D53CEDF123F9C55C00EEAEA5 /* Extensions.swift */,
 				D53CEDC623F9C3F300EEAEA5 /* SwipePhotoViewController.swift */,
 				D53CEDCB23F9C42800EEAEA5 /* SampleCard */,
@@ -855,15 +855,15 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				51FEC42723F0F5D600CC2B71 /* DiscoverStoryboard.storyboard in Resources */,
 				D53CEDEA23F9C4A500EEAEA5 /* GalleryStoryboard.storyboard in Resources */,
 				5156A06623CDA39B008328C5 /* LaunchScreen.storyboard in Resources */,
 				5156A07223CDA45D008328C5 /* ChatStoryboard.storyboard in Resources */,
 				FB22CB3D23F08D110097180E /* Plans.storyboard in Resources */,
 				D5BA97F623F0C02E00A8F523 /* Countries.bundle in Resources */,
+				D5F7573E23FB28C1007428DF /* DiscoverStoryboard.storyboard in Resources */,
 				512985E923E3D5040053D3D9 /* AccountStoryboard.storyboard in Resources */,
 				511A196F23E82409008B7E63 /* GuideStoryboard.storyboard in Resources */,
-				D5F7573A23FB240E007428DF /* GoogleService-Info.plist in Resources */,
+				D5F7573C23FB2568007428DF /* GoogleService-Info.plist in Resources */,
 				5156A06323CDA39B008328C5 /* Assets.xcassets in Resources */,
 				5156A06123CDA39A008328C5 /* Main.storyboard in Resources */,
 			);

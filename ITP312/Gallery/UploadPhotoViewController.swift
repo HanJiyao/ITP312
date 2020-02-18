@@ -91,7 +91,7 @@ class UploadPhotoViewController: UIViewController, UIImagePickerControllerDelega
             return
         }
         
-        print("country at end", customTableViewController?.countryLabel.text)
+        //print("country at end", customTableViewController?.countryLabel.text)
         let imageJPEG = imageView.image?.jpegData(compressionQuality: 0.7)
         //        let storageRef = Storage.storage().reference().child("photoframe").child("\(UUID().uuidString).png")
         let currentUser = DataManager.currentUser()
@@ -99,6 +99,9 @@ class UploadPhotoViewController: UIViewController, UIImagePickerControllerDelega
         let ref = DataManager.ref()
         print(photoObject)
         guard let photoShareToCountry = self.customTableViewController?.shareToggleSwitch.isOn else {return}
+        
+        DataManager.showProgressBar()
+        
         storageRef.putData(imageJPEG!, metadata: nil) { (metadata, error) in
             storageRef.downloadURL { (url, error) in
                 guard let downloadURL = url else {
@@ -134,9 +137,11 @@ class UploadPhotoViewController: UIViewController, UIImagePickerControllerDelega
                             print("sharing to country", self.photoObject.country!)
                             ref.child("country").child(self.photoObject.country!).childByAutoId().setValue(countryValues)
                         }
+                        
                         ref.child("folder").child(currentUser).child(self.folderIDToUploadPhoto!).observe(.value) { (snapshot) in
                             let photoCount = snapshot.childSnapshot(forPath: "photo").childrenCount
                             ref.child("folder").child(currentUser).child(self.folderIDToUploadPhoto!).updateChildValues(["subtitle": "\(photoCount)"])
+                            
                             self.navigationController?.popViewController(animated: true)
                         }
                     }

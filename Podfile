@@ -27,5 +27,7 @@ target 'ITP312' do
   pod 'INSNibLoading'
   pod 'PopBounceButton'
   pod 'Shuffle-iOS'
+  pod "RappleProgressHUD"
+  pod "Loaf"
 
 end

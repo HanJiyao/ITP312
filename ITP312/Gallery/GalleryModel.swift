@@ -8,6 +8,7 @@
 
 import UIKit
 import INSPhotoGallery
+import SDWebImage
 
 class GalleryModel: NSObject {
     
@@ -42,7 +43,13 @@ class PhotoModel: NSObject, INSPhotoViewable {
     var thumbnailImage: UIImage?
     
     func loadImageWithCompletionHandler(_ completion: @escaping (UIImage?, Error?) -> ()) {
-        
+        if let url = URL(string: imageURL!) {
+            SDWebImageManager.shared.loadImage(with: url, options: .continueInBackground, progress: nil) { (image, data, error, cacheType, isFinished, url) in
+                if let imageDownloaded = image {
+                    completion(imageDownloaded, error)
+                }
+            }
+        }
     }
     
     func loadThumbnailImageWithCompletionHandler(_ completion: @escaping (UIImage?, Error?) -> ()) {
@@ -85,13 +92,15 @@ class FolderModel: NSObject {
     var image: String?
     var key: String?
     var userID: String?
+    var color: String?
     
-    init(title: String, subtitle: String, image: String, key: String, userID: String) {
+    init(title: String, subtitle: String, image: String, key: String, userID: String, color: String) {
         self.title = title
         self.subtitle = subtitle
         self.image = image
         self.key = key
         self.userID = userID
+        self.color = color
     }
     
     init(data: [String: Any]) {
@@ -100,6 +109,7 @@ class FolderModel: NSObject {
         self.image = data["image"] as? String
         self.key = data["key"] as? String
         self.userID = data["userID"] as? String
+        self.color = data["color"] as? String
     }
 }
 

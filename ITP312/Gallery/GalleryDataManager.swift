@@ -9,6 +9,8 @@
 import UIKit
 import Firebase
 import SDWebImage
+import RappleProgressHUD
+import Loaf
 
 class DataManager: NSObject {
     // Loads the full list of movies from Firebase // and converts it into a [Movie] array.
@@ -124,7 +126,8 @@ class DataManager: NSObject {
             "image": countryCode ?? "listings",
             "timestamp": ServerValue.timestamp(),
             "key": title,
-            "userID": currentUser
+            "userID": currentUser,
+            "color": UIColor.blue.hexString
             ] as [String : Any]
         ref.child("folder").child(currentUser).child(title).setValue(values)
         let oneFolder = FolderModel(data: values)
@@ -173,13 +176,31 @@ class DataManager: NSObject {
         }
     }
 
+    static func showProgressBar() {
+        RappleActivityIndicatorView.startAnimatingWithLabel("Uploading...", attributes: RappleAppleAttributes)
+        Thread.detachNewThread {
+            var i: CGFloat = 0
+            while i <= 100 {
+                RappleActivityIndicatorView.setProgress(i/100)
+                i += 1
+                Thread.sleep(forTimeInterval: 0.01)
+            }
+            RappleActivityIndicatorView.stopAnimation(completionIndicator: .success, completionLabel: "Completed.", completionTimeout: 1)
+        }
+    }
+    
+    static func showToast(message: String, sender: UIViewController) {
+        //Loaf("Successfully downloaded", state: .success, location: .bottom, presentingDirection: .left, dismissingDirection: .vertical, sender: self).show()
+        Loaf(message, state: .custom(.init(backgroundColor: UIColor(hexString: "#2ecc71"), icon: Loaf.Icon.success, width: .screenPercentage(0.8))), presentingDirection: .left, dismissingDirection: .vertical, sender: sender).show(.short)
+    }
+    
     
 //         let storyboard = UIStoryboard(name: "GalleryStoryboard", bundle: nil)
 //                let photoViewController = storyboard.instantiateViewController(withIdentifier: "UploadPhoto") as! UploadPhotoViewController
     //            self.present(photoViewController, animated: true, completion: nil)
 //                self.navigationController?.pushViewController(photoViewController, animated: true)
     
-    //
+    
 }
 
 extension UIApplication {

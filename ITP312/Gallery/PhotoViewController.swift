@@ -10,6 +10,7 @@ import UIKit
 import INSPhotoGallery
 import JJFloatingActionButton
 import Firebase
+import SDWebImage
 
 class PhotoViewController: UIViewController, ChatDelegate, FolderDelegate {
 
@@ -24,15 +25,15 @@ class PhotoViewController: UIViewController, ChatDelegate, FolderDelegate {
     var selectedImageURLToShare: String?
     var selectedImage: PhotoModel?
 
-    lazy var photos: [INSPhotoViewable] = {
-           return [
-            INSPhoto(image: UIImage(named: "profile"), thumbnailImage: UIImage(named: "profile")),
-            INSPhoto(image: UIImage(named: "profile"), thumbnailImage: UIImage(named: "profile")),
-            INSPhoto(image: UIImage(named: "profile"), thumbnailImage: UIImage(named: "profile")),
-            INSPhoto(image: UIImage(named: "profile"), thumbnailImage: UIImage(named: "profile")),
-            INSPhoto(image: UIImage(named: "profile"), thumbnailImage: UIImage(named: "profile"))
-           ]
-    }()
+//    lazy var photos: [INSPhotoViewable] = {
+//           return [
+//            INSPhoto(image: UIImage(named: "profile"), thumbnailImage: UIImage(named: "profile")),
+//            INSPhoto(image: UIImage(named: "profile"), thumbnailImage: UIImage(named: "profile")),
+//            INSPhoto(image: UIImage(named: "profile"), thumbnailImage: UIImage(named: "profile")),
+//            INSPhoto(image: UIImage(named: "profile"), thumbnailImage: UIImage(named: "profile")),
+//            INSPhoto(image: UIImage(named: "profile"), thumbnailImage: UIImage(named: "profile"))
+//           ]
+//    }()
     
     lazy var photoList: [PhotoModel] = []
 
@@ -47,11 +48,11 @@ class PhotoViewController: UIViewController, ChatDelegate, FolderDelegate {
         
         loadPhotos()
         
-        for photo in photos {
-            if let photo = photo as? INSPhoto {
-                photo.attributedTitle = NSAttributedString(string: "Example caption text\ncaption text", attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
-            }
-        }
+//        for photo in photos {
+//            if let photo = photo as? INSPhoto {
+//                photo.attributedTitle = NSAttributedString(string: "Example caption text\ncaption text", attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
+//            }
+//        }
         
         configureActionButton()
         
@@ -76,19 +77,8 @@ class PhotoViewController: UIViewController, ChatDelegate, FolderDelegate {
         ref.child("folder").child(currentUser).child(folderObject!.key!).child("photo").observe(.value) { snapshot in
             self.photoList.removeAll()
             for child in snapshot.children.allObjects as! [DataSnapshot] {
-//                print("child", child.value)
-//                print(child.value)
                 if let dict = child.value as? [String: AnyObject] {
-//                    print(dict["imageURL"])
-                    let firebaseimageURL = URL(string: dict["imageURL"] as! String)
-//                    let firebaseimageURL = dict["imageURL"] as! String
-//                    print(firebaseimageURL)
-//                    let onePhoto = INSPhoto(imageURL: firebaseimageURL, thumbnailImageURL: firebaseimageURL)
                     let onePhoto = PhotoModel(data: dict)
-//                    let stringURL = URL(string: photoList[indexPath.row].imageURL!)!
-//                    let imageRetrieved = UIImage(data: try! Data(contentsOf: stringURL))
-                    //        photoList[indexPath.row].thumbnailImage = imageRetrieved
-//                    onePhoto.printObj("this photo")
                     onePhoto.attributedTitle = NSAttributedString(string: "Location: \(onePhoto.name!)\nCountry: \(onePhoto.country!)", attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
                     self.photoList.append(onePhoto)
                 }
@@ -98,6 +88,7 @@ class PhotoViewController: UIViewController, ChatDelegate, FolderDelegate {
             }
         }
     }
+    
     
 }
 
@@ -164,10 +155,22 @@ extension PhotoViewController: UICollectionViewDataSource, UICollectionViewDeleg
                 let ref = DataManager.ref()
                 let currentUser = DataManager.currentUser()
                 ref.child("folder").child(currentUser).child(self.folderObject!.key!).child("photo").child(self.photoList[indexPath.row].key!).removeValue()
+                DataManager.showToast(message: "Photo deleted!", sender: self)
                 self.photoList.remove(at: indexPath.row)
                 collectionView.deleteItems(at: [indexPath])
             }
-            return UIMenu(title: "Options", image: nil, identifier: nil, children: [folderMenu, shareMenu, deleteMenu])
+            
+            let downloadMenu = UIAction(title: "Download to phone", image: UIImage(systemName: "icloud.and.arrow.down")) { _ in
+                print("download clicked..")
+                let imageURL = URL(string: self.photoList[indexPath.row].imageURL!)
+                SDWebImageManager.shared.loadImage(with: imageURL, options: .continueInBackground, progress: nil) { (image, data, error, cacheType, isFinished, url) in
+                    if let imageDownloaded = image {
+                        UIImageWriteToSavedPhotosAlbum(imageDownloaded, self, nil, nil)
+                    }
+                }
+            }
+
+            return UIMenu(title: "Options", image: nil, identifier: nil, children: [folderMenu, shareMenu, downloadMenu, deleteMenu])
         }
         return configuration
     }
@@ -190,13 +193,15 @@ extension PhotoViewController: UICollectionViewDataSource, UICollectionViewDeleg
         let ref = DataManager.ref()
         let currentUser = DataManager.currentUser()
         let folderID = data
+        guard let key = ref.child("folder").child(currentUser).child(folderID).child("photo").childByAutoId().key else {return}
         let values = [
             "imageURL": selectedImage!.imageURL!,
             "name": selectedImage!.name!,
             "country": selectedImage!.country!,
-            "timestamp": ServerValue.timestamp()
+            "timestamp": ServerValue.timestamp(),
+            "key": key
             ] as [String : Any]
-        ref.child("folder").child(currentUser).child(folderID).child("photo").childByAutoId().setValue(values) { (err, ref) in
+        ref.child("folder").child(currentUser).child(folderID).child("photo").child(key).setValue(values) { (err, ref) in
             if err != nil {return}
             DataManager.updateFolderPhotoCount(folderIDToUploadPhoto: folderID)
             print("shared successfully")

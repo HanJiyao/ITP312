@@ -39,7 +39,7 @@ class AddLocationViewController: UIViewController {
     
     @IBAction func SearchLocationTextDidEnd(_ sender: Any) {
          let locationSelected = SearchLocationText.text
-        print(locationSelected)
+        //print(locationSelected)
         self.searchLocationName = locationSelected!
         
         // UIApplication.shared.beginIgnoringInteractionEvents()

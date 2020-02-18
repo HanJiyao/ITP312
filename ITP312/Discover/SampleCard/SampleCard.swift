@@ -3,7 +3,7 @@ import Shuffle_iOS
 class SampleCard: SwipeCard {
     
     override var swipeDirections: [SwipeDirection] {
-        return [.left, .up, .right]
+        return [.left, .up, .right, .down]
     }
     
     override init(frame: CGRect) {
@@ -23,6 +23,8 @@ class SampleCard: SwipeCard {
             return SampleCardOverlay.up()
         case.right:
             return SampleCardOverlay.right()
+        case .down:
+            return SampleCardOverlay.down()
         default:
             return nil
         }

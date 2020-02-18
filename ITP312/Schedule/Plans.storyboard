@@ -386,7 +386,7 @@
         <!--Set Date For Plan View Controller-->
         <scene sceneID="aOm-w0-L0o">
             <objects>
-                <viewController id="MlP-XA-i93" customClass="SetDateForPlanViewController" customModule="ITP312" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SetDateStoryboardID" id="MlP-XA-i93" customClass="SetDateForPlanViewController" customModule="ITP312" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="HGa-Uc-XPe">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -676,7 +676,7 @@
         <scene sceneID="84w-Vp-VQY">
             <objects>
                 <viewController id="FAr-EB-2Cp" customClass="PlanCalendarViewController" customModule="ITP312" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" ambiguous="YES" id="HgV-Sf-Vyh">
+                    <view key="view" contentMode="scaleToFill" id="HgV-Sf-Vyh">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>

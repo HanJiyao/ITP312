@@ -13,8 +13,8 @@ extension UIAlertController {
     
     func addLocationPicker(region: MKCoordinateRegion? = nil, location: Location? = nil, completion: @escaping LocationPickerViewController.CompletionHandler) {
         let vc = LocationPickerViewController()
-        print("location!!!", location)
-        print("Map region", region)
+        //print("location!!!", location)
+        //print("Map region", region)
         vc.location = location
         vc.completion = completion
         vc.regionRetrieved = region
@@ -255,8 +255,8 @@ final class LocationPickerViewController: UIViewController {
 	}
 	
 	func showCoordinates(_ coordinate: CLLocationCoordinate2D, animated: Bool = true) {
-		let region = MKCoordinateRegion.init(center: coordinate, latitudinalMeters: resultRegionDistance, longitudinalMeters: resultRegionDistance)
-        print("show coordinates region!")
+		//let region = MKCoordinateRegion.init(center: coordinate, latitudinalMeters: resultRegionDistance, longitudinalMeters: resultRegionDistance)
+        //print("show coordinates region!")
 //		mapView.setRegion(region, animated: animated)
         mapView.setRegion(regionRetrieved!, animated: true)
 	}
@@ -366,8 +366,8 @@ extension LocationPickerViewController: UISearchResultsUpdating {
 	}
 	
 	func showItemsForSearchResult(_ searchResult: MKLocalSearch.Response?) {
-        print("search result!")
-        print(searchResult)
+        //print("search result!")
+        //print(searchResult)
 		results.locations = searchResult?.mapItems.map { Location(name: $0.name, placemark: $0.placemark) } ?? []
 		results.isShowingHistory = false
 		results.tableView.reloadData()

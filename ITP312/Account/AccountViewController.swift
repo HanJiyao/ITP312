@@ -85,7 +85,7 @@ class AccountViewController: UIViewController, GalleryDelegate {
           if let error = error {
             print(error)
           } else {
-            print(metadata)
+            //print(metadata)
           }
         }
     }

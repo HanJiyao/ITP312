@@ -37,6 +37,17 @@ class SampleCardOverlay: UIView {
                              paddingLeft: 14)
         return overlay
     }
+    
+    static func down() -> UIView {
+        let overlay = UIView()
+        let downTextView = SampleOverlayLabelView(withTitle: "DOWNLOAD",
+                                                color: .sampleBlue,
+                                                rotation: CGFloat.pi/20)
+        overlay.addSubview(downTextView)
+        downTextView.anchor(top: overlay.topAnchor, paddingTop: 60)
+        downTextView.centerXAnchor.constraint(equalTo: overlay.centerXAnchor).isActive = true
+        return overlay
+    }
 }
 
 private class SampleOverlayLabelView: UIView {

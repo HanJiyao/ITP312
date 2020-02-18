@@ -34,7 +34,7 @@ class GalleryCollectionViewController: UIViewController, UICollectionViewDelegat
         self.navigationItem.title = "Photo frames"
         print("view did load")
 //        loadData()
-        let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
+        //let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
 
         //loadGallery()
         loadData()
@@ -113,8 +113,8 @@ class GalleryCollectionViewController: UIViewController, UICollectionViewDelegat
             //            if let snapDict = snapshot.children as? DataSnapshot {
             print("snapshot value", snapshot.value!)
             for child in snapshot.children.allObjects as! [DataSnapshot] { //don't convert into dictionary, dictionary won't maintain order of items
-                print("child val",child.value)
-                print("cihld key", child.key)
+                //print("child val",child.value)
+                //print("cihld key", child.key)
                 let oneGallery = GalleryModel(data: child.value as! [String : Any])
                 self.galleryList.append(oneGallery)
             }

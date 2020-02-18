@@ -182,6 +182,7 @@ PODS:
   - INSPhotoGallery (1.2.8)
   - JJFloatingActionButton (2.1.0)
   - leveldb-library (1.22)
+  - Loaf (0.5.0)
   - Magnetic (3.1.2)
   - nanopb (0.3.9011):
     - nanopb/decode (= 0.3.9011)
@@ -193,6 +194,7 @@ PODS:
     - pop (~> 1.0)
   - PromisesObjC (1.2.8)
   - Protobuf (3.11.3)
+  - RappleProgressHUD (4.1)
   - RSSelectionMenu (6.1.0)
   - SDWebImage (5.5.2):
     - SDWebImage/Core (= 5.5.2)
@@ -216,8 +218,10 @@ DEPENDENCIES:
   - INSNibLoading
   - INSPhotoGallery
   - JJFloatingActionButton
+  - Loaf
   - Magnetic
   - PopBounceButton
+  - RappleProgressHUD
   - RSSelectionMenu
   - SDWebImage (~> 5.0)
   - ShadowView
@@ -259,12 +263,14 @@ SPEC REPOS:
     - INSPhotoGallery
     - JJFloatingActionButton
     - leveldb-library
+    - Loaf
     - Magnetic
     - nanopb
     - pop
     - PopBounceButton
     - PromisesObjC
     - Protobuf
+    - RappleProgressHUD
     - RSSelectionMenu
     - SDWebImage
     - ShadowView
@@ -305,17 +311,19 @@ SPEC CHECKSUMS:
   INSPhotoGallery: ad317cb9a59c7a5f08550e4155b49622c24dcab3
   JJFloatingActionButton: 26805f87c7e9f68c6a91bd9f3f09c2e6b904a84f
   leveldb-library: 55d93ee664b4007aac644a782d11da33fba316f7
+  Loaf: 0800b444431366bc395d54267975d4ad4ad5c99c
   Magnetic: dc24bdaa891c55d7d5edcc8b5b3d8cd64465aed1
   nanopb: 18003b5e52dab79db540fe93fe9579f399bd1ccd
   pop: d582054913807fd11fd50bfe6a539d91c7e1a55a
   PopBounceButton: 34105a012678222f058f8d2621672724a3d5c9fb
   PromisesObjC: c119f3cd559f50b7ae681fa59dc1acd19173b7e6
   Protobuf: 0e94afe3b47cb11876eb6aee296638711a24bf75
+  RappleProgressHUD: f29bc5dc5f9834c2caa9c2ae21ba11f3ff2b5a85
   RSSelectionMenu: dac4fa365e4bbd95c0eccd0b6ff51a623a22a1c6
   SDWebImage: 4d5c027c935438f341ed33dbac53ff9f479922ca
   ShadowView: d2d92fd2706b3f6a182be2147149db0b1cf7700d
   Shuffle-iOS: 03153c90ff2eb6c6f811157d601b2ac4e360c404
 
-PODFILE CHECKSUM: 8436a0e968361ab5daec680b06934d8d66f77d24
+PODFILE CHECKSUM: f065fae1105b3a84b88ab362c37147cc9bec8e73
 
 COCOAPODS: 1.8.4
